@@ -1,0 +1,10 @@
+12 Jun [PAB] pathname.lsp: Use '/' in internal representation
+		 + use '\' if needs be in namestring
+25 Jun [PAB] pathname.lsp: Relax this in dir-namestring and pathname-dir
+13 Aug [MCD]    all files: merged with latest version from ACN.
+14 Aug [MCD] sequence.lsp: Removed subseq et al in preference to C versions.
+20 Nov [TTT]   funcs1.lsp: load : reworked the logic for :if-does-not-exist
+21 Nov [MCD]          ALL: merged in latest changes from Arthur.
+03 Dec [MCD]    build.lsp: Backed off load -> rdf change.
+13 Dec [PAB]	print.lsp: Redefine prettyprint as alias for pprint.
+27 Mar [TTT] sequence.lsp: cleaned up test <-> test-not logic

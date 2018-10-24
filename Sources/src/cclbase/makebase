@@ -1,0 +1,1404 @@
+@
+@ This data file is used to create the makefile for CCL
+@ It is processed by the Codemist "makemake" utility, which should
+@ be called as
+@    makemake cpu opsys compiler ?debug -f <this-file> -o <destination>
+@ where cpu, opsys, compiler and ?debug are options taken from the menu
+@ given below.
+@
+@
+@ The following apply at the start of lines...
+@    "@ "         introduces a comment (note the blank after the "@")
+@    "@set(word)  sets a new keyword as if it had been defined.
+@    "@if"  etc   conditional inclusion within generated file.
+@    "@error"     marks trouble
+@
+@ Through the bulk of a file (even in the middle of lines) the following
+@ are converted: 
+@
+@    "@@"         expands to a single "@"
+@    "@~"         expands to blank if "blank" has been set, or to nothing
+@    "@""         expands to " or \" depending on "quote" (needed for
+@                 the Unix shell, in places).
+@    "@"          marks the start of a file-name, which is written in the
+@                 master file using "/" as a directory separator, but
+@                 DOS-like extensions .exe and Unix like .o
+@    "@?"         queries the user for a value
+@    "@!"         re-uses input from previous "@!" but maps input as filename
+@    "\"          at the end of a line is a "make" continuation marker,
+@                 interpreted as & if "watcom" is set.
+@
+@menu
+@
+@ First I will have a list of the target architectures that are supported
+@
+@item(acorn>machine_known) Acorn Archimedes/RISC-PC
+@item(80x86>machine_known) 80386, 80486, Pentium
+@item(sparc>machine_known) Sparc
+@item(hp9000>machine_known) Hewlett Packard PA systems
+@item(apollo>machine_known) Apollo Domain
+@item(sgi>machine_known) Silicon Graphics Indi and compatibles
+@item(clipper>machine_known) Intergraph Clipper
+@item(88000>machine_known) Motorola 88000
+@item(alpha>machine_known) DEC Alpha
+@item(rs6000>machine_known) IBM R66000
+@
+@ Next the associated operating systems
+@
+@item(riscos>os_known) Acorn's RISC-OS operating system
+@item(unix>os_known) Unix (BSD, SYS-V, OSF etc)
+@item(linux>unix>os_known) Linux
+@item(dos>os_known) DOS with suitable extender
+@item(win95>os_known) Windows 95, win32s, win32
+@item(winnt>os_known) Windows NT
+@
+@ Select a C compiler from the following list
+@
+@item(gcc>compiler_known) The GNU C compiler
+@item(microsoft>compiler_known) Microsoft Visual C
+@item(watcom>compiler_known) Watcom C 10.5
+@item(ncc>compiler_known) Norcroft C compiler
+@
+@ Specify UFILES to get u01.c through u12.c compiled and linked in
+@item(ufiles) Use u01.c - u12.c
+@
+@ Optionally specify DEBUG for a version for use during testing
+@
+@item(noopt) Disable C compiler optimisation in case compiler bugs
+@item(debug) Compile and link for debugging
+@item(profile) Set C compiler profile options
+@
+@ Also please specify NAG to build in NAG-specific extensions
+@item(nag) Include NAG-specific extensions
+@
+@ Now a few convenient abbreviations for combinations I will use
+@ more often than others...
+@
+@item(win>80x86>win95>watcom>machine_known>os_known>compiler_known) Windows 95, Watcom C
+@item(gccunix>gcc>unix>os_known>compiler_known) GNU C with generic Unix
+@
+@endmenu
+@
+@
+@if(acorn)
+@if(compiler_known)
+@ifnot(ncc)
+@ifnot(gcc)
+@error Unknown compiler for Acorn system
+@endif
+@endif
+@else
+@set(ncc)
+@set(compiler_known)
+@endif
+@endif
+@
+@if(sparc)
+@if(os_known)
+@ifnot(unix)
+@error Unix needed for sparc
+@endif
+@else
+@set(unix)
+@set(os_known)
+@endif
+@endif
+@
+@if(hp9000)
+@if(os_known)
+@ifnot(unix)
+@error Unix needed for HP9000
+@endif
+@else
+@set(unix)
+@set(os_known)
+@endif
+@endif
+@
+@if(apollo)
+@if(os_known)
+@ifnot(unix)
+@error Unix needed for Apollo
+@endif
+@else
+@set(unix)
+@set(os_known)
+@endif
+@endif
+@
+@if(sgi)
+@if(os_known)
+@ifnot(unix)
+@error Unix needed for SGI
+@endif
+@else
+@set(unix)
+@set(os_known)
+@endif
+@endif
+@
+@if(clipper)
+@if(os_known)
+@ifnot(unix)
+@error Unix needed for Clipper
+@endif
+@else
+@set(unix)
+@set(os_known)
+@endif
+@endif
+@
+@if(88000)
+@if(os_known)
+@ifnot(unix)
+@error Unix needed for 88000
+@endif
+@else
+@set(unix)
+@set(os_known)
+@endif
+@endif
+@
+@if(alpha)
+@if(os_known)
+@ifnot(unix)
+@ifnot(winnt)
+@error Unix or Windows NT needed for Alpha
+@endif
+@endif
+@else
+@set(unix)
+@set(os_known)
+@endif
+@endif
+@
+@if(rs6000)
+@set(unix)
+@endif
+@
+@if(linux)
+@if(compiler_known)
+@ifnot(gcc)
+@error Linux uses GCC
+@endif
+@else
+@set(gcc)
+@set(compiler_known)
+@endif
+@endif
+@
+###########################################################################
+#                                                                         #
+# makefile for CCL (Codemist Common Lisp)                                 #
+#                                                                         #
+###########################################################################
+@
+@
+@ GCC can be run on many different sorts of machines and with several
+@ different operating systems. I collect together all the options here.
+@
+@
+@if(gcc)
+@
+@if(dos)
+@set(80x86)
+@endif
+@
+@if(80x86)
+@set(escapequote)
+@set(blank)
+
+
+###########################################################################
+# This is for GCC for DOS                                                 #
+# NB using GNU "make" all filenames must use "/" rather than "\"          #
+###########################################################################
+
+CC        = gcc
+@if(debug)
+OPTFLAGS  = -g -DDEBUG=1
+@elif(noopt)
+OPTFLAGS  =
+@else 
+OPTFLAGS  = -O3
+@endif
+CFLAGS    = -c $(OPTFLAGS) -ansi -I$(CSLBASE) -DGCC386=1 -DCOMMON=1
+ASM       = gcc
+ASMFLAGS  = -c
+LINK      = $(CC)
+LFLAGS    =
+LIBS      = -lm -lcurses
+ASMSRC    = igcc386.s
+ASMOBJ    = igcc386.o
+ASMOBJDEP = igcc386.o
+STORE     = -k4000
+OUT       = -o
+SYS       = sysdos
+WX        = go32
+RM        = del
+MKDIR     = mkdir
+COPY      = copy
+STRIP     = strip
+###########################################################################
+
+@elif(sparc)
+@set(unix)
+
+###########################################################################
+# Sun SPARC, using GCC
+
+CC        = gcc
+@if(debug)
+OPTFLAGS  = -g -DDEBUG=1
+@elif(noopt)
+OPTFLAGS  =
+@else 
+OPTFLAGS  = -O3
+@endif
+@if(profile)
+# It appears that to use the profile option properly I need to make all
+# my function names external (not static) for otherwise the "prof" program
+# can not find their names with Sun. Furthermore I possibly have to avoid use
+# if a shared library, hence the -static flag.
+PROFFLAGS = -p -static -Dstatic=
+@else
+PROFFLAGS =
+@endif
+CFLAGS    = -ansi -c $(PROFFLAGS) $(OPTFLAGS) -I/usr/5include -I$(CSLBASE) -DCOMMON=1
+@if(profile)
+@if(nag)
+LIBS      = -L/home/red5/axiom/development/obj/sun/lib -lcurses -lspad -L/usr/5lib -lm -lc -static -p
+@else
+LIBS      = -L/usr/5lib -lm -lc -lcurses -static -p
+@endif
+@else
+@if(nag)
+LIBS      = -L/home/red5/axiom/development/obj/sun/lib -lcurses -lspad -L/usr/5lib -lm -lc
+@else
+LIBS      = -L/usr/5lib -lm -lc -lcurses
+@endif
+@endif
+@set(unixoptions)
+
+###########################################################################
+
+@else
+@set(unix)
+###########################################################################
+
+# Generic Unix with GCC. Note that if you use this you should review
+# the file "machine.h" to ensure that CSL knows what name to report for
+# your system. Also if the system you are running on needs
+
+CC        = gcc
+@if(debug)
+OPTFLAGS  = -g -DDEBUG=1
+@elif(noopt)
+OPTFLAGS  =
+@else 
+OPTFLAGS  = -O3
+@endif
+CFLAGS    = -c $(OPTFLAGS) -ansi -I$(CSLBASE) -DCOMMON=1
+@if(nag)
+# Defaults to AIX for spad library
+CFLAGS    = -c $(OPTFLAGS) -ansi -I$(CSLBASE) -DCOMMON=1 -DNAG=1
+LIBS      = -L/home/red5/axiom/development/obj/rios/lib -lspad -lm -lc -lcurses 
+@else
+CFLAGS    = -c $(OPTFLAGS) -ansi -I$(CSLBASE) -DCOMMON=1
+LIBS      = -lm -lc -lcurses
+@endif
+@set(unixoptions)
+
+###########################################################################
+@endif
+@endif
+@
+@
+@ I will use Watcom C for DOS and for Windows 95 and NT
+@
+@
+@if(watcom)
+@
+@if(machine_known)
+@ifnot(80x86)
+@error Watcom C is for use with 80x86 only
+@endif
+@else
+@set(80x86)
+@set(machine_known)
+@endif
+@
+@if(os_known)
+@ifnot(win95)
+@ifnot(winnt)
+@ifnot(dos)
+@error Watcom C is for DOS, Windows 95 or Windows NT
+@endif
+@endif
+@endif
+@else
+@set(win95)
+@set(os_known)
+@endif
+@
+@set(backslash)
+@set(obj)
+@set(blank)
+@set(linkcomma)
+
+###########################################################################
+# This is for 32-bit operation with Watcom C version 10.5/10.6            #
+# Note that other release of Watcom C need command line options changed   #
+###########################################################################
+CC        = *wcc386
+@if(debug)
+OPTFLAGS  = -d2 -d_DEBUG
+@elif(noopt)
+OPTFLAGS  =
+@else
+OPTFLAGS  = -oatx
+@endif
+@if(win95)
+CCFLAGS   = -d_MBCS=1 -D_WINDOWS=1 -DWINDOWS_NT=1 -bt=nt -DCWIN=1
+@elif(wint)
+CCFLAGS   = -D_MBCS=1 -D_WINDOWS=1 -DWINDOWS_NT=1 -bt=nt -DCWIN=1
+@else
+CCFLAGS   =
+@endif
+CFLAGS    = $(OPTFLAGS) $(CCFLAGS) -i=$(CSLBASE) -5r-zp4-ei-w3-bm-fhq -dCOMMON=1
+CPP       = *wpp386
+CPPFLAGS  = $(CFLAGS) -xs-zo
+ASM       = *wasm
+ASMFLAGS  = -mf -5r -w4 -zq -bt=nt
+LINK      = *wlink
+@if(debug)
+LDEBUG    = debug all
+@else
+LDEBUG    =
+@endif
+@if(dos)
+LSYS      = dos4g
+LIBS      = ref _cstart_
+LFLAGS    = $(LDEBUG) SYS $(LSYS) op m op q op symf op el op stack=256k FIL
+@else
+LSYS      = nt_win
+@if(debug)
+LIBS      = ref _wstart2_
+LFLAGS    = $(LDEBUG) SYS $(LSYS) op m op q op symf op el op stack=256k FIL
+@else
+LIBS      = ref _wstart2_
+LFLAGS    = $(LDEBUG) SYS $(LSYS) op m op q op symf op el op stack=256k FIL
+@endif
+@endif
+ASMSRC    = imulwat.asm
+ASMOBJ    = imulwat.obj
+ASMOBJDEP = imulwat.obj
+STORE     = -k8000
+OUT       = name
+@if(win95)
+SYS       = syscwin
+WX        = start /w
+@elif(winnt)
+SYS       = syscwin
+WX        =
+@else
+SYS       = sysdos
+WX        =
+@endif
+RM        = del
+MKDIR     = mkdir
+COPY      = copy
+STRIP     = echo
+###########################################################################
+
+@endif
+
+@
+@ By "microsoft" I mean Microsoft Visual C++, for use with Windows 95
+@ and Windows NT. I will NOT use this compiler for DOS
+@
+
+@if(microsoft)
+
+@if(machine_known)
+@ifnot(80x86)
+@error Microsoft C is for use with 80x86 only
+@endif
+@else
+@set(80x86)
+@set(machine_known)
+@endif
+
+@if(os_known)
+@ifnot(win95)
+@ifnot(winnt)
+@error Microsoft C is for Windows 95 or Windows NT
+@endif
+@endif
+@else
+@set(win95)
+@set(os_known)
+@endif
+
+@set(backslash)
+@set(obj)
+###########################################################################
+#                                                                         #
+# This "makefile" is for Win32 and  Win32s (using Visual C++).            #
+#                                                                         #
+###########################################################################
+
+CC	  = cl
+@if(debug)
+CFLAGS	  = -c -Gr -W3 -DWINDOWS_NT=1 -D_X86_=1 -I$(CSLBASE) \
+	    -DWIN32=1 -DWINDOWS=1 -DCOMMON=1
+OPTFLAGS  = -Od -Zi -DDEBUG=1
+@elif(slow)
+OPTFLAGS  =
+@else
+CFLAGS	  = -c -W3 -DWINDOWS_NT=1 -D_X86_=1 -I$(CSLBASE) \
+            -DWIN32=1 -DWINDOWS=1 -DNDEBUG=1 -DCOMMON=1
+OPTFLAGS  = -ox -G5
+@endif
+LINK      = link
+@if(debug)
+LFLAGS    = -subsystem:windows -entry:WinMainCRTStartup \
+            -debug:full -debugtype:cv
+@else
+LFLAGS    = -subsystem:windows -entry:WinMainCRTStartup
+@endif
+LIBS      = nafxcw.lib libc.lib msvcrt.lib kernel32.lib shell32.lib \
+		user32.lib gdi32.lib winspool.lib libcmt.lib \
+		comdlg32.lib comctl32.lib winmm.lib advapi32.lib
+@if(debug)
+TAIL      = -link -debug -nodefaultlib -subsystem:windows
+@else
+TAIL      = -link -nodefaultlib -subsystem:windows
+@endif
+CCLRES    = ccl.res
+OUT       = -o
+ASM       = $(CC)
+ASMFLAGS  = $(CFLAGS)
+ASMSRC    = imulvc.c
+ASMOBJ    = imulvc.obj
+ASMOBJDEP = imulvc.obj
+@if(win95)
+SYS       = syscwin
+WX        = start /w
+@elif(winnt)
+SYS       = syscwin
+WX        =
+@else
+SYS       = sysdos
+WX        =
+@endif
+STORE     = -k6000
+RM        = del
+MKDIR     = mkdir
+COPY      = copy
+STRIP     = echo
+
+@if(winnt)
+WX        =
+@else
+WX        = start /w
+@set(escapequote)
+@endif
+@endif
+
+@if(hp9000)
+###########################################################################
+# HP workstations (eg HP/9000/735)
+
+CC        = c89
+CFLAGS    = -c +Obb3000 +O3 -Wl,-a,archive -I$(CSLBASE) -DCOMMON=1
+@if(nag)
+LIBS      = -L/home/red5/axiom/development/obj/hp/lib -lspad -lm -lc -lcurses
+@else
+LIBS      = -lm -lc -lcurses
+@endif
+
+@set(unixoptions)
+###########################################################################
+@endif
+
+
+@if(sunsparc)
+###########################################################################
+
+# Sun Super SPARC, using unreleased beta version of Sun C compiler
+
+CC        = /opt/SUNWspro/bin/cc
+CFLAGS    = -c -DBSD_LIB=1 -xO4 -xcg92 -I$(CSLBASE) -DCOMMON=1
+LIBS      = -lm -lc -lcurses
+@set(unixoptions)
+
+###########################################################################
+@endif
+
+@if(alpha)
+###########################################################################
+
+# DEC Alpha, with OSF (tested on 1.3) and the DEC C compiler. Note that
+# this is a 64-bit machine.
+
+CC         = cc
+@if(debug)
+OPTFLAGS  = -g -DDEBUG=1
+@elif(noopt)
+OPTFLAGS  =
+@else 
+OPTFLAGS  = -O2
+@endif
+@if(nag)
+CFLAGS     = -c $(OPTFLAGS) -std1 -Olimit 3000 -I$(CSLBASE) -DCOMMON=1 -DNAG
+LIBS       = -L/home/red5/axiom/development/obj/alpha/lib -lspad -lm -lcurses -taso
+@else
+CFLAGS     = -c $(OPTFLAGS) -std1 -Olimit 3000 -I$(CSLBASE) -DCOMMON=1
+LIBS       = -lm -lcurses -taso
+@endif
+@set(unixoptions)
+
+###########################################################################
+@endif
+
+@if(rs6000)
+###########################################################################
+
+# IBM RS6000, tested with AIX 3.2.5
+
+CC         = cc
+@if(debug)
+OPTFLAGS  = -g -DDEBUG=1
+@elif(noopt)
+OPTFLAGS  =
+@else 
+OPTFLAGS  = -O2
+@endif
+@if(nag)
+CFLAGS     = -c $(OPTFLAGS) -I$(CSLBASE) -I$(CAXBASE) -DCOMMON=1 -D_rs6000=1 -DNAG=1
+LIBS       = -L/home/red5/axiom/development/obj/rios/lib -lspad -lm -lc
+@else
+CFLAGS     = -c $(OPTFLAGS) -I$(CSLBASE) -I$(CAXBASE) -DCOMMON=1 -D_rs6000=1
+LIBS       = -lm -lc
+@endif
+@set(unixoptions)
+###########################################################################
+@endif
+
+@if(apollo)
+###########################################################################
+
+# Apollo
+
+CC        = cc
+CFLAGS    = -c -A ansi -D__APOLLO__=1 -I$(CSLBASE) -DCOMMON=1
+LIBS      = -lcurses
+
+# Also note that in 1Q 1993 the -O flag must not be used for char.c or
+# gc.c as the Apollo C compiler optimiser is buggy.
+# It seems OK for the other sections.  Presumably a later release of the
+# compiler will fix the difficulty.  Please hand-compile that section
+# using "make -n char.o" to guide you.
+
+@set(unixoptions)
+
+###########################################################################
+@endif
+
+@if(solaris)
+###########################################################################
+
+# SPARC Solaris SUNWspro cc
+
+CC        = /opt/SUNWspro/bin/cc
+@if(debug)
+OPTFLAGS  = -g -DDEBUG=1
+@elif(noopt)
+OPTFLAGS  =
+@else 
+OPTFLAGS  = -xO4
+@endif
+@if(nag)
+CFLAGS    = -c $(OPTFLAGS) -I$(CSLBASE) -DCOMMON=1 -DNAG=1
+LIBS      = -L/home/red5/axiom/development/obj/sun4os55c/lib -lspad -lsun -lm -lc
+@else
+CFLAGS    = -c $(OPTFLAGS) -I$(CSLBASE) -DCOMMON=1
+LIBS      = -lm -lc
+@endif
+
+###########################################################################
+
+@set(unixoptions)
+@endif
+@if(sgi)
+###########################################################################
+
+# Silicon Graphics, using the SGI C compiler
+# I have not yet worked out how to exploit -O3 or -O4 optimisation
+# but see sketches later down this file where I have tried same for
+# the DEC Alpha.
+
+CC        = cc
+@if(debug)
+OPTFLAGS  = -g -DDEBUG=1
+@elif(noopt)
+OPTFLAGS  =
+@else 
+OPTFLAGS  = -O2
+@endif
+@if(nag)
+CFLAGS    = -c -DSGICC=1 $(OPTFLAGS) -Olimit 3000 -I$(CSLBASE) -DCOMMON=1 -DNAG=1
+LIBS      = -L/home/red5/axiom/development/obj/sgi/lib -lspad -lsun -lcurses -lm -lc
+@else
+CFLAGS    = -c -DSGICC=1 $(OPTFLAGS) -Olimit 3000 -I$(CSLBASE) -DCOMMON=1
+LIBS      = -lm -lcurses -lc
+@endif
+
+###########################################################################
+
+@set(unixoptions)
+@endif
+
+@if(clipper)
+###########################################################################
+
+# Intergraph Clipper, using the Norcroft C compiler
+
+CC        = ncc
+CFLAGS    = -c -I$(CSLBASE) -DCOMMON=1
+LIBS      = -lcurses
+
+###########################################################################
+
+@set(unixoptions)
+@endif
+
+@if(unixoptions)
+###########################################################################
+
+@set(blank)
+@set(escapequote)
+SHELL     = /bin/sh
+LINK      = $(CC)
+@if(profile)
+@if(debug)
+LFLAGS    = -p -g
+@else
+LFLAGS    = -p
+@endif
+@else
+@if(debug)
+LFLAGS    = -g
+@else
+LFLAGS    =
+@endif
+@endif
+OUT       = -o
+ASM       = $(CC)
+ASMFLAGS  = $(CFLAGS)
+ASMSRC    =
+ASMOBJ    =
+ASMOBJDEP = notused.obj
+SYS       = sysunix
+STORE     = -k6000
+RM        = rm
+MKDIR     = mkdir
+COPY      = cp
+STRIP     = strip
+WX        =
+
+###########################################################################
+
+@endif
+
+@if(riscos)
+@error Acorn parts of the makefile not reconstructed yet
+
+###########################################################################
+#                                                                         #
+# This "makefile" is for Acorn RISC-OS                                    #
+#                                                                         #
+###########################################################################
+
+@set(acorn)
+
+#
+# makefile for REDUCE 3.6 using CSL
+# This is for RISC-OS on an Acorn Archimedes
+#
+
+CC        = cc
+CFLAGS    = -c -fah -I$.risc_oslib -I$(CSLBASE) -DCOMMON=1
+LFLAGS    =
+LINK      = link
+LIBS      = $.risc_oslib.o.risc_oslib $.clib.o.stubs
+SYS       = sysarm
+STORE     = -k2500
+ASMOBJ    =
+OBJ       = o
+RM        = delete
+MKDIR     = cdir
+COPY      = copy
+STRIP     = squeeze
+WX        =
+
+###########################################################################
+###########################################################################
+@endif
+
+@if(win95)
+@set(cwin)
+@set(resourcefile)
+@endif
+
+@if(winnt)
+@set(cwin)
+@set(resourcefile)
+@endif
+
+
+#
+# Codemist Common Lisp
+#
+
+#
+# I need TWO versions of the directory names here - one for direct use
+# with MSDOS, and the other for use via Lisp where "\" may be treated as
+# an escape character even if I do not want that to happen!
+#
+
+@ UCSLBASE   = @?(Directory with CSL sources, eg d:/acn/cslbase)
+@ CSLBASE    = @!
+
+@ UCCLBASE   = @?(Directory with CCL sources, eg d:/acn/cclbase)
+@ CCLBASE    = @!
+
+UCSLBASE   = /home/red5/axiom/ccl/src/cslbase
+CSLBASE    = /home/red5/axiom/ccl/src/cslbase
+
+UCCLBASE   = /home/red5/axiom/ccl/src/cclbase
+CCLBASE    = /home/red5/axiom/ccl/src/cclbase
+
+UCAXBASE   = /home/red5/axiom/ccl/src/caxbase
+CAXBASE    = /home/red5/axiom/ccl/src/caxbase
+
+UAXBASE    = /home/red5/axiom/ccl/src/axbase
+AXBASE     = /home/red5/axiom/ccl/src/axbase
+
+###########################################################################
+###########################################################################
+#                                                                         #
+# This is the main bulk of the "makefile" for building CCL                #
+# on MSDOS, Windows and Unix.  This part of the file expects a number of  #
+# symbols to have been defined:                                           #
+#                                                                         #
+# CSLBASE   = file-path for CSLBASE directory                             #
+# CC        = The C compiler to use                                       #
+# CFLAGS    = Flags for C compiler when compiling CSL                     #
+# LINK      = Linker to use                                               #
+# LFLAGS    = Flags for linker                                            #
+# LIBS      = Libraries to quote to linker                                #
+# OUT       = "-o" or "-out:"   See link commands                         #
+# ASM       = The assembler to use                                        #
+# ASMFLAGS  = Flags for the assembler                                     #
+# ASMSRC    = Assembly code source file to use                            #
+# ASMOBJ    = Object file for above (or NULL if no assembly used)         #
+# ASMOBJDEP = Ditto, but may not be NULL                                  #
+# SYS       = name of system-cpecific file (sysdos or sysnt)              #
+# STORE     = Memory option to pass to CSL (-k2500 is minimum)            #
+# RM        = del for DOS, = rm for Unix                                  #
+# MKDIR     = mkdir                                                       #
+# COPY      = copy for DOS, = cp for Unix                                 #
+# STRIP     = echo for DOS, = strip for Unix                              #
+# WX        = start /w for Windows 95, null in all other cases            #
+#                                                                         #
+# The master version of this file is called "makebase" and is used to     #
+# create both DOS and Unix makefiles.  Use the Codemist "makemake"        #
+# program to perform the conversion - eg                                  #
+#     makemake -f makebase -o makemake.386 dos watcom                     #
+#     makemake -f makebase -o Makefile.sgi unix sgi                       #
+# Just "makemake -f makebase" gives list of systems supported             #
+###########################################################################
+###########################################################################
+
+
+C         = $(CSLBASE)
+D         = $(CCLBASE)
+A         = $(AXBASE)
+X         = $(CAXBASE)
+
+U         = $(UCSLBASE)
+V         = $(UCCLBASE)
+W         = $(UAXBASE)
+Y         = $(UCAXBASE)
+
+OBJS =	 	@csl.o @fasl.o @fns1.o @fns2.o @fns3.o @arith01.o @arith02.o \
+		@arith03.o @arith04.o @arith05.o @arith06.o @arith07.o \
+		@arith08.o @arith09.o @arith10.o @arith11.o @arith12.o \
+		@eval3.o @eval1.o @eval2.o @restart.o @gc.o @print.o @read.o \
+		@char.o @bytes1.o @eval4.o @$(SYS).o @preserve.o \
+@if(ufiles)
+		@u01.o @u02.o @u03.o @u04.o @u05.o @u06.o \
+		@u07.o @u08.o @u09.o @u10.o @u11.o @u12.o \
+@else
+		@stubs.o \
+@endif
+@if(cwin)
+		@c_applic.o @c_text.o @c_graph.o @c_render.o @c_viewpt.o \
+@endif
+@if(nag)
+                @nag.o @asps.o @sockets.o @xdrfuns.o @grep.o @grep2.o @axfns.o @grccl.o\
+@endif
+		$(ASMOBJ)
+
+
+COBJS = 	@csl.o,@fasl.o,@fns1.o,@fns2.o,@fns3.o,@arith01.o,@arith02.o,\
+		@arith03.o,@arith04.o,@arith05.o,@arith06.o,@arith07.o,\
+		@arith08.o,@arith09.o,@arith10.o,@arith11.o,@arith12.o,\
+		@eval3.o,@eval1.o,@eval2.o,@restart.o,@gc.o,@print.o,@read.o,\
+		@char.o,@bytes1.o,@eval4.o,@$(SYS).o,@preserve.o,\
+@if(ufiles)
+		@u01.o,@u02.o,@u03.o,@u04.o,@u05.o,@u06.o,\
+		@u07.o,@u08.o,@u09.o,@u10.o,@u11.o,@u12.o,\
+@else
+		@stubs.o,\
+@endif
+@if(cwin)
+		@c_applic.o,@c_text.o,@c_graph.o,@c_render.o,@c_viewpt.o,\
+@endif
+@if(nag)
+                @nag.o,@asps.o,@sockets.o,@xdrfuns.o,@grep.o,@grep2.o,@axfns.o,@grccl.o,\
+@endif
+		$(ASMOBJ)
+
+
+@ccl.exe:	$(OBJS) $(CCLRES)
+@if(linkcomma)
+	$(LINK) $(LFLAGS) $(COBJS) $(LIBS) $(OUT)@~@ccl.exe $(TAIL)
+@else
+	$(LINK) $(LFLAGS) $(OBJS) $(CCLRES) $(LIBS) $(OUT)@~@ccl.exe $(TAIL)
+@endif
+@if(resourcefile)
+@if(watcom)
+	wrc -i@$(D) -i@$(C) -bt=nt @$(D)/ccl.rc @ccl.exe
+@endif
+@endif
+	$(STRIP) @ccl.exe
+
+@ccl.img:	@ccl.exe
+		$(WX) ccl -z -v @$(D)/build.lsp -D@@CCLBASE=@"$(V)@" -l @build.log
+
+
+rlisp0:
+		$(WX) ccl -z -v -o @rlisp.img @$(D)/mkrlisp0.lsp -D@@CCLBASE=@"$(V)@" -l @mkrlisp0.log
+
+
+rlisp1:
+		$(WX) ccl -v -i @ccl.img -o @rlisp.img @$(D)/mkrlisp1.lsp -D@@CCLBASE=@"$(V)@" -l @mkrlisp1.log
+
+
+lispfile:	@rlisp.img
+		$(WX) ccl -v -i @rlisp.img @$(D)/lispfile.lsp -D@@CSLBASE=@"$(U)@" -D@@CCLBASE=@"$(V)@" -l @lispfile.log
+
+
+@axiom.img:
+		$(WX) ccl -v -i- -o @axiom.img @axiom.lsp -l @axiom.log
+
+try:
+		$(WX) ccl -v -i @axiom.img @try.lsp -l @try.log
+
+#
+#
+
+#
+# Now rules for re-compiling the main collection of CCL source files. I
+# write each case out individually since that makes the makefile less
+# delicate than one that relies on setting up general rules - and I want this
+# file to work on several different systems.
+#
+
+$(ASMOBJDEP):	@$(C)/$(ASMSRC)
+@if(gcc)
+	$(ASM) $(ASMFLAGS) -o $(ASMOBJ) @$(C)/$(ASMSRC)
+@else
+	$(ASM) $(ASMFLAGS) @$(C)/$(ASMSRC)
+@endif
+
+@if(microsoft)
+ccl.res:	@$(D)/ccl.rc @$(C)/cwin.rc
+	rc /i$(D) /i$(C) /foccl.res @$(D)/ccl.rc
+
+@endif
+@arith01.o:	@$(C)/arith01.c @$(C)/arith.h @$(C)/tags.h @$(C)/machine.h \
+		@$(C)/externs.h @$(C)/sys.h @$(C)/cslerror.h
+	$(CC) $(CFLAGS) \
+@if(gcc)
+		-o @arith01.o \
+@endif
+		@$(C)/arith01.c
+
+@arith02.o:	@$(C)/arith02.c @$(C)/arith.h @$(C)/tags.h @$(C)/machine.h \
+		@$(C)/externs.h @$(C)/sys.h @$(C)/cslerror.h
+	$(CC) $(CFLAGS) \
+@if(gcc)
+		-o @arith02.o \
+@endif
+		@$(C)/arith02.c
+
+@arith03.o:	@$(C)/arith03.c @$(C)/arith.h @$(C)/tags.h @$(C)/machine.h \
+		@$(C)/externs.h @$(C)/sys.h @$(C)/cslerror.h
+	$(CC) $(CFLAGS) \
+@if(gcc)
+		-o @arith03.o \
+@endif
+		@$(C)/arith03.c
+
+@arith04.o:	@$(C)/arith04.c @$(C)/arith.h @$(C)/tags.h @$(C)/machine.h \
+		@$(C)/externs.h @$(C)/sys.h @$(C)/cslerror.h
+	$(CC) $(CFLAGS) \
+@if(gcc)
+		-o @arith04.o \
+@endif
+		@$(C)/arith04.c
+
+@arith05.o:	@$(C)/arith05.c @$(C)/arith.h @$(C)/tags.h @$(C)/machine.h \
+		@$(C)/externs.h @$(C)/sys.h @$(C)/cslerror.h @$(C)/stream.h
+	$(CC) $(CFLAGS) \
+@if(gcc)
+		-o @arith05.o \
+@endif
+		@$(C)/arith05.c
+
+@arith06.o:	@$(C)/arith06.c @$(C)/arith.h @$(C)/tags.h @$(C)/machine.h \
+		@$(C)/externs.h @$(C)/sys.h @$(C)/cslerror.h @$(C)/entries.h
+	$(CC) $(CFLAGS) \
+@if(gcc)
+		-o @arith06.o \
+@endif
+		@$(C)/arith06.c
+
+@arith07.o:	@$(C)/arith07.c @$(C)/arith.h @$(C)/tags.h @$(C)/machine.h \
+		@$(C)/externs.h @$(C)/sys.h @$(C)/cslerror.h
+	$(CC) $(CFLAGS) \
+@if(gcc)
+		-o @arith07.o \
+@endif
+		@$(C)/arith07.c
+
+@arith08.o:	@$(C)/arith08.c @$(C)/arith.h @$(C)/tags.h @$(C)/machine.h \
+		@$(C)/externs.h @$(C)/sys.h @$(C)/cslerror.h @$(C)/entries.h
+	$(CC) $(CFLAGS) \
+@if(gcc)
+		-o @arith08.o \
+@endif
+		@$(C)/arith08.c
+
+@arith09.o:	@$(C)/arith09.c @$(C)/arith.h @$(C)/tags.h @$(C)/machine.h \
+		@$(C)/externs.h @$(C)/sys.h @$(C)/cslerror.h
+	$(CC) $(CFLAGS) \
+@if(gcc)
+		-o @arith09.o \
+@endif
+		@$(C)/arith09.c
+
+@arith10.o:	@$(C)/arith10.c @$(C)/arith.h @$(C)/tags.h @$(C)/machine.h \
+		@$(C)/externs.h @$(C)/sys.h @$(C)/cslerror.h @$(C)/entries.h
+	$(CC) $(CFLAGS) \
+@if(gcc)
+		-o @arith10.o \
+@endif
+		@$(C)/arith10.c
+
+@arith11.o:	@$(C)/arith11.c @$(C)/arith.h @$(C)/tags.h @$(C)/machine.h \
+		@$(C)/externs.h @$(C)/sys.h @$(C)/cslerror.h
+	$(CC) $(CFLAGS) \
+@if(gcc)
+		-o @arith11.o \
+@endif
+		@$(C)/arith11.c
+
+@arith12.o:	@$(C)/arith12.c @$(C)/arith.h @$(C)/tags.h @$(C)/machine.h \
+		@$(C)/externs.h @$(C)/sys.h @$(C)/cslerror.h @$(C)/entries.h
+	$(CC) $(CFLAGS) \
+@if(gcc)
+		-o @arith12.o \
+@endif
+		@$(C)/arith12.c
+
+@bytes.o:	@$(C)/bytes1.c @$(C)/bytes.c @$(C)/tags.h @$(C)/machine.h \
+		@$(C)/externs.h @$(C)/sys.h @$(C)/cslerror.h \
+		@$(C)/bytes.h @$(C)/arith.h @$(C)/opnames.c
+	$(CC) $(CFLAGS) \
+@if(gcc)
+		-o @bytes.o \
+@endif
+		@$(C)/bytes.c
+
+@bytes1.o:	@$(C)/bytes1.c @$(C)/bytes.c @$(C)/tags.h @$(C)/machine.h \
+		@$(C)/externs.h @$(C)/sys.h @$(C)/cslerror.h \
+		@$(C)/bytes.h @$(C)/arith.h @$(C)/opnames.c
+	$(CC) $(CFLAGS) \
+@if(gcc)
+		-o @bytes1.o \
+@endif
+		@$(C)/bytes1.c
+
+#
+# The target "@bytes1a.o" recompiles bytes1.c, but with the flag set that
+# arranges that the number of GET operations performed and the associated
+# indicators will be recorded, so that (bytecounts) will display statistics
+# about it. This slows things down considerably, but can help when you are in
+# the process of deciding which indicators are specified as "fast" ones.
+#
+
+@bytes1a.o:	@$(C)/bytes1.c @$(C)/bytes.c @$(C)/tags.h @$(C)/machine.h \
+		@$(C)/externs.h @$(C)/sys.h @$(C)/cslerror.h \
+		@$(C)/bytes.h @$(C)/arith.h
+	$(CC) $(CFLAGS) -DRECORD_GET=1 \
+@if(gcc)
+		-o @bytes1.o \
+@endif
+		@$(C)/bytes1.c
+
+@char.o:	@$(C)/char.c @$(C)/tags.h @$(C)/machine.h @$(C)/externs.h \
+		@$(C)/sys.h @$(C)/cslerror.h @$(C)/entries.h
+	$(CC) $(CFLAGS) \
+@if(gcc)
+		-o @char.o \
+@endif
+		@$(C)/char.c
+
+@csl.o:	@$(C)/csl.c @$(C)/tags.h @$(C)/machine.h @$(C)/externs.h @$(C)/version.h \
+		@$(C)/sys.h @$(C)/cslerror.h @$(C)/entries.h @$(C)/stream.h @$(C)/arith.h
+	$(CC) $(CFLAGS) \
+@if(gcc)
+		-o @csl.o \
+@endif
+		@$(C)/csl.c
+
+@if(cwin)
+# the cwin window manager package is for use with Watcom C only (at present)
+
+@c_applic.o:	@$(C)/c_applic.cpp @$(C)/cwin.h @$(C)/cwin.hpp @$(C)/cwinres.h
+	$(CPP) $(CPPFLAGS) @$(C)/c_applic.cpp
+
+@c_text.o:	@$(C)/c_text.cpp @$(C)/cwin.h @$(C)/cwin.hpp @$(C)/cwinres.h
+	$(CPP) $(CPPFLAGS) @$(C)/c_text.cpp
+
+@c_graph.o:	@$(C)/c_graph.cpp @$(C)/cwin.h @$(C)/cwin.hpp @$(C)/cwinres.h
+	$(CPP) $(CPPFLAGS) @$(C)/c_graph.cpp
+
+@c_render.o:	@$(C)/c_render.cpp @$(C)/cwin.h @$(C)/cwin.hpp @$(C)/cwinres.h
+	$(CPP) $(CPPFLAGS) @$(C)/c_render.cpp
+
+@c_viewpt.o:	@$(C)/c_viewpt.cpp @$(C)/cwin.h @$(C)/cwin.hpp @$(C)/cwinres.h
+	$(CPP) $(CPPFLAGS) @$(C)/c_viewpt.cpp
+
+
+@endif
+
+@eval1.o:	@$(C)/eval1.c @$(C)/tags.h @$(C)/machine.h @$(C)/externs.h \
+		@$(C)/sys.h @$(C)/cslerror.h @$(C)/arith.h @$(C)/entries.h
+	$(CC) $(CFLAGS) \
+@if(gcc)
+		-o @eval1.o \
+@endif
+		@$(C)/eval1.c
+
+@eval2.o:	@$(C)/eval2.c @$(C)/tags.h @$(C)/machine.h @$(C)/externs.h \
+		@$(C)/sys.h @$(C)/cslerror.h @$(C)/arith.h @$(C)/entries.h
+	$(CC) $(CFLAGS) \
+@if(gcc)
+		-o @eval2.o \
+@endif
+		@$(C)/eval2.c
+
+@eval3.o:	@$(C)/eval3.c @$(C)/tags.h @$(C)/machine.h @$(C)/externs.h \
+		@$(C)/sys.h @$(C)/cslerror.h @$(C)/entries.h
+	$(CC) $(CFLAGS) \
+@if(gcc)
+		-o @eval3.o \
+@endif
+		@$(C)/eval3.c
+
+@eval4.o:	@$(C)/eval4.c @$(C)/tags.h @$(C)/machine.h @$(C)/externs.h \
+		@$(C)/sys.h @$(C)/cslerror.h @$(C)/arith.h
+	$(CC) $(CFLAGS) \
+@if(gcc)
+		-o @eval4.o \
+@endif
+		@$(C)/eval4.c
+
+@fasl.o:	@$(C)/fasl.c @$(C)/tags.h @$(C)/machine.h @$(C)/externs.h \
+		@$(C)/sys.h @$(C)/cslerror.h @$(C)/arith.h
+	$(CC) $(CFLAGS) \
+@if(gcc)
+		-o @fasl.o \
+@endif
+		@$(C)/fasl.c
+
+@fns1.o:	@$(C)/fns1.c @$(C)/tags.h @$(C)/machine.h @$(C)/externs.h \
+		@$(C)/sys.h @$(C)/cslerror.h @$(C)/entries.h
+	$(CC) $(CFLAGS) \
+@if(gcc)
+		-o @fns1.o \
+@endif
+		@$(C)/fns1.c
+
+@fns2.o:	@$(C)/fns2.c @$(C)/tags.h @$(C)/machine.h @$(C)/externs.h \
+		@$(C)/sys.h @$(C)/cslerror.h @$(C)/read.h @$(C)/entries.h
+	$(CC) $(CFLAGS) \
+@if(gcc)
+		-o @fns2.o \
+@endif
+		@$(C)/fns2.c
+
+@fns3.o:	@$(C)/fns3.c @$(C)/tags.h @$(C)/machine.h @$(C)/externs.h \
+		@$(C)/sys.h @$(C)/cslerror.h @$(C)/read.h @$(C)/entries.h
+	$(CC) $(CFLAGS) \
+@if(gcc)
+		-o @fns3.o \
+@endif
+		@$(C)/fns3.c
+
+@gc.o:	@$(C)/gc.c @$(C)/tags.h @$(C)/machine.h @$(C)/externs.h \
+		@$(C)/sys.h @$(C)/cslerror.h
+	$(CC) $(CFLAGS) \
+@if(gcc)
+		-o @gc.o \
+@endif
+		@$(C)/gc.c
+
+#
+# For each major target I have one file that is system specific - eg
+# sysdos.c, sysunix.c, ...
+#
+
+@$(SYS).o:	@$(C)/$(SYS).c @$(C)/machine.h @$(C)/externs.h \
+		@$(C)/sys.h @$(C)/fileops.c @$(C)/scandir.c @$(C)/version.h
+	$(CC) $(CFLAGS) \
+@if(gcc)
+		-o @$(SYS).o \
+@endif
+		@$(C)/$(SYS).c
+
+@preserve.o:	@$(C)/preserve.c @$(C)/tags.h @$(C)/machine.h @$(C)/stream.h \
+		@$(C)/externs.h @$(C)/sys.h @$(C)/cslerror.h @$(C)/read.h @$(C)/version.h
+	$(CC) $(CFLAGS) \
+@if(gcc)
+		-o @preserve.o \
+@endif
+		@$(C)/preserve.c
+
+@print.o:	@$(C)/print.c @$(C)/tags.h @$(C)/machine.h @$(C)/externs.h \
+		@$(C)/sys.h @$(C)/cslerror.h @$(C)/read.h \
+		@$(C)/arith.h @$(C)/entries.h @$(C)/stream.h
+	$(CC) $(CFLAGS) \
+@if(gcc)
+		-o @print.o \
+@endif
+		@$(C)/print.c
+
+@read.o:	@$(C)/read.c @$(C)/tags.h @$(C)/machine.h @$(C)/externs.h \
+		@$(C)/sys.h @$(C)/cslerror.h @$(C)/read.h \
+		@$(C)/arith.h @$(C)/entries.h @$(C)/stream.h
+	$(CC) $(CFLAGS) \
+@if(gcc)
+		-o @read.o \
+@endif
+		@$(C)/read.c
+
+@restart.o:	@$(C)/restart.c @$(C)/tags.h @$(C)/machine.h @$(C)/externs.h \
+		@$(C)/sys.h @$(C)/cslerror.h @$(C)/read.h @$(C)/version.h \
+		@$(C)/arith.h @$(C)/entries.h @$(C)/stream.h
+	$(CC) $(CFLAGS) \
+@if(gcc)
+		-o @restart.o \
+@endif
+		@$(C)/restart.c
+
+@stubs.o:	@$(C)/stubs.c @$(C)/machine.h @$(C)/externs.h @$(C)/sys.h \
+		@$(C)/tags.h @$(C)/cslerror.h
+	$(CC) $(CFLAGS) \
+@if(gcc)
+		-o @stubs.o \
+@endif
+		@$(C)/stubs.c
+
+@if(nag)
+@sockets.o:	@$(C)/sockets.c @$(C)/machine.h @$(C)/externs.h @$(C)/arith.h \
+		@$(C)/tags.h @$(C)/cslerror.h
+	$(CC) $(CFLAGS) \
+@if(gcc)
+		-o @sockets.o \
+@endif
+		@$(C)/sockets.c
+
+@xdrfuns.o:	@$(C)/xdrfuns.c @$(C)/machine.h @$(C)/externs.h @$(C)/arith.h \
+		@$(C)/tags.h @$(C)/cslerror.h @$(C)/entries.h @$(C)/stream.h
+	$(CC) $(CFLAGS) \
+@if(gcc)
+		-o @xdrfuns.o \
+@endif
+		@$(C)/xdrfuns.c
+
+@nag.o:		@$(C)/nag.c @$(C)/machine.h @$(C)/externs.h @$(C)/arith.h \
+		@$(C)/tags.h @$(C)/cslerror.h @$(C)/entries.h @$(C)/stream.h
+	$(CC) $(CFLAGS) \
+@if(gcc)
+		-o @nag.o \
+@endif
+		@$(C)/nag.c
+
+asps.o:		@$(C)/asps.c @$(C)/machine.h @$(C)/externs.h @$(C)/arith.h \
+		@$(C)/tags.h @$(C)/cslerror.h @$(C)/entries.h @$(C)/stream.h
+	$(CC) $(CFLAGS) \
+@if(gcc)
+		-o @asps.o \
+@endif
+		@$(C)/asps.c
+
+grep2.o:	@$(C)/grep2.c @$(C)/machine.h @$(C)/externs.h @$(C)/arith.h \
+		@$(C)/tags.h @$(C)/cslerror.h @$(C)/entries.h @$(C)/stream.h
+	$(CC) $(CFLAGS) \
+@if(gcc)
+		-o @grep2.o \
+@endif
+		@$(C)/grep2.c
+
+grep.o:		@$(C)/grep.c @$(C)/machine.h @$(C)/externs.h @$(C)/arith.h \
+		@$(C)/tags.h @$(C)/cslerror.h @$(C)/entries.h @$(C)/stream.h
+	$(CC) $(CFLAGS) \
+@if(gcc)
+		-o @grep.o \
+@endif
+		@$(C)/grep.c
+
+axfns.o:	@$(X)/axfns.c @$(C)/tags.h @$(C)/machine.h @$(C)/externs.h \
+		@$(C)/cslerror.h @$(C)/entries.h @$(X)/axfns.h
+	$(CC) $(CFLAGS) \
+@if(gcc)
+		-o axfns.o \
+@endif
+		@$(X)/axfns.c
+
+glnag.o:	@$(X)/glnag.c
+	$(CC) $(CFLAGS) \
+@if(gcc)
+		-o glnag.o \
+@endif
+		@$(X)/glnag.c
+
+grccl.o:	@$(X)/grccl.c @$(C)/machine.h @$(C)/externs.h @$(C)/arith.h \
+		@$(C)/tags.h @$(C)/cslerror.h @$(C)/entries.h @$(C)/stream.h
+	$(CC) $(CFLAGS) \
+@if(gcc)
+		-o grccl.o \
+@endif
+		@$(X)/grccl.c
+
+@endif
+@if(ufiles)
+###########################################################################
+#
+
+@u01.o:	@$(A)/u01.c @$(C)/tags.h @$(C)/machine.h @$(C)/externs.h \
+		@$(C)/cslerror.h @$(C)/entries.h
+	$(CC) $(CFLAGS) \
+@if(gcc)
+		-o @u01.o \
+@endif
+		@$(A)/u01.c
+
+@u02.o:	@$(A)/u02.c @$(C)/tags.h @$(C)/machine.h @$(C)/externs.h \
+		@$(C)/cslerror.h @$(C)/entries.h
+	$(CC) $(CFLAGS) \
+@if(gcc)
+		-o @u02.o \
+@endif
+		@$(A)/u02.c
+
+@u03.o:	@$(A)/u03.c @$(C)/tags.h @$(C)/machine.h @$(C)/externs.h \
+		@$(C)/cslerror.h @$(C)/entries.h
+	$(CC) $(CFLAGS) \
+@if(gcc)
+		-o @u03.o \
+@endif
+		@$(A)/u03.c
+
+@u04.o:	@$(A)/u04.c @$(C)/tags.h @$(C)/machine.h @$(C)/externs.h \
+		@$(C)/cslerror.h @$(C)/entries.h
+	$(CC) $(CFLAGS) \
+@if(gcc)
+		-o @u04.o \
+@endif
+		@$(A)/u04.c
+
+@u05.o:	@$(A)/u05.c @$(C)/tags.h @$(C)/machine.h @$(C)/externs.h \
+		@$(C)/cslerror.h @$(C)/entries.h
+	$(CC) $(CFLAGS) \
+@if(gcc)
+		-o @u05.o \
+@endif
+		@$(A)/u05.c
+
+@u06.o:	@$(A)/u06.c @$(C)/tags.h @$(C)/machine.h @$(C)/externs.h \
+		@$(C)/cslerror.h @$(C)/entries.h
+	$(CC) $(CFLAGS) \
+@if(gcc)
+		-o @u06.o \
+@endif
+		@$(A)/u06.c
+
+@u07.o:	@$(A)/u07.c @$(C)/tags.h @$(C)/machine.h @$(C)/externs.h \
+		@$(C)/cslerror.h @$(C)/entries.h
+	$(CC) $(CFLAGS) \
+@if(gcc)
+		-o @u07.o \
+@endif
+		@$(A)/u07.c
+
+@u08.o:	@$(A)/u08.c @$(C)/tags.h @$(C)/machine.h @$(C)/externs.h \
+		@$(C)/cslerror.h @$(C)/entries.h
+	$(CC) $(CFLAGS) \
+@if(gcc)
+		-o @u08.o \
+@endif
+		@$(A)/u08.c
+
+@u09.o:	@$(A)/u09.c @$(C)/tags.h @$(C)/machine.h @$(C)/externs.h \
+		@$(C)/cslerror.h @$(C)/entries.h
+	$(CC) $(CFLAGS) \
+@if(gcc)
+		-o @u09.o \
+@endif
+		@$(A)/u09.c
+
+@u10.o:	@$(A)/u10.c @$(C)/tags.h @$(C)/machine.h @$(C)/externs.h \
+		@$(C)/cslerror.h @$(C)/entries.h
+	$(CC) $(CFLAGS) \
+@if(gcc)
+		-o @u10.o \
+@endif
+		@$(A)/u10.c
+
+@u11.o:	@$(A)/u11.c @$(C)/tags.h @$(C)/machine.h @$(C)/externs.h \
+		@$(C)/cslerror.h @$(C)/entries.h
+	$(CC) $(CFLAGS) \
+@if(gcc)
+		-o @u11.o \
+@endif
+		@$(A)/u11.c
+
+@u12.o:	@$(A)/u12.c @$(C)/tags.h @$(C)/machine.h @$(C)/externs.h \
+		@$(C)/cslerror.h @$(C)/entries.h
+	$(CC) $(CFLAGS) \
+@if(gcc)
+		-o @u12.o \
+@endif
+		@$(A)/u12.c
+
+@endif
+
+# end of makefile

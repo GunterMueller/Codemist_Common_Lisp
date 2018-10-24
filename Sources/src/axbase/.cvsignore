@@ -1,0 +1,2 @@
+whereisA.lsp u01.c u02.c u03.c ccl-makelibs-common.lsp  u04.c u05.c u06.c u07.c u08.c u09.c u10.c u11.c u12.c u01.lsp u02.lsp u03.lsp u04.lsp u05.lsp u06.lsp u07.lsp u08.lsp ccl-makelibs-unix.lsp compiler ccl-makelibs-win32.lsp u09.lsp cclwhereis0.lsp 
+u10.lsp u11.lsp u12.lsp cclwhereis1.lsp cclwhereis2.lsp .cvsignore cclwhereis.lsp

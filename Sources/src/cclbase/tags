@@ -1,0 +1,963 @@
+
+arrays.lsp,570
+(defun make-array 4,31
+(defun make-array-1 127,5423
+(defun array-element-type 154,6297
+(defvar ~vector~)162,6459
+(defvar ~posn~)163,6477
+(defun array-init 172,6876
+(defun array-init1 178,7065
+(defun array-dimensions 189,7394
+(defun adjustable-array-p 194,7497
+(defun array-has-fill-pointer-p 197,7569
+(defun fill-pointer 200,7647
+(defun set-fill-pointer 202,7684
+(defun vector-push 204,7729
+(defun vector-push-extend 215,8170
+(defun vector-pop 226,8633
+(defun copy-vector 306,11562
+(defun adjust-array 320,12053
+(defconstant *error-messages* 341,12887
+
+basic.lsp,0
+
+build.lsp,75
+(defun set-syntax-from-char 68,1817
+(defun set-syntax-from-char 116,2816
+
+ccomp.lsp,0
+
+compat.lsp,0
+
+compc.lsp,0
+
+compiler.lsp,21
+(DEFLIST5578,185970
+
+constant.lsp,0
+
+defmacro.lsp,802
+(defun fully-macroexpand 24,1029
+(defun fully-macroexpand-list 36,1447
+(defun fully-macroexpand-letvars 42,1609
+(defun fully-macroexpand-fletvars 51,1906
+(defun fully-macroexpand-tagged 58,2157
+(defun macroexpand-let 64,2432
+(defun macroexpand-flet 69,2589
+(defun macroexpand-macrolet 86,3295
+(defun analyze-arglist 149,5246
+(defun analyze1 171,6231
+(defun analyze-rest 283,10772
+(defun analyze-aux 326,12488
+(defun report-keywords 345,12987
+(defun display-keywords 359,13435
+(defun reset-keywords 376,13982
+(defun analyze-key 383,14284
+(defun make-keyword 499,18983
+(defun find-keyword 504,19129
+(defun keyword-test 520,19618
+(defun defun-key-aux 537,20275
+(defun expand-definer 555,21097
+(defun no-special-flags 666,25718
+(defmacro defun 687,26307
+(defmacro deftype 691,26427
+
+defstruc.lsp,2053
+(defun princ-to-string 7,112
+(defun make-defstruct-description 18,485
+(defun copy-defstruct-description 42,1266
+(defun dd-name 47,1429
+(defun dd-doc 49,1462
+(defun dd-slots 51,1494
+(defun dd-conc-name 53,1528
+(defun dd-constructor 55,1566
+(defun dd-boa-constructors 57,1606
+(defun dd-copier 59,1651
+(defun dd-predicate 61,1686
+(defun dd-include 63,1724
+(defun dd-included-by 65,1760
+(defun dd-print-function 67,1801
+(defun dd-type 69,1845
+(defun dd-lisp-type 71,1879
+(defun dd-named 73,1918
+(defun dd-offset 75,1953
+(defun dd-length 77,1989
+(defsetf dd-name 79,2025
+(defsetf dd-doc 81,2068
+(defsetf dd-slots 83,2110
+(defsetf dd-conc-name 85,2154
+(defsetf dd-constructor 87,2202
+(defsetf dd-boa-constructors 89,2252
+(defsetf dd-copier 91,2307
+(defsetf dd-predicate 93,2352
+(defsetf dd-include 95,2400
+(defsetf dd-included-by 97,2446
+(defsetf dd-print-function 99,2497
+(defsetf dd-type 101,2551
+(defsetf dd-lisp-type 103,2595
+(defsetf dd-named 105,2644
+(defsetf dd-offset 107,2689
+(defsetf dd-length 109,2735
+(defun make-defstruct-slot-description 112,2782
+(defun dsd-name 125,3158
+(defun dsd-index 127,3192
+(defun dsd-accessor 129,3227
+(defun dsd-default 131,3265
+(defun dsd-type 133,3302
+(defun dsd-read-only 135,3336
+(defsetf dsd-name 137,3375
+(defsetf dsd-index 139,3419
+(defsetf dsd-accessor 141,3464
+(defsetf dsd-default 143,3512
+(defsetf dsd-type 145,3559
+(defsetf dsd-read-only 147,3603
+(defun print-defstruct-description 155,3689
+(defun print-defstruct-slot-description 159,3852
+(defmacro defstruct 169,4078
+(defun parse-name-and-options 207,5479
+(defun parse-slot-descriptions 284,8445
+(defvar built-in-accessors 421,13699
+(defvar built-in-setters 423,13774
+(defun built-in-copier 448,14707
+(defun define-accessors 463,15391
+(defun define-setters 516,17395
+(defun define-constructor 568,19566
+(defun define-boa-constructors 628,22222
+(defun define-copier 711,25625
+(defun define-predicate 730,26341
+(defun default-structure-print 760,27389
+(defstruct786,28314
+(defstruct824,29152
+
+exports.lsp,0
+
+extras.lsp,0
+
+fastccl.lsp,0
+
+flonum.lsp,29
+(defun flonum-to-string 1,0
+
+format.lsp,2892
+(defvar *format-control-string* 7,55
+(defvar *format-index* 10,130
+(defvar *format-length* 13,208
+(defvar *format-arguments* 16,288
+(defvar *format-original-arguments* 19,364
+(defvar *format-stream-stack* 22,464
+(defvar *format-dispatch-table* 26,559
+(defun format-error 57,1680
+(defmacro format-with-control-string 74,2203
+(defmacro format-stringify-output 108,3310
+(defmacro pop-format-arg 132,4247
+(defmacro with-format-parameters 146,4797
+(defmacro nextchar 177,5761
+(defmacro format-peek 186,6011
+(defmacro format-find-char 195,6249
+(defun format-get-parameter 205,6647
+(defun parse-format-operation 229,7593
+(defun format-find-command 270,9118
+(defun format 297,10166
+(defun sub-format 369,13409
+(defun format-capitalization 406,14562
+(defun format-escape 439,15743
+(defun format-untagged-condition 471,16547
+(defun format-funny-condition 507,17863
+(defun format-boolean-condition 525,18315
+(defun format-condition 545,18954
+(defun format-iteration 562,19374
+(defun format-do-iteration 593,20520
+(defun format-get-trailing-segments 652,22844
+(defun format-get-segments 685,23888
+(defun make-pad-segs 717,25126
+(defun format-round-columns 738,25932
+(defun format-justification 749,26201
+(defun format-terpri 810,28396
+(defun format-freshline 820,28631
+(defun format-page 831,28888
+(defun format-tilde 841,29147
+(defun format-eat-whitespace 851,29423
+(defun format-newline 862,29650
+(defun format-plural 873,29940
+(defun format-skip-arguments 898,30611
+(defun format-indirection 934,31749
+(defun format-tab 950,32200
+(defun format-princ 980,33234
+(defun format-prin1 1001,33768
+(defun format-print-character 1018,34277
+(defun format-print-named-character 1036,34715
+(defun format-add-commas 1064,35538
+(defun format-write-field 1086,36447
+(defun format-print-number 1113,37517
+(defvar cardinal-ones1145,38478
+(defvar cardinal-tens1149,38636
+(defvar cardinal-teens1154,38819
+(defun format-print-small-cardinal 1160,39024
+(defvar cardinal-periods1187,39874
+(defun format-print-cardinal 1193,40101
+(defun format-print-cardinal-aux 1201,40332
+(defvar ordinal-ones1222,40893
+(defvar ordinal-tens1227,41074
+(defun format-print-ordinal 1233,41280
+(defun format-print-old-roman 1265,42438
+(defun format-print-roman 1284,42989
+(defun format-print-decimal 1317,44003
+(defun format-print-binary 1323,44134
+(defun format-print-octal 1329,44262
+(defun format-print-hexadecimal 1335,44395
+(defun format-print-radix 1341,44529
+(defun format-fixed 1365,45075
+(defun format-fixed-aux 1387,45861
+(defun format-exponential 1433,47438
+(defvar *read-default-float-format* 1453,48127
+(defun format-exponent-marker 1455,48179
+(defun format-exp-aux 1474,48864
+(defun format-general-float 1537,51303
+(defun format-general-aux 1562,52283
+(defun format-dollars 1592,53311
+(defmacro make-dispatch-vector 1627,54641
+(defun warn 1690,56811
+
+funcs1.lsp,3901
+(defun putd 6,102
+(defun putc 20,544
+(defun s::oblist0 23,581
+(defun s::oblist1 46,1347
+(defun oblist 53,1544
+(defmacro return 58,1673
+(defmacro locally 61,1731
+(defun remove 64,1778
+(defun butlast 71,1982
+(defun setdiff 76,2117
+(defun xn 81,2210
+(defun deleq 87,2360
+(defmacro loop 93,2487
+(defmacro dolist 100,2667
+(defmacro dotimes 109,2902
+(defmacro while 116,3086
+(defun endp-test-list 121,3180
+(defun map-expander 126,3292
+(defmacro mapl 206,6229
+(defmacro mapc 208,6281
+(defmacro maplist 210,6331
+(defmacro mapcar 212,6388
+(defmacro mapcon 214,6442
+(defmacro mapcan 216,6499
+(defmacro defvar 218,6554
+(defmacro defparameter 224,6868
+(defmacro defconstant 230,7133
+(defun %proclaim 237,7434
+(defmacro proclaim 248,7852
+(defvar *load-print* 257,8121
+(defvar *load-verbose* 258,8147
+(defun load 260,8174
+(defconstant most-positive-fixnum 266,8435
+(defconstant most-negative-fixnum 267,8494
+(defconstant array-dimension-limit 276,8952
+(defconstant array-total-size-limit 277,8998
+(defconstant multiple-values-limit 279,9045
+(defconstant lambda-parameters-limit 280,9084
+(defconstant call-arguments-limit 281,9125
+(defconstant lambda-list-keywords 282,9163
+(defconstant char-code-limit 285,9308
+(defconstant char-font-limit 286,9342
+(defconstant char-bits-limit 287,9376
+(defconstant char-control-bit 288,9409
+(defconstant char-meta-bit 289,9442
+(defconstant char-super-bit 290,9475
+(defconstant char-hyper-bit 291,9508
+(defconstant space-char 293,9542
+(defconstant newline-char 294,9586
+(defconstant eof-char 295,9630
+(defconstant $eof$ 296,9674
+(defun char-name 298,9719
+(defun standard-char-p 326,10917
+(defun string-char-p 330,11012
+(defun alphanumericp 334,11105
+(defun bit-of-bits-name 337,11187
+(defun char-bit 345,11419
+(defun set-char-bit 348,11514
+(defun member 368,12110
+(defun assoc 377,12467
+(defun member-1 388,12941
+(defun set-difference-1 394,13087
+(defun member-2 400,13289
+(defun set-difference-2 406,13441
+(defun set-difference 412,13643
+(defun values-list 432,14168
+(defmacro multiple-value-list 435,14215
+(defmacro multiple-value-setq 438,14288
+(defmacro multiple-value-bind 446,14554
+(defun rest 456,14931
+(defun first 457,14959
+(defun second 458,14987
+(defun third 459,15016
+(defun fourth 460,15046
+(defun fifth 461,15077
+(defun sixth 462,15114
+(defun seventh 463,15152
+(defun eighth 464,15191
+(defun ninth 465,15231
+(defun tenth 466,15277
+(defun list-length 468,15325
+(defun nthcdr 477,15518
+(defun $rplaca 480,15576
+(defun $rplacd 482,15614
+(defun set-documentation 484,15652
+(defun setnth 490,15818
+(defun case-expander 497,15947
+(defmacro case 508,16415
+(defun make-list 513,16546
+(defun make-list-1 516,16631
+(defun copy-list 522,16772
+(defun copy-alist 541,17286
+(defun copy-tree 548,17447
+(defun type-of 553,17551
+(defun typep 579,18460
+(defun typep1 609,19520
+(defun typecase-expander 615,19630
+(defmacro typecase 623,19951
+(defun make-hash-table 628,20090
+(defun hash-table-count 646,20970
+(defun hash-table-rehash-size 648,21011
+(defun hash-table-rehash-threshold 650,21058
+(defun hash-table-test 652,21103
+(defun bit-and 666,21490
+(defun bit-andc1 671,21663
+(defun bit-andc2 676,21847
+(defun bit-eqv 681,22031
+(defun bit-ior 686,22204
+(defun bit-nand 691,22377
+(defun bit-nor 696,22560
+(defun bit-not 701,22742
+(defun bit-orc1 706,22896
+(defun bit-orc2 711,23079
+(defun bit-xor 716,23262
+(defun fboundp 721,23435
+(defmacro time 723,23478
+(defun nth 741,23973
+(defun logbitp 743,24017
+(defun nreconc 746,24081
+(defun parse-integer 749,24169
+(defun nsubst 754,24278
+(defun adjoin 766,24566
+(defvar internal-time-units-per-second 769,24671
+(defun get-internal-run-time 771,24717
+(defun get-universal-time 773,24759
+(defun sort-2 775,24817
+(defvar *compile-verbose* 777,24891
+(defvar *compile-print* 778,24920
+(defun compile-file 780,24950
+
+lispfile.lsp,0
+
+makecomp.lsp,0
+
+mkcompc.lsp,0
+
+mkrlisp0.lsp,335
+(defun digit 22,413
+(defun liter 23,453
+(defun seprp 24,493
+(defun traceset1 37,840
+(defun untraceset1 47,1190
+(defun traceset 57,1546
+(defun untraceset 60,1601
+(defun s_oblist 63,1660
+(defun s_oblist1 86,2420
+(defun oblist 93,2611
+(defun deflist 98,2739
+(defun fluid 101,2805
+(defun global 106,2909
+(defun putd 108,2939
+
+mkrlisp1.lsp,88
+(defun digit 18,357
+(defun liter 19,397
+(defun seprp 20,437
+(defun compress 52,1318
+
+nag_funs.lsp,548
+(defconstant *float-types* 6,104
+(defconstant *integer-types* 7,184
+(defconstant *number-types* 8,231
+(defconstant *aggregate-list* 11,416
+(defmacro predicate 14,539
+(defun subtypep 16,595
+(defun subtypep1 28,1038
+(defun strip-wildcards 44,1674
+(defun simptype 46,1750
+(defconstant *directory-separator* 61,2057
+(defconstant *wildcard-replacement* 62,2125
+(defmacro make-egrep-pattern 66,2314
+(defun replace-wildcards 71,2455
+(defun directory 88,3098
+(defmacro ls 102,3661
+(defun split-search 105,3809
+(defun segment-path 115,4306
+
+package.lsp,810
+(defun package-name 9,213
+(defun package-nicknames 10,248
+(defun packagep 11,288
+(defun package-shadowing-symbols 12,352
+(defun package-use-list 13,402
+(defun package-used-by-list 14,443
+(defun symbol-to-string 19,590
+(defmacro in-package 34,1287
+(defun rename-package 44,1653
+(defun export 51,1819
+(defun unexport 74,2582
+(defun import 79,2755
+(defun shadowing-import 92,3254
+(defun shadow 105,3830
+(defun unuse-package 121,4490
+(defun package-externs 126,4665
+(defun package-interns 130,4748
+(defun find-all-symbols 134,4831
+(defun do-syms-1 148,5366
+(defun do-syms 158,5649
+(defmacro do-symbols 170,6026
+(defmacro do-external-symbols 173,6090
+(defmacro do-all-symbols 176,6165
+(defun use-package 194,6938
+(defvar *modules* 226,8051
+(defun provide 228,8075
+(defun require 234,8233
+
+patch.lsp,265
+(defun bit-and 6,115
+(defun bit-andc1 11,288
+(defun bit-andc2 16,472
+(defun bit-eqv 21,656
+(defun bit-ior 26,829
+(defun bit-nand 31,1001
+(defun bit-nor 36,1184
+(defun bit-not 41,1365
+(defun bit-orc1 46,1519
+(defun bit-orc2 51,1701
+(defun bit-xor 56,1883
+
+path.lsp,293
+(defstruct pathname 7,61
+(defun pathname 9,123
+(defun truename 12,199
+(defun parse-namestring 14,225
+(defun merge-pathnames 16,259
+(defun namestring 18,292
+(defun file-namestring 20,320
+(defun directory-namestring 22,353
+(defun host-namestring 24,391
+(defun enough-namestring 26,424
+
+pathname.lsp,930
+(defstruct pathname-structure 12,334
+(defun wild-pathname-p 14,406
+(defun pathname-match-p 34,1459
+(defun translate-pathname 37,1551
+(defun logical-pathname 40,1662
+(defun translate-logical-pathname 43,1729
+(defun logical-pathname-translations 46,1817
+(defun load-logical-pathname-translations 49,1906
+(defun compile-file-pathname 52,2005
+(defun pathname 55,2099
+(defun subst-slashes 62,2323
+(defun unsubst-slashes 70,2522
+(defun canonical-name 78,2723
+(defun uncanonical-name 81,2802
+(defun merge-pathnames 85,2912
+(defun make-pathname 87,2945
+(defvar *default-pathname-defaults* 100,3415
+(defun lastpos 102,3456
+(defun pathnamep 107,3611
+(defun namestring 109,3667
+(defun pathname-name 113,3773
+(defun pathname-type 121,3978
+(defun pathname-directory 126,4099
+(defun directory-namestring-0 134,4305
+(defun directory-namestring 139,4466
+(defun file-namestring 142,4576
+(defun parse-namestring 145,4669
+
+prinflo.lsp,153
+(defvar *digits* 79,4088
+(defvar *digit-string*81,4120
+(defun flonum-to-string 85,4280
+(defun float-string 105,4971
+(defun scale-exponent 230,10008
+
+print.lsp,2339
+(defvar *print-escape* 4,26
+(defvar *print-pretty* 6,80
+(defvar *print-circle* 8,138
+(defvar *print-base* 10,210
+(defvar *print-radix* 12,265
+(defvar *print-case* 15,351
+(defvar *print-gensym* 18,456
+(defvar *print-level* 20,517
+(defvar *print-length* 22,582
+(defvar *print-array* 24,643
+(defmacro write-literal-string 30,740
+(defmacro sub-write-decimal 40,1111
+(defmacro char-dodgyp 47,1361
+(defmacro add-item 51,1502
+(defmacro tail-printed-already 63,1946
+(defmacro printed-already 66,2020
+(defvar *pp-quotes* 122,3747
+(defvar *pp-on-one-line* 128,4042
+(defvar *pp-buffer-list* 134,4203
+(defun sub-write-pretty 153,4584
+(defmacro &pp-top 191,6030
+(defmacro &pp-depth 193,6072
+(defmacro &pp-indenting 195,6112
+(defmacro &pp-blankcount 197,6157
+(defmacro &pp-blanklist 199,6204
+(defmacro &pp-setindenting 201,6250
+(defmacro &pp-setblankcount 203,6315
+(defmacro &pp-setblanklist 205,6382
+(defmacro &pp-newframe 207,6448
+(defmacro &pp-blankp 209,6494
+(defun &pp-print-indented 212,6548
+(defun &pp-has-helper 327,11562
+(defun &pp-print-vector 333,11781
+(defun &pp-putblank 361,12855
+(defun &pp-end-list 393,14225
+(defun &pp-quotep 398,14402
+(defun &pp-print-quote 406,14552
+(defun &pp-putch 448,15637
+(defun &pp-overflow 477,16654
+(defvar char-lpar 591,21393
+(defvar char-rpar 593,21417
+(defun write-string-subroutine 601,21523
+(defun sub-write-based 615,22108
+(defun sub-write-based-inner 624,22432
+(defun sub-write-based-leading 638,22980
+(defun sub-write-integer 655,23582
+(defun sub-write-float 672,24194
+(defun sub-write-symbol 676,24338
+(defun sub-write-string 732,26511
+(defun sub-write-vector 741,26788
+(defun scan-vector 769,27757
+(defun scan-unknown 782,28252
+(defun sub-write-unknown 785,28285
+(defun structurep 790,28441
+(defun sub-write 804,29033
+(defun print-scan 816,29442
+(defun sub-write-1 848,30953
+(defun write-char 902,33304
+(defun terpri 916,33759
+(defun fresh-line 930,34232
+(defun write-string 940,34555
+(defun write-line 958,35188
+(defun write-line-2 976,35863
+(defun prin1 995,36526
+(defun princ 1010,37068
+(defun print 1025,37612
+(defun pprint 1044,38272
+(defun prin1-to-string 1064,38937
+(defun princ-to-string 1070,39134
+(defun write 1081,39467
+(defun write-1 1099,40358
+(defun write-to-string 1106,40524
+(defun write-to-string-1 1123,41505
+
+read.lsp,2600
+(defun tyiq 4,33
+(defun tyipeek 5,57
+(defconstant $numbersyntax 22,482
+(defconstant $readmacro 24,515
+(defconstant $splicemacro 26,545
+(defconstant $preadmacro 28,577
+(defconstant $psplicemacro 30,608
+(defconstant $escapechar 32,641
+(defmacro character 34,672
+(defmacro syntaxbitp 41,837
+(defun &syntax-mask-value 45,990
+(defun setsyntax 61,1523
+(defun getsyntax 114,3649
+(defun copy-syntax-table 147,4873
+(defun &numeric-syntax-class 159,5265
+(defconstant lpar 179,5848
+(defconstant rpar 181,5872
+(defconstant period 183,5896
+(defconstant blank 185,5922
+(defconstant tab 187,5947
+(defconstant $cr$ 189,5980
+(defconstant $ff$ 191,6015
+(defconstant $eol$ 193,6050
+(defconstant $eof$ 195,6086
+(defconstant comma 197,6122
+(defconstant quotemark 199,6147
+(defconstant dollar 201,6176
+(defmacro &case-adjust 210,6279
+(defun read-token 219,6554
+(defun &genuine-read-token 230,6947
+(defun *pp-tyi* 305,9808
+(defun &pp-peek-token 317,10111
+(defun &pp-finish-token 340,10936
+(defun &pp-read-token 406,13452
+(defun read 419,13809
+(defun &genuine-read 472,16071
+(defun &call-read-macro 495,16838
+(defun &pp-read 516,17600
+(defun &pp-read-macro-expand 526,17901
+(defun &read-bracketed-list 563,19454
+(defun &read-superbracketed-list 565,19517
+(defun &read-bracketed-list-1 567,19583
+(defun &pp-read-list 626,21974
+(defun &pp-read-superlist 628,22023
+(defun &pp-read-list-1 630,22075
+(defun &pp-list-separation 794,29561
+(defun comment-read-macro-function 849,31488
+(defun &mkstring1 857,31708
+(defun string-read-macro-function 860,31812
+(defun quote-read-macro-function 885,32540
+(defun readch 948,34944
+(defun &unquote-constructor 958,35211
+(defun &contains-no-\, 977,35904
+(defun &backquote-read-macro-function 987,36171
+(defun &comma-read-macro-function 989,36245
+(defconstant tab-internal-code 1001,36608
+(defconstant newline-internal-code 1002,36642
+(defconstant formfeed-internal-code 1003,36681
+(defconstant space-internal-code 1004,36721
+(defconstant lpar-internal-code 1005,36758
+(defconstant rpar-internal-code 1006,36807
+(defun sharp-readmacro-function 1008,36857
+(defun *rdr-tyi-pseudo-file* 1038,38025
+(defun *rdr-tyipeek-pseudo-file* 1052,38509
+(defun compress 1065,38966
+(defvar *prarg* 1085,39594
+(defvar *prval* 1087,39627
+(defvar *prmsg* 1089,39665
+(defun prarg 1091,39701
+(defun prval 1102,39938
+(defun prmsg 1112,40139
+(defun backgag 1121,40314
+(defun supervisor 1135,40662
+(defun &supervisor 1144,40905
+(defun rdf 1223,43364
+(defun break-loop-function 1244,44046
+(defun embed 1301,46034
+(defun unembed 1310,46354
+
+rlisp.lsp,24
+(defun compress 18,400
+
+sequence.lsp,2901
+(defmacro type-specifier 19,707
+(defun make-sequence-of-type 24,849
+(defun make-sequence 91,2938
+(defun copy-seq 185,6340
+(defun list-copy-seq* 194,6560
+(defun vector-copy-seq* 197,6621
+(defun list-fill* 218,7183
+(defun vector-fill* 224,7345
+(defun fill 230,7516
+(defun list-replace-from-list* 336,11495
+(defun list-replace-from-vector* 347,11811
+(defun vector-replace-from-list* 358,12131
+(defun vector-replace-from-vector* 369,12451
+(defun replace 380,12775
+(defun list-reverse* 426,14183
+(defun vector-reverse* 429,14248
+(defun reverse 433,14333
+(defun concat-to-list* 541,17885
+(defun concat-to-simple* 544,17961
+(defun concatenate 548,18054
+(defun map 615,20549
+(defun some 633,21345
+(defun every 653,22121
+(defun notany 674,22917
+(defun notevery 695,23727
+(defun reduce 766,26398
+(defun list-to-string* 814,28346
+(defun list-to-bit-vector* 823,28572
+(defun list-to-vector* 833,28855
+(defun vector-to-list* 842,29100
+(defun vector-to-vector* 851,29364
+(defun vector-to-string* 860,29618
+(defun vector-to-bit-vector* 869,29853
+(defun string-to-simple-string* 883,30327
+(defun bit-vector-to-simple-bit-vector* 904,30973
+(defun coerce 926,31642
+(defun delete 1140,39086
+(defun delete-if 1170,40146
+(defun delete-if-not 1197,41196
+(defun remove 1323,46377
+(defun remove-if 1338,46912
+(defun remove-if-not 1350,47378
+(defun list-remove-duplicates* 1372,48346
+(defun vector-remove-duplicates* 1420,50059
+(defun remove-duplicates 1456,51270
+(defun list-remove-duplicates*-1 1470,51773
+(defun vector-remove-duplicates*-1 1498,52606
+(defun remove-duplicates-1 1525,53435
+(defun list-delete-duplicates* 1535,53779
+(defun vector-delete-duplicates* 1568,54950
+(defun delete-duplicates 1589,55753
+(defun list-delete-duplicates*-1 1604,56317
+(defun vector-delete-duplicates*-1 1621,56846
+(defun delete-duplicates-1 1638,57437
+(defun list-substitute* 1648,57819
+(defun vector-substitute* 1694,59561
+(defun substitute 1752,61510
+(defun substitute-if 1766,61980
+(defun substitute-if-not 1775,62398
+(defun nsubstitute 1784,62821
+(defun nlist-substitute* 1809,63821
+(defun nvector-substitute* 1823,64297
+(defun nsubstitute-if 1838,64790
+(defun nlist-substitute-if* 1861,65701
+(defun nvector-substitute-if* 1871,66050
+(defun nsubstitute-if-not 1883,66415
+(defun nlist-substitute-if-not* 1906,67345
+(defun nvector-substitute-if-not* 1916,67704
+(defun position 1984,69949
+(defun list-position* 1994,70391
+(defun vector-position* 1998,70502
+(defun position-if 2034,71701
+(defun position-if-not 2079,73199
+(defun count 2125,74632
+(defun count-if 2158,75639
+(defun count-if-not 2190,76620
+(defun find 2257,78821
+(defun list-find* 2267,79226
+(defun vector-find* 2271,79329
+(defun find-char= 2278,79582
+(defun find-if 2327,81243
+(defun find-if-not 2378,82904
+(defun mismatch 2449,85276
+(defun search 2560,89426
+(defun search-2 2641,92279
+
+setf.lsp,2368
+(defvar ~arg-count)25,1006
+(defvar ~min-args)26,1026
+(defvar ~restp)27,1045
+(defvar ~let-list)28,1061
+(defvar ~keyword-tests)29,1080
+(defvar *in-the-compiler* 31,1105
+(defun get-setf-method 33,1137
+(defun get-setf-method-multiple-value 72,2811
+(defmacro define-setf-method 77,2957
+(defmacro defsetf 181,6875
+(defmacro setf 252,9757
+(defmacro psetf 288,11377
+(defmacro shiftf 309,12233
+(defmacro rotatef 337,13302
+(defmacro define-modify-macro 369,14596
+(defmacro push 425,16710
+(defmacro pushnew 442,17316
+(defmacro pop 463,18104
+(define-modify-macro493,19070
+(defmacro remf 526,20200
+(defsetf car 566,21729
+(defsetf cdr 567,21751
+(defsetf caar 568,21773
+(defsetf cadr 569,21819
+(defsetf cdar 570,21865
+(defsetf cddr 571,21911
+(defsetf caaar 572,21957
+(defsetf cadar 573,22005
+(defsetf cdaar 574,22053
+(defsetf cddar 575,22101
+(defsetf caadr 576,22149
+(defsetf caddr 577,22197
+(defsetf cdadr 578,22245
+(defsetf cdddr 579,22293
+(defsetf caaaar 580,22341
+(defsetf cadaar 581,22391
+(defsetf cdaaar 582,22441
+(defsetf cddaar 583,22491
+(defsetf caadar 584,22541
+(defsetf caddar 585,22591
+(defsetf cdadar 586,22641
+(defsetf cdddar 587,22691
+(defsetf caaadr 588,22741
+(defsetf cadadr 589,22791
+(defsetf cdaadr 590,22841
+(defsetf cddadr 591,22891
+(defsetf caaddr 592,22941
+(defsetf cadddr 593,22991
+(defsetf cdaddr 594,23041
+(defsetf cddddr 595,23091
+(defsetf first 596,23141
+(defsetf second 597,23165
+(defsetf third 598,23213
+(defsetf fourth 599,23261
+(defsetf fifth 600,23311
+(defsetf sixth 601,23361
+(defsetf seventh 602,23417
+(defsetf eighth 603,23476
+(defsetf ninth 604,23535
+(defsetf tenth 605,23594
+(defsetf rest 606,23659
+(defsetf elt 607,23682
+(defsetf aref 608,23703
+(defsetf char 609,23723
+(defsetf bit 610,23746
+(defsetf sbit 611,23767
+(defsetf symbol-value 612,23790
+(defsetf symbol-function 613,23817
+(defsetf symbol-plist 614,23865
+(defsetf symbol-env 615,23905
+(defsetf documentation 616,23941
+(defsetf nth 617,23983
+(defsetf svref 618,24004
+(defsetf getv-bit 619,24025
+(defsetf schar 620,24053
+(defsetf fill-pointer 621,24079
+(define-setf-method623,24120
+(define-setf-method642,24721
+(defsetf660,25352
+(defsetf gethash 666,25437
+(define-setf-method680,26014
+(define-setf-method711,27041
+(define-setf-method732,27730
+(define-setf-method753,28452
+(define-setf-method773,29091
+
+sort.lsp,450
+(defvar ~predicate)5,16
+(defvar ~tail)6,36
+(defvar ~key)7,51
+(defvar ~keyp)8,65
+(defmacro nondescending 10,81
+(defun sort-list 16,241
+(defun sort-select 36,877
+(defun merge-to-list 102,3577
+(defun sort-vector 131,4570
+(defun stable-sort-vector 135,4680
+(defun merge-to-simple 148,5085
+(defun sort 153,5205
+(defun stable-sort 161,5431
+(defun merge 169,5719
+(defun sort-2 182,6263
+(defun stable-sort-2 191,6479
+(defun merge-4 200,6757
+
+stream.lsp,317
+(defun open 34,968
+(defmacro with-open-file 79,3130
+(defmacro with-open-stream 91,3417
+(defun force-output 99,3642
+(defun file-position 102,3721
+(defun peek-char 108,3986
+(defun read-char 119,4369
+(defun read-line 130,4714
+(defun read-from-string 143,5121
+(defun nth 145,5191
+(defun parse-integer 148,5276
+
+string.lsp,989
+(defun string-compare 11,242
+(defun string-compare1 28,976
+(defun always-true 54,2174
+(defun string-compare-helper> 56,2203
+(defun string-compare-helper/= 59,2263
+(defun string-compare-helper< 62,2324
+(defun string-compare-helper>= 65,2384
+(defun string-compare-helper<= 68,2445
+(defun string= 75,2684
+(defun string/= 79,2822
+(defun string< 83,3002
+(defun string> 87,3174
+(defun string>= 91,3346
+(defun string<= 95,3521
+(defun string-equal 99,3696
+(defun string-not-equal 103,3844
+(defun string-lessp 107,4038
+(defun string-greaterp 111,4225
+(defun string-not-lessp 115,4418
+(defun string-not-greaterp 119,4614
+(defun nstring-upcase 125,4818
+(defun nstring-downcase 131,4981
+(defun nstring-capitalize 137,5148
+(defun copy-string 146,5408
+(defun string-upcase 153,5577
+(defun string-downcase 158,5754
+(defun string-capitalize 163,5935
+(defun string-trim1 169,6121
+(defun string-trim 188,6660
+(defun string-left-trim 191,6728
+(defun string-right-trim 194,6803
+
+try.lsp,2517
+(defun boot::boot 3,31
+(defun STRPOSL 9,330
+(defun probe-file 20,620
+(defun compiled-function-p 21,661
+(defun functionp 22,731
+(defun |functionp| 24,835
+(defun fboundp 25,873
+(defun VMREAD 27,908
+(defun |nsubst| 33,1097
+(defun |sayBrightlyNT| 43,1303
+(defun specfnsf::|BesselI| 54,1621
+(defun specfnsf::|BesselJ| 55,1671
+(defun specfnsf::|lnrgamma| 56,1721
+(defun specfnsf::|lncgamma| 57,1769
+(defun specfnsf::|rgamma| 58,1817
+(defun specfnsf::|cgamma| 59,1861
+(defun specfnsf::|chebf01| 60,1905
+(defun specfnsf::|rPsi| 61,1955
+(defun specfnsf::|cPsi| 62,1999
+(defun spadcomp::|intloop| 64,2044
+(defun boot::|resetStackLimits| 65,2087
+(defun boot::|serverReadLine| 66,2126
+(defun boot::expand-tabs 69,2244
+(defun boot::|processSynonyms| 70,2290
+(defun boot::|doSystemCommand| 71,2345
+(defun boot::|packageTran| 72,2403
+(defun boot::|processInteractive| 73,2453
+(defun boot::|leaveScratchpad| 74,2521
+(defun boot::|zeroOneTran| 75,2562
+(defun boot::make-float 76,2612
+(defun boot::|sayKeyedMsg| 77,2668
+(defun boot::|spadThrow| 78,2722
+(define-function 'vmlisp::make-input-filename 79,2765
+(define-function 'spadcomp::|SpadInterpretFile| 80,2834
+(defun boot::|sayKeyedMsg| 87,3116
+(defun boot::|packageTran| 88,3170
+(defun boot::|spadThrow| 89,3224
+(defun |intSetQuiet| 91,3268
+(defun |intUnsetQuiet| 95,3354
+(defun |setCurrentLine| 99,3446
+(defun |intnplisp| 109,3730
+(defun boot::|nplisp| 113,3813
+(defun msubst 115,3854
+(defun |zeroOneTran| 116,3916
+(defun si::getenv 121,4090
+(defun |sayMSG| 126,4249
+(defun |addConsDB| 148,4747
+(defun GCMSG 158,5026
+(defun gbc 168,5301
+(defun |systemDependentMkAutoload| 174,5435
+(defun |loadLib| 183,5714
+(DEFUN |pathname| 191,5987
+(defun pathname 192,6224
+(DEFUN |normalizeStatAndStringify| 196,6343
+(defun |ncINTERPFILE| 199,6900
+(defun bpiname 205,7103
+(defun |queryUserKeyedMsg| 211,7257
+(defun |symEqual| 216,7395
+(defun bye 222,7598
+(defun obey 223,7639
+(defun reclaim 225,7699
+(defun break 228,7789
+(defun gentemp 229,7829
+(defun use-fast-links 234,8048
+(defun string 237,8204
+(defun |makeInternalMapMinivectorName| 245,8532
+(defun |mkCacheName| 250,8677
+(defun FLOAT 255,8795
+(defun |makeSF| 257,8826
+(defun process-import-entry 262,8971
+(defun foam::asharp-file-init-name 263,9043
+(defun foam::asharp-global-name 264,9123
+(defun lisp::delete 266,9192
+(defun si::getenv 268,9247
+(defun set-file-getter 271,9317
+(defun asharpMkAutoLoadFunctor 280,9626
+(defun asharpMkAutoLoadCategory 292,10019

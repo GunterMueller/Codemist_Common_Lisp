@@ -1,0 +1,844 @@
+--Copyright The Numerical Algorithms Group Limited 1991.
+ 
+BOOT TO COMMON LISP TRANSLATER
+ 
+INTRODUCTION
+ 
+The Scratchpad language is implemented by using a mixture of Lisp and
+a more convenient language for writing Lisp called "Boot".
+This document contains a description of the Boot language, and some
+details of the resulting Lisp programs.
+The description of the translation
+functions available are at the end of this file.
+ 
+The main difference between Lisp and Boot is in the syntax for
+the application of a function to its argument.
+The Lisp format (F X Y Z), means, when F is a function,
+the application of F to its arguments X,Y, and Z,
+is written in Boot as F(X,Y,Z).
+When F is a special Lisp word it will be written
+in Boot by using some other syntactic construction.
+ 
+Boot contains an easy method of writing expressions that denote lists,
+and provides an analogous method of writing patterns containing variables
+and constants which denote a particular class of lists.  The pattern
+is matched against a particular list at run time,
+and if the list belongs to the class then its variables will
+take on the values of components of the list.
+ 
+ A second convenient feature provided by Boot is a method of
+writing programs that iterate over the elements of one or more lists
+and which either transform the state of the machine, or
+produce some object from the list or lists.
+ 
+LINES AND COMMANDS
+ 
+If the first character of a line is a closing parenthesis the line
+is treated as a command which controls the lines that will be
+passed to the translater rather than being passed itself.
+The command )include filename filemodifier will for example
+be replaced by the lines in the file filename filemodifier.
+ 
+If a line starts with a closing parenthesis it will be called a command
+line, otherwise it will be called a plain line.
+The command lines are
+ 
+name            as written
+ 
+Include         )include filename filemodifier
+IncludeLisp     )includelisp filename filemodifier
+If              )if bootexpression
+Else            )else
+ElseIf          )elseif bootexpression
+EndIf           )endif
+Fin             )fin
+Say             )say  string
+Eval            )eval bootexpression
+EvalStrings     )evalstrings bootexpression
+Package         )package packagename
+ 
+SimpleLine::= PlainLine | Include | IncludeLisp |Say | Eval | EvalStrings
+              | Package
+ 
+A PlainLine is delivered to the translater as is.
+ 
+An Include delivers the lines in the file filename.filemodifier,
+treated as boot lines.
+ 
+An IncludeLisp delivers the lines in the specified file, treated as lisp
+lines. The only comments allowed in lisp files that are included in
+this way require that the semicolon is at the beginning of the line.
+ 
+A Say outputs the remainder of the line to the console,
+   delivering nothing to the translater.
+ 
+An Eval translates the reminder of the line, assumed to be
+   written in Boot, to Lisp, and evaluates it, delivering nothing to
+   the translater.
+ 
+An EvalStrings also translates and evaluates the rest of the line
+   but this time assumes that the Boot expression denotes a list
+   of strings which are then delivered to the translater
+   instead of the EvalString line. The strings are treated as Boot lines.
+ 
+It is also possible to include or exclude lines based upon some
+condition which is the result of translating and evaluating
+the boot expression that follows an )if or )elseif command.
+This construction will be called a Conditional. A file will be
+composed from SimpleLines and Conditionals. A file is either
+terminated by the end of file or by a Fin line.
+ 
+Components ::=(SimpleLine | Conditional)*
+ 
+File ::= Components  ( Fin | empty)
+ 
+A conditional is bracketed by an If and an EndIf.
+ 
+Conditional ::= If Components Elselines EndIf
+ 
+If the boot expression following the )if has value true then the
+Components are delivered but not the ElseLines,
+otherwise the Components are ignored ,and the ElseLines
+are delivered to the translater. In any case the lines after
+the EndIf are then processed.
+ 
+ElseLines ::= Else Components | ElseIf Components ElseLines | empty
+ 
+When the Elselines of a Conditional is being included then if an
+"Else Components" phrase is encountered then the following
+Components are included
+otherwise if an "ElseIf Components ElseLines" phrase is encountered then
+the boot expression following the )elseif is evaluated and
+if true the following Components are included, if false the
+following ElseLines is included.
+ 
+ 
+BOOT SYNTAX
+ 
+ 
+IDENTIFIERS
+ 
+The standard identifiers start with a letter (a-z or A-Z)
+dollar sign ($),question mark (?) , or the percent sign (%), and are
+followed by any number of letters, digits, single quotes('),
+question marks,or percent signs.
+It is possible however, by using the
+escape character (_), to construct identifiers that contain any
+characters except the blank or newline character. The rules in this case
+are that an escape character followed by any non-blank character
+will start an identifier with that character.  Once an identifier
+has been started either in this way or by a letter, $, or %, then
+it may be continued either with a letter, digit ,',? or %, or with
+an escape character followed by any non-blank character.
+Certain words having the form of identifiers are not classified as
+such, but are reserved words. They are listed below.
+ 
+An identifier ends when a blank or end of line is encountered, or
+an escape character followed by a blank or end of line, or a
+character which is not a letter, digit, quote, question mark
+or percent sign is found. Two identifiers are equal if the
+strings produced by replacing each escape followed by a character
+by that character are equal character by character.
+ 
+ 
+NUMBERS
+ 
+Integers start with a digit (0-9) and are followed by any number
+of digits.  The syntax for floating point numbers is
+<.I | I. | I.I> <<E|e> <+ | - | empty> I where I is an integer.
+ 
+STRINGS
+ 
+Strings of characters are enclosed by double quote signs. They cannot
+span 2 or more lines and an escape character within a string will
+include the next character regardless of its nature.
+The meaning of a string depends somewhat on the context in which
+it is found, but in general a bare string denotes the interned atom
+making up its body whereas when it is preceded by a single quote (')
+it denotes the string of characters enclosed.
+ 
+S-EXPRESSIONS
+ 
+An s-expression is preceded by a single quote and is followed by
+a Lisp s-expression.
+ 
+sexpression ::=identifier | integer | MINUS integer | float | string
+            | QUOTE sexpression | parenthesized sexpression1
+ 
+sexpression1 ::=sexpression (DOT sexpression | sexpression1)| empty
+ 
+There are two ways to quote a name either 'name or "name", which
+both give rise to (QUOTE name). However a string that is a
+component of an sexpression will denote the string unless it is the
+sole component of the s-expression in which case it denotes a string
+i.e. '"name" gives rise to "name" in Lisp rather than (QUOTE "name").
+ 
+ 
+KEYWORDS
+ 
+The table of key words follows, each is given an upper case
+name for use in the description of the syntax.
+ 
+        as written      name
+ 
+            and          AND
+            by           BY
+            cross        CROSS
+            else         ELSE
+            for          FOR
+            if           IF
+            in           IN
+            is           IS
+            isnt         ISNT
+            or           OR
+            repeat       REPEAT
+            return       RETURN
+            then         THEN
+            until        UNTIL
+            where        WHERE
+            while        WHILE
+            .            DOT
+            :            COLON
+            ,            COMMA
+            ;            SEMICOLON
+            *            TIMES
+            **           POWER
+            /            SLASH
+            +            PLUS
+            -            MINUS
+            <            LT
+            >            GT
+            <=           LE
+            >=           GE
+            =            EQ
+            ^            NOT
+            ^=           NE
+            ..           SEG
+            #            SIZE
+            =>           EXIT
+            :=           BECOMES
+            ==           DEF
+            ==>          MDEF
+            (            OPAREN
+            )            CPAREN
+            [            OBRACK
+            (|           OBRACK
+            ]            CBRACK
+            |)           CBRACK
+             |           BAR
+            suchthat     BAR
+ 
+SYNTAX
+ 
+PRIMARY
+ 
+constant::= integer | string | float | sexpression
+ 
+The value of a constant does not depend on the context in which it
+is found.
+ 
+primary::= name | constant | construct | block | tuple |  pile
+ 
+The primaries are the simplest constituents of the language and
+either denote some object or perform some transformation of the
+machine state, or both.
+The statements are the largest constituents and enclosing them
+in parentheses converts them into a primary.
+ 
+An alternative method of grouping uses indentation to indicate the
+parenthetical structure.
+A number of lines whose first non-space characters are in the same
+column will be called a "pile". The translater first tokenizes the
+lines producing identifier, key word, integer, string or float tokens,
+and then examines the pile structure of a Boot program
+in order to add additional tokens called SETTAB,BACKTAB and BACKSET.
+These tokens may be considered as commands for creating a pile.
+The SETTAB starts a new line indented from the previous line and
+pushes the resulting column number on to a stack of tab positions.
+The BACKTAB will start a new line at the column position found
+at the head of the stack and removes it from the stack.
+The BACKSET has the same effect as a BACKTAB immediately followed
+by a SETTAB.
+The meaning of a sequence of tokens containing SETTAB
+BACKTAB and BACKSET is the same the sequence in which each
+SETTAB is replaced by OPAREN , each BACKTAB is replaced by
+CPAREN , and each BACKSET is replaced by SEMICOLON. By
+construction the BACKTABS and SETTABS are properly nested.
+ 
+listof(p,s)== p | p s ... s p
+ 
+parenthesized s ::=   OPAREN s CPAREN
+piled         s ::=   SETTAB s BACKTAB
+ 
+blockof s ::=    parenthesized (listof (s,SEMICOLON))
+pileof s  ::=    piled         (listof (s,BACKSET  ))
+ 
+A pileof s has the same meaning as a blockof s.
+There is however a slight difference because piling is weaker than
+separation by semicolons. In other words the pile items
+may be listof(s,SEMICOLON).
+In other words if statements::= listof(statement,SEMICOLON) then
+we can have a pileof statements which has the same meaning as
+the flattened sequence formed by replacing
+all BACKSET's by SEMICOLON's.
+ 
+A blockof statement is translated to a compound statement
+e.g. in the absence of any exits,
+(a;b;c;d) is translated to (PROGN a b c d).
+ 
+APPLICATION
+ 
+SELECTORS
+ 
+selector::= leftassociative(primary, DOT)
+ 
+A selector a.b denotes some component of a structure, and in
+general is translated to (ELT a b). There are some special identifiers
+that may be used in the b position to denote list components, of which
+more later.
+The DOT has a greater precedence than juxtaposition and is
+left associative, For example
+a.b.c  is grouped as (a.b).c which is translated to
+  (ELT (ELT a b) c)
+ 
+application ::= selector selector ... selector
+ 
+Application of function to argument is denoted by juxtaposition.
+ 
+A sequence of selectors is right associative and so
+f g h x is grouped as f(g(h x)). The applications f x and f(x)
+mean the application of f to x and get translated to
+the Lisp (f x). The application of a function to the empty list
+is written f(), meaning the Lisp (f).  f(x,y,z) gets translated to
+the Lisp (f x y z).
+Common Lisp does not permit a variable to occur in operator position,
+so that when f is a variable its application has to be
+put in argument position of a FUNCALL or APPLY.
+f(x,y,z) has to be replaced by FUNCALL(f,x,y) which gets translated to
+the Lisp (FUNCALL f x y z).
+In Common Lisp each symbol might refer
+to two objects a function and a non-function. In order to resolve
+this ambiguity when a function symbol appears in a context other
+than operator position it has to be preceded by the symbol FUNCTION.
+Also it is possible to produce the function type symbol from the
+non-function symbol by applying SYMBOL-FUNCTION to it.
+ 
+Certain reserved words called infixed operators namely
+POWER, TIMES, SLASH, PLUS MINUS ,IS,
+EQ , NE , GT , GE , LT , LE , IN , AND, OR,
+indicate application by being placed between their 2 arguments.
+ 
+Infixed application may be either right- or left-associative.
+ 
+rightassociative(p,o)::= p o p o p o ... o p
+                    ==  p o (p o (p o ... o p)))
+ 
+leftassociative(p,o)::= p o p o p o ... o p
+                    ==  (((p o p) o p) o ...) o p
+ 
+ 
+exponent ::= rightassociative(application,POWER)
+ 
+reduction ::= (infixedoperator |string | thetaname) SLASH application
+ 
+In a reduction the application denotes a list of items and
+operator SLASH application accumulates the list elements from the
+left using the operator
+e.g.  +/[a,b,c] means (((0+a)+b)+c)
+ 
+Only certain operators are provided with values when the list is empty
+they are and, or +, *, max, min, append, union. However any
+function can be used as an operator by enclosing it in double
+quotes. In this case the reduction is not applicable to an
+empty list.
+ 
+multiplication ::= rightassociative(exponent,TIMES|SLASH) | reduction
+ 
+minus ::= MINUS multiplication | multiplication
+ 
+arith ::= leftasscociative(minus,PLUS | MINUS)
+ 
+is ::= arith | arith (IS | ISNT) pattern
+ 
+comparison ::= is (EQ | NE | GT | GE | LT | LE | IN) is | is
+ 
+and  ::= leftassociative (comparison,AND)
+ 
+return ::= and | RETURN and
+ 
+expression ::= leftassociative(return,OR)
+ 
+The infixed operators denote application of the function to its
+two arguments. To summarize,
+the infixed operators are, in order of decreasing precedence
+strengths.
+ 
+        .
+        juxtaposition
+        **
+        * /
+        + -
+        is
+        = ^= > >= < <= in
+        and
+        or
+ 
+CONDITIONALS
+ 
+conditional ::= IF where THEN where |
+                IF where THEN where ELSE where
+ 
+IF a THEN b is translated to (COND (a b)) and
+IF a THEN b else c is translated to (COND (a b) (T c))
+ 
+statement::= conditional | loop | expression
+ 
+LOOPS
+ 
+loop ::= crossproduct REPEAT statement | REPEAT statement
+ 
+iterator ::= forin | suchthat | until | while
+ 
+iterators ::= iterator iterator ... iterator
+ 
+crossproduct ::=rightassociative(iterators,CROSS)
+ 
+suchthat ::= BAR where
+ 
+while ::= WHILE expression
+ 
+until ::= UNTIL expression
+ 
+forin ::= for variable IN segment |
+          for variable IN segment BY arith
+ 
+segment::= arith | arith SEG arith | arith SEG
+ 
+A loop performs an iterated transformation of the state which is
+specified by its statement component and its iterators.
+The forin construction introduces a new variable which is assigned
+the elements of the list which is the value of the segment in the order
+in which they appear in the list .
+ 
+A segment of the form arith denotes a list,
+and segments of the form "arith SEG arith" and
+"arith SEG" denote terminating and non-terminating
+arithmetic progressions.
+The "BY arith" option is the step size, if omitted the step is 1.
+ 
+Two or more forin's may control a loop.
+The associated lists are scanned in parallel and
+a variable of one forin may not appear in the segment expression that
+denotes the list in a second forin.
+Such a variable may however occur in the conditions for filtering or
+introduced by a suchthat, or for termination introduced by a
+while iterator, and in the statement of the loop.
+The forin variables are local to the statement, the conditions
+that follow a while or suchthat in the same list of iterators and
+have no meaning outside them.
+The loop will be terminated when one of its forin lists is null, or
+if the condition in a while is not satisfied. The list
+elements are filtered by all the suchthat conditions.
+The ordering of the iterators is irrelevant to the meaning, so it is
+best to avoid side effects within the conditions for filtering and
+termination.
+ 
+It is possible to control a loop by using a cross-product of iterators.
+The iteration in the case iterators1 CROSS iterators2 is over
+all pairs of list items one from the list denoted by
+iterators1 and the other from the list denoted by iterators2.
+In this case the variables introduced forin statements in iterators1
+may be used in iterators2.
+ 
+LISTS
+ 
+Boot contains a simple way of specifying lists that are constructed
+by CONS and APPEND, or by transforming one list to another in a
+systematic manner.
+ 
+construct ::= OBRACK construction CBRACK
+ 
+construction ::= comma | comma iteratortail
+ 
+iteratortail ::= REPEAT iterators | iterators
+ 
+A construct expression denotes a list and may also have a list
+of controlling iterators having the same syntax as a loop. In this
+case the expression is enclosed in brackets and the iterators follow
+the expression they qualify, rather than preceding it.
+ 
+In the case that there are no iterators the construct expression
+denotes a list by listing its components separated by commas, or by
+a comma followed by a colon. In the simple case in which there are no
+colons the Boot expression [a,b,c,d] translates to the Lisp
+(LIST a b c d) or (CONS a (CONS b (CONS c (CONS d NIL)))).
+ 
+When elements are separated by comma colon, however, the expression
+that follows will be assumed to denote a list which will be appended
+to the following list, rather than consed. An exception to this rule
+is that a colon preceding the last expression is translated to
+the expression itself. If it immediately preceded by a CONS
+then it need not denote a list.
+ 
+For example:
+[] is translated to the empty list NIL
+[a] is translated to the 1-list (LIST a) or (CONS a NIL)
+[:a] is translated to a
+[a,b] is translated to the 2-list (LIST a b) or (CONS a (CONS b NIL))
+[:a,b] is translated to (APPEND a (CONS b NIL))
+[a,:b] is translated to (CONS a b)
+[:a,:b] is translated to (APPEND a b)
+[:a,b,c] is translated to (APPEND a (CONS b (CONS c NIL)))
+[a,:b,c] is translated to (CONS a (APPEND b (CONS c NIL)))
+[a,b,:c] is translated to (CONS a (CONS b c))
+ 
+If the construct expression has iterators that control the production
+of the list the resulting list depends on the form of the comma
+expression.
+i.e.
+construction ::= comma iteratortail
+ 
+If the comma expression is recognised as denoting a list
+by either preceding it by a colon, or having commas at top level
+as above, then the successive values are appended.  If not then
+the successive values are consed.
+e.g.
+[f i for i in x] denotes the list formed by applying f to each
+  member of the list x.
+ 
+[:f i for i in 0..n] denotes the list formed by appending the
+  lists f i for each i in 0..n.
+ 
+PATTERNS
+ 
+is ::= arith | arith IS  pattern
+ 
+The pattern in the proposition "arith IS pattern" has the same form
+as the construct phrase without iterators. In this case, however it
+denotes a class of lists rather than a list, and is composed
+from identifiers rather than expressions.  The proposition
+is translated into a program that tests whether the arith expression
+denotes a list that belongs to the class. If it does then the value
+of the is expression is true and the identifiers in
+the pattern are assigned the values of the corresponding
+components of the list. If the list does not match the pattern
+the value of the is expression is false and the values of the
+identifier might be changed in some unknown way that reflects the
+partial success of the matching.
+Because of this uncertainty,
+it is advisable to use the variables in a pattern
+as new definitions rather than assigning to variables that are
+defined elsewhere.
+ 
+pattern::= identifier | constant | [ patternlist ]
+ 
+The value of arith IS identifier is true and the value of arith
+is assigned to the identifier.
+(PROGN (SETQ identifier arith) T)
+The expression arith IS constant is translated to (EQUAL constant arith).
+The expression arith IS [ pattenlist ]
+produces a program which tests whether arith denotes a list
+of the right length and that each patternitem matches the corresponding
+list component.
+ 
+patternitem ::= EQ application  | DOT | pattern | name := pattern
+ 
+If the patternitem is EQ application then the value is true if
+the component is EQUAL to the value of the application expression.
+If the patternitem is DOT then the value is true regardless of the
+nature of the component.  It is used as a place-holder to test
+whether the component exists.
+If the patternitem is pattern then the component is matched against
+the pattern as above.
+If the patternitem is name:=pattern then the component is matched against
+the pattern as above, and if the value is true the component is assigned
+to the name.  This last provision enables both a component and
+its components to be given names.
+ 
+patternlist ::= listof(patternitem,COMMA)|
+                listof(patternitem,COMMA) COMMA patterntail
+                patterntail
+ 
+patterncolon ::= COLON patternitem
+ 
+patterntail ::= patterncolon |
+               patterncolon COMMA listof(patternitem,COMMA)
+ 
+The patternlist may contain one colon to indicate that the following
+patternitem can match a list of any length. In this case
+the matching rule is to construct the expression
+with CONS and APPEND from the pattern as shown above and then test
+whether the list can be constructed in this way, and if so
+deduce the components and assign them to identifiers.
+ 
+The effect of a pattern that occurs as a variable in a for iterator
+is to filter the list by the pattern.
+ 
+forin ::= for pattern IN segment
+ 
+is translated to two iterators
+          for g IN segment | g IS pattern
+where g is an invented identifier.
+ 
+forin ::= for (name:=pattern) IN segment
+is translated to two iterators
+          for name IN segment BAR name IS pattern
+ 
+in order to both filter the list elements, and name both elements and
+their components.
+ 
+ASSIGNMENTS
+ 
+A pattern may also occur on the left hand side of an assignment
+statement, and has a slightly different meaning.
+The purpose in this case is to give names to the components
+of the list which is the value of the right hand side.
+In this case no checking
+is done that the list matches the pattern precisely and the only
+effect is to construct the selectors that correspond to
+the identifiers in the pattern, apply them to the value of the
+right hand side and assign the selected components
+to the corresponding identifiers.
+The effect of applying CAR or CDR to arguments to which they are not
+applicable will depend on the underlying Lisp system.
+ 
+assignment::= assignvariable BECOMES assignment| statement
+ 
+assignvariable := OBRACK patternlist CBRACK | assignlhs
+ 
+The assignment having a pattern as its left hand side is reduced
+as explained above to one or more assignments having an identifier
+on the left hand side.
+The meaning of the assignment depends on whether the identifier
+starts with a dollar sign or not, if it is and whether it is followed by
+:local or :fluid.
+If the identifier does not start with a dollar sign it
+is treated as local to the body of the function in which it
+occurs, and
+if it is not already an argument of the function,
+a declaration to that effect is added to the Lisp code
+by adding a PROG construction at top level within the body of the
+function definition.
+ 
+If such an identifier assignment does not occur in the body
+of a function but in a top level expression then
+it is also treated as a local. The sole exception to this rule
+is when the top level expression is an assignment to an identifier
+in which case it is treated as global.
+ 
+If the left hand side of an assignment is an identifier that starts with
+a dollar sign it will not be classified as a local but will
+be treated as non-local. If it is also followed by :local then it
+will be treated as a declaration of a FLUID (VMLisp) or SPECIAL
+variable (Common Lisp) which will be given an initial value which is the
+value of the right hand side of the assignment statement.
+The FLUID or SPECIAL variables may be referred to or assigned to
+by functions that are applied in the body of the declaration.
+ 
+If the left hand side of an assignment statement is
+an identifier that does not start with a dollar sign followed
+by :local then it will also be treated as a FLUID or SPECIAL
+declaration, however it may only be assigned to in the body
+of the function in which the assignment it occurs.
+ 
+assignment::= assignvariable BECOMES assignment | statement
+ 
+assignvariable := OBRACK patternlist CBRACK | assignlhs
+ 
+assignlhs::= name | name COLON local |
+     name DOT primary DOT ... DOT primary
+ 
+If the left hand side of an assignment has the form
+ 
+     name DOT primary DOT ... DOT primary
+ 
+the assignment statement will denote an updating of some component
+of the value of name.  In general name DOT primary := statement
+will get translated to (SETELT name primary statement) or
+(SETF (ELT name primary) statement)
+There are however certain identifiers that denote components of
+a list which will get translated to statements that update that
+component (see appendix) e.g. a.car:=b is translated to
+(SETF (CAR a) b) in Common Lisp.
+The iterated DOT is used to update components of components
+and e.g a.b.c:=d is translated to (SETF (ELT (ELT a b)c) d)
+ 
+exit::= assignment | assignment EXIT where
+ 
+The exit format "assignment EXIT where" is used to give a value to
+a blockof or pileof statements in which it occurs at top level.
+ 
+The expression
+ (a =>b;c) will be translated to if a then b else c or
+ (COND (a b) (T c))
+If the exit is not a component of a blockof or pileof statements
+then a=>b will be translated to (COND (a b))
+ 
+DEFINITIONS
+ 
+Functions may be defined using the syntax
+ 
+functiondefinition::= name DEF where | name variable DEF where
+ 
+ 
+variable ::= parenthesized variablelist | pattern
+ 
+variableitem ::=
+     name| pattern | name BECOMES pattern | name IS pattern
+ 
+variablelist ::= variableitem | COLON name |
+             variableitem COMMA variablelist
+ 
+Function definitions may only occur at to level or after a where.
+The name is the name of the function being defined, and the
+most frequently used form of the variable is either a single name
+or a parenthesized list of names separated by commas.
+In this case the translation to Lisp is straightforward, for example:
+f x == E  or f(x)==E is translated to (DEFUN f (x) TE)
+f (x,y,z)==E is translated to (DEFUN f (x y z) TE)
+f ()==E is translated to (DEFUN f () TE)
+where TE is the translation of E.
+At top level f==E is translated to (DEFUN f () TE)
+The function being defined is that which when applied to its arguments
+produces the value of the body as result where the variables
+in the body take on the values of its arguments.
+ 
+A pattern may also occur in the variable of a definition of a function
+and serves the purpose, similar to the left hand side of assignments,
+of naming the list components.
+The phrase
+ name pattern DEF where
+is translated to
+        name g DEF (pattern:=g;where)
+ 
+similarly
+ 
+ name1 name2 := pattern  DEF where  or name1 name2 is pattern  DEF where
+ 
+are both translated to
+        name1 name2 DEF (pattern:=name2;where)
+ 
+similarly for patterns that occur as components of a list of
+variables. order
+variablelist ::=
+  variableitem | COLON name | variableitem COMMA variablelist
+The parenthesized variablelist that occurs as a variable of a function
+definition can contain variables separated by commas but can also
+have a comma colon as its last separator.
+ 
+This means that the function is applicable to lists of different
+sizes and that only the first few elements corresponding to the
+variables separated by commas are named, and
+the last name after the colon denotes the rest of the list.
+ 
+Macros may be defined only at top level, and must always have a variable
+ 
+macrodefinition::=  name variable MDEF where
+ 
+The effect of a macrodefinition is to produce a Lisp macro
+which is applied to arguments that are treated as expressions, rather
+than their values, and whose result if formed by first substituting
+the expressions for occurrences of the variables within the body
+and then evaluating the resulting expression.
+ 
+WHERE CLAUSES
+ 
+Expressions may be qualified by one or more function definitions
+using the syntax
+ 
+where ::= exit | exit WHERE qualifier
+ 
+qualifier ::= functiondefinition |
+      pileof (functiondefinition) | blockof functiondefinition
+ 
+The functions may only be used within the expression that is qualified.
+This feature has to be used with some care, however, because
+a where clause may only occur within a function body, and
+the component functions are extruded, so to speak, from their contexts
+renamed, and made into top level function definitions.
+As a result the variables of the outer function cannot be referred to
+within the inner function.
+If a qualifying function has the format "name DEF where" then
+the where phrase is substituted for all occurences of the name
+within the expression qualified.
+If an expression is qualified by a phrase that is not a
+function definition then the result will be a compound statement
+in which the qualifying phrase is followed by the qualified phrase.
+ 
+TUPLES
+Although a tuple may appear syntactically
+in any position occupied by a primary
+it will only be given meaning when it is the argument to a function.
+To denote a list it has to be enclosed in brackets rather than
+parentheses. A tuple at top level is treated as if its components
+appeared at top level in the order of the list.
+ 
+tuple::=   parenthesized (listof (where,COMMA))
+ 
+BLOCKS AND PILES
+ 
+block::=   parenthesized (listof (where,SEMICOLON))
+pile::=    piled (listof (listof(where,SEMICOLON),BACKSET))
+A block or a pile get translated to a compound statement or PROGN
+ 
+TOP LEVEL
+ 
+toplevel ::=  functiondefinition | macrodefinition | primary
+ 
+TRANSLATION FUNCTIONS
+ 
+(boottocl "filename")
+translates the file "filename.boot" to the common lisp file
+"filename.clisp"
+ 
+(bootclam "filename")
+translates the file "filename.boot" to the common lisp file
+"filename.clisp" ,  producing, for each function a
+hash table to store previously computed values indexed by argument
+list.  The function first looks in the hash table for the result
+if there returns it, if not computes the result and stores it in the
+table.
+ 
+ 
+(boottoclc "filename")
+translates the file "filename.boot" to
+the common lisp file "filename.oclisp" with the original boot
+code as comments
+ 
+(boot "filename")
+translates the file "filename.boot" to
+ the common lisp file "filename.clisp", compiles it to the file
+ "filename.bbin" and loads  the bbin file.
+ 
+(bo "filename")
+translates the file "filename.boot"
+ and prints the result at the console
+ 
+(stout "string")
+translates the string "string"  and prints the result at the console
+ 
+(sttomc "string")
+translates the string "string"  to common lisp, and compiles the result.
+ 
+(fc "functionname" "filename")
+attempts to find the boot function
+ functionname in the file filename, if found it translates it to common
+ lisp, compiles and loads it.
+ 
+BOOT_-COMPILE_-DEFINITION_-FROM_-FILE(fn,symbol)
+ is similar to fc, fn is the file name but symbol is the  symbol
+ of the function name rather than the string.
+(fn,symbol)
+ 
+BOOT_-EVAL_-DEFINITION_-FROM_-FILE(fn,symbol)
+attempts to find the definition of symbol in file fn, but this time
+translation is followed by EVAL rather than COMPILE
+ 
+(defuse "filename")
+Translates the file filename, and writes a report of the
+functions defined and not used, and used and not defined in the
+file filename.defuse
+ 
+(xref "filename")
+Translates the file filename, and writes a report of the
+names  used, and  where used to the file filename.xref

@@ -1,0 +1,3 @@
+15 May [PAB]	makebase: use 'sys nt', not 'sys nt_win' in (watcom) link.
+22 May [PAB] makebase: use -DTESTNAG -DLOADLIB -DFLEX
+	     sysaxlnk.c: use STARTF_USESTDHANDLES in CreateProcess

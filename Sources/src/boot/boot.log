@@ -1,0 +1,653 @@
+Starts dribbling to boot.log (Wed Dec 11 17:34:11 1996).
+(load "boothdr.lisp")
+;; Loading "boothdr.lisp"
+
+;; Loaded "boothdr.lisp"
+
+T
+
+(load "exports.lisp")
+;; Loading "exports.lisp"
+
+;; Loaded "exports.lisp"
+
+T
+
+(load "npextras.lisp")
+;; Loading "npextras.lisp"
++++ |char| compiled, 5 + 16 bytes
+
++++ MEMQ redefined as a macro
++++ |MEMQ_e29fh0_41| compiled, 47 + 44 bytes
++++ |shoeCOMPILE-FILE| compiled as link to COMPILE-FILE
++++ SETDIFFERENCE compiled as link to SET-DIFFERENCE
++++ MAKE-CVEC compiled as link to MAKE-STRING
++++ MAKE-VEC compiled as link to MAKE-ARRAY-1
++++ CONCAT compiled, 28 + 20 bytes
++++ |shoeInputFile| compiled, 10 + 20 bytes
++++ |shoeCLOSE| compiled as link to CLOSE
++++ |shoeOpenInputFile_e29fh0_42| compiled, 59 + 44 bytes
++++ |shoeOpenOutputFile_e29fh0_43| compiled, 60 + 48 bytes
++++ |shoeConsole| compiled, 4 + 12 bytes
++++ REALLYPRETTYPRINT compiled, 13 + 16 bytes
++++ SHOEPRETTYPRIN1 compiled, 38 + 40 bytes
++++ SHOENOTPRETTYPRINT compiled, 13 + 16 bytes
++++ SHOEPRETTYPRIN0 compiled, 38 + 40 bytes
++++ MAKE-FULL-CVEC compiled, 16 + 20 bytes
++++ |shoeread-line| compiled, 8 + 8 bytes
++++ |shoePLACEP| compiled, 4 + 4 bytes
++++ SUBSTRING compiled, 15 + 8 bytes
++++ MAKE-HASHTABLE compiled, 27 + 40 bytes
++++ |LAMBDA_e29fh0_44| compiled, 11 + 4 bytes
++++ |LAMBDA_e29fh0_44| compiled, 11 + 4 bytes
++++ HKEYS compiled, 7 + 12 bytes
++++ HPUT compiled, 11 + 8 bytes
++++ STRINGIMAGE compiled as link to WRITE-TO-STRING-1
++++ QENUM compiled, 5 + 8 bytes
++++ CHARMEM compiled, 19 + 4 bytes
++++ |shoeCloser| compiled, 18 + 12 bytes
++++ |shoeIdChar| compiled, 9 + 16 bytes
++++ |shoeStartsId| compiled, 9 + 16 bytes
++++ |LAMBDA_e29fh0_45| compiled, 14 + 4 bytes
++++ |LAMBDA_e29fh0_45| compiled, 14 + 4 bytes
++++ STRPOS compiled, 38 + 28 bytes
++++ |LAMBDA_e29fh0_46| compiled, 4 + 8 bytes
++++ |LAMBDA_e29fh0_47| compiled, 4 + 8 bytes
++++ STRPOSL compiled, 34 + 32 bytes
++++ VEC-SETELT compiled as link to SETELT
++++ PNAME compiled, 16 + 12 bytes
++++ MAKE-BVEC compiled, 4 + 12 bytes
++++ BVEC-MAKE-FULL compiled, 11 + 20 bytes
++++ BVEC-SETELT compiled as link to SBITSET
++++ SIZE compiled, 14 + 16 bytes
++++ IDENTP compiled, 7 + 4 bytes
++++ SHOEGREATERP compiled, 9 + 12 bytes
++++ |shoeReadLisp| compiled, 11 + 12 bytes
++++ |last| compiled, 4 + 8 bytes
+
+;; Loaded "npextras.lisp"
+
+T
+
+(load "ptyout.clisp")
+;; Loading "ptyout.clisp"
++++ BOOTTOCL compiled, 33 + 40 bytes
++++ BOOTCLAM compiled, 4 + 8 bytes
++++ BOOTCLAMLINES compiled, 12 + 20 bytes
++++ BOOTTOCLLINES compiled, 44 + 40 bytes
++++ |shoeClLines| compiled, 77 + 64 bytes
++++ BOOTTOCLC compiled, 4 + 8 bytes
++++ BOOTTOCLCLINES compiled, 58 + 48 bytes
++++ |shoeClCLines| compiled, 92 + 80 bytes
++++ BOOTTOMC compiled, 45 + 44 bytes
++++ |shoeMc| compiled, 14 + 28 bytes
++++ COMPILE-BOOT-FILE compiled, 3 + 8 bytes
++++ BOOT compiled, 37 + 44 bytes
++++ EVAL-BOOT-FILE compiled, 86 + 80 bytes
++++ BO compiled, 75 + 68 bytes
++++ BOCLAM compiled, 46 + 48 bytes
++++ |shoeToConsole| compiled, 18 + 36 bytes
++++ STOUT compiled, 4 + 8 bytes
++++ STEVAL compiled, 39 + 44 bytes
++++ STTOMC compiled, 25 + 32 bytes
++++ |shoeCompileTrees| compiled, 11 + 12 bytes
++++ |shoeCompile| compiled, 41 + 24 bytes
++++ |shoeNotFound| compiled, 5 + 16 bytes
++++ |shoeTransform| compiled, 14 + 20 bytes
++++ |shoeTransformString| compiled, 10 + 24 bytes
++++ |shoeTransformStream| compiled, 4 + 12 bytes
++++ |shoeTransformToConsole| compiled, 14 + 20 bytes
++++ |shoeTransformToFile| compiled, 14 + 20 bytes
++++ |shoeConsoleItem| compiled, 10 + 16 bytes
++++ |bFileNext| compiled, 8 + 12 bytes
++++ |bFileNext1| compiled, 25 + 32 bytes
++++ |shoeParseTrees| compiled, 10 + 12 bytes
++++ |shoeTreeConstruct| compiled, 5 + 8 bytes
++++ |shoeDQlines| compiled, 22 + 16 bytes
++++ |streamTake| compiled, 19 + 12 bytes
++++ |shoeFileLines| compiled, 27 + 20 bytes
++++ |shoeConsoleLines| compiled, 24 + 20 bytes
++++ |shoeFileLine| compiled, 3 + 8 bytes
++++ |shoeFileTrees| compiled, 24 + 20 bytes
++++ |shoePPtoFile| compiled, 3 + 8 bytes
++++ |shoeConsoleTrees| compiled, 22 + 28 bytes
++++ |shoeAddComment| compiled, 4 + 12 bytes
++++ |shoeOutParse| compiled, 107 + 76 bytes
++++ |bpOutItem| compiled, 86 + 64 bytes
++++ |shoeEVALANDFILEACTQ| compiled, 8 + 16 bytes
++++ |SoftShoeError| compiled, 23 + 40 bytes
++++ |shoeSpaces| compiled, 4 + 12 bytes
++++ |bpIgnoredFromTo| compiled, 41 + 48 bytes
++++ |lineNo| compiled, 3 + 4 bytes
++++ |lineString| compiled, 3 + 4 bytes
++++ |lineCharacter| compiled, 2 + 4 bytes
++++ |bStreamNull| compiled, 34 + 20 bytes
++++ |bDelay| compiled, 5 + 8 bytes
++++ |bAppend| compiled, 8 + 12 bytes
++++ |bAppend1| compiled, 28 + 16 bytes
++++ |bMap| compiled, 8 + 12 bytes
++++ |bStreamNil| treated as if locally SPECIAL
++++ |bMap1| compiled, 24 + 16 bytes
++++ |bNext| compiled, 8 + 12 bytes
++++ |bNext1| compiled, 20 + 20 bytes
++++ |bRgen| compiled, 8 + 12 bytes
++++ |bRgen1| compiled, 20 + 20 bytes
++++ |bIgen| compiled, 8 + 12 bytes
++++ |bIgen1| compiled, 12 + 8 bytes
++++ |bAddLineNumber| compiled, 8 + 12 bytes
++++ |bAddLineNumber1| compiled, 33 + 16 bytes
++++ |shoeAddbootIfNec| compiled, 4 + 12 bytes
++++ |shoeRemovebootIfNec| compiled, 4 + 12 bytes
++++ |shoeAddStringIfNec| compiled, 17 + 16 bytes
++++ |shoeRemoveStringIfNec| compiled, 20 + 16 bytes
++++ DEFUSE compiled, 34 + 32 bytes
++++ |shoeDfu| compiled, 222 + 124 bytes
++++ |shoeReport| compiled, 131 + 76 bytes
++++ |shoeDefUse| compiled, 12 + 12 bytes
++++ |defuse| compiled, 349 + 84 bytes
++++ |defuse1| compiled, 210 + 60 bytes
++++ |defSeparate| compiled, 37 + 8 bytes
++++ |unfluidlist| compiled, 40 + 16 bytes
++++ |defusebuiltin| compiled, 4 + 12 bytes
++++ |bootOut| compiled, 22 + 20 bytes
++++ CLESSP compiled, 5 + 8 bytes
++++ SSORT compiled, 4 + 12 bytes
++++ |bootOutLines| compiled, 43 + 28 bytes
++++ XREF compiled, 34 + 32 bytes
++++ |shoeXref| compiled, 214 + 120 bytes
++++ |shoeXReport| compiled, 39 + 44 bytes
++++ FBO compiled, 5 + 12 bytes
++++ FEV compiled, 5 + 12 bytes
++++ |shoeGeneralFC| compiled, 87 + 60 bytes
++++ |shoeFindName2| compiled, 82 + 60 bytes
++++ |shoeTransform2| compiled, 17 + 28 bytes
++++ |shoeItem| compiled, 30 + 12 bytes
++++ |shoeFindLines| compiled, 61 + 60 bytes
++++ |shoePackageStartsAt| compiled, 91 + 36 bytes
++++ |stripm| compiled, 33 + 20 bytes
++++ |shoePCompile| compiled, 51 + 40 bytes
++++ FC compiled, 48 + 44 bytes
++++ |shoeFindName| compiled, 10 + 16 bytes
++++ |shoePCompileTrees| compiled, 12 + 16 bytes
++++ |bStreamPackageNull| compiled, 25 + 32 bytes
++++ PSTTOMC compiled, 16 + 28 bytes
++++ BOOTLOOP compiled, 45 + 48 bytes
++++ BOOTPO compiled, 45 + 48 bytes
++++ PSTOUT compiled, 16 + 28 bytes
+
+;; Loaded "ptyout.clisp"
+
+T
+
+(load "btincl2.clisp")
+;; Loading "btincl2.clisp"
++++ |bStreamNil| treated as if locally SPECIAL
++++ |shoeFileMap| compiled, 36 + 52 bytes
++++ |shoeFileInput| compiled, 4 + 12 bytes
++++ |shoePrefixLisp| compiled, 4 + 12 bytes
++++ |shoeLispFileInput| compiled, 4 + 12 bytes
++++ |shoePrefixLine| compiled, 4 + 12 bytes
++++ |shoeLineFileInput| compiled, 4 + 12 bytes
++++ |shoePrefix?| compiled, 57 + 20 bytes
++++ |shoePlainLine?| compiled, 17 + 28 bytes
++++ |shoeSay?| compiled, 4 + 12 bytes
++++ |shoeEval?| compiled, 4 + 12 bytes
++++ |shoeInclude?| compiled, 4 + 12 bytes
++++ |shoeFin?| compiled, 4 + 12 bytes
++++ |shoeIf?| compiled, 4 + 12 bytes
++++ |shoeEndIf?| compiled, 4 + 12 bytes
++++ |shoeElse?| compiled, 4 + 12 bytes
++++ |shoeElseIf?| compiled, 4 + 12 bytes
++++ |shoePackage?| compiled, 4 + 12 bytes
++++ |shoeLisp?| compiled, 4 + 12 bytes
++++ |shoeIncludeLisp?| compiled, 4 + 12 bytes
++++ |shoeLine?| compiled, 4 + 12 bytes
++++ |shoeIncludeLines?| compiled, 4 + 12 bytes
++++ |shoeIncludeFunction?| compiled, 4 + 12 bytes
++++ |shoeBiteOff| compiled, 56 + 32 bytes
++++ |shoeFileName| compiled, 22 + 20 bytes
++++ |shoeFnFileName| compiled, 24 + 24 bytes
++++ |shoeFunctionFileInput| compiled, 43 + 40 bytes
++++ |shoeInclude| compiled, 8 + 12 bytes
++++ |bStreamNil| treated as if locally SPECIAL
++++ |shoeInclude1| compiled, 44 + 44 bytes
++++ |shoeSimpleLine| compiled, 90 + 80 bytes
++++ |shoeThen| compiled, 10 + 12 bytes
++++ |shoeThen1| compiled, 168 + 60 bytes
++++ |shoeElse| compiled, 10 + 12 bytes
++++ |shoeElse1| compiled, 101 + 52 bytes
++++ |shoeLineSyntaxError| compiled, 11 + 24 bytes
++++ |bStreamNil| treated as if locally SPECIAL
++++ |bPremStreamNil| compiled, 12 + 28 bytes
++++ |bPremStreamNull| compiled, 9 + 20 bytes
+
+;; Loaded "btincl2.clisp"
+
+T
+
+(load "btscan2.clisp")
+;; Loading "btscan2.clisp"
+
++++ EQCAR redefined
++++ EQCAR compiled, 9 + 8 bytes
++++ |dqUnit| compiled, 7 + 4 bytes
++++ |dqAppend| compiled, 15 + 4 bytes
++++ |dqConcat| compiled, 16 + 8 bytes
++++ |dqToList| compiled, 5 + 4 bytes
++++ |shoeConstructToken| compiled, 16 + 16 bytes
++++ |shoeTokType| compiled, 2 + 4 bytes
++++ |shoeTokPart| compiled, 3 + 4 bytes
++++ |shoeTokPosn| compiled, 3 + 4 bytes
++++ |shoeTokConstruct| compiled, 5 + 4 bytes
++++ |shoeTAB| treated as if locally SPECIAL
++++ |shoeNextLine| compiled, 89 + 92 bytes
++++ |shoeCLOSEPAREN| treated as if locally SPECIAL
++++ |shoeLineToks| compiled, 200 + 108 bytes
++++ |shoeLispToken| compiled, 55 + 44 bytes
++++ |shoeCLOSEPAREN| treated as if locally SPECIAL
++++ |shoeAccumulateLines| compiled, 115 + 56 bytes
++++ |shoeLispESCAPE| treated as if locally SPECIAL
++++ |shoeSPACE| treated as if locally SPECIAL
++++ |shoeSTRINGCHAR| treated as if locally SPECIAL
++++ |shoeESCAPE| treated as if locally SPECIAL
++++ |shoeTAB| treated as if locally SPECIAL
++++ |shoeToken| compiled, 128 + 112 bytes
++++ |shoeLeafId| compiled, 6 + 12 bytes
++++ |shoeLeafKey| compiled, 6 + 12 bytes
++++ |shoeLeafInteger| compiled, 6 + 12 bytes
++++ |shoeLeafFloat| compiled, 28 + 20 bytes
++++ |shoeLeafString| compiled, 4 + 8 bytes
++++ |shoeLeafLisp| compiled, 4 + 8 bytes
++++ |shoeLeafLispExp| compiled, 4 + 8 bytes
++++ |shoeLeafLine| compiled, 4 + 8 bytes
++++ |shoeLeafComment| compiled, 4 + 8 bytes
++++ |shoeLeafNegComment| compiled, 4 + 8 bytes
++++ |shoeLeafError| compiled, 4 + 8 bytes
++++ |shoeLeafSpaces| compiled, 4 + 8 bytes
++++ |shoeLispEscape| compiled, 59 + 48 bytes
++++ |shoeEscape| compiled, 12 + 20 bytes
++++ |shoeEsc| compiled, 47 + 36 bytes
++++ |shoePLUSCOMMENT| treated as if locally SPECIAL
++++ |shoePLUSCOMMENT| treated as if locally SPECIAL
++++ |shoeStartsComment| compiled, 30 + 24 bytes
++++ |shoeMINUSCOMMENT| treated as if locally SPECIAL
++++ |shoeMINUSCOMMENT| treated as if locally SPECIAL
++++ |shoeStartsNegComment| compiled, 30 + 24 bytes
++++ |shoeNegComment| compiled, 13 + 24 bytes
++++ |shoeComment| compiled, 13 + 24 bytes
++++ |shoePunct| compiled, 15 + 20 bytes
++++ |shoeKeyTr| compiled, 20 + 28 bytes
++++ |shoePossFloat| compiled, 22 + 40 bytes
++++ |shoeSpace| compiled, 29 + 36 bytes
++++ |shoeString| compiled, 9 + 20 bytes
++++ |shoeS| compiled, 131 + 68 bytes
++++ |shoeIdEnd| compiled, 21 + 12 bytes
++++ |shoeDigit| compiled, 3 + 8 bytes
++++ |shoeESCAPE| treated as if locally SPECIAL
++++ |shoeW| compiled, 95 + 60 bytes
++++ |shoeWord| compiled, 34 + 40 bytes
++++ |shoeInteger| compiled, 3 + 8 bytes
++++ |shoeESCAPE| treated as if locally SPECIAL
++++ |shoeInteger1| compiled, 82 + 48 bytes
++++ |shoeIntValue| compiled, 35 + 20 bytes
++++ |shoeDOT| treated as if locally SPECIAL
++++ |shoeDOT| treated as if locally SPECIAL
++++ |shoeNumber| compiled, 57 + 48 bytes
++++ |shoeEXPONENT1| treated as if locally SPECIAL
++++ |shoeEXPONENT2| treated as if locally SPECIAL
++++ |shoePLUSCOMMENT| treated as if locally SPECIAL
++++ |shoeMINUSCOMMENT| treated as if locally SPECIAL
++++ |shoeMINUSCOMMENT| treated as if locally SPECIAL
++++ |shoeExponent| compiled, 146 + 60 bytes
++++ |shoeError| compiled, 28 + 48 bytes
++++ |shoeOrdToNum| compiled, 3 + 8 bytes
++++ |shoeKeyTable| treated as if locally SPECIAL
++++ |shoeKeyWord| compiled, 4 + 12 bytes
++++ |shoeKeyTable| treated as if locally SPECIAL
++++ |shoeKeyWordP| compiled, 8 + 12 bytes
++++ |shoeInsert| compiled, 107 + 24 bytes
++++ |shoeDict| treated as if locally SPECIAL
++++ |shoeMatch| compiled, 6 + 12 bytes
++++ |shoeSubStringMatch| compiled, 107 + 32 bytes
++++ |shoePun| treated as if locally SPECIAL
++++ |shoePunctuation| compiled, 7 + 16 bytes
++++ |shoeKeyWords| treated as if locally SPECIAL
++++ |shoeKeyTableCons| compiled, 28 + 20 bytes
++++ |shoeKeyTable| treated as if locally SPECIAL
++++ |shoeDictCons| compiled, 64 + 44 bytes
++++ |shoeKeyTable| treated as if locally SPECIAL
++++ |shoePunCons| compiled, 64 + 48 bytes
+
+;; Loaded "btscan2.clisp"
+
+T
+
+(load "typrops.clisp")
+;; Loading "typrops.clisp"
+
+;; Loaded "typrops.clisp"
+
+T
+
+(load "btpile2.clisp")
+;; Loading "btpile2.clisp"
++++ |shoeFirstTokPosn| compiled, 3 + 8 bytes
++++ |shoeLastTokPosn| compiled, 4 + 8 bytes
++++ |shoePileColumn| compiled, 4 + 8 bytes
++++ |shoePileInsert| compiled, 41 + 40 bytes
++++ |shoePileTree| compiled, 48 + 16 bytes
++++ |eqshoePileTree| compiled, 46 + 16 bytes
++++ |shoePileForest| compiled, 41 + 12 bytes
++++ |shoePileForest1| compiled, 41 + 8 bytes
++++ |shoePileForests| compiled, 33 + 20 bytes
++++ |shoePileCtree| compiled, 8 + 12 bytes
++++ |shoePileCforest| compiled, 23 + 16 bytes
++++ |shoePileCoagulate| compiled, 59 + 36 bytes
++++ |shoeSeparatePiles| compiled, 32 + 28 bytes
++++ |shoeEnPile| compiled, 28 + 36 bytes
+
+;; Loaded "btpile2.clisp"
+
+T
+
+(load "typars.clisp")
+;; Loading "typars.clisp"
++++ |bpFirstToken| compiled, 21 + 40 bytes
++++ |bpFirstTok| compiled, 63 + 72 bytes
++++ |bpNext| compiled, 5 + 12 bytes
++++ |bpNextToken| compiled, 5 + 12 bytes
++++ |bpState| compiled, 11 + 20 bytes
++++ |bpRestore| compiled, 18 + 28 bytes
++++ |bpPush| compiled, 5 + 8 bytes
++++ |bpPushId| compiled, 6 + 16 bytes
++++ |bpPop1| compiled, 8 + 8 bytes
++++ |bpPop2| compiled, 10 + 8 bytes
++++ |bpPop3| compiled, 13 + 8 bytes
++++ |bpIndentParenthesized| compiled, 99 + 80 bytes
++++ |bpParenthesized| compiled, 38 + 36 bytes
++++ |bpBracket| compiled, 38 + 36 bytes
++++ |bpPileBracketed| compiled, 30 + 36 bytes
++++ |bpListof| compiled, 60 + 40 bytes
++++ |bpListofFun| compiled, 61 + 40 bytes
++++ |bpList| compiled, 74 + 36 bytes
++++ |bpOneOrMore| compiled, 30 + 24 bytes
++++ |bpAnyNo| compiled, 8 + 8 bytes
++++ |bpAndOr| compiled, 22 + 20 bytes
++++ |bpConditional| compiled, 65 + 48 bytes
++++ |bpElse| compiled, 41 + 44 bytes
++++ |bpBacksetElse| compiled, 10 + 16 bytes
++++ |bpEqPeek| compiled, 10 + 16 bytes
++++ |bpEqKey| compiled, 13 + 20 bytes
++++ |bpEqKeyNextTok| compiled, 13 + 20 bytes
++++ |bpPileTrap| compiled, 3 + 12 bytes
++++ |bpBrackTrap| compiled, 4 + 12 bytes
++++ |bpParenTrap| compiled, 4 + 12 bytes
++++ |bpMissingMate| compiled, 6 + 16 bytes
++++ |bpMissing| compiled, 11 + 28 bytes
++++ |bpCompMissing| compiled, 8 + 12 bytes
++++ |bpTrap| compiled, 6 + 16 bytes
++++ |bpRecoverTrap| compiled, 18 + 36 bytes
++++ |bpListAndRecover| compiled, 92 + 64 bytes
++++ |bpMoveTo| compiled, 79 + 52 bytes
++++ |bpSpecificErrorAtToken| compiled, 7 + 12 bytes
++++ |bpGeneralErrorHere| compiled, 3 + 12 bytes
++++ |bpSpecificErrorHere| compiled, 4 + 12 bytes
++++ |bpName| compiled, 8 + 20 bytes
++++ |bpConstTok| compiled, 88 + 76 bytes
++++ |bpCancel| compiled, 30 + 28 bytes
++++ |bpAddTokens| compiled, 41 + 32 bytes
++++ |bpExceptions| compiled, 29 + 36 bytes
++++ |bpSexpKey| compiled, 29 + 32 bytes
++++ |bpAnyId| compiled, 61 + 48 bytes
++++ |bpSexp| compiled, 27 + 40 bytes
++++ |bpSexp1| compiled, 41 + 32 bytes
++++ |bpPrimary1| compiled, 29 + 36 bytes
++++ |bpPrimary| compiled, 9 + 16 bytes
++++ |bpDot| compiled, 8 + 20 bytes
++++ |bpPrefixOperator| compiled, 17 + 28 bytes
++++ |bpInfixOperator| compiled, 17 + 28 bytes
++++ |bpSelector| compiled, 23 + 36 bytes
++++ |bpOperator| compiled, 7 + 16 bytes
++++ |bpApplication| compiled, 23 + 36 bytes
++++ |bpTagged| compiled, 28 + 40 bytes
++++ |bpExpt| compiled, 4 + 16 bytes
++++ |bpInfKey| compiled, 18 + 24 bytes
++++ |bpInfGeneric| compiled, 11 + 20 bytes
++++ |bpRightAssoc| compiled, 39 + 40 bytes
++++ |bpLeftAssoc| compiled, 32 + 32 bytes
++++ |bpString| compiled, 19 + 36 bytes
++++ |bpThetaName| compiled, 14 + 28 bytes
++++ |bpReduceOperator| compiled, 9 + 16 bytes
++++ |bpReduce| compiled, 57 + 64 bytes
++++ |bpTimes| compiled, 8 + 20 bytes
++++ |bpMinus| compiled, 24 + 36 bytes
++++ |bpArith| compiled, 4 + 16 bytes
++++ |bpIs| compiled, 34 + 44 bytes
++++ |bpBracketConstruct| compiled, 9 + 20 bytes
++++ |bpCompare| compiled, 31 + 40 bytes
++++ |bpAnd| compiled, 4 + 16 bytes
++++ |bpReturn| compiled, 20 + 32 bytes
++++ |bpLogical| compiled, 4 + 16 bytes
++++ |bpExpression| compiled, 22 + 32 bytes
++++ |bpStatement| compiled, 10 + 20 bytes
++++ |bpLoop| compiled, 43 + 52 bytes
++++ |bpSuchThat| compiled, 6 + 20 bytes
++++ |bpWhile| compiled, 6 + 20 bytes
++++ |bpUntil| compiled, 6 + 20 bytes
++++ |bpForIn| compiled, 61 + 64 bytes
++++ |bpSeg| compiled, 29 + 40 bytes
++++ |bpIterator| compiled, 13 + 20 bytes
++++ |bpIteratorList| compiled, 9 + 24 bytes
++++ |bpCrossBackSet| compiled, 11 + 20 bytes
++++ |bpIterators| compiled, 6 + 20 bytes
++++ |bpAssign| compiled, 26 + 36 bytes
++++ |bpAssignment| compiled, 26 + 40 bytes
++++ |bpExit| compiled, 30 + 44 bytes
++++ |bpDefinition| compiled, 31 + 40 bytes
++++ |bpStoreName| compiled, 11 + 24 bytes
++++ |bpDef| compiled, 16 + 28 bytes
++++ |bpDDef| compiled, 6 + 12 bytes
++++ |bpDefTail| compiled, 50 + 48 bytes
++++ |bpMDefTail| compiled, 33 + 44 bytes
++++ |bpMdef| compiled, 9 + 16 bytes
++++ |bpWhere| compiled, 27 + 40 bytes
++++ |bpDefinitionItem| compiled, 29 + 32 bytes
++++ |bpDefinitionPileItems| compiled, 9 + 24 bytes
++++ |bpBDefinitionPileItems| compiled, 3 + 12 bytes
++++ |bpSemiColonDefinition| compiled, 4 + 16 bytes
++++ |bpPDefinitionItems| compiled, 3 + 12 bytes
++++ |bpComma| compiled, 3 + 12 bytes
++++ |bpTuple| compiled, 6 + 16 bytes
++++ |bpCommaBackSet| compiled, 11 + 20 bytes
++++ |bpSemiColon| compiled, 4 + 16 bytes
++++ |bpSemiListing| compiled, 6 + 12 bytes
++++ |bpSemiBackSet| compiled, 11 + 20 bytes
++++ |bpPDefinition| compiled, 3 + 12 bytes
++++ |bpPileItems| compiled, 9 + 24 bytes
++++ |bpBPileDefinition| compiled, 3 + 12 bytes
++++ |bpIteratorTail| compiled, 10 + 20 bytes
++++ |bpConstruct| compiled, 3 + 12 bytes
++++ |bpConstruction| compiled, 23 + 32 bytes
++++ |bpDConstruct| compiled, 3 + 12 bytes
++++ |bpDConstruction| compiled, 23 + 32 bytes
++++ |bpPattern| compiled, 10 + 20 bytes
++++ |bpEqual| compiled, 21 + 36 bytes
++++ |bpRegularPatternItem| compiled, 48 + 64 bytes
++++ |bpRegularPatternItemL| compiled, 8 + 16 bytes
++++ |bpRegularList| compiled, 6 + 20 bytes
++++ |bpPatternColon| compiled, 18 + 32 bytes
++++ |bpPatternL| compiled, 8 + 20 bytes
++++ |bpPatternList| compiled, 46 + 40 bytes
++++ |bpPatternTail| compiled, 30 + 40 bytes
++++ |bpRegularBVItem| compiled, 65 + 64 bytes
++++ |bpBVString| compiled, 19 + 36 bytes
++++ |bpRegularBVItemL| compiled, 8 + 16 bytes
++++ |bpColonName| compiled, 13 + 24 bytes
++++ |bpBoundVariablelist| compiled, 58 + 44 bytes
++++ |bpVariable| compiled, 24 + 40 bytes
++++ |bpAssignVariable| compiled, 7 + 16 bytes
++++ |bpAssignLHS| compiled, 59 + 68 bytes
++++ |bpChecknull| compiled, 10 + 16 bytes
+
+;; Loaded "typars.clisp"
+
+T
+
+(load "tyextra.clisp")
+;; Loading "tyextra.clisp"
++++ |bpStruct| compiled, 34 + 44 bytes
++++ |bpTypeList| compiled, 13 + 24 bytes
++++ |bpTypeItemList| compiled, 3 + 12 bytes
++++ |bpTerm| compiled, 42 + 40 bytes
++++ |bpIdList| compiled, 3 + 12 bytes
++++ |bfNameOnly| compiled, 9 + 12 bytes
++++ |bfNameArgs| compiled, 13 + 8 bytes
++++ |bfStruct| compiled, 25 + 16 bytes
++++ |bfCreateDef| compiled, 69 + 32 bytes
++++ |bpCase| compiled, 23 + 32 bytes
++++ |bpPiledCaseItems| compiled, 13 + 28 bytes
++++ |bpCaseItemList| compiled, 3 + 12 bytes
++++ |bpCaseItem| compiled, 32 + 40 bytes
++++ |bfCaseItem| compiled, 3 + 4 bytes
++++ |bfCase| compiled, 40 + 32 bytes
++++ |bfCaseItems| compiled, 49 + 20 bytes
++++ |bfCI| compiled, 56 + 20 bytes
++++ |bfCARCDR| compiled, 11 + 24 bytes
++++ |bfDs| compiled, 12 + 20 bytes
+
+;; Loaded "tyextra.clisp"
+
+T
+
+(load "tytree1.clisp")
+;; Loading "tytree1.clisp"
++++ |bfGenSymbol| compiled, 10 + 24 bytes
++++ |bfListOf| compiled, 1 + 4 bytes
++++ |bfColon| compiled, 4 + 8 bytes
++++ |bfSymbol| compiled, 9 + 12 bytes
++++ |bfDot| compiled, 2 + 8 bytes
++++ |bfSuffixDot| compiled, 4 + 8 bytes
++++ |bfEqual| compiled, 4 + 8 bytes
++++ |bfBracket| compiled, 1 + 4 bytes
++++ |bfPile| compiled, 1 + 4 bytes
++++ |bfAppend| compiled, 4 + 12 bytes
++++ |bfColonAppend| compiled, 33 + 20 bytes
++++ |bfDefinition1| compiled, 12 + 12 bytes
++++ |bfDefinition2| compiled, 10 + 8 bytes
++++ |bfMDefinition2| compiled, 7 + 12 bytes
++++ |bfCompDef| compiled, 21 + 8 bytes
++++ |bfBeginsDollar| compiled, 12 + 20 bytes
++++ |compFluid| compiled, 4 + 8 bytes
++++ |compFluidize| compiled, 28 + 20 bytes
++++ |bfTuple| compiled, 4 + 8 bytes
++++ |bfTupleP| compiled, 4 + 8 bytes
++++ |bfTupleIf| compiled, 8 + 12 bytes
++++ |bfTupleConstruct| compiled, 59 + 24 bytes
++++ |bfConstruct| compiled, 13 + 12 bytes
++++ |bfMakeCons| compiled, 62 + 24 bytes
++++ |bfFor| compiled, 30 + 28 bytes
++++ |bfForTree| compiled, 68 + 32 bytes
++++ |bfSTEP| compiled, 139 + 36 bytes
++++ |bfINON| compiled, 18 + 16 bytes
++++ |bfIN| compiled, 59 + 32 bytes
++++ |bfON| compiled, 34 + 16 bytes
++++ |bfSuchthat| compiled, 18 + 4 bytes
++++ |bfWhile| compiled, 19 + 8 bytes
++++ |bfUntil| compiled, 30 + 12 bytes
++++ |bfIterators| compiled, 4 + 8 bytes
++++ |bfCross| compiled, 4 + 8 bytes
++++ |bfLp| compiled, 12 + 16 bytes
++++ |bfLpCross| compiled, 16 + 8 bytes
++++ |bfSep| compiled, 61 + 8 bytes
++++ |bfReduce| compiled, 140 + 52 bytes
++++ |bfReduceCollect| compiled, 46 + 44 bytes
++++ |bfDCollect| compiled, 5 + 8 bytes
++++ |bfDTuple| compiled, 4 + 8 bytes
++++ |bfCollect| compiled, 42 + 32 bytes
++++ |bf0COLLECT| compiled, 5 + 12 bytes
++++ |bf0APPEND| compiled, 49 + 28 bytes
++++ |bfListReduce| compiled, 47 + 20 bytes
++++ |bfLp1| compiled, 88 + 40 bytes
++++ |bfLp2| compiled, 24 + 16 bytes
++++ |bfOpReduce| compiled, 163 + 52 bytes
++++ |bfLoop1| compiled, 5 + 12 bytes
++++ |bfSegment1| compiled, 6 + 8 bytes
++++ |bfSegment2| compiled, 5 + 8 bytes
++++ |bfForInBy| compiled, 5 + 8 bytes
++++ |bfForin| compiled, 6 + 12 bytes
++++ |bfLocal| compiled, 19 + 20 bytes
++++ |bfTake| compiled, 17 + 8 bytes
++++ |bfDrop| compiled, 11 + 8 bytes
++++ |bfDefSequence| compiled, 4 + 8 bytes
++++ |bfReturnNoName| compiled, 4 + 8 bytes
++++ |bfSUBLIS| compiled, 21 + 12 bytes
++++ |bfSUBLIS1| compiled, 16 + 4 bytes
++++ |defSheepAndGoats| compiled, 93 + 40 bytes
++++ |defSheepAndGoatsList| compiled, 53 + 8 bytes
++++ |bfLetForm| compiled, 5 + 8 bytes
++++ |bfLET1| compiled, 188 + 60 bytes
++++ |bfCONTAINED| compiled, 18 + 8 bytes
++++ |bfLET2| compiled, 505 + 116 bytes
++++ |bfLET| compiled, 12 + 20 bytes
++++ |addCARorCDR| compiled, 57 + 40 bytes
++++ |bfPosition| compiled, 6 + 12 bytes
++++ |bfPosn| compiled, 19 + 8 bytes
++++ |bfISApplication| compiled, 18 + 20 bytes
++++ |bfIS| compiled, 17 + 28 bytes
++++ |bfISReverse| compiled, 38 + 20 bytes
++++ |bfIS1| compiled, 643 + 148 bytes
++++ |bfApplication| compiled, 16 + 8 bytes
++++ |bfReName| compiled, 10 + 8 bytes
++++ |bfInfApplication| compiled, 67 + 56 bytes
++++ |bfNOT| compiled, 47 + 20 bytes
++++ |bfFlatten| compiled, 10 + 4 bytes
++++ |bfOR| compiled, 38 + 20 bytes
++++ |bfAND| compiled, 40 + 24 bytes
++++ |defQuoteId| compiled, 10 + 12 bytes
++++ |bfSmintable| compiled, 27 + 12 bytes
++++ |bfQ| compiled, 43 + 28 bytes
++++ |bfLessp| compiled, 12 + 16 bytes
++++ |bfMDef| compiled, 183 + 60 bytes
++++ |bfGargl| compiled, 82 + 24 bytes
++++ |bfDef1| compiled, 64 + 20 bytes
++++ |shoeLAM| compiled, 63 + 48 bytes
++++ |bfDef| compiled, 73 + 40 bytes
++++ |shoeComps| compiled, 23 + 12 bytes
++++ |shoeComp| compiled, 34 + 20 bytes
++++ |bfInsertLet| compiled, 152 + 24 bytes
++++ |bfInsertLet1| compiled, 134 + 44 bytes
++++ |shoeCompTran| compiled, 171 + 56 bytes
++++ |shoePROG| compiled, 34 + 20 bytes
++++ |shoeFluids| compiled, 31 + 16 bytes
++++ |shoeATOMs| compiled, 17 + 4 bytes
++++ |shoeCompTran1| compiled, 338 + 56 bytes
++++ |bfTagged| compiled, 45 + 40 bytes
++++ |bfAssign| compiled, 15 + 16 bytes
++++ |bfSetelt| compiled, 17 + 12 bytes
++++ |bfElt| compiled, 31 + 12 bytes
++++ |defSETELT| compiled, 44 + 16 bytes
++++ |bfIfThenOnly| compiled, 18 + 12 bytes
++++ |bfIf| compiled, 46 + 16 bytes
++++ |bfExit| compiled, 12 + 12 bytes
++++ |bfMKPROGN| compiled, 32 + 20 bytes
++++ Garbage collection 1 (bytecoded list2) after 7.07+0.46 seconds
+At gc end about 1.0 Mbytes of 4.0 (25.0%) of heap is in use
++++ |bfFlattenSeq| compiled, 56 + 12 bytes
++++ |bfSequence| compiled, 174 + 44 bytes
++++ |bfWhere| compiled, 117 + 32 bytes
++++ |bfReadLisp| compiled, 5 + 16 bytes
++++ |shoeReadLispString| compiled, 32 + 8 bytes
++++ |bfCompHash| compiled, 29 + 32 bytes
++++ |bfMain| compiled, 179 + 100 bytes
+
+;; Loaded "tytree1.clisp"
+
+T
+
+ 
+(preserve)
+The system will be preserved on file "boot.img(InitialImage)"
++++ Garbage collection 2 (preserve) after 7.22+0.69 seconds
+At gc end about 1.0 Mbytes of 4.0 (25.0%) of heap is in use
+
+Finished dribbling to boot.log.

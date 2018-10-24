@@ -1,0 +1,53 @@
+
+;  Copyright (c) 1991-2002, The Numerical Algorithms Group Ltd.
+;  All rights reserved.
+;  
+;  Redistribution and use in source and binary forms, with or without
+;  modification, are permitted provided that the following conditions are
+;  met:
+;  
+;      - Redistributions of source code must retain the above copyright
+;        notice, this list of conditions and the following disclaimer.
+;  
+;      - Redistributions in binary form must reproduce the above copyright
+;        notice, this list of conditions and the following disclaimer in
+;        the documentation and/or other materials provided with the
+;        distribution.
+;  
+;      - Neither the name of The Numerical ALgorithms Group Ltd. nor the
+;        names of its contributors may be used to endorse or promote products
+;        derived from this software without specific prior written permission.
+;  
+;  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
+;  IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
+;  TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+;  PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER
+;  OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+;  EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+;  PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES-- LOSS OF USE, DATA, OR
+;  PROFITS-- OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+;  LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+;  NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+;  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+(IN-PACKAGE (QUOTE BOOTTRAN))
+(EVAL-WHEN (EVAL LOAD) (SETQ |shoeKeyWords| (LIST (LIST "and" (QUOTE AND)) (LIST "by" (QUOTE BY)) (LIST "case" (QUOTE CASE)) (LIST "cross" (QUOTE CROSS)) (LIST "else" (QUOTE ELSE)) (LIST "for" (QUOTE FOR)) (LIST "if" (QUOTE IF)) (LIST "in" (QUOTE IN)) (LIST "is" (QUOTE IS)) (LIST "isnt" (QUOTE ISNT)) (LIST "of" (QUOTE OF)) (LIST "or" (QUOTE OR)) (LIST "repeat" (QUOTE REPEAT)) (LIST "return" (QUOTE RETURN)) (LIST "structure" (QUOTE STRUCTURE)) (LIST "then" (QUOTE THEN)) (LIST "until" (QUOTE UNTIL)) (LIST "where" (QUOTE WHERE)) (LIST "while" (QUOTE WHILE)) (LIST "." (QUOTE DOT)) (LIST ":" (QUOTE COLON)) (LIST "," (QUOTE COMMA)) (LIST ";" (QUOTE SEMICOLON)) (LIST "*" (QUOTE TIMES)) (LIST "**" (QUOTE POWER)) (LIST "/" (QUOTE SLASH)) (LIST "+" (QUOTE PLUS)) (LIST "-" (QUOTE MINUS)) (LIST "<" (QUOTE LT)) (LIST ">" (QUOTE GT)) (LIST "<=" (QUOTE LE)) (LIST ">=" (QUOTE GE)) (LIST "=" (QUOTE SHOEEQ)) (LIST "^" (QUOTE NOT)) (LIST "^=" (QUOTE NE)) (LIST ".." (QUOTE SEG)) (LIST "#" (QUOTE LENGTH)) (LIST "=>" (QUOTE EXIT)) (LIST ":=" (QUOTE BEC)) (LIST "==" (QUOTE DEF)) (LIST "==>" (QUOTE MDEF)) (LIST "(" (QUOTE OPAREN)) (LIST ")" (QUOTE CPAREN)) (LIST "(|" (QUOTE OBRACK)) (LIST "|)" (QUOTE CBRACK)) (LIST "[" (QUOTE OBRACK)) (LIST "]" (QUOTE CBRACK)) (LIST "suchthat" (QUOTE BAR)) (LIST "'" (QUOTE QUOTE)) (LIST "|" (QUOTE BAR)))))
+(EVAL-WHEN (EVAL LOAD) (SETQ |shoeKeyTable| (|shoeKeyTableCons|)))
+(EVAL-WHEN (EVAL LOAD) (SETQ |shoeSPACE| (QENUM "    " 0)))
+(EVAL-WHEN (EVAL LOAD) (SETQ |shoeESCAPE| (QENUM "_  " 0)))
+(EVAL-WHEN (EVAL LOAD) (SETQ |shoeLispESCAPE| (QENUM "!  " 0)))
+(EVAL-WHEN (EVAL LOAD) (SETQ |shoeSTRINGCHAR| (QENUM "\"  " 0)))
+(EVAL-WHEN (EVAL LOAD) (SETQ |shoePLUSCOMMENT| (QENUM "+   " 0)))
+(EVAL-WHEN (EVAL LOAD) (SETQ |shoeMINUSCOMMENT| (QENUM "-   " 0)))
+(EVAL-WHEN (EVAL LOAD) (SETQ |shoeDOT| (QENUM ".   " 0)))
+(EVAL-WHEN (EVAL LOAD) (SETQ |shoeEXPONENT1| (QENUM "E   " 0)))
+(EVAL-WHEN (EVAL LOAD) (SETQ |shoeEXPONENT2| (QENUM "e   " 0)))
+(EVAL-WHEN (EVAL LOAD) (SETQ |shoeCLOSEPAREN| (QENUM ")   " 0)))
+(EVAL-WHEN (EVAL LOAD) (SETQ |shoeTAB| 9))
+(EVAL-WHEN (EVAL LOAD) (SETQ |shoeDict| (|shoeDictCons|)))
+(EVAL-WHEN (EVAL LOAD) (SETQ |shoePun| (|shoePunCons|)))
+(EVAL-WHEN (EVAL LOAD) (PROG NIL (RETURN ((LAMBDA (|bfVar#1| |i|) (LOOP (COND ((OR (ATOM |bfVar#1|) (PROGN (SETQ |i| (CAR |bfVar#1|)) NIL)) (RETURN NIL)) ((QUOTE T) (SETF (GET |i| (QUOTE SHOEPRE)) (QUOTE T)))) (SETQ |bfVar#1| (CDR |bfVar#1|)))) (LIST (QUOTE NOT) (QUOTE LENGTH)) NIL))))
+(EVAL-WHEN (EVAL LOAD) (PROG NIL (RETURN ((LAMBDA (|bfVar#2| |i|) (LOOP (COND ((OR (ATOM |bfVar#2|) (PROGN (SETQ |i| (CAR |bfVar#2|)) NIL)) (RETURN NIL)) ((QUOTE T) (SETF (GET (CAR |i|) (QUOTE SHOEINF)) (CADR |i|)))) (SETQ |bfVar#2| (CDR |bfVar#2|)))) (LIST (LIST (QUOTE SHOEEQ) (QUOTE =)) (LIST (QUOTE TIMES) (QUOTE *)) (LIST (QUOTE PLUS) (QUOTE +)) (LIST (QUOTE IS) (QUOTE |is|)) (LIST (QUOTE ISNT) (QUOTE |isnt|)) (LIST (QUOTE AND) (QUOTE |and|)) (LIST (QUOTE OR) (QUOTE |or|)) (LIST (QUOTE SLASH) (QUOTE /)) (LIST (QUOTE POWER) (QUOTE **)) (LIST (QUOTE MINUS) (QUOTE -)) (LIST (QUOTE LT) (QUOTE <)) (LIST (QUOTE GT) (QUOTE >)) (LIST (QUOTE LE) (QUOTE <=)) (LIST (QUOTE GE) (QUOTE >=)) (LIST (QUOTE NE) (QUOTE ^=))) NIL))))
+(EVAL-WHEN (EVAL LOAD) (PROG NIL (RETURN ((LAMBDA (|bfVar#3| |i|) (LOOP (COND ((OR (ATOM |bfVar#3|) (PROGN (SETQ |i| (CAR |bfVar#3|)) NIL)) (RETURN NIL)) ((QUOTE T) (SETF (GET (CAR |i|) (QUOTE SHOETHETA)) (CDR |i|)))) (SETQ |bfVar#3| (CDR |bfVar#3|)))) (LIST (LIST (QUOTE +) 0) (LIST (QUOTE |gcd|) 0) (LIST (QUOTE |lcm|) 1) (LIST (QUOTE STRCONC) "") (LIST (QUOTE |strconc|) "") (LIST (QUOTE MAX) (- 999999)) (LIST (QUOTE MIN) 999999) (LIST (QUOTE *) 1) (LIST (QUOTE |times|) 1) (LIST (QUOTE CONS) NIL) (LIST (QUOTE APPEND) NIL) (LIST (QUOTE |append|) NIL) (LIST (QUOTE UNION) NIL) (LIST (QUOTE UNIONQ) NIL) (LIST (QUOTE |union|) NIL) (LIST (QUOTE NCONC) NIL) (LIST (QUOTE |and|) (QUOTE T)) (LIST (QUOTE |or|) NIL) (LIST (QUOTE AND) (QUOTE T)) (LIST (QUOTE OR) NIL)) NIL))))
+(EVAL-WHEN (EVAL LOAD) (PROG NIL (RETURN ((LAMBDA (|bfVar#4| |i|) (LOOP (COND ((OR (ATOM |bfVar#4|) (PROGN (SETQ |i| (CAR |bfVar#4|)) NIL)) (RETURN NIL)) ((QUOTE T) (SETF (GET (CAR |i|) (QUOTE SHOERENAME)) (CDR |i|)))) (SETQ |bfVar#4| (CDR |bfVar#4|)))) (LIST (LIST (QUOTE |and|) (QUOTE AND)) (LIST (QUOTE |append|) (QUOTE APPEND)) (LIST (QUOTE |apply|) (QUOTE APPLY)) (LIST (QUOTE |atom|) (QUOTE ATOM)) (LIST (QUOTE |car|) (QUOTE CAR)) (LIST (QUOTE |cdr|) (QUOTE CDR)) (LIST (QUOTE |cons|) (QUOTE CONS)) (LIST (QUOTE |copy|) (QUOTE COPY)) (LIST (QUOTE |croak|) (QUOTE CROAK)) (LIST (QUOTE |drop|) (QUOTE DROP)) (LIST (QUOTE |exit|) (QUOTE EXIT)) (LIST (QUOTE |false|) (QUOTE NIL)) (LIST (QUOTE |first|) (QUOTE CAR)) (LIST (QUOTE |function|) (QUOTE FUNCTION)) (LIST (QUOTE |genvar|) (QUOTE GENVAR)) (LIST (QUOTE IN) (QUOTE MEMBER)) (LIST (QUOTE |is|) (QUOTE IS)) (LIST (QUOTE |isnt|) (QUOTE ISNT)) (LIST (QUOTE |lastNode|) (QUOTE LAST)) (LIST (QUOTE LAST) (QUOTE |last|)) (LIST (QUOTE |list|) (QUOTE LIST)) (LIST (QUOTE |member|) (QUOTE MEMBER)) (LIST (QUOTE |mkpf|) (QUOTE MKPF)) (LIST (QUOTE |nconc|) (QUOTE NCONC)) (LIST (QUOTE |nil|) NIL) (LIST (QUOTE |not|) (QUOTE NULL)) (LIST (QUOTE NOT) (QUOTE NULL)) (LIST (QUOTE |nreverse|) (QUOTE NREVERSE)) (LIST (QUOTE |null|) (QUOTE NULL)) (LIST (QUOTE |or|) (QUOTE OR)) (LIST (QUOTE |otherwise|) (QUOTE T)) (LIST (QUOTE PAIRP) (QUOTE CONSP)) (LIST (QUOTE |removeDuplicates|) (QUOTE REMDUP)) (LIST (QUOTE |rest|) (QUOTE CDR)) (LIST (QUOTE |reverse|) (QUOTE REVERSE)) (LIST (QUOTE |setDifference|) (QUOTE SETDIFFERENCE)) (LIST (QUOTE |setIntersection|) (QUOTE INTERSECTION)) (LIST (QUOTE |setPart|) (QUOTE SETELT)) (LIST (QUOTE |setUnion|) (QUOTE UNION)) (LIST (QUOTE |size|) (QUOTE SIZE)) (LIST (QUOTE |strconc|) (QUOTE CONCAT)) (LIST (QUOTE |substitute|) (QUOTE SUBST)) (LIST (QUOTE |take|) (QUOTE TAKE)) (LIST (QUOTE |true|) (QUOTE T)) (LIST (QUOTE PLUS) (QUOTE +)) (LIST (QUOTE MINUS) (QUOTE -)) (LIST (QUOTE TIMES) (QUOTE *)) (LIST (QUOTE POWER) (QUOTE EXPT)) (LIST (QUOTE SLASH) (QUOTE /)) (LIST (QUOTE LT) (QUOTE <)) (LIST (QUOTE GT) (QUOTE >)) (LIST (QUOTE LE) (QUOTE <=)) (LIST (QUOTE GE) (QUOTE >=)) (LIST (QUOTE SHOEEQ) (QUOTE EQUAL)) (LIST (QUOTE NE) (QUOTE /=)) (LIST (QUOTE T) (QUOTE T$))) NIL))))
+(EVAL-WHEN (EVAL LOAD) (PROG NIL (RETURN ((LAMBDA (|bfVar#5| |i|) (LOOP (COND ((OR (ATOM |bfVar#5|) (PROGN (SETQ |i| (CAR |bfVar#5|)) NIL)) (RETURN NIL)) ((QUOTE T) (SETF (GET (CAR |i|) (QUOTE SHOESELFUNCTION)) (CADR |i|)))) (SETQ |bfVar#5| (CDR |bfVar#5|)))) (LIST (LIST (QUOTE |setName|) 0) (LIST (QUOTE |setLabel|) 1) (LIST (QUOTE |setLevel|) 2) (LIST (QUOTE |setType|) 3) (LIST (QUOTE |setVar|) 4) (LIST (QUOTE |setLeaf|) 5) (LIST (QUOTE |setDef|) 6) (LIST (QUOTE |aGeneral|) 4) (LIST (QUOTE |aMode|) 1) (LIST (QUOTE |aModeSet|) 3) (LIST (QUOTE |aTree|) 0) (LIST (QUOTE |aValue|) 2) (LIST (QUOTE |attributes|) (QUOTE CADDR)) (LIST (QUOTE |cacheCount|) (QUOTE CADDDDR)) (LIST (QUOTE |cacheName|) (QUOTE CADR)) (LIST (QUOTE |cacheReset|) (QUOTE CADDDR)) (LIST (QUOTE |cacheType|) (QUOTE CADDR)) (LIST (QUOTE |env|) (QUOTE CADDR)) (LIST (QUOTE |expr|) (QUOTE CAR)) (LIST (QUOTE CAR) (QUOTE CAR)) (LIST (QUOTE |mmCondition|) (QUOTE CAADR)) (LIST (QUOTE |mmDC|) (QUOTE CAAR)) (LIST (QUOTE |mmImplementation|) (QUOTE CADADR)) (LIST (QUOTE |mmSignature|) (QUOTE CDAR)) (LIST (QUOTE |mmTarget|) (QUOTE CADAR)) (LIST (QUOTE |mode|) (QUOTE CADR)) (LIST (QUOTE |op|) (QUOTE CAR)) (LIST (QUOTE |opcode|) (QUOTE CADR)) (LIST (QUOTE |opSig|) (QUOTE CADR)) (LIST (QUOTE CDR) (QUOTE CDR)) (LIST (QUOTE |sig|) (QUOTE CDDR)) (LIST (QUOTE |source|) (QUOTE CDR)) (LIST (QUOTE |streamCode|) (QUOTE CADDDR)) (LIST (QUOTE |streamDef|) (QUOTE CADDR)) (LIST (QUOTE |streamName|) (QUOTE CADR)) (LIST (QUOTE |target|) (QUOTE CAR))) NIL))))

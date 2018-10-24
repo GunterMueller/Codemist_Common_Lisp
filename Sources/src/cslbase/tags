@@ -1,0 +1,4289 @@
+
+arith01.c,1795
+Lisp_Object make_one_word_bignum(33,702
+Lisp_Object make_two_word_bignum(45,1023
+Lisp_Object make_sfloat(62,1492
+Lisp_Object make_boxfloat(78,2017
+static double bignum_to_float(117,2991
+double float_of_number(146,3917
+int32 thirty_two_bits(216,6028
+Lisp_Object make_complex(245,6909
+Lisp_Object make_ratio(271,7711
+static Lisp_Object plusis(323,9729
+static Lisp_Object plusib(337,10090
+static Lisp_Object plusir(458,14612
+static Lisp_Object plusic(475,15057
+static Lisp_Object plusif(492,15374
+#define plussi(plussi502,15602
+#define plussb(plussb504,15637
+#define plussr(plussr506,15672
+#define plussc(plussc508,15707
+static Lisp_Object plussf(512,15750
+#define plusbi(plusbi522,16055
+static Lisp_Object plusbs(526,16105
+Lisp_Object lengthen_by_one_bit(534,16257
+static Lisp_Object plusbb(572,17408
+#define plusbr(plusbr728,22471
+#define plusbc(plusbc730,22506
+#define plusbf(plusbf733,22548
+#define plusri(plusri736,22597
+#define plusrs(plusrs738,22632
+#define plusrb(plusrb740,22667
+static Lisp_Object plusrr(742,22702
+#define g 753,23046
+#define db 754,23067
+#define da 755,23089
+#define nb 756,23111
+#define na 757,23133
+#define plusrc(plusrc809,24451
+#define plusrf(plusrf811,24486
+#define plusci(plusci813,24521
+#define pluscs(pluscs815,24556
+#define pluscb(pluscb817,24591
+#define pluscr(pluscr819,24626
+static Lisp_Object pluscc(821,24661
+#define pluscf(pluscf836,24956
+#define plusfi(plusfi839,24998
+#define plusfs(plusfs842,25047
+#define plusfb(plusfb845,25089
+#define plusfr(plusfr848,25138
+#define plusfc(plusfc850,25173
+static Lisp_Object plusff(853,25215
+int validate_number(891,26317
+Lisp_Object plus2(942,28231
+Lisp_Object difference2(1149,34487
+Lisp_Object add1(1184,35353
+Lisp_Object sub1(1200,35885
+
+arith02.c,1835
+unsigned32 Imultiply(49,1050
+unsigned32 Imultiply(73,1976
+unsigned32 Imultiply(109,3079
+static Lisp_Object timesii(169,4898
+static Lisp_Object timesis(232,7073
+static Lisp_Object timesib(241,7288
+static Lisp_Object timesir(352,11024
+#define g 362,11302
+#define a 363,11323
+#define b 364,11345
+static Lisp_Object timesic(389,11875
+static Lisp_Object timesif(408,12248
+#define timessi(timessi415,12442
+static Lisp_Object timessb(417,12479
+#define timessr(timessr423,12624
+#define timessc(timessc425,12661
+static Lisp_Object timessf(428,12705
+#define timesbi(timesbi434,12879
+#define timesbs(timesbs437,12930
+#define KARATSUBA_CUTOFF 456,13655
+static void long_times1(462,13835
+static void long_times2(605,18000
+static void long_times(634,18868
+static Lisp_Object timesbb(669,20049
+#define timesbr(timesbr921,29237
+#define timesbc(timesbc923,29274
+#define timesbf(timesbf926,29318
+#define timesri(timesri929,29369
+#define timesrs(timesrs931,29406
+#define timesrb(timesrb933,29443
+static Lisp_Object timesrr(935,29480
+#define g 944,29725
+#define db 945,29746
+#define nb 946,29768
+#define da 947,29790
+#define na 948,29812
+#define timesrc(timesrc984,30587
+#define timesrf(timesrf986,30624
+#define timesci(timesci988,30661
+#define timescs(timescs990,30698
+#define timescb(timescb992,30735
+#define timescr(timescr994,30772
+static Lisp_Object timescc(996,30809
+#define u 1006,31064
+#define v 1007,31085
+#define ib 1008,31107
+#define rb 1009,31129
+#define ia 1010,31151
+#define ra 1011,31173
+#define timescf(timescf1045,31959
+#define timesfi(timesfi1048,32003
+#define timesfs(timesfs1051,32054
+#define timesfb(timesfb1054,32098
+#define timesfr(timesfr1057,32149
+#define timesfc(timesfc1059,32186
+static Lisp_Object timesff(1062,32230
+Lisp_Object times2(1088,32916
+
+arith03.c,1761
+unsigned32 Idivide(31,434
+unsigned32 Idivide(58,1731
+static Lisp_Object quotis(142,4792
+static Lisp_Object quotib(152,5073
+static Lisp_Object CLquotib(164,5461
+static Lisp_Object CLquotbi(189,5914
+static Lisp_Object CLquotbb(194,6004
+static Lisp_Object quotir(199,6094
+#define g 204,6241
+#define a 205,6262
+#define b 206,6284
+static Lisp_Object quotic(241,7078
+#define b 252,7518
+#define a 253,7537
+static Lisp_Object quotif(288,8249
+static Lisp_Object quotsi(297,8517
+static Lisp_Object quotsb(306,8801
+#define quotsr(quotsr314,9020
+#define quotsc(quotsc316,9055
+static Lisp_Object quotsf(319,9097
+Lisp_Object quotbn(327,9345
+Lisp_Object quotbn1(477,15033
+static Lisp_Object quotbi(586,18984
+#define quotbs(quotbs599,19345
+Lisp_Object quotbb(607,19518
+#define quotbr(quotbr1051,35257
+#define quotbc(quotbc1053,35292
+#define quotbf(quotbf1056,35334
+static Lisp_Object quotri(1059,35383
+#define g 1066,35620
+#define b 1067,35641
+#define a 1068,35663
+#define quotrs(quotrs1100,36367
+#define quotrb(quotrb1102,36402
+static Lisp_Object quotrr(1104,36437
+#define g 1110,36641
+#define db 1111,36662
+#define nb 1112,36684
+#define da 1113,36706
+#define na 1114,36728
+#define quotrc(quotrc1159,37697
+#define quotrf(quotrf1161,37732
+static Lisp_Object quotci(1163,37767
+#define quotcs(quotcs1178,38123
+#define quotcb(quotcb1180,38158
+#define quotcr(quotcr1182,38193
+#define quotcc(quotcc1184,38228
+#define quotcf(quotcf1186,38263
+static Lisp_Object quotfi(1189,38305
+static Lisp_Object quotfs(1197,38568
+#define quotfb(quotfb1205,38816
+#define quotfr(quotfr1208,38865
+#define quotfc(quotfc1210,38900
+static Lisp_Object quotff(1213,38942
+Lisp_Object quot2(1233,39553
+Lisp_Object CLquot2(1462,46533
+
+arith04.c,1181
+#define make_ratio(make_ratio30,500
+Lisp_Object make_n_word_bignum(34,545
+static Lisp_Object make_power_of_two(52,1130
+static Lisp_Object make_fix_or_big2(69,1848
+Lisp_Object rationalf(81,2269
+static Lisp_Object rationalizef(184,5192
+Lisp_Object rational(214,6065
+Lisp_Object rationalize(248,6771
+static bool lesspis(287,7534
+bool lesspib(299,7787
+static bool lesspir(313,8174
+#define lesspif(lesspif325,8370
+bool lesspdb(327,8441
+bool lesspbd(411,11351
+static bool lessprr(497,14230
+bool lesspdr(509,14479
+bool lessprd(519,14663
+static bool lesspsi(529,14824
+static bool lesspsb(536,14978
+static bool lesspsr(543,15117
+static bool lesspsf(550,15256
+bool lesspbi(558,15411
+static bool lesspbs(567,15590
+static bool lesspbb(575,15736
+#define lesspbr(lesspbr607,16661
+#define lesspbf(lesspbf609,16698
+static bool lesspri(613,16767
+static bool lessprs(621,16918
+#define lessprb(lessprb628,17057
+#define lessprf(lessprf630,17094
+#define lesspfi(lesspfi634,17156
+static bool lesspfs(637,17241
+#define lesspfb(lesspfb645,17396
+#define lesspfr(lesspfr647,17450
+#define lesspff(lesspff649,17487
+bool greaterp2(652,17553
+bool lessp2(657,17628
+
+arith05.c,1067
+unsigned32 Idiv10_9(32,615
+unsigned32 Idiv10_9(46,983
+#define RECIP_10_9 59,1543
+#define TEN_9_16H 60,1588
+#define TEN_9_16L 72,2053
+#define TEN_9_15H 74,2124
+#define TEN_9_15L 75,2151
+static bool lesseqis(161,4397
+#define lesseqib(lesseqib169,4560
+static bool lesseqir(172,4612
+#define lesseqif(lesseqif184,4812
+static bool lesseqsi(187,4899
+static bool lesseqsb(194,5055
+static bool lesseqsr(201,5196
+static bool lesseqsf(208,5337
+#define lesseqbi(lesseqbi216,5494
+static bool lesseqbs(219,5546
+static bool lesseqbb(227,5694
+#define lesseqbr(lesseqbr259,6620
+#define lesseqbf(lesseqbf261,6659
+static bool lesseqri(264,6731
+static bool lesseqrs(272,6884
+#define lesseqrb(lesseqrb279,7025
+static bool lesseqrr(281,7064
+#define lesseqrf(lesseqrf293,7315
+#define lesseqfi(lesseqfi297,7381
+static bool lesseqfs(300,7468
+#define lesseqfb(lesseqfb308,7625
+#define lesseqfr(lesseqfr310,7683
+#define lesseqff(lesseqff312,7741
+bool geq2(315,7809
+bool lesseq2(320,7880
+void print_bignum(480,12420
+void print_bighexoctbin(704,20664
+
+arith06.c,2470
+Lisp_Object Ladd1(30,687
+Lisp_Object Lsub1(44,1153
+Lisp_Object Lfloat_2(57,1527
+Lisp_Object Lfloat(72,1925
+Lisp_Object Llognot(86,2304
+Lisp_Object Lash(93,2419
+Lisp_Object Lash1(100,2546
+Lisp_Object Lmsd(144,4002
+Lisp_Object Llsd(189,5721
+Lisp_Object Linorm(213,6525
+static Lisp_Object MS_CDECL Lplus(387,12636
+static Lisp_Object MS_CDECL Ldifference(426,13750
+static Lisp_Object MS_CDECL Ltimes(457,14421
+Lisp_Object MS_CDECL Lquotient_n(480,14894
+Lisp_Object Lquotient(506,15454
+static Lisp_Object LSLquotient(513,15590
+Lisp_Object Lquotient_1(520,15733
+Lisp_Object Lquotient(529,15892
+Lisp_Object Ldivide(538,16047
+Lisp_Object Lrem(555,16361
+Lisp_Object Lmod(562,16495
+Lisp_Object Lplus2(569,16626
+Lisp_Object Ltimes2(581,16960
+Lisp_Object Ldifference2(589,17117
+Lisp_Object Lminus(597,17284
+typedef Lisp_Object boolopfn(boolopfn604,17398
+static struct bfz bfz606,17455
+static Lisp_Object MS_CDECL Lboolfn(627,17914
+Lisp_Object Lzerop(647,18395
+Lisp_Object Lonep(655,18542
+Lisp_Object Levenp(663,18687
+Lisp_Object Loddp(678,19082
+Lisp_Object Lminusp(693,19463
+Lisp_Object Lplusp(702,19735
+Lisp_Object MS_CDECL Leqn_n(714,19985
+Lisp_Object Leqn(744,20863
+Lisp_Object Leqn_1(751,21016
+Lisp_Object MS_CDECL Llessp_n(758,21136
+Lisp_Object Llessp(783,21825
+Lisp_Object Llessp_1(790,21980
+Lisp_Object MS_CDECL Lgreaterp_n(797,22102
+Lisp_Object Lgreaterp(822,22794
+Lisp_Object Lgreaterp_1(829,22952
+static Lisp_Object MS_CDECL Lneqn(836,23077
+Lisp_Object Lneq_2(863,23826
+Lisp_Object Lneq_1(870,23981
+Lisp_Object MS_CDECL Lgeq_n(877,24101
+Lisp_Object Lgeq(902,24768
+Lisp_Object Lgeq_1(909,24922
+Lisp_Object MS_CDECL Lleq_n(916,25042
+Lisp_Object Lleq(941,25710
+Lisp_Object Lleq_1(948,25864
+Lisp_Object Leqn(958,26005
+Lisp_Object Llessp(966,26166
+Lisp_Object Lgreaterp(980,26553
+Lisp_Object Lgeq(990,26806
+Lisp_Object Lleq(1000,27056
+Lisp_Object Lmax2(1012,27327
+Lisp_Object Lmin2(1024,27556
+Lisp_Object MS_CDECL Lmax(1036,27785
+Lisp_Object MS_CDECL Lmin(1063,28470
+Lisp_Object Lrational(1090,29155
+static Lisp_Object Lrationalize(1098,29288
+unsigned32 Crand(1135,30743
+void Csrand(1157,31575
+Lisp_Object Lrandom_2(1213,33646
+Lisp_Object Lrandom(1324,37573
+Lisp_Object MS_CDECL Lnext_random(1429,41283
+Lisp_Object Lmake_random_state(1441,41572
+Lisp_Object Lmake_random_state1(1454,41971
+static Lisp_Object Llogand2(1461,42159
+static Lisp_Object Llogeqv2(1466,42277
+static Lisp_Object Llogxor2(1471,42395
+static Lisp_Object Llogor2(1476,42513
+
+arith07.c,951
+Lisp_Object copyb(25,437
+Lisp_Object negateb(42,768
+Lisp_Object negate(103,2837
+#define _fp_normalize(_fp_normalize191,5445
+double MS_CDECL Cabs(202,5999
+Complex MS_CDECL Ccos(231,7173
+static double reduced_power(258,7830
+int _reduced_exp(285,8605
+#define _e61q8 320,10114
+Complex MS_CDECL Cexp(326,10234
+Complex MS_CDECL Cln(359,11312
+#define _two_minus_25 416,13167
+static double fp_add(418,13227
+static void extended_atan2(474,14962
+#define _p2h 569,18864
+#define _p2l 570,18909
+#define _pih 572,18956
+#define _pil 573,19001
+static void extended_log(596,19606
+#define _sqrt_half 634,20905
+#define _sqrt_two 635,20947
+#define _exact_part_logroot2 708,23529
+#define _approx_part_logroot2 709,23586
+Complex MS_CDECL Cpow(724,23945
+#define _recip_log_2 804,26773
+#define _exact_part_log2 817,27197
+#define _approx_part_log2 818,27249
+#define _recip_pi_by_2 828,27574
+#define _exact_part_pi2 840,27987
+#define _approx_part_pi2 841,28043
+
+arith08.c,2480
+static Lisp_Object MS_CDECL Lboole(24,384
+static Lisp_Object Lbyte(105,2286
+static Lisp_Object Lbyte_position(112,2422
+static Lisp_Object Lbyte_size(118,2583
+static Lisp_Object Lcomplex_2(124,2736
+static Lisp_Object Lcomplex_1(132,2942
+static Lisp_Object Lconjugate(140,3136
+static Lisp_Object Ldecode_float(157,3563
+static Lisp_Object Lfloat_denormalized_p(192,4760
+static Lisp_Object Lfloat_infinity_p(229,6035
+static Lisp_Object Ldenominator(269,7422
+static Lisp_Object MS_CDECL Ldeposit_field(278,7688
+static Lisp_Object MS_CDECL Ldpb(292,8019
+static Lisp_Object Lffloor(306,8330
+static Lisp_Object Lfloat_digits(322,8843
+static Lisp_Object Lfloat_precision(347,9362
+static Lisp_Object Lfloat_radix(375,10030
+static Lisp_Object Lfloat_sign2(382,10178
+static Lisp_Object Lfloat_sign1(392,10556
+static Lisp_Object Lfround(402,10918
+static Lisp_Object Lftruncate(410,11073
+Lisp_Object MS_CDECL Lgcd_n(418,11234
+Lisp_Object Lgcd(447,11992
+Lisp_Object Lgcd_1(454,12119
+static Lisp_Object Limagpart(460,12216
+static Lisp_Object Linteger_decode_float(470,12542
+static Lisp_Object Linteger_length(524,13922
+static Lisp_Object Lldb(531,14059
+Lisp_Object MS_CDECL Llcm_n(539,14208
+Lisp_Object Llcm(558,14607
+Lisp_Object Llcm_1(565,14734
+static Lisp_Object Lldb_test(571,14831
+static Lisp_Object Llogbitp(579,14990
+static Lisp_Object Llogcount(587,15147
+static Lisp_Object Llogtest(594,15276
+static Lisp_Object Lmask_field(602,15433
+static Lisp_Object Lnumerator(610,15596
+static Lisp_Object Lrealpart(619,15841
+static Lisp_Object Lscale_float(628,16086
+Lisp_Object Lgcd(641,16532
+Lisp_Object Llcm(648,16659
+#define FIX_TRUNCATE 665,16942
+#define FIX_ROUND 666,16965
+#define FIX_FLOOR 667,16988
+#define FIX_CEILING 668,17011
+static Lisp_Object lisp_fix_sub(670,17035
+static Lisp_Object lisp_fix_ratio(815,21697
+static Lisp_Object lisp_fix(866,22728
+static Lisp_Object lisp_ifix(881,23011
+static Lisp_Object Lceiling_2(944,24461
+static Lisp_Object Lfloor_2(951,24671
+static Lisp_Object Lround_2(958,24875
+Lisp_Object Ltruncate_2(965,25079
+static Lisp_Object Lceiling(972,25285
+static Lisp_Object Lfloor(983,25628
+static Lisp_Object Lround(994,25963
+Lisp_Object Ltruncate(1005,26298
+#define top_half(top_half1023,26887
+static Lisp_Object Lsafe_fp_plus(1040,27547
+static Lisp_Object Lsafe_fp_times(1155,31857
+static Lisp_Object Lsafe_fp_quot(1218,34363
+static Lisp_Object Lsafe_fp_pl(1254,35593
+static Lisp_Object Llose_precision(1300,37016
+
+arith09.c,613
+static Lisp_Object absb(24,404
+static void next_gcd_step(38,668
+static int32 huge_gcd(203,6702
+Lisp_Object gcd(468,17545
+Lisp_Object lcm(692,25658
+Lisp_Object lognot(719,26233
+Lisp_Object ash(740,26804
+Lisp_Object shrink_bignum(935,33857
+static Lisp_Object logiorbb(974,35012
+static Lisp_Object logiorib(1007,35896
+Lisp_Object logior2(1015,36059
+static Lisp_Object logxorbb(1030,36619
+static Lisp_Object logxorib(1062,37583
+Lisp_Object logxor2(1070,37746
+Lisp_Object logeqv2(1086,38333
+static Lisp_Object logandbb(1120,39347
+static Lisp_Object logandib(1153,40243
+Lisp_Object logand2(1161,40406
+
+arith10.c,5711
+#define CSL_log_2 31,719
+static Complex MS_CDECL cpowi(37,823
+static Complex MS_CDECL csin(89,2327
+#define CSL_sqrt_starter 117,2994
+#define CSL_sqrt_iters 118,3026
+static Complex MS_CDECL csqrt(120,3054
+static Complex MS_CDECL ctan(194,5417
+static Complex MS_CDECL Cdiv_z(209,5833
+static Lisp_Object make_complex_float(270,7690
+static double MS_CDECL rln(305,8781
+static double MS_CDECL iln(310,8862
+static double MS_CDECL rsqrt(315,8949
+static double MS_CDECL isqrt(321,9044
+static double MS_CDECL rasin(327,9140
+static double MS_CDECL iasin(335,9283
+static double MS_CDECL racos(354,9719
+static double MS_CDECL iacos(361,9851
+static double MS_CDECL CSLasinh(380,10274
+static double MS_CDECL racosh(415,11254
+static double MS_CDECL iacosh(441,11846
+static double MS_CDECL ratanh(448,11979
+static double MS_CDECL iatanh(459,12238
+#define n180pi 473,12615
+#define pi180 475,12669
+#define sqrthalf 477,12723
+static double MS_CDECL racosd(479,12797
+static double MS_CDECL iacosd(489,13108
+static double MS_CDECL racot(498,13288
+static double MS_CDECL racotd(507,13515
+static double MS_CDECL racoth(516,13765
+static double MS_CDECL iacoth(525,13915
+static double MS_CDECL racsc(531,14021
+static double MS_CDECL iacsc(537,14132
+static double MS_CDECL racscd(543,14235
+static double MS_CDECL iacscd(552,14406
+static double MS_CDECL racsch(558,14510
+static double MS_CDECL rasec(564,14620
+static double MS_CDECL iasec(570,14732
+static double MS_CDECL rasecd(576,14835
+static double MS_CDECL iasecd(585,15007
+static double MS_CDECL rasech(591,15111
+static double MS_CDECL iasech(597,15226
+static double MS_CDECL rasind(603,15330
+static double MS_CDECL iasind(612,15589
+static double MS_CDECL ratand(618,15695
+static double MS_CDECL rcbrt(625,15879
+static double MS_CDECL rcot(655,16836
+static double MS_CDECL arg_reduce_degrees(671,17481
+static double MS_CDECL rsind(692,17927
+static double MS_CDECL rcosd(706,18165
+static double MS_CDECL rtand(720,18403
+static double MS_CDECL rcotd(734,18614
+static double MS_CDECL rcoth(749,18826
+static double MS_CDECL rcsc(755,18931
+static double MS_CDECL rcscd(762,19045
+static double MS_CDECL rcsch(769,19162
+#define CSL_log10 782,19527
+static double MS_CDECL rlog10(784,19567
+static double MS_CDECL ilog10(790,19672
+static double MS_CDECL rsec(796,19763
+static double MS_CDECL rsecd(803,19877
+static double MS_CDECL rsech(810,19994
+#define i_times(i_times820,20122
+#define m_i_times(m_i_times823,20207
+static Complex MS_CDECL casinh(835,20456
+static Complex MS_CDECL cacosh(861,21069
+static Complex MS_CDECL catanh(878,21437
+static Complex MS_CDECL casin(895,21771
+static Complex MS_CDECL cacos(903,21881
+static Complex MS_CDECL catan(923,22362
+static Complex MS_CDECL csinh(931,22472
+static Complex MS_CDECL ccosh(939,22580
+static Complex MS_CDECL ctanh(945,22659
+static Complex MS_CDECL cacosd(958,22899
+static Complex MS_CDECL cacot(964,22958
+static Complex MS_CDECL cacotd(970,23016
+static Complex MS_CDECL cacoth(976,23075
+static Complex MS_CDECL cacsc(982,23134
+static Complex MS_CDECL cacscd(988,23192
+static Complex MS_CDECL cacsch(994,23251
+static Complex MS_CDECL casec(1000,23310
+static Complex MS_CDECL casecd(1006,23368
+static Complex MS_CDECL casech(1012,23427
+static Complex MS_CDECL casind(1018,23486
+static Complex MS_CDECL catand(1024,23545
+static Complex MS_CDECL ccbrt(1030,23604
+static Complex MS_CDECL ccosd(1036,23662
+static Complex MS_CDECL ccot(1042,23720
+static Complex MS_CDECL ccotd(1048,23777
+static Complex MS_CDECL ccoth(1054,23835
+static Complex MS_CDECL ccsc(1060,23893
+static Complex MS_CDECL ccscd(1066,23950
+static Complex MS_CDECL ccsch(1072,24008
+static Complex MS_CDECL clog10(1078,24066
+static Complex MS_CDECL csec(1084,24125
+static Complex MS_CDECL csecd(1090,24182
+static Complex MS_CDECL csech(1096,24240
+static Complex MS_CDECL csind(1102,24298
+static Complex MS_CDECL ctand(1108,24356
+typedef double MS_CDECL real_arg_fn(real_arg_fn1120,24513
+typedef Complex MS_CDECL complex_arg_fn(complex_arg_fn1122,24569
+typedef struct trigfntrigfn1125,24624
+} trigfn_record;trigfn_record1131,24742
+static Lisp_Object Ltrigfn(1237,30880
+static Lisp_Object makenum(1349,34182
+static Lisp_Object CSLpowi(1409,35695
+static Complex MS_CDECL complex_of_number(1438,36463
+static Lisp_Object Lhypot(1453,36774
+Lisp_Object Lexpt(1476,37377
+Lisp_Object Llog_2(1618,41914
+static Lisp_Object Lisqrt(1636,42187
+Lisp_Object Labsval(1667,42886
+static Lisp_Object Lphase(1725,44386
+static Lisp_Object Lsignum(1741,44762
+static Lisp_Object Lcis(1759,45153
+Lisp_Object Latan(1783,45771
+Lisp_Object Latan_2(1789,45887
+Lisp_Object Latan(1795,46011
+Lisp_Object Latan2(1802,46134
+Lisp_Object Latan2d(1839,46967
+Lisp_Object Lacos(1876,47796
+Lisp_Object Lacosd(1882,47894
+Lisp_Object Lacosh(1888,47993
+Lisp_Object Lacot(1894,48092
+Lisp_Object Lacotd(1900,48190
+Lisp_Object Lacoth(1906,48289
+Lisp_Object Lacsc(1912,48388
+Lisp_Object Lacscd(1918,48486
+Lisp_Object Lacsch(1924,48585
+Lisp_Object Lasec(1930,48684
+Lisp_Object Lasecd(1936,48782
+Lisp_Object Lasech(1942,48882
+Lisp_Object Lasin(1948,48982
+Lisp_Object Lasind(1954,49081
+Lisp_Object Lasinh(1960,49181
+Lisp_Object Latand(1968,49308
+Lisp_Object Latanh(1976,49446
+Lisp_Object Lcbrt(1982,49546
+Lisp_Object Lcos(1988,49645
+Lisp_Object Lcosd(1994,49743
+Lisp_Object Lcosh(2000,49842
+Lisp_Object Lcot(2006,49941
+Lisp_Object Lcotd(2012,50039
+Lisp_Object Lcoth(2018,50138
+Lisp_Object Lcsc(2024,50237
+Lisp_Object Lcscd(2030,50335
+Lisp_Object Lcsch(2036,50434
+Lisp_Object Lexp(2042,50533
+Lisp_Object Lln(2050,50662
+Lisp_Object Llog10(2058,50782
+Lisp_Object Lsec(2064,50882
+Lisp_Object Lsecd(2070,50980
+Lisp_Object Lsech(2076,51079
+Lisp_Object Lsin(2082,51178
+Lisp_Object Lsind(2088,51276
+Lisp_Object Lsinh(2094,51375
+Lisp_Object Lsqrt(2100,51474
+Lisp_Object Ltan(2106,51573
+Lisp_Object Ltand(2112,51671
+Lisp_Object Ltanh(2118,51770
+
+arith11.c,2887
+Lisp_Object rembi(25,405
+Lisp_Object rembb(39,818
+static Lisp_Object remis(49,957
+static Lisp_Object remir(54,1068
+static Lisp_Object remif(59,1179
+static Lisp_Object remsi(64,1290
+static Lisp_Object remsb(69,1401
+static Lisp_Object remsr(74,1512
+static Lisp_Object remsf(79,1623
+static Lisp_Object rembs(84,1734
+static Lisp_Object rembr(89,1845
+static Lisp_Object rembf(94,1956
+static Lisp_Object remri(99,2067
+static Lisp_Object remrs(104,2178
+static Lisp_Object remrb(109,2289
+static Lisp_Object remrr(114,2400
+static Lisp_Object remrf(119,2511
+static Lisp_Object remfi(124,2622
+static Lisp_Object remfs(129,2733
+static Lisp_Object remfb(134,2844
+static Lisp_Object remfr(139,2955
+static Lisp_Object remff(144,3066
+Lisp_Object Cremainder(151,3198
+static Lisp_Object mod_by_rem(381,10361
+static Lisp_Object modib(401,10767
+static Lisp_Object modbi(406,10856
+static Lisp_Object modbb(424,11337
+static Lisp_Object modis(431,11441
+static Lisp_Object modir(436,11530
+static Lisp_Object modif(441,11619
+static Lisp_Object modsi(446,11708
+static Lisp_Object modsb(451,11797
+static Lisp_Object modsr(456,11886
+static Lisp_Object modsf(461,11975
+static Lisp_Object modbs(466,12064
+static Lisp_Object modbr(471,12153
+static Lisp_Object modbf(476,12242
+static Lisp_Object modri(481,12331
+static Lisp_Object modrs(486,12420
+static Lisp_Object modrb(491,12509
+static Lisp_Object modrr(496,12598
+static Lisp_Object modrf(501,12687
+static Lisp_Object modfi(506,12776
+static Lisp_Object modfs(511,12865
+static Lisp_Object modfb(516,12954
+static Lisp_Object modfr(521,13043
+static Lisp_Object ccl_modff(526,13132
+Lisp_Object modulus(533,13246
+bool zerop(712,18325
+bool onep(739,19025
+bool minusp(768,19622
+bool plusp(809,20537
+static bool numeqis(858,21747
+static bool numeqic(865,21904
+#define numeqif(numeqif872,22048
+#define numeqsi(numeqsi875,22133
+static bool numeqsb(878,22177
+static bool numeqsr(920,23491
+#define numeqsc(numeqsc1011,27035
+static bool numeqsf(1013,27072
+#define numeqbs(numeqbs1020,27223
+static bool numeqbb(1023,27267
+#define numeqbc(numeqbc1036,27573
+#define numeqbf(numeqbf1039,27617
+#define numeqrs(numeqrs1042,27668
+static bool numeqrr(1044,27705
+#define numeqrc(numeqrc1050,27860
+#define numeqrf(numeqrf1052,27897
+#define numeqci(numeqci1054,27934
+#define numeqcs(numeqcs1056,27971
+#define numeqcb(numeqcb1058,28008
+#define numeqcr(numeqcr1060,28045
+static bool numeqcc(1062,28082
+#define numeqcf(numeqcf1068,28233
+#define numeqfi(numeqfi1071,28277
+#define numeqfs(numeqfs1074,28328
+#define numeqfb(numeqfb1077,28372
+#define numeqfr(numeqfr1080,28423
+#define numeqfc(numeqfc1082,28460
+static bool numeqff(1085,28504
+#  define differenta 1096,28754
+#  define differentb 1097,28814
+#  define differenta 1099,28880
+#  define differentb 1100,28911
+bool numeq2(1103,28950
+
+arith12.c,1751
+#define FP_EVALUATE 10,192
+Lisp_Object Lfrexp(25,419
+Lisp_Object Lmodular_difference(37,693
+Lisp_Object Lmodular_minus(46,928
+Lisp_Object Lmodular_number(56,1154
+Lisp_Object Lmodular_plus(66,1404
+Lisp_Object Lmodular_reciprocal(75,1648
+Lisp_Object Lmodular_times(97,2120
+Lisp_Object Lmodular_quotient(126,3020
+Lisp_Object Lmodular_expt(136,3234
+Lisp_Object Lset_small_modulus(168,4117
+Lisp_Object Liadd1(183,4589
+Lisp_Object Lidifference(190,4766
+Lisp_Object Lxdifference(203,5205
+Lisp_Object Ligreaterp(212,5506
+Lisp_Object Lilessp(219,5720
+Lisp_Object Ligeq(226,5928
+Lisp_Object Lileq(233,6133
+static Lisp_Object MS_CDECL Lilogand(240,6338
+static Lisp_Object MS_CDECL Lilogor(262,6967
+static Lisp_Object MS_CDECL Lilogxor(284,7591
+static Lisp_Object Lilogand2(306,8234
+static Lisp_Object Lilogor2(313,8437
+static Lisp_Object Lilogxor2(320,8638
+Lisp_Object Limin(327,8856
+Lisp_Object Limax(334,9049
+Lisp_Object Liminus(341,9242
+Lisp_Object Liminusp(348,9429
+static Lisp_Object MS_CDECL Liplus(354,9580
+Lisp_Object Liplus2(376,10213
+Lisp_Object Liquotient(383,10444
+Lisp_Object Liremainder(400,10926
+Lisp_Object Lirightshift(417,11402
+Lisp_Object Lisub1(424,11647
+static Lisp_Object MS_CDECL Litimes(431,11824
+Lisp_Object Litimes2(455,12493
+Lisp_Object Lionep(462,12729
+Lisp_Object Lizerop(468,12879
+#define FP_RETURN 480,13149
+#define FP_PLUS 481,13177
+#define FP_DIFFERENCE 482,13205
+#define FP_TIMES 483,13233
+#define FP_QUOTIENT 484,13261
+#define FP_MINUS 485,13289
+#define FP_SQUARE 486,13317
+#define FP_CUBE 487,13345
+#define FP_SIN 488,13373
+#define FP_COS 489,13401
+#define FP_TAN 490,13429
+#define FP_EXP 491,13457
+#define FP_LOG 492,13485
+#define FP_SQRT 493,13513
+static Lisp_Object Lfp_eval(496,13543
+
+asps.c,971
+#define __stdcall16,244
+#define CODE_STACK 51,1818
+#define ENVIRONMENT_STACK 52,1849
+#define CODE 53,1887
+#define ENVIRONMENT 54,1912
+typedef struct Asp_Loc Asp_Loc64,2148
+} Asp_Loc;Asp_Loc67,2210
+#define location(location71,2301
+Asp_Loc *push_asp_num(74,2400
+#define pop_asp_num(pop_asp_num83,2563
+void push_asp(85,2599
+void pop_asp(120,3254
+#define get_code(get_code127,3383
+#define get_env(get_env128,3463
+Lisp_Object asp_restore(134,3663
+Lisp_Object MS_CDECL asp_set(162,4250
+Lisp_Object mkAXIOMVectorDF(208,5273
+void mkFortranVectorDouble(230,5727
+void mkFortran2DArrayDouble(242,5932
+double __stdcall asp1 258,6226
+Lisp_Object test_asp1(274,6625
+double __stdcall asp4 284,6814
+Lisp_Object test_asp4(298,7108
+void __stdcall asp6 316,7458
+Lisp_Object test_asp6(329,7752
+void __stdcall asp35 351,8167
+Lisp_Object test_asp35(371,8672
+Lisp_Object asp_error1(398,9310
+Lisp_Object asp_error2(403,9445
+Lisp_Object MS_CDECL asp_error0(408,9596
+
+bytes.c,29
+#define NO_BYTECOUNT 12,331
+
+bytes1.c,1342
+void record_get(34,695
+Lisp_Object get(83,2564
+Lisp_Object putprop(201,4996
+static Lisp_Object remprop(238,5901
+Lisp_Object get(267,6613
+Lisp_Object putprop(331,7865
+static Lisp_Object remprop(368,8775
+Lisp_Object Lget(398,9488
+Lisp_Object MS_CDECL Lget_3(518,11916
+Lisp_Object Lget(532,12254
+Lisp_Object MS_CDECL Lputprop(539,12368
+Lisp_Object Lflagp(557,12742
+Lisp_Object Lflagpcar(564,12913
+Lisp_Object Lflag(575,13236
+Lisp_Object Lremflag(590,13567
+Lisp_Object Lflagp(607,13900
+Lisp_Object Lflagpcar(718,16103
+Lisp_Object Lflag(841,18596
+Lisp_Object Lremflag(887,19823
+Lisp_Object Lremprop(919,20617
+Lisp_Object Lplist(926,20744
+Lisp_Object MS_CDECL bytecounts(967,21780
+static Lisp_Object *do_freebind(1056,24382
+static Lisp_Object *do_freerstr(1073,24877
+static Lisp_Object poll_jump_back(1102,25784
+static Lisp_Object *do_pvbind(1121,26187
+static Lisp_Object *do_pvrestore(1150,27041
+static Lisp_Object encapsulate_sp(1165,27298
+static void trace_print_0(1176,27563
+static void trace_print_1(1187,27839
+static void trace_print_2(1201,28198
+static void trace_print_3(1215,28615
+#define save_pc(save_pc1230,29091
+#define restore_pc(restore_pc1233,29200
+#define next_byte 1236,29291
+#define next_byte 1238,29354
+Lisp_Object bytestream_interpret(1246,29518
+#define EQUAL 2207,61613
+#define EQUAL 2209,61642
+
+byteuse.doc,0
+
+char.c,3549
+#define characterify(characterify33,1023
+static Lisp_Object char_to_id(39,1129
+static Lisp_Object Lchar_downcase(59,1572
+#define insert_code(insert_code76,2201
+Lisp_Object Lcharacter(86,2392
+static Lisp_Object Lcharacterp(108,3143
+static Lisp_Object Lchar_bits(113,3263
+static Lisp_Object Lchar_font(121,3470
+static Lisp_Object Lchar_upcase(131,3685
+Lisp_Object Lwhitespace_char_p(147,4029
+Lisp_Object Lalpha_char_p(158,4350
+static Lisp_Object Lgraphic_char_p(170,4660
+static Lisp_Object Lupper_case_p(180,4975
+static Lisp_Object Llower_case_p(190,5258
+Lisp_Object Ldigit_char_p_2(203,5563
+Lisp_Object Ldigit_char_p_1(231,6621
+Lisp_Object Ldigitp(238,6749
+static Lisp_Object MS_CDECL Ldigit_char_n(250,7034
+static Lisp_Object Ldigit_char_2(275,7913
+static Lisp_Object Ldigit_char_1(281,8082
+Lisp_Object Lspecial_char(289,8235
+Lisp_Object Lchar_code(338,9653
+static Lisp_Object MS_CDECL Lcode_charn(346,9853
+static Lisp_Object Lcode_char1(370,10663
+static Lisp_Object Lcode_char2(375,10802
+static Lisp_Object Lchar_int(382,10956
+static Lisp_Object Lint_char(390,11166
+static Lisp_Object MS_CDECL Lmake_char(396,11350
+static bool chartest(423,12278
+static Lisp_Object MS_CDECL Lchar_eqn(432,12435
+static Lisp_Object Lchar_eqn_2(456,13083
+static Lisp_Object Lchar_eqn_1(461,13202
+static Lisp_Object MS_CDECL Lchar_lessp(466,13303
+static Lisp_Object Lchar_lessp_2(490,13977
+static Lisp_Object Lchar_lessp_1(495,14100
+static Lisp_Object MS_CDECL Lchar_greaterp(500,14205
+static Lisp_Object Lchar_greaterp_2(524,14882
+static Lisp_Object Lchar_greaterp_1(529,15011
+static Lisp_Object MS_CDECL Lchar_neq_n(534,15122
+static Lisp_Object Lchar_neq_2(564,16064
+static Lisp_Object Lchar_neq_1(569,16185
+static Lisp_Object MS_CDECL Lchar_geq(574,16288
+static Lisp_Object Lchar_geq_2(598,16959
+static Lisp_Object Lchar_geq_1(603,17078
+static Lisp_Object MS_CDECL Lchar_leq(608,17179
+static Lisp_Object Lchar_leq_2(632,17850
+static Lisp_Object Lchar_leq_1(637,17969
+static Lisp_Object casefold(650,18323
+static Lisp_Object MS_CDECL Lcharacter_eqn(659,18566
+static Lisp_Object Lcharacter_eqn_2(687,19319
+static Lisp_Object Lcharacter_eqn_1(692,19448
+static Lisp_Object MS_CDECL Lcharacter_lessp(697,19559
+static Lisp_Object Lcharacter_lessp_2(725,20338
+static Lisp_Object Lcharacter_lessp_1(730,20471
+static Lisp_Object MS_CDECL Lcharacter_greaterp(735,20586
+static Lisp_Object Lcharacter_greaterp_2(763,21368
+static Lisp_Object Lcharacter_greaterp_1(768,21507
+static Lisp_Object MS_CDECL Lcharacter_neq_n(773,21628
+static Lisp_Object Lcharacter_neq_2(805,22660
+static Lisp_Object Lcharacter_neq_1(810,22791
+static Lisp_Object MS_CDECL Lcharacter_geq(815,22904
+static Lisp_Object Lcharacter_geq_2(843,23680
+static Lisp_Object Lcharacter_geq_1(848,23809
+static Lisp_Object MS_CDECL Lcharacter_leq(853,23920
+static Lisp_Object Lcharacter_leq_2(881,24696
+static Lisp_Object Lcharacter_leq_1(886,24825
+static Lisp_Object get_char_vec(909,25483
+static Lisp_Object Lstring_greaterp_2(934,26218
+static Lisp_Object Lstring_lessp_2(960,26982
+static Lisp_Object Lstring_not_equal_2(966,27146
+static Lisp_Object Lstring_equal_2(991,27879
+static Lisp_Object Lstring_not_greaterp_2(1016,28574
+static Lisp_Object Lstring_not_lessp_2(1039,29274
+static Lisp_Object L_string_greaterp_2(1045,29450
+static Lisp_Object L_string_lessp_2(1071,30231
+static Lisp_Object L_string_not_equal_2(1077,30397
+static Lisp_Object L_string_equal_2(1102,31147
+static Lisp_Object L_string_not_greaterp_2(1127,31859
+static Lisp_Object L_string_not_lessp_2(1150,32576
+
+csl.c,1275
+#define  INCLUDE_ERROR_STRING_TABLE 28,739
+#define C_STACK_ALLOCATION 61,1839
+int check_stack(66,1928
+#define errcode(errcode84,2335
+Lisp_Object MS_CDECL error(86,2378
+Lisp_Object MS_CDECL cerror(139,4129
+Lisp_Object interrupted(182,5441
+Lisp_Object aerror(255,7963
+Lisp_Object aerror0(272,8446
+Lisp_Object aerror1(295,9054
+Lisp_Object aerror2(322,9745
+static Lisp_Object wrong(351,10505
+Lisp_Object too_few_2(366,10961
+Lisp_Object too_many_1(372,11066
+Lisp_Object wrong_no_0a(379,11204
+Lisp_Object wrong_no_0b(385,11311
+Lisp_Object wrong_no_3a(392,11450
+Lisp_Object wrong_no_3b(398,11557
+Lisp_Object wrong_no_na(405,11696
+Lisp_Object wrong_no_nb(413,11969
+Lisp_Object MS_CDECL wrong_no_1(422,12275
+Lisp_Object MS_CDECL wrong_no_2(429,12411
+Lisp_Object bad_special2(436,12547
+Lisp_Object MS_CDECL bad_specialn(444,12718
+void MS_CDECL fatal_error(451,12866
+void my_exit(475,13494
+static void lisp_main(509,14067
+void sigint_handler(698,21381
+int deal_with_tick(766,23254
+void cslstart(832,24746
+void cslaction(1488,47090
+int cslfinish(1546,48862
+int execute_lisp_function(1611,51478
+static int iget(1632,52074
+static void iput(1639,52172
+static int submain(1649,52302
+#define ENTRYPOINT 1665,52695
+#define ENTRYPOINT 1667,52730
+int ENTRYPOINT(1670,52762
+
+csl.rc,0
+
+cwin.rc,0
+
+demo.c,2557
+Lisp_Object MS_CDECL Lgc0(35,740
+Lisp_Object Lgc(40,827
+Lisp_Object Lverbos(45,906
+Lisp_Object MS_CDECL Lmapstore0(50,989
+Lisp_Object Lmapstore(55,1082
+static bool reset_limit_registers(60,1167
+static void tidy_fringes(110,3009
+static void give_up(134,3855
+#define m(m137,3900
+Lisp_Object reclaim(172,5568
+#define IMAGE_FORMAT_VERSION 233,7403
+#  define DIRECTORY_SIZE 236,7467
+typedef struct directory_headerdirectory_header239,7514
+} directory_header;directory_header247,7952
+#define get_dirused(get_dirused249,7973
+#define get_dirsize(get_dirsize250,8037
+typedef struct directory_entrydirectory_entry252,8102
+} directory_entry;directory_entry262,8443
+#define D_newline 270,8795
+#define D_name 271,8825
+#define D_date 272,8855
+#define D_position 273,8886
+#define D_size 274,8917
+#define name_size 276,8949
+#define date_size 277,8974
+#define DIRNAME_LENGTH 279,9000
+#define NEWLINE_CHAR 280,9027
+typedef struct directorydirectory282,9099
+} directory;directory288,9269
+#define D_UPDATED 304,9517
+#define D_COMPACT 305,9539
+static long int bits32(318,10094
+static long int bits24(326,10270
+#define I_INACTIVE 336,10504
+#define I_READING 337,10525
+static directory *make_empty_directory(346,10733
+static directory *open_pds(368,11388
+void Iinit(418,13134
+void Icontext(430,13417
+void Irestore_context(451,13957
+void Ilist(466,14254
+bool Iselect(471,14284
+static bool samename(476,14326
+static bool open_input(491,14669
+bool Iopen(529,16019
+bool Iopen_help(561,17161
+bool Idelete(580,17671
+#define update_crc(update_crc585,17726
+static int validate_checksum(593,18027
+bool Icopy(611,18557
+bool IcloseInput(616,18610
+bool IcloseOutput(627,18898
+bool Ifinished(637,19082
+int Igetc(642,19123
+#define FREAD_CHUNK 658,19476
+int32 Iread(660,19504
+bool Iputc(695,20406
+bool Iwrite(700,20446
+void preserve(705,20503
+Lisp_Object Lload_module(712,20619
+Lisp_Object Lselect_module_file(722,20825
+Lisp_Object Lstart_module(728,20928
+Lisp_Object Lmodule_exists(734,21025
+Lisp_Object Ldefine_in_module(740,21123
+Lisp_Object Lwrite_module(746,21221
+Lisp_Object Ldelete_module(752,21315
+Lisp_Object MS_CDECL Llist_modules(758,21410
+Lisp_Object Lcopy_module(768,21613
+Lisp_Object Lwrite_help_module(776,21726
+static void help(783,21861
+Lisp_Object lisp_help(905,26061
+Lisp_Object Lhelp(948,27042
+Lisp_Object Lhelp_2(954,27149
+Lisp_Object MS_CDECL Lhelp_n(964,27336
+Lisp_Object Lwrite_help_module(985,27771
+Lisp_Object Lhelp(990,27880
+Lisp_Object Lhelp_2(996,28028
+Lisp_Object MS_CDECL Lhelp_n(1001,28126
+
+dosinst.c,547
+typedef struct archarch19,416
+} arch;arch23,470
+#define EXTRACT 52,1122
+#define INSTALL 53,1140
+static void ctrl_c_handler(57,1190
+#define white_on_blue 66,1369
+#define white_on_black 67,1397
+#define black_on_white 68,1425
+static FILE *filep(74,1541
+static void clear_work_area(88,1844
+static void show_txt(93,1937
+static int request_string(123,2808
+static int request_char(223,5794
+static void request_ok(267,6815
+static void decompress_files(285,7325
+static int install(306,7897
+static void disp(577,18063
+int main(584,18176
+
+dyn-lib.doc,30
+   This could either:28,1104
+
+eval1.c,3253
+Lisp_Object nreverse(20,313
+Lisp_Object Ceval(58,1577
+static bool check_no_unwanted_keys(289,9318
+static bool check_keyargs_even(311,9978
+static Lisp_Object keywordify(328,10501
+static Lisp_Object key_lookup(339,10791
+Lisp_Object apply_lambda(353,11100
+#define STATE_NULL 368,11750
+#define STATE_OPT 369,11821
+#define STATE_OPT1 370,11875
+#define STATE_REST 371,11948
+#define STATE_REST1 372,12010
+#define STATE_KEY 374,12077
+#define STATE_ALLOW 375,12134
+#define STATE_AUX 377,12197
+#define w 416,14083
+#define p 417,14112
+#define v 418,14142
+#define v1 419,14172
+#define arg 420,14202
+#define val1 421,14232
+#define specenv 422,14262
+#define restarg 423,14292
+#define ok_keys 425,14336
+#define local_decs 426,14366
+#define name 428,14403
+#define env 429,14434
+#define body 430,14465
+#define bvl 431,14496
+#define arg1 432,14527
+#define stack_used 433,14558
+#define BAD1(BAD1496,16319
+#define BAD2(BAD2497,16392
+#define collect_rest_arg(collect_rest_arg499,16466
+#define instate_binding(instate_binding732,24282
+#define instate_binding(instate_binding741,24816
+Lisp_Object Leval(902,30571
+Lisp_Object Levlis(907,30693
+Lisp_Object MS_CDECL Lapply_n(925,31035
+Lisp_Object Lapply_1(948,31583
+Lisp_Object Lapply_2(953,31675
+Lisp_Object Lapply0(958,31787
+Lisp_Object Lapply1(965,31961
+Lisp_Object MS_CDECL Lapply2(973,32163
+Lisp_Object MS_CDECL Lapply3(989,32580
+Lisp_Object Lfuncall1(1006,33042
+Lisp_Object Lfuncall2(1013,33216
+static Lisp_Object MS_CDECL Lfuncalln_sub(1021,33421
+Lisp_Object MS_CDECL Lfuncalln(1030,33684
+Lisp_Object MS_CDECL Lvalues(1068,34923
+Lisp_Object Lvalues_2(1090,35450
+Lisp_Object Lvalues_1(1095,35558
+Lisp_Object mv_call_fn(1100,35648
+Lisp_Object interpreted1(1147,36867
+Lisp_Object interpreted2(1155,37041
+Lisp_Object MS_CDECL interpretedn(1163,37236
+Lisp_Object funarged1(1182,37805
+Lisp_Object funarged2(1190,37994
+Lisp_Object MS_CDECL funargedn(1198,38204
+Lisp_Object double_interpreted1(1215,38590
+Lisp_Object double_interpreted2(1223,38771
+Lisp_Object MS_CDECL double_interpretedn(1231,38973
+Lisp_Object double_funarged1(1250,39549
+Lisp_Object double_funarged2(1258,39745
+Lisp_Object MS_CDECL double_funargedn(1266,39962
+Lisp_Object traceinterpreted1(1279,40304
+Lisp_Object traceinterpreted2(1304,40909
+Lisp_Object MS_CDECL traceinterpretedn(1332,41596
+Lisp_Object tracefunarged1(1365,42424
+Lisp_Object tracefunarged2(1388,42947
+Lisp_Object MS_CDECL tracefunargedn(1411,43492
+static Lisp_Object macroexpand_1(1439,44170
+Lisp_Object macroexpand(1516,46782
+Lisp_Object Lmacroexpand(1534,47271
+Lisp_Object Lmacroexpand_2(1540,47379
+Lisp_Object Lmacroexpand_1(1547,47512
+Lisp_Object Lmacroexpand_1_2(1553,47624
+Lisp_Object autoload1(1570,48113
+Lisp_Object autoload2(1587,48551
+Lisp_Object MS_CDECL autoloadn(1604,49009
+Lisp_Object undefined1(1624,49522
+Lisp_Object undefined2(1636,49922
+Lisp_Object MS_CDECL undefinedn(1643,50087
+Lisp_Object MS_CDECL f0_as_0(1659,50683
+Lisp_Object f1_as_0(1665,50858
+Lisp_Object f2_as_0(1670,50954
+Lisp_Object MS_CDECL f3_as_0(1675,51065
+Lisp_Object f1_as_1(1681,51240
+Lisp_Object f2_as_1(1686,51336
+Lisp_Object MS_CDECL f3_as_1(1691,51447
+Lisp_Object f2_as_2(1702,51730
+Lisp_Object MS_CDECL f3_as_2(1707,51844
+Lisp_Object MS_CDECL f3_as_3(1719,52168
+
+eval2.c,1403
+static Lisp_Object apply_lots(20,341
+void push_args(176,7732
+void push_args_1(213,8836
+Lisp_Object apply(243,9567
+static Lisp_Object and_fn(441,16505
+static Lisp_Object block_fn(478,17377
+#define env 486,17713
+#define args 487,17737
+#define my_tag 488,17762
+static Lisp_Object catch_fn(535,19212
+#define BODY_LET 571,20251
+#define BODY_COMPILER_LET 572,20281
+#define BODY_PROG 573,20311
+Lisp_Object let_fn_1(575,20342
+#define local_decs 594,20968
+#define specenv 596,21003
+#define env1 597,21032
+#define p 598,21061
+#define q 599,21090
+#define env 600,21119
+#define body 601,21148
+#define bvl 602,21177
+#define Return(Return603,21206
+static Lisp_Object compiler_let_fn(773,25828
+static Lisp_Object cond_fn(782,26053
+Lisp_Object declare_fn(810,26781
+static Lisp_Object defun_fn(829,27398
+static Lisp_Object defmacro_fn(881,29432
+static Lisp_Object eval_when_fn(946,32012
+static Lisp_Object flet_fn(964,32483
+Lisp_Object function_fn(998,33415
+static Lisp_Object go_fn(1016,33886
+static Lisp_Object if_fn(1040,34516
+static Lisp_Object labels_fn(1068,35252
+static Lisp_Object let_fn(1103,36278
+static Lisp_Object letstar_fn(1110,36477
+#define local_decs 1124,36943
+#define specenv 1126,36978
+#define env1 1127,37007
+#define p 1128,37036
+#define q 1129,37065
+#define env 1130,37094
+#define body 1131,37123
+#define bvl 1132,37152
+#define Return(Return1133,37181
+
+eval3.c,1403
+static Lisp_Object plus_fn(27,455
+static Lisp_Object times_fn(60,1335
+static Lisp_Object list_fn(87,1964
+static Lisp_Object liststar_fn(170,4212
+#define BODY_LET 200,4840
+#define BODY_COMPILER_LET 201,4870
+#define BODY_PROG 202,4900
+static Lisp_Object macrolet_fn(206,4946
+static Lisp_Object mv_prog1_fn(250,6222
+static Lisp_Object or_fn(292,7199
+static Lisp_Object prog_fn(310,7682
+#define env 316,7902
+#define args 317,7926
+#define my_tag 318,7951
+Lisp_Object progn_fn(414,11192
+static Lisp_Object prog1_fn(441,11948
+static Lisp_Object prog2_fn(471,12778
+static Lisp_Object progv_fn(504,13664
+#define specenv 513,13979
+#define vals 514,14004
+#define syms 515,14030
+#define env 516,14056
+#define args 517,14082
+Lisp_Object quote_fn(576,15527
+static Lisp_Object return_fn(584,15733
+static Lisp_Object return_from_fn(627,16667
+static Lisp_Object setq_fn(672,17605
+static Lisp_Object noisy_setq_fn(726,19168
+Lisp_Object tagbody_fn(788,20975
+static Lisp_Object the_fn(884,24069
+static Lisp_Object throw_fn(899,24391
+static Lisp_Object unless_fn(938,25258
+static Lisp_Object unwind_protect_fn(952,25617
+#define env 1023,27756
+#define args 1024,27779
+void low_level_signal_handler(1053,28366
+void unwind_stack(1084,28998
+Lisp_Object MS_CDECL Lerrorsetn(1125,30171
+Lisp_Object Lerrorset1(1222,32999
+Lisp_Object Lerrorset2(1228,33110
+static Lisp_Object when_fn(1234,33240
+
+eval4.c,2577
+#define name_from(name_from20,358
+Lisp_Object MS_CDECL bytecoded0(22,400
+Lisp_Object bytecoded1(46,1131
+Lisp_Object bytecoded2(83,2546
+Lisp_Object MS_CDECL bytecoded3(110,3324
+Lisp_Object MS_CDECL bytecodedn(148,4522
+Lisp_Object unpack_mv(202,6144
+Lisp_Object MS_CDECL tracebytecoded0(215,6376
+Lisp_Object tracebytecoded1(268,7753
+Lisp_Object tracebytecoded2(332,9332
+Lisp_Object MS_CDECL tracebytecoded3(409,11308
+Lisp_Object MS_CDECL tracebytecodedn(506,13920
+Lisp_Object MS_CDECL double_bytecoded0(580,15946
+Lisp_Object double_bytecoded1(609,16859
+Lisp_Object double_bytecoded2(643,17850
+Lisp_Object MS_CDECL double_bytecoded3(680,19004
+Lisp_Object MS_CDECL double_bytecodedn(728,20581
+Lisp_Object byteopt1(773,21821
+Lisp_Object byteopt2(778,21911
+static Lisp_Object vbyteoptn(783,22019
+Lisp_Object MS_CDECL byteoptn(831,23565
+Lisp_Object hardopt1(838,23713
+Lisp_Object hardopt2(843,23803
+Lisp_Object MS_CDECL hardoptn(848,23911
+Lisp_Object byteoptrest1(855,24064
+Lisp_Object byteoptrest2(860,24162
+static Lisp_Object vbyterestn(865,24278
+Lisp_Object MS_CDECL byteoptrestn(921,25937
+Lisp_Object hardoptrest1(928,26090
+Lisp_Object hardoptrest2(933,26188
+Lisp_Object MS_CDECL hardoptrestn(938,26304
+Lisp_Object double_byteopt1(949,26539
+Lisp_Object double_byteopt2(954,26643
+static Lisp_Object double_vbyteoptn(959,26765
+Lisp_Object MS_CDECL double_byteoptn(1008,28383
+Lisp_Object double_hardopt1(1015,28545
+Lisp_Object double_hardopt2(1020,28649
+Lisp_Object MS_CDECL double_hardoptn(1025,28771
+Lisp_Object double_byteoptrest1(1032,28938
+Lisp_Object double_byteoptrest2(1037,29050
+static Lisp_Object double_vbyterestn(1042,29180
+Lisp_Object MS_CDECL double_byteoptrestn(1099,30912
+Lisp_Object double_hardoptrest1(1106,31079
+Lisp_Object double_hardoptrest2(1111,31191
+Lisp_Object MS_CDECL double_hardoptrestn(1116,31321
+Lisp_Object tracebyteopt1(1123,31493
+Lisp_Object tracebyteopt2(1128,31593
+static Lisp_Object vtracebyteoptn(1133,31711
+Lisp_Object MS_CDECL tracebyteoptn(1218,34160
+Lisp_Object tracehardopt1(1225,34318
+Lisp_Object tracehardopt2(1230,34418
+Lisp_Object MS_CDECL tracehardoptn(1235,34536
+Lisp_Object tracebyteoptrest1(1242,34699
+Lisp_Object tracebyteoptrest2(1247,34807
+static Lisp_Object vtracebyterestn(1252,34933
+Lisp_Object MS_CDECL tracebyteoptrestn(1345,37493
+Lisp_Object tracehardoptrest1(1352,37656
+Lisp_Object tracehardoptrest2(1357,37764
+Lisp_Object MS_CDECL tracehardoptrestn(1362,37890
+static Lisp_Object Lis_spid(1369,38058
+static Lisp_Object Lspid_to_nil(1374,38221
+static Lisp_Object MS_CDECL Lload_spid(1380,38389
+Lisp_Object Lmv_list(1387,38580
+
+fasl.c,3256
+#define F_END 37,1036
+#define F_NIL 38,1082
+#define F_TRU 39,1126
+#define F_EXT 40,1168
+#define F_INT 41,1244
+#define F_NEG 42,1289
+#define F_BIG 43,1334
+#define F_RAT 44,1370
+#define F_CPX 45,1405
+#define F_FPS 46,1449
+#define F_FPF 47,1490
+#define F_FPD 48,1532
+#define F_FPL 49,1574
+#define F_SYM 50,1614
+#define F_ID1 51,1666
+#define F_ID2 52,1724
+#define F_ID3 53,1782
+#define F_ID4 54,1815
+#define F_ID5 55,1838
+#define F_ID6 56,1861
+#define F_ID7 57,1884
+#define F_ID8 58,1907
+#define F_ID9 59,1930
+#define F_IDA 60,1953
+#define F_IDB 61,1976
+#define F_IDC 62,1999
+#define F_IDD 63,2022
+#define F_IDE 64,2045
+#define F_IDF 65,2068
+#define F_STR 66,2127
+#define F_BP0 67,2163
+#define F_BP1 68,2240
+#define F_BP2 69,2317
+#define F_BP3 70,2394
+#define F_HASH 71,2471
+#define F_VEC 72,2511
+#define F_LST 73,2559
+#define F_LS1 74,2609
+#define F_LS2 75,2655
+#define F_LS3 76,2701
+#define F_LS4 77,2747
+#define F_DOT 78,2793
+#define F_QUT 79,2851
+#define F_DEF0 80,2891
+#define F_DEF1 81,2948
+#define F_DEF2 82,3004
+#define F_DEF3 83,3061
+#define F_DEFN 84,3118
+#define F_REP 85,3183
+#define F_CHAR 86,3246
+#define F_SDEF 87,3292
+#define F_STRUCT 88,3372
+#define F_DEFOPT 89,3423
+#define F_DEFHOPT 90,3488
+#define F_DEFREST 91,3564
+#define F_DEFHREST 92,3635
+#define F_ARRAY 93,3712
+#define F_BITVEC 94,3773
+#define F_PKGINT 95,3813
+#define F_PKGEXT 97,3953
+#define F_OLD 99,4008
+#define KEEP_RECENT 100,4086
+#define MAX_OBJECT 102,4121
+static char *fasl_code(127,4985
+#define boffo_char(boffo_char139,5163
+static int IgetcDebug(151,5386
+#define Igetc(Igetc158,5512
+static int IreadDebug(160,5542
+#define Iread(Iread173,5844
+static Lisp_Object fastread1(177,5890
+static Lisp_Object fastread(481,16473
+static char *trim_module_name(905,31474
+Lisp_Object Lcopy_module(939,32352
+Lisp_Object Ldelete_module(963,32985
+Lisp_Object MS_CDECL Llist_modules(987,33633
+Lisp_Object Lwritable_libraryp(997,33836
+Lisp_Object Lload_module(1011,34198
+static void IputcDebug(1097,36636
+#define Iputc(Iputc1103,36744
+static void out_fasl_prefix(1107,36784
+Lisp_Object Lmodule_exists(1120,37022
+Lisp_Object Lstart_module(1146,37736
+Lisp_Object Ldefine_in_module(1252,41973
+static void IwriteDebug(1297,42947
+#define Iwrite(Iwrite1309,43215
+static Lisp_Object write_module1(1313,43263
+Lisp_Object Lwrite_module(1430,46458
+Lisp_Object Lwrite_help_module(1779,57941
+static void help(1876,61475
+Lisp_Object lisp_help(1998,65746
+Lisp_Object Lhelp(2042,66734
+Lisp_Object Lhelp_2(2048,66841
+Lisp_Object MS_CDECL Lhelp_n(2058,67028
+static void merge_sort(2092,67858
+typedef struct char_pair_hashchar_pair_hash2150,69876
+} char_pair_hash;char_pair_hash2154,69942
+#define OVERFLOW_SIZE 2168,70589
+#define PASS_COUNT 2170,70617
+static int MS_CDECL compare_char_counts(2172,70640
+#define INFO_CHAR 2178,70799
+Lisp_Object Lwrite_help_module(2180,70833
+#define CODED_SIZE 2193,71345
+static void help(2544,84728
+Lisp_Object lisp_help(2681,89638
+Lisp_Object Lhelp(2725,90616
+Lisp_Object Lhelp_2(2731,90723
+Lisp_Object MS_CDECL Lhelp_n(2741,90910
+Lisp_Object Lwrite_help_module(2762,91340
+Lisp_Object Lhelp(2767,91449
+Lisp_Object Lhelp_2(2773,91600
+Lisp_Object MS_CDECL Lhelp_n(2778,91698
+
+fastgets.doc,23
+function FLAG 54,2576
+
+fileops.c,1234
+void unpack_date(25,831
+unsigned long int pack_date(37,1128
+struct FILE_COPYFILE_COPY54,1503
+int truncate_file(73,2515
+int Cmkdir(84,2735
+static bool namematch(159,5824
+static bool member(179,6538
+void adjust_file_name(187,6693
+static void unadjust1(286,9716
+static void unadjust2(301,10111
+void unadjust_file_name(323,10617
+void set_filedate(376,12290
+void put_fileinfo(404,13333
+int Cmkdir(448,14616
+int truncate_file(457,14801
+void adjust_file_name(467,15098
+void unadjust_file_name(477,15352
+void set_filedate(487,15608
+void put_fileinfo(512,16437
+int truncate_file(534,16989
+#define fileno(fileno538,17088
+int Cmkdir(543,17236
+void adjust_file_name(552,17363
+void unadjust_file_name(562,17617
+void set_filedate(576,17923
+void put_fileinfo(602,18528
+int truncate_file(625,19036
+#define SYS_ftruncate 628,19096
+int Cmkdir(643,19497
+void adjust_file_name(649,19556
+void unadjust_file_name(655,19649
+void set_filedate(663,19764
+void put_fileinfo(676,20169
+int truncate_file(697,20685
+#define fileno(fileno700,20764
+int Cmkdir(704,20905
+void adjust_file_name(713,21036
+void unadjust_file_name(723,21290
+int Cmkdir(739,21625
+void adjust_file_name(748,21760
+void unadjust_file_name(777,22608
+
+fns1.c,4156
+Lisp_Object integerp(25,575
+Lisp_Object cons(42,1138
+Lisp_Object cons_no_gc(55,1533
+Lisp_Object cons_gc_test(69,1859
+Lisp_Object ncons(77,2039
+Lisp_Object list2(90,2436
+Lisp_Object list2star(106,3063
+Lisp_Object acons(121,3622
+Lisp_Object list3(136,4176
+Lisp_Object Lcar(165,5418
+Lisp_Object Lcar_star(176,5652
+Lisp_Object Lcdr(183,5806
+Lisp_Object Lcaar(190,5968
+Lisp_Object Lcadr(199,6209
+Lisp_Object Lcdar(208,6450
+Lisp_Object Lcddr(217,6691
+Lisp_Object Lcaaar(226,6932
+Lisp_Object Lcaadr(237,7252
+Lisp_Object Lcadar(248,7572
+Lisp_Object Lcaddr(259,7892
+Lisp_Object Lcdaar(270,8212
+Lisp_Object Lcdadr(281,8532
+Lisp_Object Lcddar(292,8852
+Lisp_Object Lcdddr(303,9172
+Lisp_Object Lcaaaar(314,9492
+Lisp_Object Lcaaadr(327,9891
+Lisp_Object Lcaadar(340,10290
+Lisp_Object Lcaaddr(353,10689
+Lisp_Object Lcadaar(366,11088
+Lisp_Object Lcadadr(379,11487
+Lisp_Object Lcaddar(392,11886
+Lisp_Object Lcadddr(405,12285
+Lisp_Object Lcdaaar(418,12684
+Lisp_Object Lcdaadr(431,13083
+Lisp_Object Lcdadar(444,13482
+Lisp_Object Lcdaddr(457,13881
+Lisp_Object Lcddaar(470,14280
+Lisp_Object Lcddadr(483,14679
+Lisp_Object Lcdddar(496,15078
+Lisp_Object Lcddddr(509,15477
+Lisp_Object Lrplaca(522,15876
+Lisp_Object Lrplacd(531,16087
+Lisp_Object Lsymbolp(540,16298
+Lisp_Object Latom(545,16408
+Lisp_Object Lconsp(550,16514
+Lisp_Object Lconstantp(555,16620
+Lisp_Object Lidentity(581,17355
+Lisp_Object Llistp(589,17470
+Lisp_Object Lnumberp(596,17586
+Lisp_Object Lintegerp(601,17698
+Lisp_Object Lfixp(607,17808
+Lisp_Object Lfloatp(621,18076
+static Lisp_Object Lshort_floatp(633,18345
+static Lisp_Object Lsingle_floatp(640,18534
+static Lisp_Object Ldouble_floatp(649,18792
+static Lisp_Object Llong_floatp(658,19050
+Lisp_Object Lrationalp(667,19304
+Lisp_Object Lcomplexp(677,19523
+bool complex_stringp(683,19671
+bool stringp(707,20317
+Lisp_Object Lstringp(733,20867
+static Lisp_Object Lc_stringp(745,21102
+Lisp_Object Lhash_table_p(752,21229
+static Lisp_Object Lsimple_bit_vector_p(764,21464
+Lisp_Object Lsimple_vectorp(776,21743
+Lisp_Object Lbpsp(786,22000
+Lisp_Object Lthreevectorp(792,22136
+static Lisp_Object Larrayp(809,22560
+static Lisp_Object Lcomplex_arrayp(824,22999
+static Lisp_Object Lconvert_to_array(831,23232
+static Lisp_Object Lstructp(840,23442
+static Lisp_Object Lconvert_to_struct(850,23690
+Lisp_Object Lcons(857,23897
+Lisp_Object Lxcons(871,24354
+Lisp_Object Lncons(885,24813
+Lisp_Object Llist2(898,25242
+Lisp_Object Lmkquote(905,25373
+Lisp_Object MS_CDECL Llist2star(912,25502
+Lisp_Object MS_CDECL Lacons(927,25849
+Lisp_Object MS_CDECL Llist3(942,26187
+Lisp_Object MS_CDECL Llist(963,26685
+static Lisp_Object MS_CDECL Lliststar(984,27102
+static Lisp_Object MS_CDECL Lfill_vector(1018,27932
+Lisp_Object Lpair(1040,28467
+static int32 membercount(1062,28880
+Lisp_Object Lintersect(1093,29600
+Lisp_Object Lunion(1144,30991
+Lisp_Object Lenable_backtrace(1162,31367
+Lisp_Object MS_CDECL Lunwind(1171,31620
+Lisp_Object MS_CDECL Lerror(1189,32157
+Lisp_Object Lerror1(1268,34377
+Lisp_Object Lerror2(1273,34466
+Lisp_Object MS_CDECL Lerror0(1278,34575
+Lisp_Object Lstop(1293,34987
+Lisp_Object Lmake_special(1310,35458
+Lisp_Object Lmake_global(1318,35653
+Lisp_Object Lunmake_special(1326,35861
+Lisp_Object Lunmake_global(1333,36048
+Lisp_Object Lsymbol_specialp(1340,36234
+Lisp_Object Lsymbol_globalp(1348,36513
+Lisp_Object Lboundp(1355,36729
+Lisp_Object Lsymbol_value(1373,37435
+Lisp_Object Lset(1380,37593
+Lisp_Object Lsymbol_function(1387,37778
+Lisp_Object Lspecial_form_p(1491,41393
+Lisp_Object Lcodep(1498,41611
+Lisp_Object getvector(1511,42021
+Lisp_Object getvector_init(1603,45304
+void push_clock(1621,45729
+double pop_clock(1630,45924
+Lisp_Object MS_CDECL Ltime(1638,46102
+Lisp_Object MS_CDECL Lgctime(1651,46511
+Lisp_Object MS_CDECL Ldecoded_time(1660,46704
+Lisp_Object MS_CDECL Ldate(1695,47882
+Lisp_Object MS_CDECL Ldatestamp(1709,48251
+#define STR24HDR 1728,48914
+static int getint(1730,48968
+static int getmon(1741,49150
+static Lisp_Object Ldatelessp(1758,49560
+static Lisp_Object Lrepresentation1(1793,51146
+static Lisp_Object Lrepresentation2(1807,51508
+Lisp_Object Lindirect(1824,52043
+
+fns2.c,3230
+Lisp_Object getcodevector(24,391
+Lisp_Object Lget_bps(57,1470
+void set_fns(67,1714
+static bool interpreter_entry(86,2172
+static char *show_fn(104,2642
+Lisp_Object Lsymbol_fn_cell(112,2815
+Lisp_Object Lsymbol_env(126,3149
+Lisp_Object Lsymbol_set_env(141,3640
+Lisp_Object Lsymbol_fastgets(151,3947
+Lisp_Object Lsymbol_protect(163,4299
+Lisp_Object Lsymbol_make_fastget1(182,5006
+Lisp_Object Lsymbol_make_fastget(194,5386
+static Lisp_Object deleqip(219,6196
+void lose_C_def(239,6723
+Lisp_Object Lsymbol_set_definition(263,7250
+Lisp_Object Lgetd(458,15380
+Lisp_Object Lremd(483,15986
+Lisp_Object Lset_autoload(520,17523
+#define pack_funtable(pack_funtable548,18485
+#define funtable_nargs(funtable_nargs549,18542
+#define funtable_index(funtable_index550,18582
+static Lisp_Object traced1_function(557,18753
+static Lisp_Object traced2_function(585,19514
+static Lisp_Object MS_CDECL tracedn_function(611,20160
+#define NOT_FOUND 730,24242
+static unsigned32 find_built_in_function(732,24265
+Lisp_Object Ltrace(756,25411
+Lisp_Object Luntrace(869,30031
+Lisp_Object Ldouble(940,33003
+Lisp_Object Lundouble(999,35568
+Lisp_Object Lmacro_function(1045,37598
+Lisp_Object get_pname(1054,37895
+Lisp_Object Lsymbol_name(1089,39231
+Lisp_Object Lsymbol_package(1099,39424
+static Lisp_Object Lrestart_csl(1108,39600
+static Lisp_Object Lpreserve(1135,40960
+static Lisp_Object MS_CDECL Lpreserve_0(1163,42125
+static Lisp_Object Lpreserve_1(1169,42273
+static bool eql_numbers(1175,42402
+bool eql_fn(1191,42855
+static bool cl_vec_equal(1248,44655
+bool cl_equal_fn(1310,46186
+#define LOG_SIZE 1505,53072
+typedef struct equal_recordequal_record1507,53122
+} equal_record;equal_record1513,53215
+static void record_equal(1517,53277
+static void dump_equals(1539,53976
+bool traced_equal_fn(1554,54449
+#define equal_fn(equal_fn1565,54824
+#define equal_fn(equal_fn1764,61842
+static bool vec_equal(1767,61915
+bool equalp(1801,63004
+Lisp_Object Leq(1995,69878
+Lisp_Object Leql(2000,69994
+Lisp_Object Leqcar(2006,70138
+Lisp_Object Lcl_equal(2018,70419
+Lisp_Object Lequal(2024,70598
+Lisp_Object Lequalp(2030,70771
+Lisp_Object Lneq(2036,70946
+Lisp_Object Lnull(2048,71167
+Lisp_Object Lendp(2053,71272
+Lisp_Object Lnreverse(2060,71463
+Lisp_Object Lnreverse0(2093,72195
+Lisp_Object Lreverse(2111,72509
+Lisp_Object Lassoc(2127,72793
+Lisp_Object Latsoc(2170,73864
+Lisp_Object Lmember(2198,74549
+Lisp_Object Lmemq(2219,75035
+static bool smemq(2246,75645
+Lisp_Object Lsmemq(2269,76315
+static bool containedeq(2284,76647
+static bool containedequal(2293,76846
+static Lisp_Object Lcontained(2303,77091
+Lisp_Object Llength(2312,77349
+Lisp_Object MS_CDECL Lappend_n(2370,79276
+Lisp_Object Lappend_1(2414,80561
+Lisp_Object Lappend(2422,80682
+Lisp_Object Ldelete(2444,81085
+Lisp_Object Ldeleq(2491,82071
+Lisp_Object Lnconc(2517,82582
+static Lisp_Object Lsubstq(2535,82935
+Lisp_Object MS_CDECL Lsubst(2564,83604
+Lisp_Object Lsublis(2607,84590
+#define carx 2615,84808
+#define cdrx 2616,84830
+#define w 2617,84853
+#define x 2618,84876
+#define al 2619,84899
+Lisp_Object Lsubla(2665,85981
+#define carx 2676,86253
+#define cdrx 2677,86275
+#define w 2678,86298
+#define x 2679,86321
+#define al 2680,86344
+
+fns3.c,2998
+Lisp_Object Lmkvect(35,954
+Lisp_Object Lmksimplevec(47,1370
+Lisp_Object Lmkevect(61,1711
+Lisp_Object Lmkxvect(84,2520
+static int primep(100,3024
+Lisp_Object MS_CDECL Lmkhash(114,3432
+static unsigned32 update_hash(208,7239
+static unsigned32 hash_eql(216,7439
+static unsigned32 hash_cl_equal(302,10182
+static unsigned32 hash_equal(464,16223
+static unsigned32 hash_equalp(631,22494
+Lisp_Object MS_CDECL Lget_hash(823,29699
+static void reinsert_hash(930,32843
+#define REHASH_CYCLES 983,34236
+#define REHASH_AT_ONE_GO 984,34263
+void rehash_this_table(986,34292
+Lisp_Object Lmaphash(1034,36314
+Lisp_Object Lhashcontents(1063,37278
+Lisp_Object Lget_hash_1(1096,38295
+Lisp_Object Lget_hash_2(1118,38791
+Lisp_Object MS_CDECL Lput_hash(1123,38916
+Lisp_Object Lput_hash_2(1190,41328
+Lisp_Object Lrem_hash(1195,41456
+Lisp_Object Lrem_hash_1(1214,41971
+Lisp_Object Lclr_hash(1219,42078
+Lisp_Object MS_CDECL Lclr_hash_0(1234,42486
+Lisp_Object Lsxhash(1240,42632
+Lisp_Object Leqlhash(1248,42869
+Lisp_Object MS_CDECL Lputv(1256,43106
+Lisp_Object Lgetv(1279,43772
+Lisp_Object Lsmkvect(1297,44275
+Lisp_Object Lmkvect8(1317,44772
+Lisp_Object Lmkvect16(1337,45257
+Lisp_Object Lmkvect32(1357,45747
+Lisp_Object Lmkfvect32(1377,46228
+Lisp_Object Lmkfvect64(1397,46715
+Lisp_Object simplify_string(1413,47141
+Lisp_Object MS_CDECL Lsputv(1455,48720
+Lisp_Object Lbpsupbv(1481,49534
+Lisp_Object MS_CDECL Lbpsputv(1492,49812
+Lisp_Object Lsgetv(1516,50566
+Lisp_Object Lbytegetv(1543,51277
+Lisp_Object Lbpsgetv(1559,51764
+Lisp_Object MS_CDECL Lputv8(1579,52395
+Lisp_Object Lgetv8(1602,53084
+Lisp_Object MS_CDECL Lputv16(1616,53567
+Lisp_Object Lgetv16(1639,54268
+Lisp_Object MS_CDECL Lputv32(1653,54762
+Lisp_Object Lgetv32(1676,55465
+Lisp_Object MS_CDECL Lfputv32(1695,56085
+Lisp_Object Lfgetv32(1720,56827
+Lisp_Object MS_CDECL Lfputv64(1740,57465
+Lisp_Object Lfgetv64(1765,58200
+static Lisp_Object MS_CDECL Lputvec(1790,58928
+Lisp_Object MS_CDECL Laref(1864,61408
+static Lisp_Object Laref1(1967,65053
+Lisp_Object Laref2(1972,65145
+Lisp_Object Lelt(1977,65248
+Lisp_Object MS_CDECL Laset(2069,68506
+static Lisp_Object Laset1(2192,72857
+static Lisp_Object Laset2(2197,72947
+static MS_CDECL Lisp_Object Lsetelt(2202,73057
+Lisp_Object Lvectorp(2303,76501
+static Lisp_Object Lchar(2327,77088
+static Lisp_Object MS_CDECL Lcharset(2350,77707
+static Lisp_Object MS_CDECL Lmake_string(2386,78811
+static Lisp_Object Lmake_string1(2421,79895
+static Lisp_Object Lmake_string2(2443,80501
+static Lisp_Object Lstring(2457,80851
+static Lisp_Object Llist_to_vector(2491,81888
+static Lisp_Object Lcopy_vector(2519,82676
+static Lisp_Object MS_CDECL Lvector(2535,83053
+static Lisp_Object Lvector1(2555,83537
+static Lisp_Object Lvector2(2560,83633
+static Lisp_Object Lshrink_vector(2566,83748
+static Lisp_Object Lmake_simple_bitvector(2587,84539
+#define bitvechdr_(bitvechdr_2596,84805
+static Lisp_Object MS_CDECL Lbputv(2607,85089
+static Lisp_Object Lbgetv(2645,86343
+Lisp_Object Lupbv(2670,87142
+Lisp_Object Lvecbnd(2709,87989
+
+gc.c,1330
+#define is_immed(is_immed36,973
+static void non_recursive_mark(38,1031
+static void mark(703,20598
+        if 830,24677
+        if 861,25647
+        if 872,26079
+        if (!is_immed(879,26266
+        if 892,26607
+        if 904,27076
+        if 919,27581
+        if 925,27817
+Lisp_Object MS_CDECL Lgc0(960,28935
+Lisp_Object Lgc(966,29063
+Lisp_Object Lverbos(977,29373
+static int fold_cons_heap(1006,30350
+static void adjust_vec_heap(1125,34940
+static void move_vec_heap(1219,38342
+static int compress_heap(1309,41298
+static void relocate(1317,41422
+static void relocate_consheap(1333,41894
+static void relocate_vecheap(1355,42515
+static void abandon_heap_pages(1443,45596
+static void zero_out(1450,45795
+static void copy(1469,46356
+#define CONT 1480,46741
+#define DONE_CAR 1481,46766
+#define DONE_VALUE 1482,46791
+#define DONE_ENV 1483,46816
+#define DONE_PNAME 1484,46841
+#define DONE_PLIST 1485,46866
+#define DONE_FASTGETS 1486,46891
+typedef struct mapstore_itemmapstore_item1815,60156
+} mapstore_item;mapstore_item1821,60253
+static int profile_cf(1823,60271
+Lisp_Object Lmapstore(1832,60508
+Lisp_Object MS_CDECL Lmapstore0(1984,66760
+static bool reset_limit_registers(1990,66895
+static void tidy_fringes(2051,68874
+static void lose_dead_hashtables(2075,69707
+Lisp_Object reclaim(2099,70336
+
+grep.c,763
+typedef long int integer;integer9,239
+typedef long int logical;logical10,265
+typedef long ftnlen;ftnlen11,291
+#define TRUE_ 12,312
+#define FALSE_ 13,330
+#define max(max14,349
+void remark_(26,531
+void zlowc_(31,604
+void error_(37,787
+#define xcsmod_1 49,954
+#define xcscas_1 55,1026
+/* Subroutine */ int zsinit_(133,3036
+/* Subroutine */ int zscpat_(172,4042
+logical zsfind_(368,8311
+integer xissam_(412,9279
+/* Subroutine */ int xsssct_(481,10805
+integer xissnx_(501,11305
+/* Subroutine */ int xsssop_(525,11803
+integer xisspr_(546,12527
+logical xsssdo_(573,13039
+integer xissex_(632,14599
+/* Subroutine */ int xsssfi_(660,15237
+logical xlssgc_(731,17183
+logical xlsslo_(776,18241
+logical xlssom_(809,18840
+integer xissps_(915,21429
+
+grep2.c,319
+#define LINE_CHUNK_LENGTH 31,718
+typedef struct LineChunkLineChunk33,749
+} LineChunk;LineChunk37,833
+LineChunk *newChunk(39,847
+int getChunk(47,975
+char *concatenateChunks(71,1360
+char *read_a_line(93,1728
+#define MAXIMUM_PATTERN_SIZE 114,2160
+Lisp_Object MS_CDECL Lgrep(125,2532
+Lisp_Object grepList(228,5382
+
+install.c,1002
+typedef struct archarch22,471
+} arch;arch26,525
+#define NARCHIVES 53,1311
+#define O_EXE286 55,1369
+#define O_EXE386 56,1390
+#define O_OBJS286 57,1411
+#define O_SMAL286 58,1432
+#define O_OBJS386 59,1453
+#define O_SMAL386 60,1474
+#define O_SOURCE1 61,1495
+#define O_SOURCE2 62,1516
+#define O_SOURCE3 63,1537
+#define O_SOURCE4 64,1558
+#define O_GNUPLOT1 65,1579
+#define O_GNUPLOT2 66,1601
+#define O_IMG1 67,1623
+#define O_IMG2 68,1645
+#define O_DOCS1 69,1667
+#define O_DOCS2 70,1689
+#define EXTRACT 87,2140
+#define INSTALL 88,2158
+static void ctrl_c_handler(92,2208
+#define white_on_blue 101,2387
+#define white_on_black 102,2415
+#define black_on_white 103,2443
+static FILE *filep(109,2559
+static void clear_work_area(123,2862
+static void show_txt(128,2955
+static int request_string(158,3826
+static int request_char(258,6812
+static void request_ok(302,7833
+static void decompress_files(320,8343
+static int install(341,8915
+static void disp(646,20403
+int main(653,20516
+
+ls.c,79
+static void set_options(11,138
+static void show_name(15,176
+int main(20,301
+
+makemake.c,640
+#define SEEK_SET 58,1992
+#define FLAG_BACKSLASH 66,2088
+#define FLAG_WATCOM 68,2146
+#define FLAG_OBJ 70,2201
+#define FLAG_ACORN 72,2258
+#define FLAG_ESCAPEQUOTE 74,2321
+#define FLAG_BLANK 76,2378
+#define FLAG_UNIX 78,2434
+#define N_SPECIAL_WORDS 82,2488
+#define LINE_LENGTH 84,2515
+#define MAX_WORDS 90,2631
+static int get_line(98,2816
+static int process_item(127,3528
+static int process_menu(163,4597
+static int acorn_filename(221,7078
+static void put_filename(286,9251
+static void put_line(309,9824
+static int eval_condition(373,11986
+void get_flags(388,12380
+static void create_makefile(398,12608
+int main(495,15992
+
+nag.c,601
+#define D01AJF 28,549
+#define SXXEAF 29,572
+#define D01AJF 33,718
+#define SXXEAF 34,740
+} fstring1;fstring148,941
+#define int2ccl(int2ccl55,1051
+Lisp_Object mkIntVector(69,1449
+Lisp_Object mkFloatVector(95,2223
+typedef struct complex{complex125,3025
+} complex;complex128,3075
+Lisp_Object mkComplexVector(134,3235
+Lisp_Object MS_CDECL Ls01eaf(168,4151
+Lisp_Object Ls13aaf(260,6334
+Lisp_Object MS_CDECL Ld01ajf(328,7807
+Lisp_Object MS_CDECL Lbug(480,11866
+void free_prevlib 494,12101
+Lisp_Object nag_error1(507,12298
+Lisp_Object nag_error2(512,12444
+Lisp_Object MS_CDECL nag_error0(517,12609
+
+nag_d.c,1083
+Lisp_Object MS_CDECL Ld01ajf(1,0
+Lisp_Object MS_CDECL Ld01akf(143,3796
+Lisp_Object MS_CDECL Ld01alf(281,7471
+Lisp_Object MS_CDECL Ld01alf(435,12032
+Lisp_Object MS_CDECL Ld01amf(442,12133
+Lisp_Object MS_CDECL Ld01amf(575,15807
+Lisp_Object MS_CDECL Ld01anf(582,15908
+Lisp_Object MS_CDECL Ld01anf(733,20284
+Lisp_Object MS_CDECL Ld01apf(740,20385
+Lisp_Object MS_CDECL Ld01apf(899,25126
+Lisp_Object MS_CDECL Ld01aqf(906,25227
+Lisp_Object MS_CDECL Ld01aqf(1050,29172
+Lisp_Object MS_CDECL Ld01asf(1057,29273
+Lisp_Object MS_CDECL Ld01asf(1225,34288
+Lisp_Object MS_CDECL Ld01bbf(1232,34389
+Lisp_Object MS_CDECL Ld01fcf(1356,37409
+Lisp_Object MS_CDECL Ld01gaf(1504,41541
+Lisp_Object MS_CDECL Ld01gbf(1602,43717
+Lisp_Object MS_CDECL Ld02bbf(1759,48410
+Lisp_Object MS_CDECL Ld02bhf(1913,52513
+Lisp_Object MS_CDECL Ld02cjf(2062,56460
+Lisp_Object MS_CDECL Ld02ejf(2222,60765
+Lisp_Object MS_CDECL Ld02gaf(2401,65814
+Lisp_Object MS_CDECL Ld02gbf(2406,65902
+Lisp_Object MS_CDECL Ld02kef(2411,65990
+Lisp_Object MS_CDECL Ld02raf(2416,66078
+Lisp_Object MS_CDECL Ld03edf(2421,66166
+Lisp_Object MS_CDECL Ld03eef(2426,66254
+Lisp_Object MS_CDECL Ld03faf(2431,66342
+
+nag_s.c,1415
+Lisp_Object MS_CDECL Ls01eaf(2,6
+Lisp_Object MS_CDECL Ls13aaf(87,1925
+Lisp_Object MS_CDECL Ls13acf(151,3215
+Lisp_Object MS_CDECL Ls13adf(214,4498
+Lisp_Object MS_CDECL Ls14aaf(277,5781
+Lisp_Object MS_CDECL Ls14abf(340,7064
+Lisp_Object MS_CDECL Ls14baf(403,8347
+Lisp_Object MS_CDECL Ls15adf(490,10347
+Lisp_Object MS_CDECL Ls15aef(553,11630
+Lisp_Object MS_CDECL Ls17acf(616,12913
+Lisp_Object MS_CDECL Ls17adf(679,14196
+Lisp_Object MS_CDECL Ls17aef(742,15479
+Lisp_Object MS_CDECL Ls17aff(805,16762
+Lisp_Object MS_CDECL Ls17agf(868,18045
+Lisp_Object MS_CDECL Ls17ahf(931,19328
+Lisp_Object MS_CDECL Ls17ajf(994,20611
+Lisp_Object MS_CDECL Ls17akf(1057,21894
+Lisp_Object MS_CDECL Ls17dcf(1121,23183
+Lisp_Object MS_CDECL Ls17def(1252,26252
+Lisp_Object MS_CDECL Ls17dgf(1380,29192
+Lisp_Object MS_CDECL Ls17dhf(1487,31878
+Lisp_Object MS_CDECL Ls17dlf(1591,34444
+Lisp_Object MS_CDECL Ls18acf(1726,37634
+Lisp_Object MS_CDECL Ls18adf(1789,38917
+Lisp_Object MS_CDECL Ls18aef(1852,40200
+Lisp_Object MS_CDECL Ls18aff(1915,41483
+Lisp_Object MS_CDECL Ls18dcf(1979,42772
+Lisp_Object MS_CDECL Ls18def(2108,45718
+Lisp_Object MS_CDECL Ls19aaf(2236,48658
+Lisp_Object MS_CDECL Ls19abf(2299,49941
+Lisp_Object MS_CDECL Ls19acf(2362,51224
+Lisp_Object MS_CDECL Ls19adf(2425,52507
+Lisp_Object MS_CDECL Ls20acf(2488,53790
+Lisp_Object MS_CDECL Ls20adf(2551,55073
+Lisp_Object MS_CDECL Ls21baf(2615,56357
+Lisp_Object MS_CDECL Ls21bbf(2691,58008
+Lisp_Object MS_CDECL Ls21bcf(2772,59836
+Lisp_Object MS_CDECL Ls21bdf(2853,61664
+
+opnames.c,0
+
+preserve.c,1847
+static void Cfwrite(37,1258
+static void set_dirused(172,6068
+static int32 bits32(198,6918
+static int32 bits24(206,7084
+static void setbits32(213,7216
+static void setbits24(221,7364
+#define I_INACTIVE 234,7715
+#define I_READING 235,7736
+#define I_WRITING 236,7757
+static directory *make_empty_directory(246,8004
+static void clear_entry(268,8670
+directory *open_pds(279,8963
+#define BUFFER_SIZE 324,10385
+void Iinit(394,13296
+void Icontext(409,13757
+void Irestore_context(436,14490
+static bool samename(457,14970
+static bool open_input(472,15313
+static int MS_CDECL for_qsort(510,16671
+static void sort_directory(520,16982
+static directory *enlarge_directory(526,17126
+static bool open_output(585,19348
+static void list_one_library(671,22344
+void Ilist(695,23296
+bool Imodulep(709,23655
+bool IopenRoot(743,24809
+bool Iopen(769,25654
+bool Iopen_help(813,27230
+bool Idelete(838,28012
+#define update_crc(update_crc878,29340
+static int validate_checksum(886,29641
+static int put_checksum(904,30173
+bool Icopy(912,30422
+bool IcloseInput(1004,33365
+bool IcloseOutput(1017,33710
+bool finished_with(1055,35293
+bool Ifinished(1120,37709
+int Igetc(1139,38241
+#define FREAD_CHUNK 1156,38613
+int32 Iread(1159,38648
+long int Ioutsize(1206,40051
+bool Iputc(1211,40108
+#define FWRITE_CHUNK 1224,40385
+bool Iwrite(1226,40414
+#define PACK_PAGE_OFFSET(PACK_PAGE_OFFSET1258,41503
+static void unadjust(1260,41562
+static void unadjust_consheap(1310,43334
+static void convert_word_order(1328,43937
+static struct entry_lookupentry_lookup1338,44144
+static int MS_CDECL order_lookup_entries(1344,44252
+static void set_up_entry_lookup(1354,44559
+static int32 code_up_fn(1372,45122
+static void unadjust_vecheap(1387,45535
+static void unadjust_bpsheap(1496,49477
+static void unadjust_all(1525,50429
+void preserve(1570,51931
+
+print.c,6976
+#define default_terminal_line_length 33,568
+#define default_terminal_line_length 35,627
+#define VPRINTF_CHUNK 38,675
+#define PRINT_BUFSIZE 43,754
+void ensure_screen(48,862
+void MS_CDECL term_printf(86,1745
+void MS_CDECL stdout_printf(98,1997
+void MS_CDECL err_printf(113,2372
+void MS_CDECL debug_printf(128,2741
+void MS_CDECL trace_printf(143,3108
+Lisp_Object Ltyo(158,3479
+int char_to_illegal(184,4414
+int char_from_illegal(195,4681
+int32 write_action_illegal(205,4934
+int32 write_action_file(215,5220
+int32 write_action_pipe(256,6367
+int32 write_action_pipe(295,7389
+int32 write_action_terminal(303,7493
+int32 write_action_list(343,8612
+Lisp_Object Lstreamp(376,9441
+Lisp_Object Lis_console(381,9553
+Lisp_Object make_stream_handle(390,9838
+Lisp_Object MS_CDECL Lmake_broadcast_stream_n(410,10403
+Lisp_Object Lmake_broadcast_stream_1(438,11041
+Lisp_Object Lmake_broadcast_stream_2(443,11163
+Lisp_Object MS_CDECL Lmake_concatenated_stream_n(448,11303
+Lisp_Object Lmake_concatenated_stream_1(476,11948
+Lisp_Object Lmake_concatenated_stream_2(481,12076
+Lisp_Object Lmake_synonym_stream(486,12222
+Lisp_Object Lmake_two_way_stream(503,12724
+Lisp_Object Lmake_echo_stream(521,13314
+Lisp_Object MS_CDECL Lmake_string_input_stream_n(539,13892
+Lisp_Object Lmake_string_input_stream_1(545,14055
+Lisp_Object Lmake_string_input_stream_2(550,14183
+Lisp_Object MS_CDECL Lmake_string_output_stream(555,14329
+Lisp_Object Lget_output_stream_string(566,14645
+Lisp_Object Lmake_function_stream(597,15426
+int char_to_terminal(611,15802
+int char_to_file(643,16648
+int char_to_synonym(651,16867
+int char_to_function(658,17015
+int char_to_broadcast(667,17269
+int32 write_action_synonym(686,17671
+int32 write_action_broadcast(702,18141
+int char_to_pipeout(729,18792
+int char_to_pipeout(739,19029
+char *get_string_data(746,19128
+static Lisp_Object Lfiledate(777,19859
+static Lisp_Object Lfilep(792,20299
+Lisp_Object MS_CDECL Ltmpnam(800,20479
+FILE *myopen(817,20864
+#define fopen(fopen823,20991
+#define DIRECTION_MASK 858,22088
+#define DIRECTION_PROBE 859,22129
+#define DIRECTION_INPUT 860,22170
+#define DIRECTION_OUTPUT 861,22211
+#define DIRECTION_IO 862,22252
+#define IF_EXISTS_MASK 863,22293
+#define IF_EXISTS_NIL 864,22335
+#define IF_EXISTS_OVERWRITE 865,22377
+#define IF_EXISTS_APPEND 866,22419
+#define IF_EXISTS_RENAME 867,22461
+#define IF_EXISTS_ERROR 868,22503
+#define IF_EXISTS_NEW_VERSION 869,22545
+#define IF_EXISTS_SUPERSEDE 870,22587
+#define IF_EXISTS_RENAME_AND_DELETE 871,22629
+#define IF_MISSING_MASK 872,22671
+#define IF_MISSING_NIL 873,22713
+#define IF_MISSING_CREATE 874,22755
+#define IF_MISSING_ERROR 875,22797
+#define OPEN_BINARY 876,22839
+#define OPEN_PIPE 877,22881
+Lisp_Object Lopen(879,22925
+Lisp_Object Lwrs(1130,31328
+Lisp_Object Lclose(1146,31816
+Lisp_Object Ltruename(1168,32413
+Lisp_Object Lcreate_directory(1186,32817
+Lisp_Object Lfile_readable(1198,33185
+Lisp_Object Lchange_directory(1210,33539
+Lisp_Object Lfile_writeable(1222,33907
+Lisp_Object Ldelete_file(1239,34359
+Lisp_Object Ldirectoryp(1251,34712
+Lisp_Object MS_CDECL Lget_current_directory(1264,35058
+Lisp_Object MS_CDECL Luser_homedir_pathname(1277,35438
+Lisp_Object MS_CDECL Lget_lisp_directory(1290,35804
+Lisp_Object Lrename_file(1308,36298
+static void make_dir_list(1336,37171
+Lisp_Object Llist_directory(1350,37488
+#define escape_yes 1375,38255
+#define escape_fold_down 1377,38323
+#define escape_fold_up 1378,38390
+#define escape_capitalize 1379,38457
+#define escape_binary 1381,38525
+#define escape_octal 1382,38592
+#define escape_hex 1383,38659
+#define escape_nolinebreak 1385,38693
+static void outprefix(1387,38761
+static Lisp_Object Lprint_precision(1408,39493
+static void prin_buf(1419,39856
+void internal_prin(1430,40088
+Lisp_Object prin(2349,74882
+void prin_to_terminal(2361,75148
+void prin_to_stdout(2380,75694
+void prin_to_error(2393,75977
+void prin_to_trace(2406,76256
+void prin_to_debug(2419,76535
+void prin_to_query(2432,76810
+void loop_print_stdout(2445,77085
+void loop_print_error(2467,77722
+void loop_print_trace(2484,78094
+void loop_print_debug(2501,78466
+void loop_print_query(2512,78698
+void loop_print_terminal(2523,78930
+static Lisp_Object prinhex(2534,79168
+static Lisp_Object prinoctal(2546,79455
+static Lisp_Object prinbinary(2558,79746
+Lisp_Object princ(2570,80039
+Lisp_Object print(2582,80297
+Lisp_Object printc(2596,80614
+void freshline_trace(2610,80923
+void freshline_debug(2619,81136
+int char_to_list(2628,81341
+static Lisp_Object explode(2661,82169
+int code_to_list(2675,82608
+static Lisp_Object exploden(2695,83038
+Lisp_Object Llinelength(2726,84398
+static MS_CDECL Lisp_Object Llinelength0(2745,85089
+Lisp_Object Lprin(2751,85237
+static Lisp_Object Lprinhex(2763,85530
+static Lisp_Object Lprinoctal(2772,85675
+static Lisp_Object Lprinbinary(2781,85824
+Lisp_Object MS_CDECL Lposn(2790,85975
+Lisp_Object MS_CDECL Lposn_1(2799,86243
+Lisp_Object MS_CDECL Llposn(2807,86496
+Lisp_Object Lpagelength(2814,86648
+Lisp_Object Lprinc_upcase(2820,86750
+Lisp_Object Lprinc_downcase(2833,87072
+Lisp_Object Lprinc(2846,87398
+Lisp_Object Lprin2a(2859,87700
+int count_character(2874,88051
+Lisp_Object Llengthc(2885,88296
+Lisp_Object Lprint(2900,88764
+Lisp_Object Lprintc(2921,89254
+Lisp_Object MS_CDECL Lterpri(2943,89744
+Lisp_Object MS_CDECL Lflush(2952,90004
+Lisp_Object Lflush1(2965,90344
+Lisp_Object Lttab(2972,90532
+Lisp_Object Lxtab(2984,90917
+Lisp_Object MS_CDECL Leject(2995,91238
+Lisp_Object Lexplode(3004,91496
+Lisp_Object Lexplodehex(3012,91667
+Lisp_Object Lexplodeoctal(3020,91852
+Lisp_Object Lexplodebinary(3028,92041
+Lisp_Object Lexplodec(3036,92232
+Lisp_Object Lexplode2lc(3044,92393
+Lisp_Object Lexplode2uc(3052,92573
+Lisp_Object Lexploden(3060,92751
+Lisp_Object Lexplodecn(3068,92924
+Lisp_Object Lexplode2lcn(3076,93087
+Lisp_Object Lexplode2ucn(3084,93269
+static FILE *binary_open(3101,93810
+static Lisp_Object Lbinary_open_output(3119,94319
+int binary_outchar(3126,94512
+static Lisp_Object Lbinary_prin1(3134,94691
+static Lisp_Object Lbinary_princ(3148,95102
+static Lisp_Object Lbinary_prinbyte(3162,95496
+static Lisp_Object Lbinary_prin2(3172,95781
+static Lisp_Object Lbinary_prin3(3183,96108
+static Lisp_Object Lbinary_prinfloat(3195,96477
+static Lisp_Object MS_CDECL Lbinary_terpri(3214,97104
+static Lisp_Object MS_CDECL Lbinary_close_output(3221,97309
+static Lisp_Object Lbinary_open_input(3231,97567
+static Lisp_Object Lbinary_select_input(3244,97933
+static Lisp_Object MS_CDECL Lbinary_readbyte(3254,98247
+static Lisp_Object MS_CDECL Lbinary_read2(3262,98525
+static Lisp_Object MS_CDECL Lbinary_read3(3273,98894
+static Lisp_Object MS_CDECL Lbinary_read4(3285,99328
+static Lisp_Object MS_CDECL Lbinary_readfloat(3299,99854
+static Lisp_Object MS_CDECL Lbinary_close_input(3319,100654
+static Lisp_Object Lopen_library(3338,101339
+static Lisp_Object Lopen_library_1(3369,102402
+static Lisp_Object Lclose_library(3374,102519
+static Lisp_Object Llibrary_name(3381,102722
+
+procl.c,130
+I have just manufactured a version of CSL that is 1,0
+static int iget(55,2418
+static void iput(62,2516
+int MS_CDECL main(72,2646
+
+read.c,4125
+#define CTRL_C 29,468
+#define CTRL_D 30,488
+#define boffo_char(boffo_char40,632
+Lisp_Object make_string(43,671
+static Lisp_Object copy_string(61,1159
+Lisp_Object MS_CDECL Lbatchp(82,1730
+Lisp_Object Lgetenv(104,2609
+Lisp_Object Lsystem(135,3371
+static unsigned32 hash_lisp_string_with_length(166,4207
+unsigned32 hash_lisp_string(226,6507
+static int value_in_radix(234,6696
+Lisp_Object intern(255,7346
+Lisp_Object make_undefined_symbol(544,15999
+Lisp_Object make_symbol(549,16119
+static bool add_to_hash(647,19774
+static Lisp_Object rehash(678,20828
+static Lisp_Object add_to_externals(789,24064
+static Lisp_Object add_to_internals(849,26392
+static int my_memcmp(892,27681
+#define memcmp(memcmp906,28093
+static Lisp_Object lookup(912,28185
+static int ordersymbol(979,31040
+static int ordpv(1047,33321
+#define flagged_noncom(flagged_noncom1097,35140
+static int orderp(1100,35231
+Lisp_Object Lorderp(1178,37953
+static bool remob(1189,38181
+static Lisp_Object Lmake_symbol(1239,39714
+Lisp_Object MS_CDECL Lgensym(1281,40860
+Lisp_Object Lgensym1(1327,41952
+Lisp_Object Lgensym2(1380,43577
+static Lisp_Object Lgensymp(1424,44860
+Lisp_Object iintern(1432,45095
+Lisp_Object Lintern_2(1591,50027
+Lisp_Object Lintern(1635,51065
+static Lisp_Object Lfind_symbol(1640,51156
+Lisp_Object Lfind_symbol_1(1669,51828
+static Lisp_Object Lextern(1674,51933
+static Lisp_Object Lextern_1(1723,54086
+static Lisp_Object Limport(1728,54188
+static Lisp_Object Limport_1(1751,54919
+Lisp_Object ndelete(1758,55029
+Lisp_Object Lunintern_2(1783,55563
+Lisp_Object Lunintern(1842,57555
+static Lisp_Object Lkeywordp(1849,57669
+#define TTYBUF_SIZE 1865,58144
+int char_from_terminal(1876,58341
+Lisp_Object Lrds(2040,64529
+Lisp_Object MS_CDECL Lrtell_1(2052,64941
+Lisp_Object MS_CDECL Lrtell(2061,65202
+Lisp_Object Lrseekend(2077,65901
+Lisp_Object Lrseek_2(2085,66172
+Lisp_Object Lrseek(2096,66560
+static void skip_whitespace(2122,67546
+static Lisp_Object read_list(2161,68336
+static Lisp_Object list_to_vector(2256,70774
+static bool evalfeature(2276,71138
+static Lisp_Object read_hash(2312,72095
+bool is_constituent(2513,77852
+static Lisp_Object backquote_expander(2543,78855
+static void packbyte(2587,80073
+static Lisp_Object read_s(2617,80913
+int char_from_synonym(2990,94316
+int char_from_concatenated(2997,94516
+int char_from_echo(3028,95222
+int char_from_file(3038,95489
+int32 read_action_illegal(3056,96054
+int32 read_action_file(3065,96301
+int32 read_action_output_file(3096,97206
+int32 read_action_terminal(3112,97573
+int32 read_action_synonym(3134,97992
+int32 read_action_concatenated(3149,98402
+int32 read_action_list(3176,99048
+Lisp_Object MS_CDECL Lread(3202,99653
+static Lisp_Object MS_CDECL Lwhere_was_that(3242,100697
+Lisp_Object Lread_1(3258,101083
+int char_from_list(3299,102115
+Lisp_Object Lcompress(3328,103043
+Lisp_Object Llist_to_string(3346,103630
+Lisp_Object Llist_to_symbol(3368,104387
+void read_eval_print(3381,104706
+Lisp_Object Lrdf4(3562,110442
+Lisp_Object Lrdf1(3717,114661
+Lisp_Object Lrdf2(3722,114781
+Lisp_Object MS_CDECL Lrdfn(3727,114916
+#define spool_name 3742,115373
+#define spool_name 3744,115408
+Lisp_Object Lspool(3747,115443
+static MS_CDECL Lspool0(3797,116888
+#define STARTING_SIZE_X 3805,117027
+#define STARTING_SIZE_I 3806,117054
+Lisp_Object make_package(3808,117082
+static Lisp_Object want_a_string(3836,118012
+static Lisp_Object Lfind_package(3850,118403
+Lisp_Object find_package(3888,119732
+static Lisp_Object Luse_package(3913,120619
+static Lisp_Object MS_CDECL Lmake_package(3958,121833
+static Lisp_Object Lmake_package_2(4051,124081
+static Lisp_Object Lmake_package_1(4056,124208
+static Lisp_Object MS_CDECL Llist_all_packages(4061,124317
+Lisp_Object Lsetpchar(4070,124478
+Lisp_Object MS_CDECL Ltyi(4085,124765
+Lisp_Object Lreadch1(4103,125245
+Lisp_Object MS_CDECL Lreadch(4127,125931
+Lisp_Object Lpeekch2(4133,126079
+Lisp_Object Lpeekch1(4166,126980
+Lisp_Object MS_CDECL Lpeekch(4171,127097
+Lisp_Object Lunreadch2(4177,127250
+Lisp_Object Lunreadch(4191,127624
+Lisp_Object Lreadline1(4196,127738
+Lisp_Object MS_CDECL Lreadline(4225,128463
+
+restart.c,1442
+#define FREAD_BUFFER_SIZE 141,4463
+#define FREAD_BUFFER_SIZE 143,4531
+static void Cfread(149,4683
+#define flip_bytes(flip_bytes297,8438
+static unsigned32 flip_bytes_fn(299,8500
+#define flip_halfwords(flip_halfwords309,8734
+static unsigned32 flip_halfwords_fn(311,8804
+void convert_fp_rep(321,9040
+static void adjust(355,10147
+static void adjust_consheap(385,11038
+static void adjust_vecheap(552,20968
+static void adjust_bpsheap(734,28896
+static void adjust_all(774,30130
+static void *allocate_page(804,30875
+void memory_comment(816,31208
+static void identify_one(827,31393
+static void identify_page(871,32489
+void identify_page_types(879,32662
+Cons_Cell *memory_reference(892,33108
+void *my_malloc(987,36904
+#define EXPLICIT_FREE_AT_END_OF_RUN 992,36998
+static void my_free(1013,37553
+static void *my_malloc_1(1058,38709
+static void *my_malloc_2(1119,41154
+static void init_heap_segments(1133,41495
+static void abandon(1326,49216
+void drop_heap_segments(1342,49591
+static void create_symbols(1399,51744
+static void warm_setup(1406,51932
+static void cold_setup(1525,55605
+#define INIT_OBVECI_SIZE 1576,57340
+#define INIT_OBVECX_SIZE 1584,57618
+#define boffo_size 1611,58522
+#define make_keyword(make_keyword1686,61770
+#define make_keyword(make_keyword1693,62089
+#define make_constant(make_constant1711,62883
+void setup(1792,66379
+void copy_into_nilseg(2491,94424
+void copy_out_of_nilseg(2641,100956
+
+scandir.c,1203
+#define TABLE_INCREMENT 75,2629
+static int more_files(77,2657
+int alphasort_files(91,3082
+static void exall(98,3330
+void scan_directory(164,5565
+void scan_files(177,5894
+#define SCANDIR_KNOWN 194,6320
+#define TABLE_INCREMENT 210,6641
+static int more_files(212,6669
+int alphasort_files(225,7059
+static void exall(232,7282
+void scan_directory(295,9325
+void scan_files(308,9654
+#define SCANDIR_KNOWN 325,10080
+#define TABLE_INCREMENT 344,10392
+static int more_files(346,10420
+int alphasort_files(359,10788
+static void exall(370,11107
+static void scan_file(417,12487
+void scan_directory(431,12969
+void scan_files(441,13254
+#define SCANDIR_KNOWN 451,13527
+static void find_current_directory(464,13859
+#define AT_ONCE 519,15370
+#define NAME_LENGTH 520,15405
+static void exall(526,15594
+void scan_directory(594,17954
+void scan_files(607,18456
+#define SCANDIR_KNOWN 620,18950
+static void exall(628,19055
+void scan_directory(686,20837
+void scan_files(699,21166
+#define SCANDIR_KNOWN 712,21487
+static int remove_dot(725,21879
+static void exall(738,22254
+static void scan_file(761,22919
+void scan_directory(774,23369
+void scan_files(784,23654
+#define SCANDIR_KNOWN 794,23931
+
+showmem.c,59
+int main(25,833
+#define X(X53,1677
+#define Y(Y54,1717
+
+sockets.c,859
+#define RealSockets32,699
+Lisp_Object Linit_lm(36,739
+void displmmsg(61,1222
+Lisp_Object MS_CDECL Lclose_lm(85,1778
+Lisp_Object Linit_lm(95,1956
+int32 ccl2int(118,2784
+Lisp_Object LopenServer(127,2986
+Lisp_Object LsockGetInt(135,3239
+Lisp_Object LsockSendInt(140,3387
+Lisp_Object MS_CDECL LsockGetStringBuf(147,3608
+Lisp_Object MS_CDECL LsockSendStringLen(168,4293
+Lisp_Object LsockGetFloat(188,4976
+Lisp_Object LsockSendFloat(194,5155
+Lisp_Object LsockSendWakeup(203,5494
+Lisp_Object MS_CDECL LserverSwitch(209,5710
+Lisp_Object MS_CDECL LflushStdout(215,5870
+Lisp_Object LsockSendSignal(221,6027
+Lisp_Object LprintLine(228,6324
+Lisp_Object MS_CDECL LplusInfinity(242,6710
+Lisp_Object MS_CDECL LminusInfinity(248,6897
+Lisp_Object MS_CDECL Lnanq(254,7087
+Lisp_Object sock_error1(260,7248
+Lisp_Object sock_error2(265,7385
+Lisp_Object MS_CDECL sock_error0(270,7541
+
+stubs.c,35
+static Lisp_Object Lsample(24,496
+
+sysarm.c,2553
+#define template 23,375
+#define Wimp_SendMessage 39,722
+#define OS_EvaluateExpression 40,770
+#define OS_Claim 41,818
+#define OS_Release 42,866
+#define OS_DelinkApplication 43,914
+#define OS_RelinkApplication 44,962
+#define Hourglass_On 45,1010
+#define Hourglass_Off 46,1058
+#define Wimp_ReadSysInfo 47,1106
+static void process_file_name(61,1406
+FILE *open_file(289,9069
+int create_directory(299,9357
+int delete_file(306,9523
+bool file_exists(313,9688
+char *my_getenv(335,10333
+int my_system(342,10426
+static void get_home_directory(358,10770
+static void get_users_home_directory(366,10910
+#define FILEHANDLE 381,11229
+struct FILE_COPYFILE_COPY383,11253
+FILE *my_popen(409,12358
+void my_pipe_putc(416,12476
+void my_pipe_flush(424,12664
+void my_pclose(446,13280
+int batchp(452,13326
+int32 ok_to_grab_memory(461,13465
+char *find_image_directory(478,13868
+typedef union count_positioncount_position605,18400
+} count_position;count_position618,18746
+#define file_name_map_start 620,18765
+#define file_name_map_end 621,18824
+#define word_roundup(word_roundup623,18884
+static char *find_file_map(625,18941
+void show_counts(642,19394
+void write_profile(682,21007
+#define MInfo 780,24714
+#define MQuit 781,24760
+#define Vfield 783,24781
+#define MMInt 785,24844
+#define MMAbort 786,24893
+#define MMQuit 787,24913
+#define MMSave 788,24933
+#define MMSelAll 789,24953
+#define MMCopy 790,24973
+#define MMDelete 791,24993
+#define MMClear 792,25013
+#define BUFLEN 794,25034
+typedef enum wimp_source_twimp_source_t803,25181
+} wimp_source_t;wimp_source_t808,25267
+#define TTYBUF_SIZE 812,25336
+void remove_ticker(849,26315
+void add_ticker(859,26487
+static void delink(874,26745
+static void relink(879,26847
+static BOOL enlarge_clipboard(887,27016
+static void clip_selection(897,27256
+static void CSL_txthandler(912,27708
+#define SCROLLBACK 1085,34343
+#define STDOUT_BUFSIZE 1086,34367
+#define LONGEST_PRINTF 1087,34395
+static BOOL saveproc(1093,34511
+static BOOL sendproc(1106,34866
+static void Main_menuproc(1123,35261
+static bool CSL_create_txt(1183,36705
+static void CSL_clickproc(1226,37851
+static void Iconbar_menuproc(1235,38044
+static void CSL_load_events(1261,38534
+void flush_screen(1298,39759
+void pause_for_user(1340,40894
+void putc_stdout(1367,41867
+void report_time(1383,42238
+void report_space(1400,42778
+static void remove_hourglass(1413,42984
+int wimpget(1421,43117
+static int CSL_initialise(1488,45224
+void accept_tick(1518,46007
+void start_up_window_manager(1567,47484
+
+syscwin.c,1278
+void CALLBACK deal_with_tick(42,675
+void add_ticker(74,1617
+void MS_CDECL remove_ticker(97,2216
+void accept_tick(117,2548
+void putc_stdout(155,3764
+void pause_for_user(161,3884
+void flush_screen(168,3949
+void start_up_window_manager(173,4000
+int wimpget(193,4396
+void report_time(217,4860
+void report_space(224,5037
+#define exit(exit235,5250
+static void eight_plus_three(262,6342
+static void process_file_name(287,6775
+FILE *open_file(502,14059
+int change_directory(511,14346
+int create_directory(532,14887
+bool file_exists(539,15053
+static void remove_files(549,15336
+int delete_file(565,15690
+int directoryp(573,15881
+extern char *get_truename(580,16082
+int get_current_directory(657,18496
+#define MAX_NUMBER_OF_FILES 673,18833
+int list_directory_members(675,18867
+void list_directory_members(715,19989
+int file_readable(725,20191
+int file_writeable(736,20482
+int rename_file(747,20799
+int my_system(771,21898
+osMakeReadPipe(832,23682
+osRunRedirect(870,24664
+FILE *my_popen(911,25513
+void my_pclose(921,25694
+char *my_getenv(931,25802
+int get_home_directory(952,26285
+int get_users_home_directory(960,26444
+int batchp(979,26988
+char *find_image_directory(989,27237
+void MS_CDECL sigint_handler(1013,27787
+int32 ok_to_grab_memory(1028,28053
+
+sysdos.c,1031
+static void process_file_name(31,570
+FILE *open_file(202,6582
+int create_directory(214,6913
+int change_directory(221,7079
+int get_current_directory(242,7620
+static void remove_files(252,7819
+int delete_file(259,7993
+int directoryp(267,8184
+int current_directory(276,8396
+void list_directory_members(282,8506
+int file_readable(290,8700
+int file_writeable(304,9041
+int rename_file(318,9383
+bool file_exists(329,9778
+int my_system(339,10061
+char *my_getenv(348,10172
+int get_home_directory(376,10837
+int get_users_home_directory(384,10996
+int batchp(403,11540
+char *find_image_directory(413,11780
+void accept_tick(457,12978
+typedef void __interrupt __far interrupt_handler(interrupt_handler482,13430
+static void before_tick(491,13627
+static void __interrupt deal_with_tick(495,13658
+static void after_tick(530,14871
+void MS_CDECL remove_ticker(538,14942
+void MS_CDECL sigint_handler(550,15163
+void set_sigint(562,15423
+void add_ticker(569,15578
+void poll_for_attn(584,15913
+int32 ok_to_grab_memory(593,16052
+
+sysmac.c,544
+FILE *open_file(32,583
+char *my_getenv(229,7242
+int my_system(234,7294
+static void get_home_directory(239,7371
+static void get_users_home_directory(247,7538
+int batchp(257,7770
+char *find_image_directory(267,8009
+int truncate_file(324,10264
+void accept_tick(332,10435
+static pascal void deal_with_tick(347,10696
+void remove_ticker(381,11742
+void add_ticker(386,11815
+typedef struct xTMTaskxTMTask397,12064
+} xTMTask;xTMTask401,12131
+static pascal void do_tick(403,12143
+void remove_ticker(436,13027
+void add_ticker(441,13089
+
+sysstmac.c,1955
+static void process_file_name(31,590
+FILE *open_file(220,6913
+bool file_exists(229,7171
+char *my_getenv(244,7623
+myexec(250,7679
+int my_system(300,8764
+void my_pclose(305,8814
+int create_directory(310,8855
+int delete_file(317,9000
+static void get_home_directory(324,9160
+static void get_users_home_directory(332,9327
+int batchp(342,9559
+char *find_image_directory(354,9834
+int truncate_file(416,12059
+void add_ticker(426,12298
+void remove_ticker(433,12453
+#define HELP_DATA 456,13116
+#define HELP_INDEX 459,13172
+#define ADMIN_MENU 471,13411
+#define MMFile 472,13437
+#define MMSaveas 473,13457
+#define MMHelp 474,13477
+#define MMHelpSel 475,13526
+#define MMHelpAsk 476,13546
+#define MMInt 477,13566
+#define MMAbort 478,13586
+#define MMPause 479,13606
+#define MMDummy 480,13626
+#define MMTime 481,13646
+#define MMSpace 482,13666
+#define MMOTime 483,13687
+#define EDIT_MENU 485,13709
+#define MMCut 486,13734
+#define MMCopy 487,13754
+#define MMPaste 488,13774
+#define MMClear 489,13794
+#define MMSelAll 490,13814
+#define HELP_LEN 492,13835
+#define HELP_MENU 493,13857
+static struct hlp hlp494,13882
+#define LOAD_MENU 502,13996
+#define LIB_MENU 514,14386
+#define SWITCH_MENU 523,14733
+static struct sw sw524,14760
+ get_full_name(563,16871
+static void menusetup(600,18066
+static fixmenus(693,21106
+#define TTYBUF_SIZE 715,21694
+#define STDOUT_BUFSIZE 722,21855
+#define LONGEST_PRINTF 723,21883
+void start_up_window_manager(730,22019
+helpwindow(755,22847
+void help_buffer(797,24119
+void help_selection(810,24409
+void event_loop(824,24658
+void poll_for_attn(1386,42852
+void flush_screen(1685,51452
+void accept_tick(1708,52109
+void report_time(1742,53030
+void report_space(1750,53291
+void pause_for_user(1756,53460
+int wimpget(1781,54345
+void putc_stdout(1843,56426
+void vfprintf_stdout(1861,56836
+#define NARGS 1884,57388
+init_command_line(1898,57659
+parse(1936,58556
+int wgetargs(1965,59133
+
+sysunix.c,980
+#define _XOPEN_SOURCE16,341
+static void process_file_name(32,592
+FILE *open_file(178,5604
+int change_directory(204,6521
+int create_directory(239,7452
+static void remove_files(246,7624
+int delete_file(255,7810
+int get_current_directory(272,8194
+int directoryp(293,8683
+extern char *get_truename(303,8930
+int file_readable(372,11055
+int file_writeable(388,11506
+int rename_file(403,11983
+int list_directory_members(414,12330
+void list_directory_members(462,13635
+bool file_exists(472,13837
+char *my_getenv(496,14603
+char *my_getenv(505,14727
+int my_system(512,14787
+FILE *my_popen(517,14837
+void my_pclose(526,14952
+int get_home_directory(545,15457
+int get_users_home_directory(559,15766
+int get_home_directory(569,16020
+int get_users_home_directory(581,16250
+clock_t read_clock(602,16965
+void accept_tick(622,17377
+int batchp(630,17439
+int batchp(638,17509
+int batchp(646,17606
+char *find_image_directory(662,17943
+int32 ok_to_grab_memory(712,19315
+
+sysvms.c,287
+FILE *open_file(27,623
+char *my_getenv(186,6046
+int my_system(191,6098
+static void get_home_directory(203,6404
+static void get_users_home_directory(208,6519
+unsigned long int read_clock(224,7175
+int batchp(243,7746
+char *find_image_directory(254,7986
+int truncate_file(291,8888
+
+sysxwin.c,1654
+static void process_file_name(23,421
+FILE *open_file(169,5373
+int create_directory(195,6290
+int delete_file(202,6456
+bool file_exists(209,6621
+char *my_getenv(233,7387
+char *my_getenv(242,7511
+int my_system(249,7571
+FILE *my_popen(254,7621
+void my_pclose(263,7724
+static void get_home_directory(289,8485
+static void get_users_home_directory(295,8601
+static void get_home_directory(304,8832
+static void get_users_home_directory(309,8947
+clock_t read_clock(329,9647
+int batchp(352,10096
+int batchp(360,10166
+int batchp(368,10263
+char *find_image_directory(384,10600
+int truncate_file(425,11737
+#define SYS_ftruncate 428,11797
+#define ADD_TICKER 445,12267
+#define REMOVE_TICKER 446,12299
+void remove_ticker(447,12337
+void add_ticker(453,12451
+void wimp_tick(460,12556
+#define INT_MENU 501,13562
+#define MMInt 502,13583
+#define MMAbort 503,13632
+#define MMTime	504,13652
+#define MMSpace	505,13671
+#define MMOTime	506,13691
+#define EDIT_MENU 508,13712
+#define MMCut 509,13734
+#define MMCopy 510,13754
+#define MMPaste 511,13774
+#define MMClear 512,13794
+#define MMSelAll 513,13814
+#define LOAD_MENU 515,13835
+#define LIB_MENU 522,14040
+#define SWITCH_MENU 531,14346
+static struct sw sw532,14370
+static void menusetup(545,14873
+static fixmenus(581,15812
+#define TTYBUF_SIZE 592,16061
+#define STDOUT_BUFSIZE 596,16178
+#define LONGEST_PRINTF 597,16206
+void start_up_window_manager(603,16322
+void event_loop(636,17443
+void flush_screen(803,21316
+void accept_tick(816,21564
+void report_time(845,22267
+void report_space(853,22532
+void pause_for_user(859,22705
+int wimpget(884,23576
+void putc_stdout(916,24595
+
+xdrfuns.c,286
+#define int32 32,720
+#define int64 33,744
+Lisp_Object LxdrOpen(45,925
+#define XW(XW65,1513
+Lisp_Object LxdrWrite(67,1578
+#define int2ccl(int2ccl136,3688
+Lisp_Object LxdrRead(138,3787
+Lisp_Object LxdrOpen(202,5847
+Lisp_Object LxdrWrite(208,5993
+Lisp_Object LxdrRead(214,6144
+
+arith.h,1307
+#define header_arith_h 6,141
+#define TWO_32 8,167
+#define TWO_31 9,221
+#define TWO_24 10,275
+#define TWO_22 11,329
+#define TWO_21 12,383
+#define TWO_20 13,437
+#define M2_31_1 15,492
+#define _pi 17,547
+#define _half_pi 18,588
+#define boole_clr 20,630
+#define boole_and 21,652
+#define boole_andc2 22,674
+#define boole_1 23,696
+#define boole_andc1 24,718
+#define boole_2 25,740
+#define boole_xor 26,762
+#define boole_ior 27,784
+#define boole_nor 28,806
+#define boole_eqv 29,828
+#define boole_c2 30,850
+#define boole_orc2 31,873
+#define boole_c1 32,896
+#define boole_orc1 33,919
+#define boole_nand 34,942
+#define boole_set 35,965
+#define top_bit_set(top_bit_set46,1401
+#define top_bit(top_bit47,1447
+#define set_top_bit(set_top_bit48,1500
+#define clear_top_bit(clear_top_bit49,1549
+#define signed_overflow(signed_overflow50,1595
+#define IMULTIPLY 60,2047
+#define Dmultiply(Dmultiply61,2107
+#define IDIVIDE 66,2405
+#define Ddivide(Ddivide67,2425
+#define Ddiv10_9(Ddiv10_972,2752
+#define Dmultiply(Dmultiply74,2820
+#define Ddivide(Ddivide75,2896
+#define Ddiv10_9(Ddiv10_976,2964
+#define fix_mask 79,3036
+#define fixnum_minusp(fixnum_minusp81,3068
+#define bignum_minusp(bignum_minusp82,3110
+typedef struct ComplexComplex140,5840
+} Complex;Complex144,5899
+
+bytes.h,7579
+#define header_bytes_h 10,179
+#define JUMP_BACK 12,205
+#define JUMP_LONG 13,274
+#define OP_LOADLOC 15,344
+#define OP_LOADLOC0 16,381
+#define OP_LOADLOC1 17,418
+#define OP_LOADLOC2 18,455
+#define OP_LOADLOC3 19,492
+#define OP_LOADLOC4 20,529
+#define OP_LOADLOC5 21,566
+#define OP_LOADLOC6 22,603
+#define OP_LOADLOC7 23,640
+#define OP_LOADLOC8 24,677
+#define OP_LOADLOC9 25,714
+#define OP_LOADLOC10 26,751
+#define OP_LOADLOC11 27,788
+#define OP_LOC0LOC1 28,825
+#define OP_LOC1LOC2 29,862
+#define OP_LOC2LOC3 30,899
+#define OP_LOC1LOC0 31,936
+#define OP_LOC2LOC1 32,973
+#define OP_LOC3LOC2 33,1010
+#define OP_VNIL 34,1047
+#define OP_LOADLIT 35,1084
+#define OP_LOADLIT1 36,1121
+#define OP_LOADLIT2 37,1158
+#define OP_LOADLIT3 38,1195
+#define OP_LOADLIT4 39,1232
+#define OP_LOADLIT5 40,1269
+#define OP_LOADLIT6 41,1306
+#define OP_LOADLIT7 42,1343
+#define OP_LOADFREE 43,1380
+#define OP_LOADFREE1 44,1417
+#define OP_LOADFREE2 45,1454
+#define OP_LOADFREE3 46,1491
+#define OP_LOADFREE4 47,1528
+#define OP_STORELOC 48,1565
+#define OP_STORELOC0 49,1602
+#define OP_STORELOC1 50,1639
+#define OP_STORELOC2 51,1676
+#define OP_STORELOC3 52,1713
+#define OP_STORELOC4 53,1750
+#define OP_STORELOC5 54,1787
+#define OP_STORELOC6 55,1824
+#define OP_STORELOC7 56,1861
+#define OP_STOREFREE 57,1898
+#define OP_STOREFREE1 58,1935
+#define OP_STOREFREE2 59,1972
+#define OP_STOREFREE3 60,2009
+#define OP_LOADLEX 61,2046
+#define OP_STORELEX 62,2083
+#define OP_CLOSURE 63,2120
+#define OP_CARLOC0 64,2157
+#define OP_CARLOC1 65,2194
+#define OP_CARLOC2 66,2231
+#define OP_CARLOC3 67,2268
+#define OP_CARLOC4 68,2305
+#define OP_CARLOC5 69,2342
+#define OP_CARLOC6 70,2379
+#define OP_CARLOC7 71,2416
+#define OP_CARLOC8 72,2453
+#define OP_CARLOC9 73,2490
+#define OP_CARLOC10 74,2527
+#define OP_CARLOC11 75,2564
+#define OP_CDRLOC0 76,2601
+#define OP_CDRLOC1 77,2638
+#define OP_CDRLOC2 78,2675
+#define OP_CDRLOC3 79,2712
+#define OP_CDRLOC4 80,2749
+#define OP_CDRLOC5 81,2786
+#define OP_CAARLOC0 82,2823
+#define OP_CAARLOC1 83,2860
+#define OP_CAARLOC2 84,2897
+#define OP_CAARLOC3 85,2934
+#define OP_CALL0 86,2971
+#define OP_CALL1 87,3008
+#define OP_CALL2 88,3045
+#define OP_CALL2R 89,3082
+#define OP_CALL3 90,3119
+#define OP_CALLN 91,3156
+#define OP_CALL0_0 92,3193
+#define OP_CALL0_1 93,3230
+#define OP_CALL0_2 94,3267
+#define OP_CALL0_3 95,3304
+#define OP_CALL1_0 96,3341
+#define OP_CALL1_1 97,3378
+#define OP_CALL1_2 98,3415
+#define OP_CALL1_3 99,3452
+#define OP_CALL1_4 100,3489
+#define OP_CALL1_5 101,3526
+#define OP_CALL2_0 102,3563
+#define OP_CALL2_1 103,3600
+#define OP_CALL2_2 104,3637
+#define OP_CALL2_3 105,3674
+#define OP_CALL2_4 106,3711
+#define OP_BUILTIN0 107,3748
+#define OP_BUILTIN1 108,3785
+#define OP_BUILTIN2 109,3822
+#define OP_BUILTIN2R 110,3859
+#define OP_BUILTIN3 111,3896
+#define OP_APPLY1 112,3933
+#define OP_APPLY2 113,3970
+#define OP_APPLY3 114,4007
+#define OP_APPLY4 115,4044
+#define OP_JCALL 116,4081
+#define OP_JCALLN 117,4118
+#define OP_JUMP 118,4155
+#define OP_JUMP_B 119,4192
+#define OP_JUMP_L 120,4229
+#define OP_JUMP_BL 121,4266
+#define OP_JUMPNIL 122,4303
+#define OP_JUMPNIL_B 123,4340
+#define OP_JUMPNIL_L 124,4377
+#define OP_JUMPNIL_BL 125,4414
+#define OP_JUMPT 126,4451
+#define OP_JUMPT_B 127,4488
+#define OP_JUMPT_L 128,4525
+#define OP_JUMPT_BL 129,4562
+#define OP_JUMPATOM 130,4599
+#define OP_JUMPATOM_B 131,4636
+#define OP_JUMPATOM_L 132,4673
+#define OP_JUMPATOM_BL 133,4710
+#define OP_JUMPNATOM 134,4747
+#define OP_JUMPNATOM_B 135,4784
+#define OP_JUMPNATOM_L 136,4821
+#define OP_JUMPNATOM_BL 137,4858
+#define OP_JUMPEQ 138,4895
+#define OP_JUMPEQ_B 139,4932
+#define OP_JUMPEQ_L 140,4969
+#define OP_JUMPEQ_BL 141,5006
+#define OP_JUMPNE 142,5043
+#define OP_JUMPNE_B 143,5080
+#define OP_JUMPNE_L 144,5117
+#define OP_JUMPNE_BL 145,5154
+#define OP_JUMPEQUAL 146,5191
+#define OP_JUMPEQUAL_B 147,5228
+#define OP_JUMPEQUAL_L 148,5265
+#define OP_JUMPEQUAL_BL 149,5302
+#define OP_JUMPNEQUAL 150,5339
+#define OP_JUMPNEQUAL_B 151,5376
+#define OP_JUMPNEQUAL_L 152,5413
+#define OP_JUMPNEQUAL_BL 153,5450
+#define OP_JUMPL0NIL 154,5487
+#define OP_JUMPL0T 155,5524
+#define OP_JUMPL1NIL 156,5561
+#define OP_JUMPL1T 157,5598
+#define OP_JUMPL2NIL 158,5635
+#define OP_JUMPL2T 159,5672
+#define OP_JUMPL3NIL 160,5709
+#define OP_JUMPL3T 161,5746
+#define OP_JUMPL4NIL 162,5783
+#define OP_JUMPL4T 163,5820
+#define OP_JUMPST0NIL 164,5857
+#define OP_JUMPST0T 165,5894
+#define OP_JUMPST1NIL 166,5931
+#define OP_JUMPST1T 167,5968
+#define OP_JUMPST2NIL 168,6005
+#define OP_JUMPST2T 169,6042
+#define OP_JUMPL0ATOM 170,6079
+#define OP_JUMPL0NATOM 171,6116
+#define OP_JUMPL1ATOM 172,6153
+#define OP_JUMPL1NATOM 173,6190
+#define OP_JUMPL2ATOM 174,6227
+#define OP_JUMPL2NATOM 175,6264
+#define OP_JUMPL3ATOM 176,6301
+#define OP_JUMPL3NATOM 177,6338
+#define OP_JUMPFREE1NIL 178,6375
+#define OP_JUMPFREE1T 179,6412
+#define OP_JUMPFREE2NIL 180,6449
+#define OP_JUMPFREE2T 181,6486
+#define OP_JUMPFREE3NIL 182,6523
+#define OP_JUMPFREE3T 183,6560
+#define OP_JUMPFREE4NIL 184,6597
+#define OP_JUMPFREE4T 185,6634
+#define OP_JUMPFREENIL 186,6671
+#define OP_JUMPFREET 187,6708
+#define OP_JUMPLIT1EQ 188,6745
+#define OP_JUMPLIT1NE 189,6782
+#define OP_JUMPLIT2EQ 190,6819
+#define OP_JUMPLIT2NE 191,6856
+#define OP_JUMPLIT3EQ 192,6893
+#define OP_JUMPLIT3NE 193,6930
+#define OP_JUMPLIT4EQ 194,6967
+#define OP_JUMPLIT4NE 195,7004
+#define OP_JUMPLITEQ 196,7041
+#define OP_JUMPLITNE 197,7078
+#define OP_JUMPB1NIL 198,7115
+#define OP_JUMPB1T 199,7152
+#define OP_JUMPB2NIL 200,7189
+#define OP_JUMPB2T 201,7226
+#define OP_JUMPFLAGP 202,7263
+#define OP_JUMPNFLAGP 203,7300
+#define OP_JUMPEQCAR 204,7337
+#define OP_JUMPNEQCAR 205,7374
+#define OP_CATCH 206,7411
+#define OP_CATCH_B 207,7448
+#define OP_CATCH_L 208,7485
+#define OP_CATCH_BL 209,7522
+#define OP_UNCATCH 210,7559
+#define OP_THROW 211,7596
+#define OP_PROTECT 212,7633
+#define OP_UNPROTECT 213,7670
+#define OP_PVBIND 214,7707
+#define OP_PVRESTORE 215,7744
+#define OP_FREEBIND 216,7781
+#define OP_FREERSTR 217,7818
+#define OP_EXIT 218,7855
+#define OP_NILEXIT 219,7892
+#define OP_LOC0EXIT 220,7929
+#define OP_LOC1EXIT 221,7966
+#define OP_LOC2EXIT 222,8003
+#define OP_PUSH 223,8040
+#define OP_PUSHNIL 224,8077
+#define OP_PUSHNIL2 225,8114
+#define OP_PUSHNIL3 226,8151
+#define OP_PUSHNILS 227,8188
+#define OP_POP 228,8225
+#define OP_LOSE 229,8262
+#define OP_LOSE2 230,8299
+#define OP_LOSE3 231,8336
+#define OP_LOSES 232,8373
+#define OP_SWOP 233,8410
+#define OP_EQ 234,8447
+#define OP_EQCAR 235,8484
+#define OP_EQUAL 236,8521
+#define OP_NUMBERP 237,8558
+#define OP_CAR 238,8595
+#define OP_CDR 239,8632
+#define OP_CAAR 240,8669
+#define OP_CADR 241,8706
+#define OP_CDAR 242,8743
+#define OP_CDDR 243,8780
+#define OP_CONS 244,8817
+#define OP_NCONS 245,8854
+#define OP_XCONS 246,8891
+#define OP_ACONS 247,8928
+#define OP_LENGTH 248,8965
+#define OP_LIST2 249,9002
+#define OP_LIST2STAR 250,9039
+#define OP_LIST3 251,9076
+#define OP_PLUS2 252,9113
+#define OP_ADD1 253,9150
+#define OP_DIFFERENCE 254,9187
+#define OP_SUB1 255,9224
+#define OP_TIMES2 256,9261
+#define OP_GREATERP 257,9298
+#define OP_LESSP 258,9335
+#define OP_FLAGP 259,9372
+#define OP_GET 260,9409
+#define OP_LITGET 261,9446
+#define OP_GETV 262,9483
+#define OP_QGETV 263,9520
+#define OP_QGETVN 264,9557
+#define OP_BIGSTACK 265,9594
+#define OP_BIGCALL 266,9631
+#define OP_ICASE 267,9668
+#define OP_FASTGET 268,9705
+#define OP_SPARE1 269,9742
+#define OP_SPARE2 270,9779
+
+clsyms.h,571
+#define header_clsyms_h 11,222
+#define nicknames_symbol 13,249
+#define use_symbol 14,326
+#define and_symbol 15,403
+#define or_symbol 16,480
+#define not_symbol 17,557
+#define reader_workspace 18,634
+#define named_character 19,711
+#define read_float_format 20,788
+#define short_float 21,876
+#define single_float 22,948
+#define double_float 23,1021
+#define long_float 24,1094
+#define bit_symbol 25,1165
+#define pathname_symbol 26,1229
+#define print_array_sym 27,1298
+#define read_base 28,1372
+#define initial_element 29,1444
+#define format_symbol 30,1521
+
+cslerror.h,1367
+#define header_cslerror_h 12,184
+#define GC_MESSAGES 36,1541
+#define FASL_MESSAGES 37,1568
+#define VERBOSE_MSGS 38,1595
+#define GC_MSG_BITS 39,1622
+#define HEADLINE_FLAG 41,1650
+#define MESSAGES_FLAG 42,1677
+#define verbos_flag 44,1705
+#define err_bad_car 51,1897
+#define err_bad_cdr 52,1955
+#define err_no_store 53,2013
+#define err_undefined_function_1 54,2070
+#define err_undefined_function_2 55,2127
+#define err_undefined_function_n 56,2184
+#define err_wrong_no_args 57,2241
+#define err_unbound_lexical 58,2314
+#define err_bad_rplac 59,2368
+#define err_bad_arith 60,2422
+#define err_redef_special 61,2481
+#define err_bad_arg 62,2535
+#define err_bad_declare 63,2600
+#define err_bad_fn 64,2665
+#define err_unset_var 65,2730
+#define err_too_many_args1 66,2784
+#define err_too_many_args2 67,2841
+#define err_bad_apply 68,2898
+#define err_macroex_hook 69,2957
+#define err_block_tag 70,3015
+#define err_go_tag 71,3070
+#define err_excess_args 72,3125
+#define err_insufficient_args 73,3161
+#define err_bad_bvl 74,3197
+#define err_bad_keyargs 75,3262
+#define err_write_err 76,3298
+#define err_bad_endp 77,3334
+#define err_no_fasldir 78,3401
+#define err_no_fasl 79,3437
+#define err_open_failed 80,3501
+#define err_pipe_failed 81,3563
+#define err_stack_overflow 82,3637
+#define err_top_bit 83,3673
+#define err_mem_spans_zero 84,3709
+
+cwin.h,102
+#define header_cwin_h 19,533
+#define exit(exit73,2483
+typedef double transform[transform205,7339
+
+cwinres.h,6026
+#define header_cwinres_h 9,222
+#define  IDM_READ 13,289
+#define  IDM_SAVEAS 14,320
+#define  IDM_SAVESEL 15,351
+#define  IDM_TOFILE 16,382
+#define  IDM_PRINT 17,413
+#define  IDM_PRINTSEL 18,444
+#define  IDM_EXIT 19,475
+#define  IDM_CLOSE 20,506
+#define  IDM_CUT 22,538
+#define  IDM_COPY 23,569
+#define  IDM_PASTE 24,600
+#define  IDM_REINPUT 25,631
+#define  IDM_SELECTALL 26,662
+#define  IDM_CLEAR 27,693
+#define  IDM_UNDO 28,724
+#define  IDM_REDRAW 29,755
+#define  IDM_HOME 30,786
+#define  IDM_END 31,817
+#define  IDM_FONT 33,849
+#define  IDM_INTERRUPT 35,881
+#define  IDM_BACKTRACE 36,912
+#define  IDM_PAGEMODE 37,943
+#define  IDM_GRAPHICS 41,999
+#define  IDM_HISTORY 42,1030
+#define  IDM_SMALLER 44,1062
+#define  IDM_LARGER 46,1094
+#define  IDM_PORTRAIT 48,1126
+#define  IDM_DISPLAY 49,1157
+#define  IDM_LANDSCAPE 50,1188
+#define  IDM_VIEWPOINT 52,1220
+#define  IDM_HELPCONTENTS 56,1260
+#define  IDM_HELPSEARCH 57,1291
+#define  IDM_ABOUT 59,1356
+#define  IDM_WIREFRAME 63,1412
+#define  IDM_NOSURFACE 64,1443
+#define  IDM_SURFACE 65,1474
+#define  IDM_SQUARES 66,1505
+#define  IDM_TRIANGLES 67,1536
+#define  IDM_SMOOTH 68,1567
+#define  IDM_HISMOOTH 69,1598
+#define  IDM_WIREPREVIEW 70,1629
+#define  IDM_ROTLEFT 72,1661
+#define  IDM_ROTRIGHT 73,1692
+#define  IDM_ROTUP 74,1723
+#define  IDM_ROTDOWN 75,1754
+#define  IDM_CLOCKWISE 76,1785
+#define  IDM_ANTICLOCK 77,1816
+#define  IDM_ENLARGE 78,1847
+#define  IDM_SHRINK 79,1878
+#define  IDM_FIRSTLOAD 85,1934
+#define  IDM_ALGINT 87,1967
+#define  IDM_APPLYSYM 88,1999
+#define  IDM_ARNUM 89,2031
+#define  IDM_ASSIST 90,2063
+#define  IDM_AVECTOR 91,2095
+#define  IDM_BOOLEAN 92,2127
+#define  IDM_CALI 93,2159
+#define  IDM_CAMAL 94,2191
+#define  IDM_CHANGEVR 95,2223
+#define  IDM_COMPACT 96,2255
+#define  IDM_COMPLEX 97,2287
+#define  IDM_CRACK 98,2319
+#define  IDM_CVIT 99,2351
+#define  IDM_DECOMPOS 100,2383
+#define  IDM_DEFINT 101,2415
+#define  IDM_DESIR 102,2447
+#define  IDM_DFPART 103,2479
+#define  IDM_DUMMY 104,2511
+#define  IDM_ELEM 105,2543
+#define  IDM_EXCALC 106,2575
+#define  IDM_FIDE 107,2607
+#define  IDM_FPS 108,2639
+#define  IDM_GENTRAN 109,2671
+#define  IDM_GNUPLOT 110,2703
+#define  IDM_GROEBNER 111,2735
+#define  IDM_IDEALS 112,2767
+#define  IDM_INEQ 113,2799
+#define  IDM_INVBASE 114,2831
+#define  IDM_LAPLACE 115,2863
+#define  IDM_LIE 116,2895
+#define  IDM_LINALG 117,2927
+#define  IDM_MODSR 118,2959
+#define  IDM_NCPOLY 119,2991
+#define  IDM_NORMFORM 120,3023
+#define  IDM_NUMERIC 121,3055
+#define  IDM_ODESOLVE 122,3087
+#define  IDM_ORTHOVEC 123,3119
+#define  IDM_PHYSOP 124,3151
+#define  IDM_PMRULES 125,3183
+#define  IDM_RANDPOLY 126,3215
+#define  IDM_REACTEQN 127,3247
+#define  IDM_RESIDUE 128,3279
+#define  IDM_RLFI 129,3311
+#define  IDM_RSOLVE 130,3343
+#define  IDM_SCOPE 131,3375
+#define  IDM_SETS 132,3407
+#define  IDM_SPDE 133,3439
+#define  IDM_SPECFN 134,3471
+#define  IDM_SYMMETRY 135,3503
+#define  IDM_TAYLOR 136,3535
+#define  IDM_TPS 137,3567
+#define  IDM_TRI 138,3599
+#define  IDM_TRIGSIMP 139,3631
+#define  IDM_WU 140,3663
+#define  IDM_XCOLOR 141,3695
+#define  IDM_XIDEAL 142,3727
+#define  IDM_ZEILBERG 143,3759
+#define  IDM_ZTRANS 144,3791
+#define  IDM_LASTLOAD 146,3824
+#define  IDS_FIRSTSWITCH 148,3857
+#define  IDS_algint 150,3890
+#define  IDS_adjprec 151,3922
+#define  IDS_allbranch 152,3954
+#define  IDS_allfac 153,3986
+#define  IDS_arbvars 154,4018
+#define  IDS_asterisk 155,4050
+#define  IDS_backtrace 156,4082
+#define  IDS_balanced_mod 157,4114
+#define  IDS_bfspace 158,4146
+#define  IDS_combineexpt 159,4178
+#define  IDS_combinelogs 160,4210
+#define  IDS_comp 161,4242
+#define  IDS_complex 162,4274
+#define  IDS_compxroots 163,4306
+#define  IDS_cramer 164,4338
+#define  IDS_cref 165,4370
+#define  IDS_defn 166,4402
+#define  IDS_demo 167,4434
+#define  IDS_dfprint 168,4466
+#define  IDS_div 169,4498
+#define  IDS_echo 170,4530
+#define  IDS_errcont 171,4562
+#define  IDS_evallhseqp 172,4594
+#define  IDS_exp 173,4626
+#define  IDS_expandexpt 174,4658
+#define  IDS_expandlogs 175,4690
+#define  IDS_ezgcd 176,4722
+#define  IDS_factor 177,4754
+#define  IDS_fastfor 178,4786
+#define  IDS_force 179,4818
+#define  IDS_fort 180,4850
+#define  IDS_fortupper 181,4882
+#define  IDS_fullprec 182,4914
+#define  IDS_fullprecision 183,4946
+#define  IDS_fullroots 184,4978
+#define  IDS_gc 185,5010
+#define  IDS_gcd 186,5042
+#define  IDS_heugcd 187,5074
+#define  IDS_horner 188,5106
+#define  IDS_ifactor 189,5138
+#define  IDS_int 190,5170
+#define  IDS_intstr 191,5202
+#define  IDS_lcm 192,5234
+#define  IDS_lessspace 193,5266
+#define  IDS_limitedfactors 194,5298
+#define  IDS_list 195,5330
+#define  IDS_listargs 196,5362
+#define  IDS_lower 197,5394
+#define  IDS_mcd 198,5426
+#define  IDS_modular 199,5458
+#define  IDS_msg 200,5490
+#define  IDS_multiplicities 201,5522
+#define  IDS_nat 202,5554
+#define  IDS_nero 203,5586
+#define  IDS_noarg 204,5618
+#define  IDS_noconvert 205,5650
+#define  IDS_nonlnr 206,5682
+#define  IDS_nosplit 207,5714
+#define  IDS_numval 208,5746
+#define  IDS_output 209,5778
+#define  IDS_period 210,5810
+#define  IDS_pgwd 211,5842
+#define  IDS_plap 212,5874
+#define  IDS_precise 213,5906
+#define  IDS_pret 214,5938
+#define  IDS_pri 215,5970
+#define  IDS_pwrds 216,6002
+#define  IDS_quotenewnam 217,6034
+#define  IDS_raise 218,6066
+#define  IDS_rat 219,6098
+#define  IDS_ratarg 220,6130
+#define  IDS_rational 221,6162
+#define  IDS_rationalize 222,6194
+#define  IDS_ratpri 223,6226
+#define  IDS_reduced 224,6258
+#define  IDS_revpri 225,6290
+#define  IDS_rlisp88 226,6322
+#define  IDS_rootmsg 227,6354
+#define  IDS_roundall 228,6386
+#define  IDS_roundbf 229,6418
+#define  IDS_rounded 230,6450
+#define  IDS_savestructr 231,6482
+#define  IDS_solvesingular 232,6514
+#define  IDS_time 233,6546
+#define  IDS_trallfac 234,6578
+#define  IDS_trfac 235,6610
+#define  IDS_trint 236,6642
+#define  IDS_trroot 237,6674
+#define  IDS_LASTSWITCH 239,6707
+
+doc.h,80
+to hold 8, 16 and 32 bit 14,421
+    x x x | x 1 1 0      Lisp vector 117,4567
+
+entries.h,32
+#define header_entries_h 7,140
+
+externs.h,7201
+#define header_externs_h 11,222
+#define stack 35,814
+#define push(push39,858
+#define push2(push241,991
+#define push3(push342,1115
+#define push4(push443,1287
+#define push5(push545,1535
+#define push6(push647,1831
+#define pop(pop49,1888
+#define pop2(pop250,1964
+#define pop3(pop351,2088
+#define pop4(pop452,2260
+#define pop5(pop554,2508
+#define pop6(pop656,2804
+#define popv(popv57,2857
+#define push(push61,2924
+#define push2(push263,3025
+#define push3(push364,3085
+#define push4(push465,3161
+#define push5(push567,3281
+#define push6(push669,3417
+#define pop(pop71,3474
+#define pop2(pop272,3518
+#define pop3(pop373,3578
+#define pop4(pop474,3654
+#define pop5(pop576,3774
+#define pop6(pop678,3910
+#define popv(popv79,3963
+#define errexit(errexit83,4030
+#define errexitn(errexitn84,4105
+#define errexitv(errexitv86,4255
+#define errexitvn(errexitvn87,4326
+#define GC_USER_SOFT 90,4473
+#define GC_USER_HARD 91,4496
+#define GC_STACK 92,4519
+#define GC_CONS 93,4542
+#define GC_VEC 94,4565
+#define GC_BPS 95,4588
+#define GC_PRESERVE 96,4611
+#define stackcheck0(stackcheck0106,4757
+#define stackcheck1(stackcheck1115,5198
+#define stackcheck2(stackcheck2124,5639
+#define stackcheck3(stackcheck3134,6142
+#define stackcheck4(stackcheck4145,6707
+#define stackcheck0(stackcheck0158,7301
+#define stackcheck1(stackcheck1166,7680
+#define stackcheck2(stackcheck2174,8059
+#define stackcheck3(stackcheck3183,8500
+#define stackcheck4(stackcheck4193,9003
+#define stackcheck0(stackcheck0212,9662
+#define stackcheck1(stackcheck1220,10041
+#define stackcheck2(stackcheck2228,10420
+#define stackcheck3(stackcheck3237,10861
+#define stackcheck4(stackcheck4247,11364
+#define stackcheck0(stackcheck0259,11896
+#define stackcheck1(stackcheck1266,12213
+#define stackcheck2(stackcheck2273,12530
+#define stackcheck3(stackcheck3281,12909
+#define stackcheck4(stackcheck4290,13350
+#define first_nil_offset 321,14564
+#define work_0_offset 328,14774
+#define last_nil_offset 331,14881
+#define NIL_SEGMENT_SIZE 339,15153
+#define SPARE 356,16089
+#define nil_as_base376,17086
+#define work_0 439,20022
+#define work_1 440,20062
+#define mv_1 441,20102
+#define mv_2 442,20142
+#define mv_3 443,20182
+#define work_50 444,20222
+#define nil_as_base 448,20292
+#define byteflip 450,20339
+#define codefringe 451,20393
+#define codelimit 452,20448
+#define stacklimit 460,20814
+#define stacklimit 463,20942
+#define fringe 466,21071
+#define heaplimit 467,21126
+#define vheaplimit 468,21190
+#define vfringe 469,21254
+#define miscflags 470,21309
+#define nwork 472,21364
+#define exit_reason 473,21413
+#define exit_count 474,21462
+#define gensym_ser 475,21511
+#define print_precision 476,21565
+#define current_modulus 477,21619
+#define fastget_size 478,21668
+#define package_bits 479,21717
+#define current_package 484,21898
+#define B_reg 487,22022
+#define codevec 488,22077
+#define litvec 489,22132
+#define exit_tag 490,22187
+#define exit_value 491,22242
+#define catch_tags 492,22297
+#define lisp_package 493,22352
+#define boffo 494,22407
+#define charvec 495,22462
+#define sys_hash_table 496,22517
+#define help_index 497,22572
+#define gensym_base 498,22627
+#define err_table 499,22682
+#define supervisor 500,22737
+#define startfn 501,22792
+#define faslvec 502,22847
+#define tracedfn 503,22902
+#define prompt_thing 504,22957
+#define faslgensyms 505,23012
+#define cl_symbols 506,23067
+#define active_stream 507,23122
+#define append_symbol 511,23229
+#define applyhook 512,23284
+#define cfunarg 513,23339
+#define comma_at_symbol 514,23394
+#define comma_symbol 515,23449
+#define compiler_symbol 516,23504
+#define comp_symbol 517,23559
+#define cons_symbol 518,23614
+#define echo_symbol 519,23669
+#define emsg_star 520,23724
+#define evalhook 521,23779
+#define eval_symbol 522,23834
+#define expr_symbol 523,23889
+#define features_symbol 524,23944
+#define fexpr_symbol 525,23999
+#define funarg 526,24054
+#define function_symbol 527,24109
+#define lambda 528,24164
+#define lisp_true 529,24219
+#define lower_symbol 530,24274
+#define macroexpand_hook 531,24329
+#define macro_symbol 532,24385
+#define opt_key 533,24441
+#define prinl_symbol 534,24497
+#define progn_symbol 535,24553
+#define quote_symbol 536,24609
+#define raise_symbol 537,24665
+#define redef_msg 538,24721
+#define rest_key 539,24777
+#define savedef 540,24833
+#define string_char_sym 541,24889
+#define unset_var 542,24945
+#define work_symbol 543,25001
+#define lex_words 544,25057
+#define get_counts 545,25113
+#define fastget_names 546,25169
+#define input_libraries 547,25225
+#define output_library 548,25281
+#define current_file 549,25337
+#define break_function 550,25393
+#define lisp_work_stream 552,25450
+#define lisp_standard_output 553,25506
+#define lisp_standard_input 554,25562
+#define lisp_debug_io 555,25618
+#define lisp_error_output 556,25674
+#define lisp_query_io 557,25730
+#define lisp_terminal_io 558,25786
+#define lisp_trace_output 559,25842
+#define standard_output 560,25898
+#define standard_input 561,25954
+#define debug_io 562,26010
+#define error_output 563,26066
+#define query_io 564,26122
+#define terminal_io 565,26178
+#define trace_output 566,26234
+#define keyword_package 570,26306
+#define all_packages 571,26362
+#define package_symbol 572,26418
+#define internal_symbol 573,26474
+#define external_symbol 574,26530
+#define inherited_symbol 575,26586
+#define key_key 576,26642
+#define allow_other_keys 577,26698
+#define aux_key 578,26754
+#define format_symbol 579,26810
+#define expand_def_symbol 580,26866
+#define allow_key_key 581,26922
+#define declare_symbol 582,26978
+#define special_symbol 583,27034
+#define work_0 605,28010
+#define work_1 606,28066
+#define mv_1 607,28122
+#define mv_2 608,28159
+#define mv_3 609,28215
+#define work_50 610,28271
+#define eq_hash_table_list 617,28435
+#define equal_hash_table_list 618,28511
+#define current_package_offset 619,28587
+#define MAX_INPUT_FILES 632,28962
+#define MAX_SYMBOLS_TO_DEFINE 633,29033
+#define MAX_FASL_PATHS 634,29068
+#define INIT_QUIET 654,29557
+#define INIT_VERBOSE 655,29583
+#define INIT_EXPANDABLE 656,29609
+#define Lispify_predicate(Lispify_predicate658,29636
+typedef struct IhandleIhandle668,29816
+} Ihandle;Ihandle675,30161
+#define CODESIZE 686,30538
+typedef struct entry_pointentry_point688,30578
+} entry_point;entry_point692,30633
+#define entry_table_size 694,30649
+#define ARG_CUT_OFF 706,30910
+#define ensure_screen(ensure_screen735,31897
+#define start_up_window_manager(start_up_window_manager737,31943
+#define equal_fn(equal_fn799,34361
+#define onevalue(onevalue889,39193
+#define nvalues(nvalues890,39235
+#define onevalue(onevalue892,39285
+#define nvalues(nvalues893,39311
+#define eval(eval897,39359
+#define voideval(voideval898,39390
+#define eval(eval908,39830
+#define voideval(voideval914,40072
+#define equal(equal930,40807
+#define cl_equal(cl_equal936,41043
+#define eql(eql942,41282
+# define argcheck(argcheck967,42075
+# define argcheck(argcheck969,42127
+typedef struct setup_typesetup_type977,42358
+} setup_type;setup_type983,42455
+
+machine.h,7773
+#define header_machine_h 7,136
+#  define SMALL_PAGE_BITS 43,1796
+#  define SMALL_PAGE_BITS 45,1831
+#define MEGABYTE 66,2825
+#  define IMPNAME 79,3207
+#  define MS_DOS 83,3296
+#  define WATCOM 87,3380
+#  define IMULTIPLY 88,3414
+#  define IDIVIDE 89,3448
+#  define PAGE_BITS 99,3955
+#  define NILSEG_EXTERNS 108,4381
+#  define MAX_HEAPSIZE 122,5132
+#  define MAX_BPSSIZE 123,5178
+#  define TICK_STREAM 131,5538
+#  define BUFFERED_STDOUT 139,5919
+#  define NEEDS_CARRIAGE_RETURN 140,5953
+#  define POLL_FOR_ATTN 151,6507
+#  define HELP_SYSTEM 156,6687
+#  define OPSYS 165,6854
+#  define IMPNAME 192,7807
+#  define OPSYS 193,7849
+#  define MS_C 199,8040
+#  define USES_WIN32 204,8160
+#  define NILSEG_EXTERNS 206,8218
+#  define MAX_HEAPSIZE 208,8279
+#  define MAX_BPSSIZE 209,8326
+#  define IMULTIPLY 215,8533
+#  define IDIVIDE 216,8567
+#  define TICK_STREAM 217,8601
+#  define SOFTWARE_TICKS 228,9140
+#  define WINDOW_SYSTEM 235,9375
+#  define PIPES 243,9773
+#  define PIPES_SOMETIMES 249,9990
+#  define HELP_SYSTEM 255,10227
+#  define BUILDING_DLL 264,10557
+#  define IMPNAME 271,10684
+#  define OPSYS 272,10728
+#  define SIXTEEN_BIT 277,10893
+#  define PAGE_BITS 278,10968
+#  define OUT_OF_LINE 284,11189
+#  define ADDRESSES_HAVE_TOP_BIT_CLEAR 285,11269
+#  define TICK_STREAM 286,11311
+#  define MAX_HEAPSIZE 287,11345
+#  define MAX_BPSSIZE 288,11391
+#  define WINDOW_SYSTEM 289,11436
+#  define HELP_SYSTEM 290,11470
+#  define HOLD_BACK_MEMORY 301,11946
+#define malloc(malloc311,12285
+#define free(free312,12313
+#  define __arm 317,12425
+#  define IMPNAME 322,12481
+#  define SHOW_COUNTS_AVAILABLE 332,12807
+#  define RISCOS 336,12919
+#  define OPSYS 337,12953
+#  define HOLD_BACK_MEMORY 338,12994
+#  define PAGE_BITS 339,13028
+#  define OUT_OF_LINE 340,13076
+#  define ADDRESSES_HAVE_TOP_BIT_CLEAR 341,13145
+#  define MAX_HEAPSIZE 342,13187
+#  define MAX_BPSSIZE 343,13233
+#  define TICK_STREAM 344,13278
+#  define SOFTWARE_TICKS 346,13335
+#  define WINDOW_SYSTEM 348,13415
+#  define HELP_SYSTEM 349,13449
+#  define SIMULATED_PIPES 356,13766
+#  define PIPES 357,13800
+#  define SYS_TIMES 368,14260
+#  define UNIX 369,14296
+#  define PIPES 370,14330
+#  define IMPNAME 376,14424
+#  define UNIX 377,14468
+#  define BSD_LIB 378,14502
+#  define PIPES 379,14536
+#  define SYS_TIMES 380,14570
+#  define SIXTY_FOUR_BIT 387,14831
+#     define MULDIV64 393,15042
+#     define __mips__399,15126
+#  define IMPNAME 404,15181
+#  define FAST_DIVISION 411,15465
+#  define UNIX 412,15523
+#  define PIPES 413,15557
+#  define NO_BINARY_FOPEN 420,15864
+#  define NCC_LIB 434,16340
+#    define NCC_LIB 437,16396
+#    define BSD_LIB 439,16438
+#    define WANT_POSIX 440,16472
+#    define SYS_TIMES 441,16506
+#     define __vmsvax__449,16656
+#  define IMPNAME 454,16712
+#  define NO_BINARY_FOPEN 455,16750
+#  define SYS_TIMES 456,16784
+#  define UNIX 457,16819
+#  define BSD_LIB 458,16853
+#  define PIPES 459,16887
+#  define IMPNAME 463,16947
+#  define OPSYS 464,16989
+#  define VAXFLOAT 465,17027
+#  define SYS_TIMES 466,17061
+#  define HELP_SYSTEM 467,17119
+#  define IMPNAME 471,17176
+#  define UNIX 472,17218
+#  define WANT_POSIX 477,17364
+#  define PIPES 478,17398
+#  define SYS_TIMES 479,17432
+#  define BSD_LIB 480,17468
+#  define IMPNAME 484,17527
+#  define UNIX 485,17569
+#  define NCC_LIB 486,17603
+#  define IMPNAME 490,17662
+#  define UNIX 491,17702
+#  define PIPES 492,17736
+#  define BSD_LIB 493,17770
+#  define IMPNAME 497,17832
+#  define WANT_POSIX 498,17878
+#  define _INCLUDE_XOPEN_SOURCE 503,18013
+#  define PIPES 504,18047
+#  define SYS_TIMES 505,18081
+#  define UNIX 506,18121
+#  define BSD_LIB 507,18155
+#  define IMPNAME 511,18217
+#  define WANT_POSIX 512,18263
+#  define _INCLUDE_XOPEN_SOURCE 513,18297
+#  define PIPES 514,18331
+#  define SYS_TIMES 515,18365
+#  define UNIX 516,18405
+#  define BSD_LIB 517,18439
+#  define IMPNAME 521,18499
+#  define SYS_TIMES 522,18540
+#  define UNIX 523,18575
+#  define BSD_LIB 524,18609
+#  define PIPES 525,18643
+#  define OUT_OF_LINE 530,18790
+#  define IMPNAME 538,18989
+#  define OPSYS 539,19029
+#  define HELP_SYSTEM 540,19067
+#  define IMPNAME 544,19125
+#  define SYS_TIMES 545,19167
+#  define UNIX 546,19202
+#  define BSD_LIB 547,19236
+#  define PIPES 548,19270
+#  define IMPNAME 552,19329
+typedef char *VoidStar;VoidStar555,19523
+#  define SYS_TIMES 558,19579
+#  define UNIX 559,19614
+#  define BSD_LIB 560,19648
+#  define PIPES 561,19682
+#  define IMPNAME 565,19739
+#  define UNIX 566,19779
+#  define NO_BINARY_FOPEN 567,19813
+#     define NCC_LIB 569,19893
+#  define PIPES 571,19936
+#  define IMPNAME 575,20053
+#  define OPSYS 576,20091
+#  define HELP_SYSTEM 577,20129
+#  define OPSYS 581,20183
+#     define HELP_SYSTEM 583,20244
+#        define ADDRESSES_HAVE_TOP_BIT_CLEAR 587,20358
+#  define IMPNAME 610,21304
+#  define MS_DOS 611,21348
+#  define ZORTECH_C 612,21382
+#  define BUFFERED_STDOUT 613,21416
+#  define NEEDS_CARRIAGE_RETURN 614,21450
+#  define SIXTEEN_BIT 615,21484
+#  define PAGE_BITS 616,21518
+#  define NILSEG_EXTERNS 618,21577
+#  define MAX_HEAPSIZE 620,21636
+#  define MAX_BPSSIZE 621,21682
+#  define OUT_OF_LINE 622,21727
+#  define TICK_STREAM 623,21761
+#  define POLL_FOR_ATTN 624,21795
+#  define SOFTWARE_TICKS 626,21852
+#  define HOLD_BACK_MEMORY 628,21896
+#  define HELP_SYSTEM 629,21930
+#  define IMPNAME 639,22259
+#  define MS_DOS 640,22303
+#  define ZORTECH_C 641,22337
+#  define IMULTIPLY 642,22371
+#  define IDIVIDE 643,22405
+#  define PAGE_BITS 644,22439
+#  define NILSEG_EXTERNS 650,22653
+#  define MAX_HEAPSIZE 652,22712
+#  define MAX_BPSSIZE 653,22758
+#  define TICK_STREAM 654,22803
+#  define BUFFERED_STDOUT 655,22837
+#  define NEEDS_CARRIAGE_RETURN 656,22871
+#  define SOFTWARE_TICKS 674,23697
+#  define POLL_FOR_ATTN 677,23748
+#  define HELP_SYSTEM 678,23782
+#  define IMPNAME 682,23880
+#  define MS_DOS 683,23922
+#  define PAGE_BITS 684,23956
+#  define NILSEG_EXTERNS 690,24170
+#  define MAX_HEAPSIZE 692,24229
+#  define MAX_BPSSIZE 693,24275
+#  define TICK_STREAM 694,24320
+#  define BUFFERED_STDOUT 695,24354
+#  define NEEDS_CARRIAGE_RETURN 696,24388
+#  define SOFTWARE_TICKS 698,24445
+#  define POLL_FOR_ATTN 700,24489
+#  define HELP_SYSTEM 701,24523
+#  define IMULTIPLY 702,24557
+#  define IDIVIDE 703,24591
+#  define HUGE_VAL 704,24625
+#  define IMPNAME 708,24776
+#  define OPSYS 709,24816
+#  define LATTICE_C 713,24943
+#  define SIXTEEN_BIT 714,24977
+#  define HOLD_BACK_MEMORY 715,25059
+#  define PAGE_BITS 716,25093
+#  define NILSEG_EXTERNS 718,25165
+#  define MAX_HEAPSIZE 720,25224
+#  define MAX_BPSSIZE 721,25270
+#  define TICK_STREAM 722,25315
+#  define NO_COPYING_GC 723,25349
+#  define POLL_FOR_ATTN 724,25383
+#  define HELP_SYSTEM 725,25417
+#  define ADDRESSES_HAVE_TOP_BIT_CLEAR 732,25730
+#define sqrt(sqrt733,25772
+#define exp(exp734,25802
+#define sin(sin735,25830
+#define cos(cos736,25858
+#define tan(tan737,25886
+#define atan(atan738,25914
+#define asin(asin739,25944
+#define acos(acos740,25974
+#define sinh(sinh741,26004
+#define cosh(cosh742,26034
+#define tanh(tanh743,26064
+#define log(log744,26094
+#define pow(pow745,26122
+#define frexp(frexp746,26154
+#define ldexp(ldexp747,26190
+#     define _POSIX_SOURCE 773,26885
+#     define _INCLUDE_POSIX_SOURCE 774,26922
+#     define BUFFERED_STDOUT 780,27023
+#  define MS_CDECL 811,28208
+#  define MS_CDECL813,28238
+#define DLLexport 824,28570
+#define DLLexport826,28616
+#     define CLK_TCK 843,29289
+#  define CLOCKS_PER_SEC 845,29378
+#  define EXIT_SUCCESS 849,29442
+#  define EXIT_FAILURE 853,29505
+#     define SEEK_SET 857,29566
+#     define SEEK_END 861,29629
+
+read.h,716
+#define header_read_h 11,242
+typedef struct PackagePackage13,267
+} Package;Package34,1258
+#define packhdr_(packhdr_41,1434
+#define packid_(packid_42,1508
+#define packint_(packint_43,1582
+#define packvint_(packvint_44,1656
+#define packnint_(packnint_45,1731
+#define packflags_(packflags_46,1806
+#define packext_(packext_48,1895
+#define packvext_(packvext_49,1970
+#define packnext_(packnext_50,2045
+#define packname_(packname_51,2120
+#define packnick_(packnick_52,2195
+#define packuses_(packuses_53,2270
+#define packused_(packused_54,2345
+#define packshade_(packshade_55,2420
+#define CP 58,2503
+#  define ESCAPE_CHAR 61,2554
+#  define ESCAPE_CHAR 63,2587
+#define NO_PREFIX 66,2621
+
+stream.h,3100
+#define header_stream_h 11,287
+typedef int character_reader(character_reader15,348
+typedef int character_writer(character_writer16,419
+typedef int character_stream_reader(character_stream_reader18,468
+typedef int character_stream_writer(character_stream_writer19,518
+typedef int32 other_stream_op(other_stream_op20,573
+#define ESCAPED_CHAR 24,704
+#define NOT_CHAR 25,734
+#define STREAM_SIZE 92,3433
+#define stream_type(stream_type94,3468
+#define stream_write_data(stream_write_data95,3508
+#define stream_read_data(stream_read_data96,3548
+#define stream_file(stream_file97,3588
+#define stream_write_fn(stream_write_fn98,3638
+#define stream_write_other(stream_write_other99,3707
+#define stream_line_length(stream_line_length100,3767
+#define stream_char_pos(stream_char_pos101,3807
+#define stream_read_fn(stream_read_fn102,3847
+#define stream_read_other(stream_read_other103,3916
+#define stream_pushed_char(stream_pushed_char104,3976
+#define set_stream_file(set_stream_file106,4018
+#define set_stream_write_fn(set_stream_write_fn107,4089
+#define set_stream_write_other(set_stream_write_other108,4160
+#define set_stream_read_fn(set_stream_read_fn109,4231
+#define set_stream_read_other(set_stream_read_other110,4302
+#define STREAM_HEADER 112,4374
+#define STREAM_FLAG_PIPE 113,4441
+#define is_stream(is_stream115,4475
+#define putc_stream(putc_stream118,4560
+#define getc_stream(getc_stream121,4766
+#define other_write_action(other_write_action124,4967
+#define other_read_action(other_read_action127,5179
+#define putc_stream(putc_stream131,5395
+#define getc_stream(getc_stream132,5457
+#define other_write_action(other_write_action133,5515
+#define other_read_action(other_read_action134,5580
+#define WRITE_GET_INFO 143,5820
+#  define WRITE_GET_LINE_LENGTH 144,5861
+#  define WRITE_GET_COLUMN 145,5902
+#  define WRITE_IS_CONSOLE 146,5943
+#define WRITE_CLOSE 147,5984
+#define WRITE_FLUSH 148,6032
+#define WRITE_SET_LINELENGTH 149,6080
+#define WRITE_SET_COLUMN 150,6128
+#define WRITE_SET_LINELENGTH_DEFAULT 151,6176
+#define READ_SEEK 160,6573
+#define READ_TELL 161,6611
+#define READ_CLOSE 162,6644
+#define READ_FLUSH 163,6677
+#define READ_IS_CONSOLE 164,6710
+#define READ_END 165,6743
+#define IMAGE_FORMAT_VERSION 179,7091
+#  define DIRECTORY_SIZE 182,7155
+typedef struct directory_headerdirectory_header185,7233
+} directory_header;directory_header193,7693
+#define get_dirused(get_dirused195,7714
+#define get_dirsize(get_dirsize196,7785
+typedef struct directory_entrydirectory_entry198,7857
+} directory_entry;directory_entry208,8198
+#define D_newline 216,8550
+#define D_name 217,8580
+#define D_date 218,8610
+#define D_position 219,8641
+#define D_size 220,8672
+#define name_size 222,8704
+#define date_size 223,8729
+#define DIRNAME_LENGTH 225,8755
+#define NEWLINE_CHAR 226,8782
+typedef struct directorydirectory228,8854
+} directory;directory234,9024
+#  define MIDDLE_INITIAL 237,9052
+#  define MIDDLE_INITIAL 239,9089
+#define D_WRITE_OK 246,9167
+#define D_UPDATED 247,9189
+#define D_COMPACT 248,9211
+
+sys.h,408
+#define header_sys_h 11,248
+typedef void directory_callback(directory_callback121,4015
+#define SCAN_FILE 156,5598
+#define SCAN_STARTDIR 157,5624
+#define SCAN_ENDDIR 158,5650
+typedef struct date_and_typedate_and_type189,6763
+} date_and_type;date_and_type193,6850
+#  define my_pipe_putc(my_pipe_putc236,8034
+#  define my_pipe_flush(my_pipe_flush237,8074
+#  define read_clock(read_clock265,8737
+
+tags.h,9994
+#define header_tags_h 12,245
+typedef long int            int32;int3215,289
+typedef unsigned long int   unsigned32;unsigned3216,324
+typedef int                 int32;int3218,370
+typedef unsigned int        unsigned32;unsigned3219,405
+typedef long int            int64;int6424,541
+typedef unsigned long int   unsigned64;unsigned6425,576
+typedef int                 bool;bool28,630
+#define YES 29,664
+#define NO 30,694
+#  define PAGE_BITS 58,2344
+#define PAGE_POWER_OF_TWO 60,2386
+#define CSL_PAGE_SIZE 66,2616
+#  define MAX_HEAPSIZE 68,2696
+#  define MAX_BPSSIZE 76,2945
+#define MAX_PAGES 79,2999
+#define MAX_BPS_PAGES 80,3066
+#define PAGE_MASK 82,3133
+#define OFFSET_MASK 83,3207
+#define IGNORE(IGNORE85,3277
+#define LONGEST_LEGAL_FILENAME 86,3313
+#define FP_WORD_ORDER 93,3526
+#define FP_BYTE_ORDER 94,3553
+#define FP_VAXREP 95,3580
+#define FP_IBMREP 96,3607
+#define FP_MASK 97,3634
+#define FP_ARM 99,3662
+#define FP_370 100,3692
+#define FP_MIPS 101,3768
+#define FP_VAX 102,3844
+#define FP_88K 103,3920
+#define TAG_BITS 111,4210
+#define TAG_CONS 113,4237
+#define TAG_FIXNUM 115,4362
+#define TAG_ODDS 116,4412
+#define TAG_SFLOAT 118,4503
+#define TAG_SYMBOL 120,4583
+#define TAG_NUMBERS 121,4648
+#define TAG_VECTOR 122,4708
+#define TAG_BOXFLOAT 123,4783
+#define fixnum_of_int(fixnum_of_int131,5028
+#define int_of_fixnum(int_of_fixnum139,5359
+#define int_of_fixnum(int_of_fixnum143,5550
+#define GC_BIT_I 150,5683
+#define GC_BIT_H 151,5760
+#define GC_BIT_P 152,5827
+#define is_marked_i(is_marked_i174,6932
+#define is_marked_p(is_marked_p185,7473
+#define clear_mark_bit_p(clear_mark_bit_p186,7549
+#define is_marked_p(is_marked_p189,7697
+#define clear_mark_bit_p(clear_mark_bit_p190,7773
+#  define ADDRESS_SIGN_UNKNOWN 201,8292
+#define is_marked_p(is_marked_p204,8388
+#define clear_mark_bit_p(clear_mark_bit_p205,8450
+#define flip_mark_bit_i(flip_mark_bit_i210,8582
+#define flip_mark_bit_h(flip_mark_bit_h211,8649
+#define flip_mark_bit_p(flip_mark_bit_p212,8711
+#define is_marked_h(is_marked_h213,8778
+#define exception_pending(exception_pending221,9116
+#define flip_exception(flip_exception222,9166
+#define ignore_exception(ignore_exception224,9241
+#define set_mark_bit_h(set_mark_bit_h227,9329
+#define clear_mark_bit_h(clear_mark_bit_h228,9391
+#define set_mark_bit_i(set_mark_bit_i229,9454
+#define clear_mark_bit_i(clear_mark_bit_i230,9521
+#define is_cons(is_cons232,9590
+#define is_fixnum(is_fixnum233,9649
+#define is_odds(is_odds234,9710
+#define is_sfloat(is_sfloat235,9789
+#define is_symbol(is_symbol236,9850
+#define is_numbers(is_numbers237,9911
+#define is_vector(is_vector238,9973
+#define is_bfloat(is_bfloat239,10034
+#define consp(consp250,10439
+#define symbolp(symbolp251,10487
+#define consp(consp254,10613
+#define symbolp(symbolp255,10645
+#define car_legal(car_legal265,11021
+#define is_number(is_number273,11206
+#define is_float(is_float274,11274
+#define is_immed_or_cons(is_immed_or_cons284,11626
+typedef int32 Lisp_Object;Lisp_Object298,12205
+typedef struct Cons_CellCons_Cell300,12233
+} Cons_Cell;Cons_Cell304,12302
+#define qcar(qcar323,12936
+#define qcdr(qcdr324,12986
+#define qcar(qcar334,13310
+#define qcdr(qcdr335,13353
+typedef Lisp_Object Special_Form(Special_Form338,13404
+typedef Lisp_Object one_args(one_args340,13465
+typedef Lisp_Object two_args(two_args341,13521
+typedef Lisp_Object MS_CDECL n_args(n_args342,13590
+typedef unsigned32 Header;Header354,14010
+#define header_mask 364,14363
+#define type_of_header(type_of_header365,14398
+#define length_of_header(length_of_header366,14463
+#define TYPE_SYMBOL 380,15076
+#define  SYM_SPECIAL_VAR 381,15115
+#define  SYM_GLOBAL_VAR 382,15177
+#define  SYM_SPECIAL_FORM 383,15239
+#define  SYM_MACRO 384,15301
+#define  SYM_C_DEF 385,15370
+#define  SYM_CODEPTR 386,15445
+#define  SYM_ANY_GENSYM 387,15517
+#define  SYM_TRACED 388,15586
+#define  SYM_FASTGET_MASK 389,15625
+#define  SYM_FASTGET_SHIFT 390,15699
+#define  SYM_EXTERN_IN_HOME 399,16058
+#define  SYM_IN_PACKAGE 400,16133
+#define  SYM_IN_PKG_SHIFT 401,16207
+#define  SYM_IN_PKG_COUNT 402,16238
+#define  SYM_UNPRINTED_GENSYM 404,16275
+#define symhdr_length 407,16352
+#define is_symbol_header(is_symbol_header408,16413
+#define header_fastget(header_fastget409,16474
+#define TYPE_BIGNUM 411,16539
+#define TYPE_RATNUM 413,16625
+#define TYPE_COMPLEX_NUM 414,16659
+#define TYPE_SINGLE_FLOAT 415,16693
+#define TYPE_DOUBLE_FLOAT 417,16734
+#define TYPE_LONG_FLOAT 419,16782
+#define numhdr(numhdr423,16844
+#define flthdr(flthdr424,16929
+#define numhdr(numhdr426,17020
+#define flthdr(flthdr427,17079
+#define is_numbers_header(is_numbers_header430,17147
+#define is_boxfloat_header(is_boxfloat_header431,17206
+#define is_ratio(is_ratio438,17420
+#define is_complex(is_complex441,17490
+#define is_bignum_header(is_bignum_header445,17574
+#define is_bignum(is_bignum447,17638
+#define vechdr(vechdr450,17708
+#define elt(elt451,17792
+#define celt(celt452,17888
+#define ucelt(ucelt453,17972
+#define scelt(scelt454,18075
+#define vechdr(vechdr456,18180
+#define elt(elt458,18280
+#define celt(celt459,18351
+#define ucelt(ucelt460,18402
+#define scelt(scelt461,18463
+#define helt(helt468,18656
+#define ielt(ielt469,18726
+#define felt(felt470,18792
+#define delt(delt471,18858
+#define TYPE_BITVEC1 481,19203
+#define TYPE_BITVEC2 482,19277
+#define TYPE_BITVEC3 483,19351
+#define TYPE_BITVEC4 484,19385
+#define TYPE_BITVEC5 485,19464
+#define TYPE_BITVEC6 486,19543
+#define TYPE_BITVEC7 487,19622
+#define TYPE_BITVEC8 488,19701
+#define header_of_bitvector(header_of_bitvector490,19781
+#define TYPE_STRING 493,19851
+#define TYPE_BPS 494,19917
+#define TYPE_SPARE 495,19983
+#define TYPE_SP 496,20058
+#define vector_holds_binary(vector_holds_binary499,20139
+#define vector_holds_binary(vector_holds_binary501,20222
+#define TYPE_SIMPLE_VEC 504,20281
+#define TYPE_HASH 505,20345
+#define TYPE_ARRAY 506,20398
+#define TYPE_STRUCTURE 507,20472
+#define is_mixed_header(is_mixed_header518,20988
+#define TYPE_VEC8 520,21047
+#define TYPE_VEC16 522,21114
+#define TYPE_VEC32 523,21181
+#define TYPE_MIXED1 524,21248
+#define TYPE_MIXED2 525,21325
+#define TYPE_FLOAT32 526,21402
+#define TYPE_FLOAT64 527,21477
+#define TYPE_MIXED3 528,21552
+#define TYPE_STREAM 529,21610
+#define ODDS_MASK 531,21681
+#define TAG_CHAR 532,21714
+#define TAG_BPS 533,21788
+#define TAG_SPID 536,21975
+#define SPID_NIL 538,22053
+#define SPID_FBIND 539,22130
+#define SPID_CATCH 540,22207
+#define SPID_PROTECT 541,22284
+#define SPID_HASH0 542,22361
+#define SPID_HASH1 543,22438
+#define SPID_GCMARK 544,22515
+#define SPID_NOINPUT 545,22592
+#define SPID_ERROR 546,22669
+#define SPID_PVBIND 547,22746
+#define SPID_NOARG 548,22823
+#define SPID_NOPROP 549,22900
+#define SPID_LIBRARY 550,22977
+#define is_header(is_header552,23055
+#define is_char(is_char553,23130
+#define is_bps(is_bps554,23188
+#define is_hashtab(is_hashtab555,23245
+#define is_spid(is_spid556,23306
+#define is_library(is_library557,23364
+#define library_number(library_number558,23426
+#define bits_of_char(bits_of_char565,23675
+#define font_of_char(font_of_char566,23727
+#define code_of_char(code_of_char567,23779
+#define pack_char(pack_char568,23831
+#define CHAR_EOF 572,24032
+#define data_of_bps(data_of_bps580,24355
+typedef int32 junk;junk587,24538
+typedef struct Symbol_HeadSymbol_Head589,24614
+} Symbol_Head;Symbol_Head618,25947
+#define MAX_FASTGET_SIZE 620,25963
+#define qheader(qheader634,26559
+#define qvalue(qvalue635,26618
+#define qenv(qenv636,26663
+#define qfn1(qfn1642,26930
+#define qfn2(qfn2643,26988
+#define qfnn(qfnn644,27046
+#define ifn1(ifn1652,27434
+#define ifn2(ifn2653,27493
+#define ifnn(ifnn654,27553
+#define qpname(qpname655,27613
+#define qplist(qplist656,27673
+#define qfastgets(qfastgets657,27733
+#define qcount(qcount658,27793
+#define qpackage(qpackage660,27867
+#define qheader(qheader665,27961
+#define qvalue(qvalue666,28045
+#define qenv(qenv667,28115
+#define qfn1(qfn1668,28199
+#define qfn2(qfn2669,28291
+#define qfnn(qfnn670,28383
+#define ifn1(ifn1671,28475
+#define ifn2(ifn2672,28559
+#define ifnn(ifnn673,28644
+#define qpname(qpname674,28729
+#define qplist(qplist675,28814
+#define qfastgets(qfastgets676,28899
+#define qcount(qcount677,28984
+#define qpackage(qpackage679,29083
+typedef union Float_unionFloat_union687,29219
+} Float_union;Float_union691,29273
+typedef struct Big_NumberBig_Number694,29296
+} Big_Number;Big_Number699,29454
+#define bignum_length(bignum_length701,29469
+#define bignum_digits(bignum_digits704,29580
+#define bignum_digits(bignum_digits706,29669
+#define make_bighdr(make_bighdr708,29734
+#define pack_hdrlength(pack_hdrlength709,29802
+typedef struct Rational_NumberRational_Number712,29862
+} Rational_Number;Rational_Number717,29956
+#define numerator(numerator722,30050
+#define denominator(denominator723,30128
+typedef struct Complex_NumberComplex_Number725,30207
+} Complex_Number;Complex_Number730,30302
+#define real_part(real_part732,30321
+#define imag_part(imag_part733,30399
+typedef struct Single_FloatSingle_Float735,30478
+} Single_Float;Single_Float742,30593
+#define single_float_val(single_float_val748,30745
+typedef struct Double_FloatDouble_Float751,30833
+} Double_Float;Double_Float759,31034
+#define double_float_val(double_float_val763,31115
+typedef struct Long_FloatLong_Float766,31193
+} Long_Float;Long_Float774,31370
+#define long_float_val(long_float_val776,31385
+#define doubleword_align_up(doubleword_align_up779,31456
+#define doubleword_align_down(doubleword_align_down780,31528
+#define UNWIND_NULL 786,31679
+#define UNWIND_GO 787,31749
+#define UNWIND_RETURN 788,31779
+#define UNWIND_THROW 789,31809
+#define UNWIND_RESTART 790,31839
+#define UNWIND_ERROR 792,31870
+#define UNWIND_UNWIND 793,31939
+
+version.h,56
+#define header_version_h 6,135
+#define VERSION 14,355

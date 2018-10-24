@@ -1,0 +1,116 @@
+These utilities have their home on http://gauguin.trin.cam.ac.uk/util
+and may be used, altered or redistributed freely. The versions here are
+probably rather ancient but for Axiom purposes that is not very important
+and getting other things sorted out takes priority over refreshing this
+stuff.
+
+Also note that for Axiom purposes a number of extras (eg names.sh) that are
+not part of the Codemist Utility set have crept in here, and the Makefile
+in this directory is very much part of Axiom not these utilities.
+
+                               Arthur Norman.  September 2002
+
+
+            To get started with the utilities here
+            ======================================
+
+First compile "makemake.c".  Typical commands will be
+
+    ztc -mci -A makemake.c
+or
+    gcc makemake.c -omakemake -lm
+or
+    wcl386 makemake.c
+
+The program does not try to use any elaborate operating system
+interfaces and is insensitive to word lengths, so ought to be
+easy to get going.
+
+Run "makemake" with no arguments, and you should get a list that
+looks like this:
+    The valid keys from "makebase" are:
+
+        acorn:      Acorn Archimedes/RISC-PC
+        80x86:      80386, 80486, Pentium
+        sparc:      Sparc
+        hp9000:     Hewlett Packard PA systems
+        apollo:     Apollo Domain
+        sgi:        Silicon Graphics Indi and compatibles
+        clipper:    Intergraph Clipper
+        88000:      Motorola 88000
+        alpha:      DEC Alpha
+        riscos:     Acorn's RISC-OS operating system
+        unix:       Unix (BSD, SYS-V, OSF etc)
+        linux:      Linux
+        dos:        DOS with suitable extender
+        win95:      Windows 95, win32s, win32
+        winnt:      Windows NT
+        gcc:        The GNU C compiler
+        microsoft:  Microsoft Visual C
+        watcom:     Watcom C 10.0
+        zortech:    Zortech C++ (now Symantec)
+        ncc:        Norcroft C compiler
+        slow:       Disable C compiler optimisation in case compiler bugs
+        debug:      Compile and link for debugging
+        win:        Windows 95, Watcom C
+        gccunix:    GNU C with generic Unix
+
+
+and this list indicates what keys makemake is prepared to accept. Select
+one that matches your system, and go (for instance)
+    makemake watcom dos
+or  makemake unix gcc
+which will create a file called "makenew".  Rename this to be called
+"Makefile" and then the usual "make" process should allow you to
+recompile everything else.
+
+To gain confidence that the files here have been received properly
+you may like to go
+     make export.exe   [DOS]
+or   make export       [Unix]
+and then
+     export -check
+which should checksum all files in the directory and display a list
+of any discrepancies between what is found and information stored in
+the file "export.chk".
+
+                                                A C Norman. September 1994
+
+@item(acorn>machine_known) Acorn Archimedes/RISC-PC
+@item(80x86>machine_known) 80386, 80486, Pentium
+@item(sparc>machine_known) Sparc
+@item(hp9000>machine_known) Hewlett Packard PA systems
+@item(apollo>machine_known) Apollo Domain
+@item(sgi>machine_known) Silicon Graphics Indi and compatibles
+@item(clipper>machine_known) Intergraph Clipper
+@item(88000>machine_known) Motorola 88000
+@item(alpha>machine_known) DEC Alpha
+
+@ Next the associated operating systems
+
+@item(riscos>os_known) Acorn's RISC-OS operating system
+@item(unix>os_known) Unix (BSD, SYS-V, OSF etc)
+@item(linux>unix>os_known) Linux
+@item(dos>os_known) DOS with suitable extender
+@item(win95>os_known) Windows 95, win32s, win32
+@item(winnt>os_known) Windows NT
+
+@ Select a C compiler from the following list
+
+@item(gcc>compiler_known) The GNU C compiler
+@item(microsoft>compiler_known) Microsoft Visual C
+@item(watcom>compiler_known) Watcom C 10.0
+@item(zortech>compiler_known) Zortech C++ (now Symantec)
+@item(ncc>compiler_known) Norcroft C compiler
+
+@ Optionally specify DEBUG for a version for use during testing
+
+@item(slow) Disable C compiler optimisation in case compiler bugs
+@item(debug) Compile and link for debugging
+
+@ Now a few convenient abbreviations for combinations I will use
+@ more often than others...
+
+@item(win>80x86>win95>watcom>machine_known>os_known>compiler_known) Windows 95, Watcom C
+@item(gccunix>gcc>unix>os_known>compiler_known) GNU C with generic Unix
+

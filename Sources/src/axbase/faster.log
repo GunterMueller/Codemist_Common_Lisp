@@ -1,0 +1,2499 @@
+Starts dribbling to faster.log (Thu Oct 26 09:49:03 2000).
+
+Codemist Common Lisp 3.99 for Linux: Oct 12 2000
+Dump file created: Wed Oct 25 18:17:32 2000
++++ Built-in "ASH" clashes with image file: => "~ASH"
++++ Built-in "DIVIDE" clashes with image file: => "~DIVIDE"
++++ Built-in "QUOTIENT" clashes with image file: => "~QUOTIENT"
++++ Built-in "LOGBITP" clashes with image file: => "~LOGBITP"
++++ Built-in "PAIR" clashes with image file: => "~PAIR"
++++ Built-in "TIME" clashes with image file: => "~TIME"
++++ Built-in "FLAG" clashes with image file: => "~FLAG"
++++ Built-in "FLAGP" clashes with image file: => "~FLAGP"
++++ Built-in "REMFLAG" clashes with image file: => "~REMFLAG"
++++ Built-in "ASSOC" clashes with image file: => "~ASSOC"
++++ Built-in "MEMBER" clashes with image file: => "~MEMBER"
++++ Built-in "DELETE" clashes with image file: => "~DELETE"
++++ Built-in "DELEQ" clashes with image file: => "~DELEQ"
++++ Built-in "REVERSE" clashes with image file: => "~REVERSE"
++++ Built-in "TERPRI" clashes with image file: => "~TERPRI"
++++ Built-in "FINISH-OUTPUT" clashes with image file: => "~FINISH-OUTPUT"
++++ Built-in "PRIN1" clashes with image file: => "~PRIN1"
++++ Built-in "PRINC" clashes with image file: => "~PRINC"
++++ Built-in "PRINT" clashes with image file: => "~PRINT"
++++ Built-in "HELP" clashes with image file: => "~HELP"
+Memory allocation: 12832512 bytes
+
++++ About to read file "faster.lsp"
+
+;; This file MUST be run from the AXBASE directory. It creates a bunch of
+;; files u01.c to u12.c and u01.lsp to u12.lsp
+;;
+;; The files u01.c to u12.c must be copied (by hand) into the directory where
+;; CCL is built, and "fastccl" should be built to incorporate them.
+
+(in-package 'lisp)
+#P:"LISP"
+
+
+(load-module 'ccomp)Fast-loading "/users/axiom/ccl/share/images/ccl-axiom0.img(CCOMP)"
+
+NIL
+
+
+(defun listsize (x n)
+   (cond
+      ((null x) n)
+      ((atom x) (1+ n))
+      (t (listsize (cdr x) (listsize (car x) n)))))+++ LISTSIZE compiled, 17 + 4 bytes
+
+LISTSIZE
+
+
+(setq fnames '("u01" "u02" "u03" "u04" "u05"
+               "u06" "u07" "u08" "u09" "u10"
+               "u11" "u12"))
+("u01" "u02" "u03" "u04" "u05" "u06" "u07" "u08" "u09" "u10" "u11" "u12")
+
+
+
+;; The size_per_file limit is an attempt to control the size of each
+;; generated file of C code. It gives an approximate sort of guidance, based
+;; on the size of the Lisp before it is macro-expanded.
+
+(setq size_per_file 1700)
+1700
+ 
+
+(verbos nil)
+3
+
+
+(null (setq targets '(
+;; added by TTT
+;;    BOOT::|removeZeroOne|
+    BOOT::|SUP;pomopo!;$RNni2$;13|
+    BOOT::|OVAR;<;2$B;10|
+    BOOT::|NSMP;mvar;$VarSet;5|
+    BOOT::|SUP;ground?;$B;7|
+    BOOT::|PR;addm!|
+    BOOT::|SMP;+;3$;27|
+    BOOT::|PR;times!0|
+    BOOT::|PR;termTimes|
+;; Added/promoted by MCD
+    BOOT::|IIARRAY2;qsetelt!;$2I2R;12|
+    BOOT::|IIARRAY2;elt;$2IR;11|
+    BOOT::|IIARRAY2;nrows;$Nni;8|
+    BOOT::|IIARRAY2;empty?;$B;1|
+    BOOT::|IIARRAY2;maxRowIndex;$I;6|
+    BOOT::|IIARRAY2;maxColIndex;$I;7|
+    BOOT::|IIARRAY2;ncols;$Nni;9|
+    BOOT::|IARRAY1;setelt;$I2S;17|
+    BOOT::|IARRAY1;new;NniS$;5|
+    BOOT::|IARRAY1;qsetelt!;$I2S;15|
+    BOOT::|IARRAY1;minIndex;$I;3|
+    BOOT::|IARRAY1;maxIndex;$I;13|
+    BOOT::|IARRAY1;#;$Nni;1|
+    BOOT::|AGG-;empty?;SB;3|
+    BOOT::|STREAM;setfrst!|
+    BOOT::|STREAM;setrst!|
+    BOOT::|STREAM;lazyEval|
+    BOOT::|STREAM;empty;$;33|
+    BOOT::|PRTITION;<;2$B;5|
+    BOOT::|ILIST;minIndex;$I;18|
+    BOOT::|STREAM2;mapp!0|
+    BOOT::|STREAM2;mapp|
+    BOOT::|STREAM2;map;MSS;2|
+    BOOT::|STTAYLOR;+;3S;2|
+    BOOT::|ZMOD;*;3$;30|
+    BOOT::|ZMOD;+;3$;32|
+    BOOT::|ZMOD;-;3$;33|
+    BOOT::|ZMOD;-;2$;36|
+    BOOT::|FFP;*;3$;21|
+    BOOT::|FFP;+;3$;22|
+    BOOT::|FFP;=;2$B;24|
+    BOOT::|FFP;-;3$;23|
+    BOOT::|SAE;reduce;UP$;11|
+    BOOT::|SAE;*;3$;15|
+    BOOT::|SAE;+;3$;13|
+    BOOT::|SAE;=;2$B;12|
+    BOOT::|SAE;-;2$;14|
+    BOOT::|SUP;monicDivide;2$R;36|
+    BOOT::|ABELMON-;zero?;SB;1|
+    BOOT::|ABELGRP-;-;3S;1|
+    BOOT::|MATCAT-;*;S2Col;32|
+    BOOT::|ARR2CAT-;copy;2S;10|
+    BOOT::|IMATLIN;rowEchelon;2M;3|
+    BOOT::|MATCAT-;*;3S;29|
+    BOOT::|SINT;zero?;$B;38|
+    BOOT::|DIRPROD;<;2$B;18|
+    BOOT::|DIRPROD;subtractIfCan;2$U;14|
+    BOOT::|A1AGG-;copy;2A;19|
+    BOOT::|GDMP;univariate;$OvlSup;21|
+    VMLISP::SIZE
+    BOOT::|IARRAY1;map;M3$;8|
+    BOOT::|AGG-;size?;SNniB;6|
+    BOOT::|PERMGRP;times|
+    BOOT::|PERMGRP;inv|
+    BOOT::|PERMGRP;orbitWithSvc|
+    BOOT::|PERMGRP;testIdentity|
+    BOOT::|STAGG-;elt;AIS;5|
+    BOOT::|PRIMARR;#;$Nni;1|
+;; Remains of Arthur's original list
+    BOOT::|termMatch|
+    BOOT::|IFARRAY;elt;$IS;17|
+    BOOT::|ILIST;empty;$;6|
+    BOOT::GETALIST
+    BOOT::|opOf|
+    BOOT::|BOP;name;$S;2|
+    BOOT::|INT;one?;$B;7|
+    BOOT::|isPatternVar|
+    BOOT::|ILIST;copy;2$;20|
+    BOOT::|IFARRAY;setelt;$I2S;18|
+    BOOT::|ALIST;search;Key$U;15|
+    BOOT::|getOpCode|
+    BOOT::|SMP;zero?;$B;3|
+    BOOT::|ELTAGG-;qelt;SDomIm;1|
+    BOOT::|SMP;one?;$B;4|
+    BOOT::|ELAGG-;removeDuplicates;2A;12|
+    BOOT::|SMP;=;2$B;29|
+    BOOT::|PR;reductum;2$;8|
+    BOOT::|SMP;variables;$L;62|
+    BOOT::|isDomain|
+    BOOT::|PR;leadingCoefficient;$R;6|
+    BOOT::|KERNEL;position;$Nni;7|
+    BOOT::|lazyMatchArg|
+    BOOT::|containsVars1|
+    BOOT::|subCopy|
+    BOOT::|isFreeFunctionFromMmCond|
+    BOOT::|ILIST;first;$S;4|
+    BOOT::|ELTAGG-;qsetelt!;SDom2Im;2|
+    BOOT::|isFreeFunctionFromMm|
+    BOOT::|BOP;property;$SU;7|
+    BOOT::|EXPR;numer;$Smp;22|
+    BOOT::|EXPR;numer;$Smp;126|
+    BOOT::|KERNEL;B2Z|
+    BOOT::|EXPR;denom;$Smp;23|
+    BOOT::|ILIST;sort!;M2$;27|
+    BOOT::|SMP;*;R2$;26|
+    BOOT::|getDomainFromMm|
+    BOOT::|FRAC;zero?;$B;2|
+    BOOT::|POLYCATQ;variables;FL;5|
+    BOOT::|INTDOM-;unitCanonical;2S;2|
+    BOOT::|STAGG-;concat;3A;7|
+    BOOT::|PR;degree;$E;4|
+    BOOT::|FS-;kernels;SL;60|
+    BOOT::QUOTIENT2
+    VMLISP:CGREATERP
+    BOOT::|IARRAY1;qelt;$IS;14|
+    BOOT::|COMPCAT-;=;2SB;15|
+    VMLISP:GETL
+    BOOT::|IDPO;=;2$B;1|
+    BOOT::|ILIST;removeDuplicates!;2$;26|
+    BOOT::UNSQUEEZE
+    BOOT::|EXPR;algkernels|
+    BOOT::|BOP;weight;$Nni;28|
+    BOOT::|isExposedConstructor|
+    BOOT::|SMP;ground?;$B;16|
+    BOOT::|containsVars|
+    BOOT:QLASSQ
+    BOOT::|IFARRAY;removeDuplicates!;2$;30|
+    BOOT::|ISTRING;<;2$B;6|
+    BOOT::|SMP;unitNormal;$R;35|
+    BOOT::|INT;unitNormal;$R;52|
+    BOOT::|devaluate|
+    VMLISP:|member|
+    BOOT::|domainVal|
+    BOOT::|SMP;*;3$;30|
+    BOOT::|ILIST;concat!;3$;25|
+    VMLISP::STRING-EQUAL-TEST
+    BOOT::|INT;exquo;2$U;49|
+    BOOT::|constructor?|
+    BOOT::|COMPLEX;zero?;$B;8|
+    BOOT::|destructT|
+    BOOT::|augmentSub|
+    BOOT::|FLAGG-;sort;M2A;6|
+    BOOT::|KERNEL;operator;$Bo;5|
+    BOOT::|IFARRAY;minIndex;$I;7|
+    BOOT::|term1RW|
+    BOOT::|lazyMatchAssocV|
+    SYSTEM::PNAME
+    BOOT::|evalMmStackInner|
+    VMLISP:IVECP
+    BOOT::|CONTAINEDisDomain|
+    BOOT::|evalMmDom|
+    QUOTIENT
+    BOOT::|FAMR-;coefficients;SL;6|
+    BOOT::|LSAGG-;select!;M2A;5|
+    BOOT::|LSAGG-;<;2AB;25|
+    BOOT::|isSubDomain|
+    BOOT::|KERNEL;=;2$B;13|
+    BOOT::|CDRwithIncrement|
+    BOOT::|lookupInDomainVector|
+    BOOT::|KERNEL;<;2$B;14|
+    BOOT::|FRAC;cancelGcd|
+    BOOT::|KERNEL;triage|
+    BOOT::|isPartialMode|
+    BOOT::|ILIST;mergeSort|
+    BOOT::|getDomainByteVector|
+    BOOT::|isFunctor|
+    BOOT::|SMP;leadingCoefficient;$R;77|
+    BOOT::|EXPR;commonk|
+    BOOT::|SMP;retract;$R;59|
+    BOOT::|IDPAM;monomial;AS$;6|
+    BOOT::|PRIMARR;fill!;$S$;9|
+    BOOT::|IFARRAY;maxIndex;$I;6|
+    BOOT::|lookupComplete|
+    BOOT::|FRAC;one?;$B;28|
+    BOOT::|getSystemModemaps|
+    BOOT::|stuffSlot|
+    BOOT::|IDPAM;+;3$;4|
+    BOOT::|FRAC;normalize|
+    BOOT::|COMPLEX;coerce;R$;10|
+    BOOT::|BOP;has?;$SB;9|
+    BOOT::|tokPart|
+    BOOT::|newCompareSig|
+    BOOT::|lazyMatchArg2|
+    BOOT::|KDAGG-;key?;KeySB;1|
+    BOOT::|EXPR;=;2$B;21|
+    BOOT::|COMPCAT-;recip;SU;48|
+    BOOT::|SMP;mainVariable;$U;63|
+    BOOT::|SCACHE;enterInCache;SMS;5|
+    BOOT::|SMP;coerce;R$;21|
+    BOOT::|COMPLEX;exquo;2$U;16|
+    BOOT::|get|
+    BOOT::|SMP;exquo;2$U;39|
+    BOOT::|SMP;exquo;2$U;40|
+    BOOT::|KERNEL;argument;$L;6|
+    BOOT::|isNewWorldDomain|
+    BOOT::|computeElapsedTime|
+    BOOT::|IIARRAY2;minColIndex;$I;5|
+    BOOT::|IIARRAY2;minRowIndex;$I;4|
+    BOOT::|FRAC;=;2$B;27|
+    BOOT::|BOP;=;2$B;27|
+    BOOT::|SET;construct;L$;19|
+    BOOT::|FLASORT;QuickSort|
+    BOOT::|EXPR;algkernels!0|
+    BOOT::|pfAbSynOp?|
+    BOOT::|COMPLEX;*;3$;15|
+    BOOT::|selectMmsGen,exact?|
+    VMLISP:|last|
+    BOOT::|evalMmCond0|
+    BOOT::|COMPCAT-;exquo;SRU;46|
+    BOOT::|FLASORT;partition|
+    BOOT::|FM;*;R2$;1|
+    BOOT::|newExpandTypeSlot|
+    BOOT::|FRAC;*;3$;23|
+    BOOT::|matchTypes|
+    BOOT::|term1RWall|
+    BOOT::|testBitVector|
+    BOOT::|PRIMARR;new;NniS$;4|
+    BOOT::|SMP;gcd;3$;45|
+    BOOT::|SMP;gcd;3$;48|
+    BOOT::|SMP;gcd;3$;52|
+    BOOT::|SMP;gcd;3$;55|
+    BOOT::|PGCD;gcd;3P;15|
+    BOOT::|filterModemapsFromPackages|
+    BOOT::|selectMmsGen,matchMms|
+    BOOT::|BOP;<;2$B;29|
+    BOOT::|evalMmStack|
+    BOOT::|EXPR;commonk0|
+    BOOT::|get0|
+    BOOT::|sigDomainVal|
+    BOOT::|FSAGG-;brace;LA;3|
+    BOOT::|MONOID-;one?;SB;2|
+    BOOT::|STAGG-;c2|
+    BOOT::|IFARRAY;#;$Nni;4|
+    BOOT::|IDPAM;map;M2$;7|
+    BOOT::|resolveTMEq|
+    BOOT::|COMPCAT-;unitNormal;SR;49|
+    BOOT::|FLASORT;quickSort;M2V;1|
+    BOOT::|NNI;subtractIfCan;2$U;3|
+    BOOT::|SMP;-;2$;24|
+    BOOT::|SUP;fmecg;$NniR2$;29|
+    BOOT::|evalMm|
+    BOOT::|COMPLEX;one?;$B;9|
+    BOOT::|FLAGG-;sort!;2A;8|
+    BOOT::|object2String|
+    BOOT::|FRAC;coerce;S$;1|
+    BOOT::|COMPCAT-;*;R2S;18|
+    BOOT::|EXPR;*;3$;11|
+    BOOT::|IIARRAY2;qelt;$2IR;10|
+    BOOT::|ALIST;keys;$L;6|
+    BOOT::|isEqualOrSubDomain|
+    BOOT::|hashString|
+    BOOT::|EXPR;reduc|
+    BOOT:ELEMN
+    BOOT::|MDDFACT;reduction!0|
+    BOOT::|HDP;<;2$B;1|
+    BOOT::|stuffDomainSlots|
+    BOOT::|subspan|
+    BOOT::|deconstructT|
+    BOOT::|SUP;exquo;2$U;27|
+    BOOT::|SUP;exquo;2$U;28|
+    BOOT::|PR;coerce;R$;12|
+    BOOT::|REPSQ;expt;SPiS;1|
+    VMLISP:QENUM
+    VMLISP:GGREATERP
+    BOOT::|startTimingProcess|
+    BOOT::|domainEqualList|
+    BOOT::|newExpandLocalType|
+    BOOT::|isDefaultPackageForm?|
+    BOOT::|A1AGG-;=;2AB;28|
+    BOOT::|EXPR;coerce;Smp$;24|
+    BOOT::|PR;*;3$;21|
+    BOOT::|superspan|
+    BOOT::|SET;empty;$;4|
+    BOOT::|A1AGG-;sort!;M2A;2|
+    SUB-WRITE-STRING
+    BOOT::|hasCat|
+    BOOT::|ncAlist|
+    BOOT::|INS-;symmetricRemainder;3S;27|
+    BOOT::|FM;*;$R$;3|
+    BOOT::|FM;*;$R$;4|
+    BOOT::|IFARRAY;new;NniS$;8|
+    BOOT::|BOP;properties;$Al;3|
+    BOOT::|PGCD;better|
+;;    VECTOR-SUBSEQ*
+    BOOT::|INT;positiveRemainder;3$;28|
+    BOOT::|SGROUP-;**;SPiS;1|
+    BOOT::|IFARRAY;empty;$;3|
+    WRITE-TO-STRING-1
+    BOOT::|resolveTM1|
+    BOOT::|lazyMatch|
+    SUB-WRITE
+    BOOT::|IFARRAY;growAndFill|
+    BOOT::|ABELGRP-;*;Nni2S;3|
+    BOOT::|stopTimingProcess|
+;;    LISP::DIVIDE
+    BOOT::|ABELMON-;*;Pi2S;2|
+    BOOT::|FIELD-;inv;2S;4|
+    BOOT::|MDDFACT;reduction|
+    BOOT::DIVIDE2
+    BOOT::|EXPR;-;2$;8|
+    BOOT::|ILIST;member?;S$B;24|
+    BOOT::|ILIST;rest;$Nni$;19|
+    BOOT::|replaceGoGetSlot|
+    BOOT::|IDPAG;-;2$;1|
+    BOOT::|FRAC;+;3$;21|
+    BOOT::|PGCD;gcdTermList|
+    BOOT::|matchMmSig|
+    BOOT::|isHomogeneousList|
+    BOOT::|LO;-;2$;3|
+    BOOT::|EUCDOM-;gcd;3S;5|
+    BOOT::|newLookupInAddChain|
+    BOOT::|LO;=;2$B;4|
+    BOOT::|newLookupInDomain|
+    BOOT::|atom2String|
+;;    BOOT::|SMP;variables;$L;51!0|
+;;    VMLISP::CONCAT
+    BOOT::|IARRAY1;elt;$IS;16|
+;;    BOOT::|newGoGet|
+    BOOT::|EXPR;+;3$;12|
+    BOOT::|COMPCAT-;rem;3S;53|
+    BOOT::|FIELD-;/;3S;11|
+    BOOT::|SMP;univariate;$VarSetSup;13|
+;;    BOOT::|npInfKey|
+    BOOT::|hasCate|
+    BOOT::|URAGG-;tail;2A;16|
+    BOOT::|npInfGeneric|
+    BOOT::|FACUTIL;lowerPolynomial;SupSup;1|
+    BOOT::|underDomainOf|
+    BOOT::|SMP;degree;$Ie;71|
+    BOOT::|FAMR-;ground;SR;4|
+    BOOT::|STAGG-;first;ANniA;3|
+    BOOT::|FRAC;recip;$U;30|
+    BOOT::|allOrMatchingMms|
+    BOOT::|IARRAY1;fill!;$S$;2|
+    BOOT::|IFARRAY;concat!;$S$;21|
+    BOOT::|BOP;is?;$SB;1|
+    BOOT::|FRAC;*;I2$;24|
+    BOOT::|IFARRAY;growWith|
+    BOOT::|loadIfNecessary|
+    BOOT::|EXPR;coerce;I$;10|
+    BOOT::|typeIsASmallInteger|
+    BOOT::|ILIST;split!;$I$;29|
+    BOOT::|EUCDOM-;unitNormalizeIdealElt|
+    BOOT::|IDPAG;-;3$;4|
+    BOOT::|RING-;coerce;IS;1|
+    BOOT::|deepSubCopy|
+    BOOT::|constructSubst|
+    BOOT::|keyp|
+    BOOT::|lookupIncomplete|
+;;    SUB-WRITE-BASED
+;;    SUB-WRITE-BASED-LEADING
+;;    SUB-WRITE-BASED-INNER
+    BOOT::|LSAGG-;reduce;MA2S;16|
+;;    BOOT::|INT;coerce;I$;12|
+    BOOT::|COMPLEX;+;3$;14|
+    BOOT::|EXPR;/;3$;14|
+    BOOT::|SMP;coerce;VarSet$;7|
+    BOOT::|mkDomPvar|
+    BOOT::|resolveTMEq1|
+    BOOT::|MODRING;zero?;$B;10|
+    BOOT::|orderMmCatStack|
+    BOOT::|EXPR;zero?;$B;7|
+    LIST-DELETE-DUPLICATES*-1
+;;    CONCATENATE
+    BOOT::|buildPredVector,fn|
+    BOOT::|COMPCAT-;-;2S;17|
+    BOOT::|PR;exquo;$RU;31|
+    BOOT::|SMP;degree;$VarSetNni;69|
+    BOOT::|MODRING;reduce;RMod$;6|
+    BOOT::|hasCaty|
+    BOOT::|FS-;coerce;KS;19|
+    LIST-TO-VECTOR*
+;; end
+    BOOT::|basicLookup|
+    BOOT::|URAGG-;last;AS;7|
+    BOOT::|unifyStruct|
+    BOOT::|ILIST;merge!;M3$;28|
+    BOOT::|argCouldBelongToSubdomain|
+    BOOT::|deepSubCopyOrNil|
+    BOOT::|UPOLYC2;map;MPRPS;1|
+;;    BOOT::|isLegitimateMode|
+;;    BOOT::|npEnclosed|
+;;    BOOT::|newLookupInCategories|
+    BOOT::|LIST;setUnion;3$;5|
+;;    BOOT::|newType?|
+;;    BOOT::|isSharpVar|
+;;    BOOT::|lassocShiftWithFunction|
+;;    BOOT::|isValidType|
+;;    VMLISP:CHARP
+    BOOT::|EUCDOM-;extendedEuclidean;2SR;7|
+;;    FUNCTIONP
+    BOOT::|COMPCAT-;norm;SR;9|
+    BOOT::|SYMBOL;coerce;S$;3|
+;;    BOOT::|mmCatComp|
+;;    MAKE-SEQUENCE-OF-TYPE
+;;    BOOT:MKQ
+;;    BOOT::|transferPropsToNode,transfer|
+;;    BOOT::|deepSubCopy0|
+;;    BOOT::|getOpBindingPower|
+    BOOT::|COMPCAT-;conjugate;2S;12|
+;;    BOOT::|npDDInfKey|
+;;    BOOT::|isWrapped|
+;;    BOOT::|ncTag|
+    BOOT::|DIRPROD;subtractIfCan;2$U;14|
+;;    BOOT::|npEqPeek|
+;;    BOOT::|eqType|
+    BOOT::|PR;minimumDegree;$E;5|
+    BOOT::|SET;=;2$B;16|
+    BOOT::|SET;union;3$;27|
+;;    BOOT::WIDTH
+;;    BOOT::|findFunctionInDomain|
+;;    BOOT::|resolveTMSpecial|
+    BOOT::|INT;convert;$I;13|
+;;    BOOT::|search|
+    BOOT::|SET;parts;$L;6|
+;;    STRING-TRIM1
+    BOOT::|ES-;listk|
+;;    BOOT::|containsVariables|
+;;    BOOT::|newHasCategory|
+;;    BOOT::|getValue|
+    BOOT::|ES-;tower;SL;5|
+;;    BOOT::|hasCate1|
+;;    BOOT::|infixArgNeedsParens|
+;;    BOOT::|symEqual|
+    BOOT::|A1AGG-;parts;AL;1|
+;;    BOOT::|npParenthesize|
+;;    BOOT::APP
+    BOOT::|POLYLIFT;map;MMPS;1|
+;;    BOOT::|pfNoPosition?|
+;;    BOOT::|poNoPosition?|
+;;    BOOT::|objValUnwrap|
+;;    BOOT::|equiType|
+;;    BOOT::|ncPutQ|
+;;    BOOT::|pfId?|
+    BOOT::|SMP;-;3$;26|
+;;    BOOT::|getBindingPowerOf|
+;;    BOOT::|searchCurrentEnv|
+;;    BOOT::|loadLib|
+;;    VMLISP:RPLACSTR
+    BOOT::|ES-;allk|
+;;    BOOT::|evalMmCat|
+    BOOT::|FACUTIL;variables;SupL;5|
+;;    BOOT::|apphor|
+    BOOT::|ILIST;=;2$B;22|
+;;    BOOT::|npPush|
+;;    BOOT::|voidValue|
+;;    BOOT::|npLeftAssoc|
+    BOOT::|ES-;allKernels|
+;;    BOOT::|getAtree|
+;;    BOOT::|putWidth|
+;;    BOOT::|tokPosn|
+    BOOT::|PGCD;gcd;LP;16|
+;;    BOOT::|unwrap|
+;;    BOOT::|domArg2|
+;;    BOOT::|addConsDB|
+;;    BOOT::|appChar|
+;;    BOOT::|npAnyNo|
+    BOOT::|FRAC;/;2S$;15|
+;;    BOOT::|pfAbSynOp|
+;;    BOOT::|npPDefinition|
+;;    BOOT::|loadLibIfNecessary|
+;;    BOOT::|keyword|
+;;    BOOT::|npParenthesized|
+    BOOT::|KERNEL;is?;$SB;1|
+;;    BOOT::|wrap|
+;;    BOOT::|evalMmCat1|
+;;    BOOT::|putAtree|
+;;    BOOT::|leftBindingPowerOf|
+;;    BOOT::|npAngleBared|
+    BOOT::|PGCD;monomContent|
+;;    BOOT::|compiledLookup|
+;;    BOOT::|getTarget|
+;;    BOOT::|newExpandLocalTypeForm|
+    BOOT::|FS-;mainKernel;SU;75|
+    BOOT::|IDPOAM;<;2$B;1|
+;;    BOOT::|getUnname1|
+;;    REPORT-KEYWORDS
+    BOOT::|MATRIX;minColIndex;$I;2|
+    BOOT::|FIELD-;exquo;2SU;5|
+    BOOT::|SMP;evalSortedVarlist!0|
+;;    SUB-WRITE-1
+;;    BOOT::|getUnname|
+    BOOT::|FAMR-;ground?;SB;1|
+;;    BOOT::|diffAlist|
+;;    BOOT::|objNewWrap|
+    BOOT::|IXAGG-;swap!;S2IndexV;10|
+    BOOT::|DIRPROD;=;2$B;6|
+    BOOT::|GENEEZ;reduction;BPRBP;4!0|
+    BOOT::|FRAC;retract;$F;28|
+    BOOT::|EXPR;retract;$F;99|
+;;    BOOT::|tokConstruct|
+;;    BOOT::|mkEvalable|
+    BOOT::|KERNEL;is?;$BoB;2|
+;;    BOOT::|pfApplication?|
+;;    BOOT::|NRTgetOperationAlistFromLisplib|
+;;    BOOT::|pfSymbol?|
+;;    POSITION
+;;    BOOT::|rightBindingPowerOf|
+;;    BOOT::|putHist|
+;;    BOOT::|decomposeTypeIntoTower|
+;;    BOOT::|pfLambda?|
+;;    BOOT::|pfWhere?|
+;;    BOOT::|pfMacro?|
+;;    BOOT::|HasCategory|
+;;    BOOT::|insertShortAlist|
+    BOOT::|ES-;retractIfCan;SU;35|
+;;    SUB-WRITE-INTEGER
+;;    BOOT::|pfIdSymbol|
+;;    VECTOR-PUSH-EXTEND
+;;    BOOT::|StreamNull|
+    BOOT::|KERNEL;setPosition;$NniV;8|
+;;    BOOT::|npPop1|
+    BOOT::|SYMBOL;<;2$B;5|
+    BOOT::|QFCAT-;<;2AB;12|
+    BOOT::|FACUTIL;raisePolynomial;SupSup;2|
+;;    BOOT::|npParened|
+    BOOT::|EXPR;noalg?|
+;;    BOOT::|npBracked|
+;;    BOOT::|npBraced|
+    BOOT::|EXPR;one?;$B;6|
+    BOOT::|EMR;rem;3$;2|
+    BOOT::|POLYCATQ;mainVariable;FU;9|
+;;    BOOT::|stringer|
+;;    BOOT::|evalDomain|
+    BOOT::|EXPR;belong?;BoB;1|
+    BOOT::|FRAC;-;3$;17|
+    BOOT::|STREAM;lazy?;$B;2|
+    BOOT::|MATRIX;minRowIndex;$I;1|
+    BOOT::|EMR;unitCanonical;2$;5|
+;;    BOOT::|hashCombine|
+    BOOT::|EXPR;<;2$B;16|
+    BOOT::|EXPR;-;3$;13|
+;;    SUB-WRITE-SYMBOL
+;;    BOOT::|punctuation?|
+;;    BOOT::|packageTran|
+    BOOT::|SMP;retractIfCan;$U;50|
+;;    BOOT::|pfNothing?|
+;;    BOOT::|evalSlotDomain|
+;;    BOOT::|Delay|
+    BOOT::|FRAC;*;S2$;20|
+;;    BOOT::|pfParts|
+;;    BOOT::|height|
+    VMLISP::HPUT
+;;    BOOT::|noSharpCallsHere|
+    BOOT::|KERNEL;symbolIfCan;$U;12|
+    BOOT::|SMP;evalSortedVarlist|
+    BOOT::|POLYCAT-;<;2SB;38|
+;;    BOOT::|getMode|
+;;    BOOT::|recordNewValue|
+    BOOT::|MONOID-;**;SNniS;5|
+;;    BOOT::|transferPropsToNode|
+;;    BOOT::|pfLiteral?|
+    BOOT::|MODULE-;*;SRS;1|
+;;    BOOT::|npTypedForm|
+;;    VECTOR-POSITION*
+;;    LIST-REMOVE-DUPLICATES*-1
+;;    BOOT::|hasCateSpecial|
+    BOOT::|HEUGCD;lintgcd;LI;6!0|
+    BOOT::|PGCD;gcdMonom|
+;;    BOOT::|getConstructorModemap|
+    BOOT::|SUP;gcd;3$;30|
+;;    BOOT::|domArg|
+    BOOT::|ES-;height;SNni;8|
+;;    BOOT::|getBasicMode|
+    BOOT::|INS-;euclideanSize;SNni;9|
+;;    BOOT::|npNext|
+    BOOT::|BOP;arity;$U;25|
+;;    BOOT::|lnExtraBlanks|
+;;    BOOT::|recordOldValue|
+    BOOT::|GENEEZ;reduction;BPRBP;4|
+;;    SORT-LIST
+    BOOT::|SCACHE;cache;L;1|
+    BOOT::|PR;retractIfCan;$U;9|
+;;    BOOT::|npBackTrack|
+    BOOT::|STREAM;explicitlyEmpty?;$B;1|
+;;    BOOT::|npBDefinition|
+;;    BOOT::|dqAppend|
+    BOOT::|GCDDOM-;lcm;3S;1|
+;;    COMPILED-FUNCTION-P
+    BOOT::|MDDFACT;merge|
+;;    BOOT::|defaultTypeForCategory|
+;;    BOOT::|dqUnit|
+    BOOT::|PR;coefficient;$ER;10|
+;;    BOOT::|wordFrom|
+    BOOT::|FRAC;retract;$S;3|
+    BOOT::|SMP;multivariate;SupVarSet$;13|
+    BOOT::|ES-;is?;SBoB;37|
+;;    BOOT::|pfMapParts|
+;;    BOOT::|listTruncate|
+;;    DELETE-DUPLICATES-1
+;;    BOOT::|hasCateSpecialNew|
+    BOOT::|MODRING;newmodulo|
+    BOOT::|URAGG-;second;AS;4|
+    BOOT::|SMP;eval;$LL$;57|
+    BOOT::|PGCD;gcd;3Sup;11|
+;;    BOOT::|pfLeaf?|
+;;    BOOT::|pfTree|
+;;    SORT-2
+;;    BOOT::|npName|
+    BOOT::|SUP;content;$R;28|
+    BOOT::|INTDOM-;recip;SU;3|
+    BOOT::|FS-;smpeval!3|
+    BOOT::|SUP;elt;$2R;22|
+    BOOT::|HEUGCD;lintgcd;LI;6|
+;;    BOOT::|constoken|
+;;    BOOT::|isQuotient|
+    BOOT::|LGROBP;reduceRow|
+;;    BOOT::|fixUpTypeArgs|
+;;    BOOT::|hashType|
+;;    BOOT::|optimize|
+;;    FLOAT-STRING
+;;    VMLISP:LIST2VEC
+;;    BOOT::|makeStatString|
+;;    BOOT::|npDotted|
+;;    BOOT::|macExpand|
+;;    PRINC
+;;    BOOT::|startsNegComment?|
+    BOOT::|SMP;**;$Nni$;29|
+;;    BOOT::|isInterpMacro|
+    BOOT::|FS-;retract;SR;88|
+;;    BOOT::|startsComment?|
+    BOOT::|STREAM;delay;M$;56|
+;;    BOOT::|constructT|
+;;    BOOT::|recordNewValue0|
+;;    BOOT::|npBracketed|
+;;    BOOT::|recordOldValue0|
+;;    BOOT::|NRTevalDomain|
+    BOOT::|KERNEL;kernel;BoLNni$;15|
+    BOOT::|FLAGG-;position;SAI;1|
+    BOOT::|LSAGG-;position;SA2I;23|
+;;    BOOT::|scanToken|
+;;    REMOVE-DUPLICATES-1
+;;    BOOT::|npEncAp|
+    BOOT::|MODRING;*;3$;17|
+    BOOT::|SUP2;map;MSupSup;1|
+;;    BOOT::|devaluateList|
+;;    BOOT::|getModemapsFromDatabase|
+;;    BOOT::|newExpandLocalTypeArgs|
+    BOOT::|STREAM;empty?;$B;36|
+    BOOT::|GBINTERN;redPo;DpolLR;13|
+;;    BOOT::|buildPredVector|
+;;    BOOT::|putIntSymTab|
+;;    BOOT::|tokType|
+;;    ALPHANUMERICP
+)))
+NIL
+
+
+;; The following are functions that at present crash the Lisp to C compiler..
+;; The difficulty as of mid March is that they use DECLARE and the compiler
+;; does not know how to handle that (yet).
+
+(null (setq avoids '(
+BOOT::|matchMmCond|
+BOOT::|findFunctionInDomain1| ;; Added by MCD.
+BOOT::|npEqKey|
+BOOT::GETDATABASE
+BOOT::|evalMmCond|
+VMLISP:STRPOS
+BOOT:LASSOC
+BOOT::|npRestore|
+BOOT::|newLookupInTable|
+BOOT::|npState|
+BOOT::|npFirstTok|
+BOOT::|oldCompLookup|
+DIVIDE
+VMLISP:CONCAT
+BOOT::|newGoGet|
+BOOT::|npInfKey|
+
+;; I do not know what is wrong with the following at present, but it seems
+;; to break things for me...
+
+;; Hah - Barry Trager spotted the problem - order of evaluation of args!
+
+;;; BOOT::|STAGG-;first;ANniA;3|
+
+)))
+NIL
+
+
+
+(load_source_database "cclwhereis.lsp")
+NIL
+
+
+(setq *print-array* t)
+T
+
+
+(setq failures nil)
+NIL
+
+
+(while fnames
+   (let ((bulk 0))
+   (princ "About to create ") (princ (car fnames)) (terpri)
+   (c::ccompilestart (car fnames))
+   (while (and (< bulk size_per_file) targets)
+      (let* ((name (car targets))
+             (pk (symbol-package name))
+             (defn (if pk (package-name pk) nil))
+             (nnn (symbol-name name))
+             (location (gethash (list defn nnn) *where_defined*)))
+        (when (member name avoids) (setq location nil))
+        (when (null location)
+            (princ "+++++ ") (prin name) (princ " not available") (terpri)
+            (setq targets (cdr targets)))
+        (when location
+           (setq pk (open (car location) :direction :input))
+           (when pk
+              (file-position pk (cadr location))
+              (let ((*package* (find-package (caddr location))))
+                 (setq defn (read pk)))
+              (close pk)
+              (terpri) (princ "+++ ") (prin name) (ttab 30) 
+              (prin location) (terpri)
+              (setq bulk (listsize defn bulk))
+              (when (< bulk size_per_file)
+                  (prin name) (terpri)
+;; I stick the Lisp code for each function into the C file as a comment. I
+;; need to hope (ha ha) that the text of the Lisp code does not contain the
+;; string "*/" (as for instance this function would!) since that would
+;; terminate the C comment prematurely in an awkward manner!
+                  (wrs C_file)
+                  (princ "/*") (terpri)
+                  (let ((w (linelength 80)))
+                      (prettyprint defn)
+                      (linelength w))
+                  (terpri) (princ "*/") (terpri) (terpri)
+                  (wrs O_file)
+                  (when (atom (errorset (list 'c::ccmpout1 (mkquote defn)) t t))
+                      (setq failures (cons name failures)))
+                  (wrs O_file) ;; useful in case compiletion crashes.
+                  (setq targets (cdr targets)))))))
+   (c-end)
+   (setq fnames (cdr fnames))))About to create u01
+
++++ BOOT::|SUP;pomopo!;$RNni2$;13|(
+"/users/axiom/development/int/algebra/SUP.NRLIB/code.lsp" 5942 "BOOT")
+BOOT::|SUP;pomopo!;$RNni2$;13|
+Compiling BOOT::|SUP;pomopo!;$RNni2$;13| ... 
+
++++ BOOT::|OVAR;<;2$B;10|     (
+"/users/axiom/development/int/algebra/OVAR.NRLIB/code.lsp" 1646 "BOOT")
+BOOT::|OVAR;<;2$B;10|
+Compiling BOOT::|OVAR;<;2$B;10| ... 
+
++++ BOOT::|NSMP;mvar;$VarSet;5|(
+"/users/axiom/development/int/algebra/NSMP.NRLIB/code.lsp" 593 "BOOT")
+BOOT::|NSMP;mvar;$VarSet;5|
+Compiling BOOT::|NSMP;mvar;$VarSet;5| ... 
+
++++ BOOT::|SUP;ground?;$B;7|  (
+"/users/axiom/development/int/algebra/SUP.NRLIB/code.lsp" 2417 "BOOT")
+BOOT::|SUP;ground?;$B;7|
+Compiling BOOT::|SUP;ground?;$B;7| ... 
+
++++ BOOT::|PR;addm!|          (
+"/users/axiom/development/int/algebra/PR.NRLIB/code.lsp" 5064 "BOOT")
+BOOT::|PR;addm!|
+Compiling BOOT::|PR;addm!| ... 
+
++++ BOOT::|SMP;+;3$;27|       (
+"/users/axiom/development/int/algebra/SMP.NRLIB/code.lsp" 8793 "BOOT")
+BOOT::|SMP;+;3$;27|
+Compiling BOOT::|SMP;+;3$;27| ... 
+
++++ BOOT::|PR;times!0|        (
+"/users/axiom/development/int/algebra/PR.NRLIB/code.lsp" 4956 "BOOT")
+BOOT::|PR;times!0|
+Compiling BOOT::|PR;times!0| ... 
+
++++ BOOT::|PR;termTimes|      (
+"/users/axiom/development/int/algebra/PR.NRLIB/code.lsp" 4087 "BOOT")
+BOOT::|PR;termTimes|
+Compiling BOOT::|PR;termTimes| ... 
+
++++ BOOT::|IIARRAY2;qsetelt!;$2I2R;12|(
+"/users/axiom/development/int/algebra/IIARRAY2.NRLIB/code.lsp" 1954 "BOOT")
+BOOT::|IIARRAY2;qsetelt!;$2I2R;12|
+Compiling BOOT::|IIARRAY2;qsetelt!;$2I2R;12| ... 
+
++++ BOOT::|IIARRAY2;elt;$2IR;11|(
+"/users/axiom/development/int/algebra/IIARRAY2.NRLIB/code.lsp" 1590 "BOOT")
+BOOT::|IIARRAY2;elt;$2IR;11|
+Compiling BOOT::|IIARRAY2;elt;$2IR;11| ... 
+
++++ BOOT::|IIARRAY2;nrows;$Nni;8|(
+"/users/axiom/development/int/algebra/IIARRAY2.NRLIB/code.lsp" 1261 "BOOT")
+BOOT::|IIARRAY2;nrows;$Nni;8|
+Compiling BOOT::|IIARRAY2;nrows;$Nni;8| ... 
+
++++ BOOT::|IIARRAY2;empty?;$B;1|(
+"/users/axiom/development/int/algebra/IIARRAY2.NRLIB/code.lsp" 20 "BOOT")
+BOOT::|IIARRAY2;empty?;$B;1|
+Compiling BOOT::|IIARRAY2;empty?;$B;1| ... 
+
++++ BOOT::|IIARRAY2;maxRowIndex;$I;6|(
+"/users/axiom/development/int/algebra/IIARRAY2.NRLIB/code.lsp" 964 "BOOT")
+BOOT::|IIARRAY2;maxRowIndex;$I;6|
+Compiling BOOT::|IIARRAY2;maxRowIndex;$I;6| ... 
+
++++ BOOT::|IIARRAY2;maxColIndex;$I;7|(
+"/users/axiom/development/int/algebra/IIARRAY2.NRLIB/code.lsp" 1074 "BOOT")
+BOOT::|IIARRAY2;maxColIndex;$I;7|
+Compiling BOOT::|IIARRAY2;maxColIndex;$I;7| ... 
+
++++ BOOT::|IIARRAY2;ncols;$Nni;9|(
+"/users/axiom/development/int/algebra/IIARRAY2.NRLIB/code.lsp" 1318 "BOOT")
+BOOT::|IIARRAY2;ncols;$Nni;9|
+Compiling BOOT::|IIARRAY2;ncols;$Nni;9| ... 
+
++++ BOOT::|IARRAY1;setelt;$I2S;17|(
+"/users/axiom/development/int/algebra/IARRAY1.NRLIB/code.lsp" 3331 "BOOT")
+BOOT::|IARRAY1;setelt;$I2S;17|
+Compiling BOOT::|IARRAY1;setelt;$I2S;17| ... 
+
++++ BOOT::|IARRAY1;new;NniS$;5|(
+"/users/axiom/development/int/algebra/IARRAY1.NRLIB/code.lsp" 680 "BOOT")
+BOOT::|IARRAY1;new;NniS$;5|
+Compiling BOOT::|IARRAY1;new;NniS$;5| ... 
+
++++ BOOT::|IARRAY1;qsetelt!;$I2S;15|(
+"/users/axiom/development/int/algebra/IARRAY1.NRLIB/code.lsp" 3080 "BOOT")
+BOOT::|IARRAY1;qsetelt!;$I2S;15|
+Compiling BOOT::|IARRAY1;qsetelt!;$I2S;15| ... 
+
++++ BOOT::|IARRAY1;minIndex;$I;3|(
+"/users/axiom/development/int/algebra/IARRAY1.NRLIB/code.lsp" 483 "BOOT")
+BOOT::|IARRAY1;minIndex;$I;3|
+Compiling BOOT::|IARRAY1;minIndex;$I;3| ... 
+
++++ BOOT::|IARRAY1;maxIndex;$I;13|(
+"/users/axiom/development/int/algebra/IARRAY1.NRLIB/code.lsp" 2954 "BOOT")
+BOOT::|IARRAY1;maxIndex;$I;13|
+Compiling BOOT::|IARRAY1;maxIndex;$I;13| ... 
+
++++ BOOT::|IARRAY1;#;$Nni;1|  (
+"/users/axiom/development/int/algebra/IARRAY1.NRLIB/code.lsp" 92 "BOOT")
+BOOT::|IARRAY1;#;$Nni;1|
+Compiling BOOT::|IARRAY1;#;$Nni;1| ... 
+
++++ BOOT::|AGG-;empty?;SB;3|  (
+"/users/axiom/development/int/algebra/AGG-.NRLIB/code.lsp" 201 "BOOT")
+BOOT::|AGG-;empty?;SB;3|
+Compiling BOOT::|AGG-;empty?;SB;3| ... 
+
++++ BOOT::|STREAM;setfrst!|   (
+"/users/axiom/development/int/algebra/STREAM.NRLIB/code.lsp" 455 "BOOT")
+BOOT::|STREAM;setfrst!|
+Compiling BOOT::|STREAM;setfrst!| ... 
+
++++ BOOT::|STREAM;setrst!|    (
+"/users/axiom/development/int/algebra/STREAM.NRLIB/code.lsp" 533 "BOOT")
+BOOT::|STREAM;setrst!|
+Compiling BOOT::|STREAM;setrst!| ... 
+
++++ BOOT::|STREAM;lazyEval|   (
+"/users/axiom/development/int/algebra/STREAM.NRLIB/code.lsp" 16089 "BOOT")
+BOOT::|STREAM;lazyEval|
+Compiling BOOT::|STREAM;lazyEval| ... 
+
++++ BOOT::|STREAM;empty;$;33| (
+"/users/axiom/development/int/algebra/STREAM.NRLIB/code.lsp" 16026 "BOOT")
+BOOT::|STREAM;empty;$;33|
+Compiling BOOT::|STREAM;empty;$;33| ... 
+
++++ BOOT::|PRTITION;<;2$B;5|  (
+"/users/axiom/development/int/algebra/PRTITION.NRLIB/code.lsp" 576 "BOOT")
+BOOT::|PRTITION;<;2$B;5|
+Compiling BOOT::|PRTITION;<;2$B;5| ... 
+
++++ BOOT::|ILIST;minIndex;$I;18|(
+"/users/axiom/development/int/algebra/ILIST.NRLIB/code.lsp" 2425 "BOOT")
+BOOT::|ILIST;minIndex;$I;18|
+Compiling BOOT::|ILIST;minIndex;$I;18| ... 
+
++++ BOOT::|STREAM2;mapp!0|    (
+"/users/axiom/development/int/algebra/STREAM2.NRLIB/code.lsp" 163 "BOOT")
+BOOT::|STREAM2;mapp!0|
+Compiling BOOT::|STREAM2;mapp!0| ... 
+
++++ BOOT::|STREAM2;mapp|      (
+"/users/axiom/development/int/algebra/STREAM2.NRLIB/code.lsp" 20 "BOOT")
+BOOT::|STREAM2;mapp|
+Compiling BOOT::|STREAM2;mapp| ... 
+
++++ BOOT::|STREAM2;map;MSS;2| (
+"/users/axiom/development/int/algebra/STREAM2.NRLIB/code.lsp" 573 "BOOT")
+BOOT::|STREAM2;map;MSS;2|
+Compiling BOOT::|STREAM2;map;MSS;2| ... 
+
++++ BOOT::|STTAYLOR;+;3S;2|   (
+"/users/axiom/development/int/algebra/STTAYLOR.NRLIB/code.lsp" 78 "BOOT")
+BOOT::|STTAYLOR;+;3S;2|
+Compiling BOOT::|STTAYLOR;+;3S;2| ... 
+
++++ BOOT::|ZMOD;*;3$;30|      (
+"/users/axiom/development/int/algebra/ZMOD.NRLIB/code.lsp" 3747 "BOOT")
+BOOT::|ZMOD;*;3$;30|
+Compiling BOOT::|ZMOD;*;3$;30| ... 
+
++++ BOOT::|ZMOD;+;3$;32|      (
+"/users/axiom/development/int/algebra/ZMOD.NRLIB/code.lsp" 3928 "BOOT")
+BOOT::|ZMOD;+;3$;32|
+Compiling BOOT::|ZMOD;+;3$;32| ... 
+
++++ BOOT::|ZMOD;-;3$;33|      (
+"/users/axiom/development/int/algebra/ZMOD.NRLIB/code.lsp" 4003 "BOOT")
+BOOT::|ZMOD;-;3$;33|
+Compiling BOOT::|ZMOD;-;3$;33| ... 
+
++++ BOOT::|ZMOD;-;2$;36|      (
+"/users/axiom/development/int/algebra/ZMOD.NRLIB/code.lsp" 4256 "BOOT")
+BOOT::|ZMOD;-;2$;36|
+Compiling BOOT::|ZMOD;-;2$;36| ... 
+
++++ BOOT::|FFP;*;3$;21|       (
+"/users/axiom/development/int/algebra/FFP.NRLIB/code.lsp" 4971 "BOOT")
+BOOT::|FFP;*;3$;21|
+Compiling BOOT::|FFP;*;3$;21| ... 
+
++++ BOOT::|FFP;+;3$;22|       (
+"/users/axiom/development/int/algebra/FFP.NRLIB/code.lsp" 5045 "BOOT")
+BOOT::|FFP;+;3$;22|
+Compiling BOOT::|FFP;+;3$;22| ... 
+
++++ BOOT::|FFP;=;2$B;24|      (
+"/users/axiom/development/int/algebra/FFP.NRLIB/code.lsp" 5195 "BOOT")
+BOOT::|FFP;=;2$B;24|
+Compiling BOOT::|FFP;=;2$B;24| ... 
+
++++ BOOT::|FFP;-;3$;23|       (
+"/users/axiom/development/int/algebra/FFP.NRLIB/code.lsp" 5120 "BOOT")
+BOOT::|FFP;-;3$;23|
+Compiling BOOT::|FFP;-;3$;23| ... 
+
++++ BOOT::|SAE;reduce;UP$;11| (
+"/users/axiom/development/int/algebra/SAE.NRLIB/code.lsp" 1152 "BOOT")
+BOOT::|SAE;reduce;UP$;11|
+Compiling BOOT::|SAE;reduce;UP$;11| ... 
+
++++ BOOT::|SAE;*;3$;15|       (
+"/users/axiom/development/int/algebra/SAE.NRLIB/code.lsp" 1462 "BOOT")
+BOOT::|SAE;*;3$;15|
+Compiling BOOT::|SAE;*;3$;15| ... 
+
++++ BOOT::|SAE;+;3$;13|       (
+"/users/axiom/development/int/algebra/SAE.NRLIB/code.lsp" 1322 "BOOT")
+BOOT::|SAE;+;3$;13|
+Compiling BOOT::|SAE;+;3$;13| ... 
+
++++ BOOT::|SAE;=;2$B;12|      (
+"/users/axiom/development/int/algebra/SAE.NRLIB/code.lsp" 1247 "BOOT")
+BOOT::|SAE;=;2$B;12|
+Compiling BOOT::|SAE;=;2$B;12| ... 
+
++++ BOOT::|SAE;-;2$;14|       (
+"/users/axiom/development/int/algebra/SAE.NRLIB/code.lsp" 1396 "BOOT")
+BOOT::|SAE;-;2$;14|
+Compiling BOOT::|SAE;-;2$;14| ... 
+
++++ BOOT::|SUP;monicDivide;2$R;36|(
+"/users/axiom/development/int/algebra/SUP.NRLIB/code.lsp" 17596 "BOOT")
+BOOT::|SUP;monicDivide;2$R;36|
+Compiling BOOT::|SUP;monicDivide;2$R;36| ... 
+
++++ BOOT::|ABELMON-;zero?;SB;1|(
+"/users/axiom/development/int/algebra/ABELMON-.NRLIB/code.lsp" 20 "BOOT")
+BOOT::|ABELMON-;zero?;SB;1|
+Compiling BOOT::|ABELMON-;zero?;SB;1| ... 
+
++++ BOOT::|ABELGRP-;-;3S;1|   (
+"/users/axiom/development/int/algebra/ABELGRP-.NRLIB/code.lsp" 20 "BOOT")
+BOOT::|ABELGRP-;-;3S;1|
+Compiling BOOT::|ABELGRP-;-;3S;1| ... 
+
++++ BOOT::|MATCAT-;*;S2Col;32|(
+"/users/axiom/development/int/algebra/MATCAT-.NRLIB/code.lsp" 34337 "BOOT")
+BOOT::|MATCAT-;*;S2Col;32|
+Compiling BOOT::|MATCAT-;*;S2Col;32| ... 
+
++++ BOOT::|ARR2CAT-;copy;2S;10|(
+"/users/axiom/development/int/algebra/ARR2CAT-.NRLIB/code.lsp" 4208 "BOOT")
+About to create u02
+
++++ BOOT::|ARR2CAT-;copy;2S;10|(
+"/users/axiom/development/int/algebra/ARR2CAT-.NRLIB/code.lsp" 4208 "BOOT")
+BOOT::|ARR2CAT-;copy;2S;10|
+Compiling BOOT::|ARR2CAT-;copy;2S;10| ... 
+
++++ BOOT::|IMATLIN;rowEchelon;2M;3|(
+"/users/axiom/development/int/algebra/IMATLIN.NRLIB/code.lsp" 1366 "BOOT")
+BOOT::|IMATLIN;rowEchelon;2M;3|
+Compiling BOOT::|IMATLIN;rowEchelon;2M;3| ... 
+
++++ BOOT::|MATCAT-;*;3S;29|   (
+"/users/axiom/development/int/algebra/MATCAT-.NRLIB/code.lsp" 31896 "BOOT")
+BOOT::|MATCAT-;*;3S;29|
+Compiling BOOT::|MATCAT-;*;3S;29| ... 
+
++++ BOOT::|SINT;zero?;$B;38|  (
+"/users/axiom/development/int/algebra/SINT.NRLIB/code.lsp" 5685 "BOOT")
+BOOT::|SINT;zero?;$B;38|
+Compiling BOOT::|SINT;zero?;$B;38| ... 
+
++++ BOOT::|DIRPROD;<;2$B;18|  (
+"/users/axiom/development/int/algebra/DIRPROD.NRLIB/code.lsp" 4656 "BOOT")
+BOOT::|DIRPROD;<;2$B;18|
+Compiling BOOT::|DIRPROD;<;2$B;18| ... 
+
++++ BOOT::|DIRPROD;subtractIfCan;2$U;14|(
+"/users/axiom/development/int/algebra/DIRPROD.NRLIB/code.lsp" 2732 "BOOT")
+BOOT::|DIRPROD;subtractIfCan;2$U;14|
+Compiling BOOT::|DIRPROD;subtractIfCan;2$U;14| ... 
+
++++ BOOT::|A1AGG-;copy;2A;19| (
+"/users/axiom/development/int/algebra/A1AGG-.NRLIB/code.lsp" 12772 "BOOT")
+BOOT::|A1AGG-;copy;2A;19|
+Compiling BOOT::|A1AGG-;copy;2A;19| ... 
+
++++ BOOT::|GDMP;univariate;$OvlSup;21|(
+"/users/axiom/development/int/algebra/GDMP.NRLIB/code.lsp" 8781 "BOOT")
+BOOT::|GDMP;univariate;$OvlSup;21|
+Compiling BOOT::|GDMP;univariate;$OvlSup;21| ... 
+
++++ VMLISP:SIZE               ("cclinterp/vmlisp.lisp" 25352 "VMLISP")
+VMLISP:SIZE
+Compiling VMLISP:SIZE ... 
+
++++ BOOT::|IARRAY1;map;M3$;8| (
+"/users/axiom/development/int/algebra/IARRAY1.NRLIB/code.lsp" 1647 "BOOT")
+BOOT::|IARRAY1;map;M3$;8|
+Compiling BOOT::|IARRAY1;map;M3$;8| ... 
+
++++ BOOT::|AGG-;size?;SNniB;6|(
+"/users/axiom/development/int/algebra/AGG-.NRLIB/code.lsp" 454 "BOOT")
+BOOT::|AGG-;size?;SNniB;6|
+Compiling BOOT::|AGG-;size?;SNniB;6| ... 
+
++++ BOOT::|PERMGRP;times|     (
+"/users/axiom/development/int/algebra/PERMGRP.NRLIB/code.lsp" 3077 "BOOT")
+BOOT::|PERMGRP;times|
+Compiling BOOT::|PERMGRP;times| ... 
+
++++ BOOT::|PERMGRP;inv|       (
+"/users/axiom/development/int/algebra/PERMGRP.NRLIB/code.lsp" 6236 "BOOT")
+BOOT::|PERMGRP;inv|
+Compiling BOOT::|PERMGRP;inv| ... 
+
++++ BOOT::|PERMGRP;orbitWithSvc|(
+"/users/axiom/development/int/algebra/PERMGRP.NRLIB/code.lsp" 9338 "BOOT")
+BOOT::|PERMGRP;orbitWithSvc|
+Compiling BOOT::|PERMGRP;orbitWithSvc| ... 
+
++++ BOOT::|PERMGRP;testIdentity|(
+"/users/axiom/development/int/algebra/PERMGRP.NRLIB/code.lsp" 8175 "BOOT")
+About to create u03
+
++++ BOOT::|PERMGRP;testIdentity|(
+"/users/axiom/development/int/algebra/PERMGRP.NRLIB/code.lsp" 8175 "BOOT")
+BOOT::|PERMGRP;testIdentity|
+Compiling BOOT::|PERMGRP;testIdentity| ... 
+
++++ BOOT::|STAGG-;elt;AIS;5|  (
+"/users/axiom/development/int/algebra/STAGG-.NRLIB/code.lsp" 860 "BOOT")
+BOOT::|STAGG-;elt;AIS;5|
+Compiling BOOT::|STAGG-;elt;AIS;5| ... 
+
++++ BOOT::|PRIMARR;#;$Nni;1|  (
+"/users/axiom/development/int/algebra/PRIMARR.NRLIB/code.lsp" 92 "BOOT")
+BOOT::|PRIMARR;#;$Nni;1|
+Compiling BOOT::|PRIMARR;#;$Nni;1| ... 
+
++++ BOOT::|termMatch|         ("cclinterp/termrw.clisp" 3429 "BOOT")
+BOOT::|termMatch|
+Compiling BOOT::|termMatch| ... 
+
++++ BOOT::|IFARRAY;elt;$IS;17|(
+"/users/axiom/development/int/algebra/IFARRAY.NRLIB/code.lsp" 5185 "BOOT")
+BOOT::|IFARRAY;elt;$IS;17|
+Compiling BOOT::|IFARRAY;elt;$IS;17| ... 
+
++++ BOOT::|ILIST;empty;$;6|   (
+"/users/axiom/development/int/algebra/ILIST.NRLIB/code.lsp" 782 "BOOT")
+BOOT::|ILIST;empty;$;6|
+Compiling BOOT::|ILIST;empty;$;6| ... 
+
++++ BOOT::GETALIST            ("cclinterp/g-util.clisp" 1685 "BOOT")
+BOOT::GETALIST
+Compiling BOOT::GETALIST ... 
+
++++ BOOT::|opOf|              ("cclinterp/g-util.clisp" 27969 "BOOT")
+BOOT::|opOf|
+Compiling BOOT::|opOf| ... 
+
++++ BOOT::|BOP;name;$S;2|     (
+"/users/axiom/development/int/algebra/BOP.NRLIB/code.lsp" 196 "BOOT")
+BOOT::|BOP;name;$S;2|
+Compiling BOOT::|BOP;name;$S;2| ... 
+
++++ BOOT::|INT;one?;$B;7|     (
+"/users/axiom/development/int/algebra/INT.NRLIB/code.lsp" 1878 "BOOT")
+BOOT::|INT;one?;$B;7|
+Compiling BOOT::|INT;one?;$B;7| ... 
+
++++ BOOT::|isPatternVar|      ("cclinterp/g-util.clisp" 12519 "BOOT")
+BOOT::|isPatternVar|
+Compiling BOOT::|isPatternVar| ... 
+
++++ BOOT::|ILIST;copy;2$;20|  (
+"/users/axiom/development/int/algebra/ILIST.NRLIB/code.lsp" 2835 "BOOT")
+BOOT::|ILIST;copy;2$;20|
+Compiling BOOT::|ILIST;copy;2$;20| ... 
+
++++ BOOT::|IFARRAY;setelt;$I2S;18|(
+"/users/axiom/development/int/algebra/IFARRAY.NRLIB/code.lsp" 5412 "BOOT")
+BOOT::|IFARRAY;setelt;$I2S;18|
+Compiling BOOT::|IFARRAY;setelt;$I2S;18| ... 
+
++++ BOOT::|ALIST;search;Key$U;15|(
+"/users/axiom/development/int/algebra/ALIST.NRLIB/code.lsp" 1711 "BOOT")
+BOOT::|ALIST;search;Key$U;15|
+Compiling BOOT::|ALIST;search;Key$U;15| ... 
+
++++ BOOT::|getOpCode|         ("cclinterp/interop.clisp" 39000 "BOOT")
+BOOT::|getOpCode|
+Compiling BOOT::|getOpCode| ... 
+
++++ BOOT::|SMP;zero?;$B;3|    (
+"/users/axiom/development/int/algebra/SMP.NRLIB/code.lsp" 147 "BOOT")
+BOOT::|SMP;zero?;$B;3|
+Compiling BOOT::|SMP;zero?;$B;3| ... 
+
++++ BOOT::|ELTAGG-;qelt;SDomIm;1|(
+"/users/axiom/development/int/algebra/ELTAGG-.NRLIB/code.lsp" 20 "BOOT")
+BOOT::|ELTAGG-;qelt;SDomIm;1|
+Compiling BOOT::|ELTAGG-;qelt;SDomIm;1| ... 
+
++++ BOOT::|SMP;one?;$B;4|     (
+"/users/axiom/development/int/algebra/SMP.NRLIB/code.lsp" 271 "BOOT")
+BOOT::|SMP;one?;$B;4|
+Compiling BOOT::|SMP;one?;$B;4| ... 
+
++++ BOOT::|ELAGG-;removeDuplicates;2A;12|(
+"/users/axiom/development/int/algebra/ELAGG-.NRLIB/code.lsp" 1442 "BOOT")
+BOOT::|ELAGG-;removeDuplicates;2A;12|
+Compiling BOOT::|ELAGG-;removeDuplicates;2A;12| ... 
+
++++ BOOT::|SMP;=;2$B;29|      (
+"/users/axiom/development/int/algebra/SMP.NRLIB/code.lsp" 11069 "BOOT")
+BOOT::|SMP;=;2$B;29|
+Compiling BOOT::|SMP;=;2$B;29| ... 
+
++++ BOOT::|PR;reductum;2$;8|  (
+"/users/axiom/development/int/algebra/PR.NRLIB/code.lsp" 841 "BOOT")
+BOOT::|PR;reductum;2$;8|
+Compiling BOOT::|PR;reductum;2$;8| ... 
+
++++ BOOT::|SMP;variables;$L;62|(
+"/users/axiom/development/int/algebra/SMP.NRLIB/code.lsp" 31954 "BOOT")
+BOOT::|SMP;variables;$L;62|
+Compiling BOOT::|SMP;variables;$L;62| ... 
+
++++ BOOT::|isDomain|          ("cclinterp/interop.clisp" 25825 "BOOT")
+BOOT::|isDomain|
+Compiling BOOT::|isDomain| ... 
+
++++ BOOT::|PR;leadingCoefficient;$R;6|(
+"/users/axiom/development/int/algebra/PR.NRLIB/code.lsp" 584 "BOOT")
+BOOT::|PR;leadingCoefficient;$R;6|
+Compiling BOOT::|PR;leadingCoefficient;$R;6| ... 
+
++++ BOOT::|KERNEL;position;$Nni;7|(
+"/users/axiom/development/int/algebra/KERNEL.NRLIB/code.lsp" 893 "BOOT")
+BOOT::|KERNEL;position;$Nni;7|
+Compiling BOOT::|KERNEL;position;$Nni;7| ... 
+
++++ BOOT::|lazyMatchArg|      ("cclinterp/nrunfast.clisp" 34128 "BOOT")
+BOOT::|lazyMatchArg|
+Compiling BOOT::|lazyMatchArg| ... 
+
++++ BOOT::|containsVars1|     ("cclinterp/i-funsel.clisp" 165045 "BOOT")
+BOOT::|containsVars1|
+Compiling BOOT::|containsVars1| ... 
+
++++ BOOT::|subCopy|           ("try2.lsp" 5629 "BOOT")
+BOOT::|subCopy|
+Compiling BOOT::|subCopy| ... 
+
++++ BOOT::|isFreeFunctionFromMmCond|("cclinterp/database.clisp" 41858 "BOOT")
+BOOT::|isFreeFunctionFromMmCond|
+Compiling BOOT::|isFreeFunctionFromMmCond| ... 
+
++++ BOOT::|ILIST;first;$S;4|  (
+"/users/axiom/development/int/algebra/ILIST.NRLIB/code.lsp" 471 "BOOT")
+BOOT::|ILIST;first;$S;4|
+Compiling BOOT::|ILIST;first;$S;4| ... 
+
++++ BOOT::|ELTAGG-;qsetelt!;SDom2Im;2|(
+"/users/axiom/development/int/algebra/ELTAGG-.NRLIB/code.lsp" 103 "BOOT")
+BOOT::|ELTAGG-;qsetelt!;SDom2Im;2|
+Compiling BOOT::|ELTAGG-;qsetelt!;SDom2Im;2| ... 
+
++++ BOOT::|isFreeFunctionFromMm|("cclinterp/database.clisp" 41519 "BOOT")
+BOOT::|isFreeFunctionFromMm|
+Compiling BOOT::|isFreeFunctionFromMm| ... 
+
++++ BOOT::|BOP;property;$SU;7|(
+"/users/axiom/development/int/algebra/BOP.NRLIB/code.lsp" 717 "BOOT")
+BOOT::|BOP;property;$SU;7|
+Compiling BOOT::|BOP;property;$SU;7| ... 
+
++++ BOOT::|EXPR;numer;$Smp;22|(
+"/users/axiom/development/int/algebra/EXPR.NRLIB/code.lsp" 3945 "BOOT")
+BOOT::|EXPR;numer;$Smp;22|
+Compiling BOOT::|EXPR;numer;$Smp;22| ... 
+
++++ BOOT::|EXPR;numer;$Smp;126|(
+"/users/axiom/development/int/algebra/EXPR.NRLIB/code.lsp" 23562 "BOOT")
+BOOT::|EXPR;numer;$Smp;126|
+Compiling BOOT::|EXPR;numer;$Smp;126| ... 
+
++++ BOOT::|KERNEL;B2Z|        (
+"/users/axiom/development/int/algebra/KERNEL.NRLIB/code.lsp" 1139 "BOOT")
+BOOT::|KERNEL;B2Z|
+Compiling BOOT::|KERNEL;B2Z| ... 
+
++++ BOOT::|EXPR;denom;$Smp;23|(
+"/users/axiom/development/int/algebra/EXPR.NRLIB/code.lsp" 4018 "BOOT")
+BOOT::|EXPR;denom;$Smp;23|
+Compiling BOOT::|EXPR;denom;$Smp;23| ... 
+
++++ BOOT::|ILIST;sort!;M2$;27|(
+"/users/axiom/development/int/algebra/ILIST.NRLIB/code.lsp" 7287 "BOOT")
+BOOT::|ILIST;sort!;M2$;27|
+Compiling BOOT::|ILIST;sort!;M2$;27| ... 
+
++++ BOOT::|SMP;*;R2$;26|      (
+"/users/axiom/development/int/algebra/SMP.NRLIB/code.lsp" 8300 "BOOT")
+BOOT::|SMP;*;R2$;26|
+Compiling BOOT::|SMP;*;R2$;26| ... 
+
++++ BOOT::|getDomainFromMm|   ("cclinterp/database.clisp" 37173 "BOOT")
+BOOT::|getDomainFromMm|
+Compiling BOOT::|getDomainFromMm| ... 
+
++++ BOOT::|FRAC;zero?;$B;2|   (
+"/users/axiom/development/int/algebra/FRAC.NRLIB/code.lsp" 93 "BOOT")
+BOOT::|FRAC;zero?;$B;2|
+Compiling BOOT::|FRAC;zero?;$B;2| ... 
+
++++ BOOT::|POLYCATQ;variables;FL;5|(
+"/users/axiom/development/int/algebra/POLYCATQ.NRLIB/code.lsp" 1479 "BOOT")
+BOOT::|POLYCATQ;variables;FL;5|
+Compiling BOOT::|POLYCATQ;variables;FL;5| ... 
+
++++ BOOT::|INTDOM-;unitCanonical;2S;2|(
+"/users/axiom/development/int/algebra/INTDOM-.NRLIB/code.lsp" 125 "BOOT")
+BOOT::|INTDOM-;unitCanonical;2S;2|
+Compiling BOOT::|INTDOM-;unitCanonical;2S;2| ... 
+
++++ BOOT::|STAGG-;concat;3A;7|(
+"/users/axiom/development/int/algebra/STAGG-.NRLIB/code.lsp" 2279 "BOOT")
+BOOT::|STAGG-;concat;3A;7|
+Compiling BOOT::|STAGG-;concat;3A;7| ... 
+
++++ BOOT::|PR;degree;$E;4|    (
+"/users/axiom/development/int/algebra/PR.NRLIB/code.lsp" 327 "BOOT")
+BOOT::|PR;degree;$E;4|
+Compiling BOOT::|PR;degree;$E;4| ... 
+
++++ BOOT::|FS-;kernels;SL;60| (
+"/users/axiom/development/int/algebra/FS-.NRLIB/code.lsp" 30636 "BOOT")
+BOOT::|FS-;kernels;SL;60|
+Compiling BOOT::|FS-;kernels;SL;60| ... 
+
++++ BOOT::QUOTIENT2           ("cclinterp/spad.lisp" 9229 "BOOT")
+BOOT::QUOTIENT2
+Compiling BOOT::QUOTIENT2 ... 
+
++++ VMLISP:CGREATERP          ("cclinterp/vmlisp.lisp" 26028 "VMLISP")
+VMLISP:CGREATERP
+Compiling VMLISP:CGREATERP ... 
+
++++ BOOT::|IARRAY1;qelt;$IS;14|(
+"/users/axiom/development/int/algebra/IARRAY1.NRLIB/code.lsp" 3012 "BOOT")
+BOOT::|IARRAY1;qelt;$IS;14|
+Compiling BOOT::|IARRAY1;qelt;$IS;14| ... 
+
++++ BOOT::|COMPCAT-;=;2SB;15| (
+"/users/axiom/development/int/algebra/COMPCAT-.NRLIB/code.lsp" 5285 "BOOT")
+BOOT::|COMPCAT-;=;2SB;15|
+Compiling BOOT::|COMPCAT-;=;2SB;15| ... 
+
++++ VMLISP:GETL               ("cclinterp/vmlisp.lisp" 50389 "VMLISP")
+VMLISP:GETL
+Compiling VMLISP:GETL ... 
+
++++ BOOT::|IDPO;=;2$B;1|      (
+"/users/axiom/development/int/algebra/IDPO.NRLIB/code.lsp" 20 "BOOT")
+BOOT::|IDPO;=;2$B;1|
+Compiling BOOT::|IDPO;=;2$B;1| ... 
+
++++ BOOT::|ILIST;removeDuplicates!;2$;26|(
+"/users/axiom/development/int/algebra/ILIST.NRLIB/code.lsp" 6518 "BOOT")
+About to create u04
+
++++ BOOT::|ILIST;removeDuplicates!;2$;26|(
+"/users/axiom/development/int/algebra/ILIST.NRLIB/code.lsp" 6518 "BOOT")
+BOOT::|ILIST;removeDuplicates!;2$;26|
+Compiling BOOT::|ILIST;removeDuplicates!;2$;26| ... 
+
++++ BOOT::UNSQUEEZE           ("cclinterp/daase.lisp" 55381 "BOOT")
+BOOT::UNSQUEEZE
+Compiling BOOT::UNSQUEEZE ... 
+
++++ BOOT::|EXPR;algkernels|   (
+"/users/axiom/development/int/algebra/EXPR.NRLIB/code.lsp" 4457 "BOOT")
+BOOT::|EXPR;algkernels|
+Compiling BOOT::|EXPR;algkernels| ... 
+
++++ BOOT::|BOP;weight;$Nni;28|(
+"/users/axiom/development/int/algebra/BOP.NRLIB/code.lsp" 4406 "BOOT")
+BOOT::|BOP;weight;$Nni;28|
+Compiling BOOT::|BOP;weight;$Nni;28| ... 
+
++++ BOOT::|isExposedConstructor|("cclinterp/database.clisp" 59720 "BOOT")
+BOOT::|isExposedConstructor|
+Compiling BOOT::|isExposedConstructor| ... 
+
++++ BOOT::|SMP;ground?;$B;16| (
+"/users/axiom/development/int/algebra/SMP.NRLIB/code.lsp" 5502 "BOOT")
+BOOT::|SMP;ground?;$B;16|
+Compiling BOOT::|SMP;ground?;$B;16| ... 
+
++++ BOOT::|containsVars|      ("cclinterp/i-funsel.clisp" 164820 "BOOT")
+BOOT::|containsVars|
+Compiling BOOT::|containsVars| ... 
+
++++ BOOT:QLASSQ               ("cclinterp/macros.lisp" 38327 "BOOT")
+BOOT:QLASSQ
+Compiling BOOT:QLASSQ ... 
+
++++ BOOT::|IFARRAY;removeDuplicates!;2$;30|(
+"/users/axiom/development/int/algebra/IFARRAY.NRLIB/code.lsp" 12425 "BOOT")
+BOOT::|IFARRAY;removeDuplicates!;2$;30|
+Compiling BOOT::|IFARRAY;removeDuplicates!;2$;30| ... 
+
++++ BOOT::|ISTRING;<;2$B;6|   (
+"/users/axiom/development/int/algebra/ISTRING.NRLIB/code.lsp" 749 "BOOT")
+BOOT::|ISTRING;<;2$B;6|
+Compiling BOOT::|ISTRING;<;2$B;6| ... 
+
++++ BOOT::|SMP;unitNormal;$R;35|(
+"/users/axiom/development/int/algebra/SMP.NRLIB/code.lsp" 13621 "BOOT")
+BOOT::|SMP;unitNormal;$R;35|
+Compiling BOOT::|SMP;unitNormal;$R;35| ... 
+
++++ BOOT::|INT;unitNormal;$R;52|(
+"/users/axiom/development/int/algebra/INT.NRLIB/code.lsp" 7593 "BOOT")
+BOOT::|INT;unitNormal;$R;52|
+Compiling BOOT::|INT;unitNormal;$R;52| ... 
+
++++ BOOT::|devaluate|         ("cclinterp/interop.clisp" 21368 "BOOT")
+BOOT::|devaluate|
+Compiling BOOT::|devaluate| ... 
+
++++ VMLISP:|member|           ("try2.lsp" 5349 "VMLISP")
+VMLISP:|member|
+Compiling VMLISP:|member| ... 
+
++++ BOOT::|domainVal|         ("cclinterp/nrunfast.clisp" 51042 "BOOT")
+BOOT::|domainVal|
+Compiling BOOT::|domainVal| ... 
+
++++ BOOT::|SMP;*;3$;30|       (
+"/users/axiom/development/int/algebra/SMP.NRLIB/code.lsp" 11443 "BOOT")
+BOOT::|SMP;*;3$;30|
+Compiling BOOT::|SMP;*;3$;30| ... 
+
++++ BOOT::|ILIST;concat!;3$;25|(
+"/users/axiom/development/int/algebra/ILIST.NRLIB/code.lsp" 6013 "BOOT")
+BOOT::|ILIST;concat!;3$;25|
+Compiling BOOT::|ILIST;concat!;3$;25| ... 
+
++++ VMLISP::STRING-EQUAL-TEST ("try2.lsp" 5156 "VMLISP")
+VMLISP::STRING-EQUAL-TEST
+Compiling VMLISP::STRING-EQUAL-TEST ... 
+
++++ BOOT::|INT;exquo;2$U;49|  (
+"/users/axiom/development/int/algebra/INT.NRLIB/code.lsp" 7190 "BOOT")
+BOOT::|INT;exquo;2$U;49|
+Compiling BOOT::|INT;exquo;2$U;49| ... 
+
++++ BOOT::|constructor?|      ("cclinterp/g-cndata.clisp" 2791 "BOOT")
+BOOT::|constructor?|
+Compiling BOOT::|constructor?| ... 
+
++++ BOOT::|COMPLEX;zero?;$B;8|(
+"/users/axiom/development/int/algebra/COMPLEX.NRLIB/code.lsp" 1980 "BOOT")
+BOOT::|COMPLEX;zero?;$B;8|
+Compiling BOOT::|COMPLEX;zero?;$B;8| ... 
+
++++ BOOT::|destructT|         ("cclinterp/i-resolv.clisp" 74611 "BOOT")
+BOOT::|destructT|
+Compiling BOOT::|destructT| ... 
+
++++ BOOT::|augmentSub|        ("cclinterp/termrw.clisp" 4539 "BOOT")
+BOOT::|augmentSub|
+Compiling BOOT::|augmentSub| ... 
+
++++ BOOT::|FLAGG-;sort;M2A;6| (
+"/users/axiom/development/int/algebra/FLAGG-.NRLIB/code.lsp" 705 "BOOT")
+BOOT::|FLAGG-;sort;M2A;6|
+Compiling BOOT::|FLAGG-;sort;M2A;6| ... 
+
++++ BOOT::|KERNEL;operator;$Bo;5|(
+"/users/axiom/development/int/algebra/KERNEL.NRLIB/code.lsp" 584 "BOOT")
+BOOT::|KERNEL;operator;$Bo;5|
+Compiling BOOT::|KERNEL;operator;$Bo;5| ... 
+
++++ BOOT::|IFARRAY;minIndex;$I;7|(
+"/users/axiom/development/int/algebra/IFARRAY.NRLIB/code.lsp" 835 "BOOT")
+BOOT::|IFARRAY;minIndex;$I;7|
+Compiling BOOT::|IFARRAY;minIndex;$I;7| ... 
+
++++ BOOT::|term1RW|           ("cclinterp/termrw.clisp" 1992 "BOOT")
+BOOT::|term1RW|
+Compiling BOOT::|term1RW| ... 
+
++++ BOOT::|lazyMatchAssocV|   ("cclinterp/interop.clisp" 62863 "BOOT")
+BOOT::|lazyMatchAssocV|
+Compiling BOOT::|lazyMatchAssocV| ... 
+
++++ SYSTEM::PNAME             ("cclinterp/vmlisp.lisp" 20318 "VMLISP")
+SYSTEM::PNAME
+Compiling SYSTEM::PNAME ... 
+
++++ BOOT::|evalMmStackInner|  ("cclinterp/i-funsel.clisp" 109766 "BOOT")
+BOOT::|evalMmStackInner|
+Compiling BOOT::|evalMmStackInner| ... 
+
++++ VMLISP:IVECP              ("cclinterp/vmlisp.lisp" 18191 "VMLISP")
+VMLISP:IVECP
+Compiling VMLISP:IVECP ... 
+
++++ BOOT::|CONTAINEDisDomain| ("cclinterp/i-funsel.clisp" 50152 "BOOT")
+BOOT::|CONTAINEDisDomain|
+Compiling BOOT::|CONTAINEDisDomain| ... 
+
++++ BOOT::|evalMmDom|         ("cclinterp/i-funsel.clisp" 120756 "BOOT")
+About to create u05
+
++++ BOOT::|evalMmDom|         ("cclinterp/i-funsel.clisp" 120756 "BOOT")
+BOOT::|evalMmDom|
+Compiling BOOT::|evalMmDom| ... 
+
++++ QUOTIENT                  ("cclinterp/vmlisp.lisp" 21001 "VMLISP")
+QUOTIENT
+Compiling QUOTIENT ... 
+
++++ BOOT::|FAMR-;coefficients;SL;6|(
+"/users/axiom/development/int/algebra/FAMR-.NRLIB/code.lsp" 2365 "BOOT")
+BOOT::|FAMR-;coefficients;SL;6|
+Compiling BOOT::|FAMR-;coefficients;SL;6| ... 
+
++++ BOOT::|LSAGG-;select!;M2A;5|(
+"/users/axiom/development/int/algebra/LSAGG-.NRLIB/code.lsp" 634 "BOOT")
+BOOT::|LSAGG-;select!;M2A;5|
+Compiling BOOT::|LSAGG-;select!;M2A;5| ... 
+
++++ BOOT::|LSAGG-;<;2AB;25|   (
+"/users/axiom/development/int/algebra/LSAGG-.NRLIB/code.lsp" 15119 "BOOT")
+BOOT::|LSAGG-;<;2AB;25|
+Compiling BOOT::|LSAGG-;<;2AB;25| ... 
+
++++ BOOT::|isSubDomain|       ("cclinterp/i-util.clisp" 5571 "BOOT")
+BOOT::|isSubDomain|
+Compiling BOOT::|isSubDomain| ... 
+
++++ BOOT::|KERNEL;=;2$B;13|   (
+"/users/axiom/development/int/algebra/KERNEL.NRLIB/code.lsp" 1775 "BOOT")
+BOOT::|KERNEL;=;2$B;13|
+Compiling BOOT::|KERNEL;=;2$B;13| ... 
+
++++ BOOT::|CDRwithIncrement|  ("cclinterp/clam.clisp" 25140 "BOOT")
+BOOT::|CDRwithIncrement|
+Compiling BOOT::|CDRwithIncrement| ... 
+
++++ BOOT::|lookupInDomainVector|("cclinterp/interop.clisp" 34589 "BOOT")
+BOOT::|lookupInDomainVector|
+Compiling BOOT::|lookupInDomainVector| ... 
+
++++ BOOT::|KERNEL;<;2$B;14|   (
+"/users/axiom/development/int/algebra/KERNEL.NRLIB/code.lsp" 2078 "BOOT")
+BOOT::|KERNEL;<;2$B;14|
+Compiling BOOT::|KERNEL;<;2$B;14| ... 
+
++++ BOOT::|FRAC;cancelGcd|    (
+"/users/axiom/development/int/algebra/FRAC.NRLIB/code.lsp" 4312 "BOOT")
+BOOT::|FRAC;cancelGcd|
+Compiling BOOT::|FRAC;cancelGcd| ... 
+
++++ BOOT::|KERNEL;triage|     (
+"/users/axiom/development/int/algebra/KERNEL.NRLIB/code.lsp" 4051 "BOOT")
+BOOT::|KERNEL;triage|
+Compiling BOOT::|KERNEL;triage| ... 
+
++++ BOOT::|isPartialMode|     ("cclinterp/i-funsel.clisp" 165669 "BOOT")
+BOOT::|isPartialMode|
+Compiling BOOT::|isPartialMode| ... 
+
++++ BOOT::|ILIST;mergeSort|   (
+"/users/axiom/development/int/algebra/ILIST.NRLIB/code.lsp" 8818 "BOOT")
+BOOT::|ILIST;mergeSort|
+Compiling BOOT::|ILIST;mergeSort| ... 
+
++++ BOOT::|getDomainByteVector|("cclinterp/nrunfast.clisp" 1286 "BOOT")
+BOOT::|getDomainByteVector|
+Compiling BOOT::|getDomainByteVector| ... 
+
++++ BOOT::|isFunctor|         ("cclinterp/lisplib.clisp" 61960 "BOOT")
+BOOT::|isFunctor|
+Compiling BOOT::|isFunctor| ... 
+
++++ BOOT::|SMP;leadingCoefficient;$R;77|(
+"/users/axiom/development/int/algebra/SMP.NRLIB/code.lsp" 40470 "BOOT")
+BOOT::|SMP;leadingCoefficient;$R;77|
+Compiling BOOT::|SMP;leadingCoefficient;$R;77| ... 
+
++++ BOOT::|EXPR;commonk|      (
+"/users/axiom/development/int/algebra/EXPR.NRLIB/code.lsp" 4284 "BOOT")
+BOOT::|EXPR;commonk|
+Compiling BOOT::|EXPR;commonk| ... 
+
++++ BOOT::|SMP;retract;$R;59| (
+"/users/axiom/development/int/algebra/SMP.NRLIB/code.lsp" 30925 "BOOT")
+BOOT::|SMP;retract;$R;59|
+Compiling BOOT::|SMP;retract;$R;59| ... 
+
++++ BOOT::|IDPAM;monomial;AS$;6|(
+"/users/axiom/development/int/algebra/IDPAM.NRLIB/code.lsp" 2710 "BOOT")
+BOOT::|IDPAM;monomial;AS$;6|
+Compiling BOOT::|IDPAM;monomial;AS$;6| ... 
+
++++ BOOT::|PRIMARR;fill!;$S$;9|(
+"/users/axiom/development/int/algebra/PRIMARR.NRLIB/code.lsp" 1066 "BOOT")
+BOOT::|PRIMARR;fill!;$S$;9|
+Compiling BOOT::|PRIMARR;fill!;$S$;9| ... 
+
++++ BOOT::|IFARRAY;maxIndex;$I;6|(
+"/users/axiom/development/int/algebra/IFARRAY.NRLIB/code.lsp" 747 "BOOT")
+BOOT::|IFARRAY;maxIndex;$I;6|
+Compiling BOOT::|IFARRAY;maxIndex;$I;6| ... 
+
++++ BOOT::|lookupComplete|    ("cclinterp/interop.clisp" 35018 "BOOT")
+BOOT::|lookupComplete|
+Compiling BOOT::|lookupComplete| ... 
+
++++ BOOT::|FRAC;one?;$B;28|   (
+"/users/axiom/development/int/algebra/FRAC.NRLIB/code.lsp" 8629 "BOOT")
+BOOT::|FRAC;one?;$B;28|
+Compiling BOOT::|FRAC;one?;$B;28| ... 
+
++++ BOOT::|getSystemModemaps| ("cclinterp/database.clisp" 44395 "BOOT")
+BOOT::|getSystemModemaps|
+Compiling BOOT::|getSystemModemaps| ... 
+
++++ BOOT::|stuffSlot|         ("cclinterp/nrunopt.clisp" 14283 "BOOT")
+BOOT::|stuffSlot|
+Compiling BOOT::|stuffSlot| ... 
+
++++ BOOT::|IDPAM;+;3$;4|      (
+"/users/axiom/development/int/algebra/IDPAM.NRLIB/code.lsp" 385 "BOOT")
+About to create u06
+
++++ BOOT::|IDPAM;+;3$;4|      (
+"/users/axiom/development/int/algebra/IDPAM.NRLIB/code.lsp" 385 "BOOT")
+BOOT::|IDPAM;+;3$;4|
+Compiling BOOT::|IDPAM;+;3$;4| ... 
+
++++ BOOT::|FRAC;normalize|    (
+"/users/axiom/development/int/algebra/FRAC.NRLIB/code.lsp" 3626 "BOOT")
+BOOT::|FRAC;normalize|
+Compiling BOOT::|FRAC;normalize| ... 
+
++++ BOOT::|COMPLEX;coerce;R$;10|(
+"/users/axiom/development/int/algebra/COMPLEX.NRLIB/code.lsp" 2283 "BOOT")
+BOOT::|COMPLEX;coerce;R$;10|
+Compiling BOOT::|COMPLEX;coerce;R$;10| ... 
+
++++ BOOT::|BOP;has?;$SB;9|    (
+"/users/axiom/development/int/algebra/BOP.NRLIB/code.lsp" 901 "BOOT")
+BOOT::|BOP;has?;$SB;9|
+Compiling BOOT::|BOP;has?;$SB;9| ... 
+
++++ BOOT::|tokPart|           ("cclinterp/ptrees.clisp" 333 "BOOT")
+BOOT::|tokPart|
+Compiling BOOT::|tokPart| ... 
+
++++ BOOT::|newCompareSig|     ("cclinterp/nrunfast.clisp" 32994 "BOOT")
+BOOT::|newCompareSig|
+Compiling BOOT::|newCompareSig| ... 
+
++++ BOOT::|lazyMatchArg2|     ("cclinterp/interop.clisp" 36115 "BOOT")
+BOOT::|lazyMatchArg2|
+Compiling BOOT::|lazyMatchArg2| ... 
+
++++ BOOT::|KDAGG-;key?;KeySB;1|(
+"/users/axiom/development/int/algebra/KDAGG-.NRLIB/code.lsp" 20 "BOOT")
+BOOT::|KDAGG-;key?;KeySB;1|
+Compiling BOOT::|KDAGG-;key?;KeySB;1| ... 
+
++++ BOOT::|EXPR;=;2$B;21|     (
+"/users/axiom/development/int/algebra/EXPR.NRLIB/code.lsp" 3869 "BOOT")
+BOOT::|EXPR;=;2$B;21|
+Compiling BOOT::|EXPR;=;2$B;21| ... 
+
++++ BOOT::|COMPCAT-;recip;SU;48|(
+"/users/axiom/development/int/algebra/COMPCAT-.NRLIB/code.lsp" 15059 "BOOT")
+BOOT::|COMPCAT-;recip;SU;48|
+Compiling BOOT::|COMPCAT-;recip;SU;48| ... 
+
++++ BOOT::|SMP;mainVariable;$U;63|(
+"/users/axiom/development/int/algebra/SMP.NRLIB/code.lsp" 32542 "BOOT")
+BOOT::|SMP;mainVariable;$U;63|
+Compiling BOOT::|SMP;mainVariable;$U;63| ... 
+
++++ BOOT::|SCACHE;enterInCache;SMS;5|(
+"/users/axiom/development/int/algebra/SCACHE.NRLIB/code.lsp" 1850 "BOOT")
+BOOT::|SCACHE;enterInCache;SMS;5|
+Compiling BOOT::|SCACHE;enterInCache;SMS;5| ... 
+
++++ BOOT::|SMP;coerce;R$;21|  (
+"/users/axiom/development/int/algebra/SMP.NRLIB/code.lsp" 7275 "BOOT")
+BOOT::|SMP;coerce;R$;21|
+Compiling BOOT::|SMP;coerce;R$;21| ... 
+
++++ BOOT::|COMPLEX;exquo;2$U;16|(
+"/users/axiom/development/int/algebra/COMPLEX.NRLIB/code.lsp" 3203 "BOOT")
+BOOT::|COMPLEX;exquo;2$U;16|
+Compiling BOOT::|COMPLEX;exquo;2$U;16| ... 
+
++++ BOOT::|get|               ("cclinterp/i-intern.clisp" 54633 "BOOT")
+BOOT::|get|
+Compiling BOOT::|get| ... 
+
++++ BOOT::|SMP;exquo;2$U;39|  (
+"/users/axiom/development/int/algebra/SMP.NRLIB/code.lsp" 15419 "BOOT")
+BOOT::|SMP;exquo;2$U;39|
+Compiling BOOT::|SMP;exquo;2$U;39| ... 
+
++++ BOOT::|SMP;exquo;2$U;40|  (
+"/users/axiom/development/int/algebra/SMP.NRLIB/code.lsp" 16864 "BOOT")
+BOOT::|SMP;exquo;2$U;40|
+Compiling BOOT::|SMP;exquo;2$U;40| ... 
+
++++ BOOT::|KERNEL;argument;$L;6|(
+"/users/axiom/development/int/algebra/KERNEL.NRLIB/code.lsp" 738 "BOOT")
+BOOT::|KERNEL;argument;$L;6|
+Compiling BOOT::|KERNEL;argument;$L;6| ... 
+
++++ BOOT::|isNewWorldDomain|  ("cclinterp/nrunfast.clisp" 1139 "BOOT")
+BOOT::|isNewWorldDomain|
+Compiling BOOT::|isNewWorldDomain| ... 
+
++++ BOOT::|computeElapsedTime|("cclinterp/g-timer.clisp" 13723 "BOOT")
+BOOT::|computeElapsedTime|
+Compiling BOOT::|computeElapsedTime| ... 
+
++++ BOOT::|IIARRAY2;minColIndex;$I;5|(
+"/users/axiom/development/int/algebra/IIARRAY2.NRLIB/code.lsp" 900 "BOOT")
+BOOT::|IIARRAY2;minColIndex;$I;5|
+Compiling BOOT::|IIARRAY2;minColIndex;$I;5| ... 
+
++++ BOOT::|IIARRAY2;minRowIndex;$I;4|(
+"/users/axiom/development/int/algebra/IIARRAY2.NRLIB/code.lsp" 836 "BOOT")
+BOOT::|IIARRAY2;minRowIndex;$I;4|
+Compiling BOOT::|IIARRAY2;minRowIndex;$I;4| ... 
+
++++ BOOT::|FRAC;=;2$B;27|     (
+"/users/axiom/development/int/algebra/FRAC.NRLIB/code.lsp" 8456 "BOOT")
+BOOT::|FRAC;=;2$B;27|
+Compiling BOOT::|FRAC;=;2$B;27| ... 
+
++++ BOOT::|BOP;=;2$B;27|      (
+"/users/axiom/development/int/algebra/BOP.NRLIB/code.lsp" 3758 "BOOT")
+BOOT::|BOP;=;2$B;27|
+Compiling BOOT::|BOP;=;2$B;27| ... 
+
++++ BOOT::|SET;construct;L$;19|(
+"/users/axiom/development/int/algebra/SET.NRLIB/code.lsp" 1872 "BOOT")
+BOOT::|SET;construct;L$;19|
+Compiling BOOT::|SET;construct;L$;19| ... 
+
++++ BOOT::|FLASORT;QuickSort| (
+"/users/axiom/development/int/algebra/FLASORT.NRLIB/code.lsp" 2561 "BOOT")
+About to create u07
+
++++ BOOT::|FLASORT;QuickSort| (
+"/users/axiom/development/int/algebra/FLASORT.NRLIB/code.lsp" 2561 "BOOT")
+BOOT::|FLASORT;QuickSort|
+Compiling BOOT::|FLASORT;QuickSort| ... 
+
++++ BOOT::|EXPR;algkernels!0| (
+"/users/axiom/development/int/algebra/EXPR.NRLIB/code.lsp" 4569 "BOOT")
+BOOT::|EXPR;algkernels!0|
+Compiling BOOT::|EXPR;algkernels!0| ... 
+
++++ BOOT::|pfAbSynOp?|        ("cclinterp/ptrees.clisp" 651 "BOOT")
+BOOT::|pfAbSynOp?|
+Compiling BOOT::|pfAbSynOp?| ... 
+
++++ BOOT::|COMPLEX;*;3$;15|   (
+"/users/axiom/development/int/algebra/COMPLEX.NRLIB/code.lsp" 2898 "BOOT")
+BOOT::|COMPLEX;*;3$;15|
+Compiling BOOT::|COMPLEX;*;3$;15| ... 
+
++++ BOOT::|selectMmsGen,exact?|("cclinterp/i-funsel.clisp" 92645 "BOOT")
+BOOT::|selectMmsGen,exact?|
+Compiling BOOT::|selectMmsGen,exact?| ... 
+
++++ VMLISP:|last|             ("cclinterp/vmlisp.lisp" 23525 "VMLISP")
+VMLISP:|last|
+Compiling VMLISP:|last| ... 
+
++++ BOOT::|evalMmCond0|       ("cclinterp/i-funsel.clisp" 112482 "BOOT")
+BOOT::|evalMmCond0|
+Compiling BOOT::|evalMmCond0| ... 
+
++++ BOOT::|COMPCAT-;exquo;SRU;46|(
+"/users/axiom/development/int/algebra/COMPCAT-.NRLIB/code.lsp" 14191 "BOOT")
+BOOT::|COMPCAT-;exquo;SRU;46|
+Compiling BOOT::|COMPCAT-;exquo;SRU;46| ... 
+
++++ BOOT::|FLASORT;partition| (
+"/users/axiom/development/int/algebra/FLASORT.NRLIB/code.lsp" 1756 "BOOT")
+BOOT::|FLASORT;partition|
+Compiling BOOT::|FLASORT;partition| ... 
+
++++ BOOT::|FM;*;R2$;1|        (
+"/users/axiom/development/int/algebra/FM.NRLIB/code.lsp" 20 "BOOT")
+BOOT::|FM;*;R2$;1|
+Compiling BOOT::|FM;*;R2$;1| ... 
+
++++ BOOT::|newExpandTypeSlot| ("cclinterp/xrun.clisp" 9548 "BOOT")
+BOOT::|newExpandTypeSlot|
+Compiling BOOT::|newExpandTypeSlot| ... 
+
++++ BOOT::|FRAC;*;3$;23|      (
+"/users/axiom/development/int/algebra/FRAC.NRLIB/code.lsp" 6475 "BOOT")
+BOOT::|FRAC;*;3$;23|
+Compiling BOOT::|FRAC;*;3$;23| ... 
+
++++ BOOT::|matchTypes|        ("cclinterp/i-funsel.clisp" 101822 "BOOT")
+BOOT::|matchTypes|
+Compiling BOOT::|matchTypes| ... 
+
++++ BOOT::|term1RWall|        ("cclinterp/termrw.clisp" 2708 "BOOT")
+BOOT::|term1RWall|
+Compiling BOOT::|term1RWall| ... 
+
++++ BOOT::|testBitVector|     ("cclinterp/nrunopt.clisp" 32922 "BOOT")
+BOOT::|testBitVector|
+Compiling BOOT::|testBitVector| ... 
+
++++ BOOT::|PRIMARR;new;NniS$;4|(
+"/users/axiom/development/int/algebra/PRIMARR.NRLIB/code.lsp" 412 "BOOT")
+BOOT::|PRIMARR;new;NniS$;4|
+Compiling BOOT::|PRIMARR;new;NniS$;4| ... 
+
++++ BOOT::|SMP;gcd;3$;45|     (
+"/users/axiom/development/int/algebra/SMP.NRLIB/code.lsp" 19675 "BOOT")
+BOOT::|SMP;gcd;3$;45|
+Compiling BOOT::|SMP;gcd;3$;45| ... 
+
++++ BOOT::|SMP;gcd;3$;48|     (
+"/users/axiom/development/int/algebra/SMP.NRLIB/code.lsp" 23001 "BOOT")
+BOOT::|SMP;gcd;3$;48|
+Compiling BOOT::|SMP;gcd;3$;48| ... 
+
++++ BOOT::|SMP;gcd;3$;52|     (
+"/users/axiom/development/int/algebra/SMP.NRLIB/code.lsp" 23403 "BOOT")
+BOOT::|SMP;gcd;3$;52|
+Compiling BOOT::|SMP;gcd;3$;52| ... 
+
++++ BOOT::|SMP;gcd;3$;55|     (
+"/users/axiom/development/int/algebra/SMP.NRLIB/code.lsp" 26701 "BOOT")
+BOOT::|SMP;gcd;3$;55|
+Compiling BOOT::|SMP;gcd;3$;55| ... 
+
++++ BOOT::|PGCD;gcd;3P;15|    (
+"/users/axiom/development/int/algebra/PGCD.NRLIB/code.lsp" 20892 "BOOT")
+About to create u08
+
++++ BOOT::|PGCD;gcd;3P;15|    (
+"/users/axiom/development/int/algebra/PGCD.NRLIB/code.lsp" 20892 "BOOT")
+BOOT::|PGCD;gcd;3P;15|
+Compiling BOOT::|PGCD;gcd;3P;15| ... 
+
++++ BOOT::|filterModemapsFromPackages|("cclinterp/i-funsel.clisp" 89392 "BOOT")
+BOOT::|filterModemapsFromPackages|
+Compiling BOOT::|filterModemapsFromPackages| ... 
+
++++ BOOT::|selectMmsGen,matchMms|("cclinterp/i-funsel.clisp" 97311 "BOOT")
+BOOT::|selectMmsGen,matchMms|
+Compiling BOOT::|selectMmsGen,matchMms| ... 
+
++++ BOOT::|BOP;<;2$B;29|      (
+"/users/axiom/development/int/algebra/BOP.NRLIB/code.lsp" 4607 "BOOT")
+BOOT::|BOP;<;2$B;29|
+Compiling BOOT::|BOP;<;2$B;29| ... 
+
++++ BOOT::|evalMmStack|       ("cclinterp/i-funsel.clisp" 106939 "BOOT")
+BOOT::|evalMmStack|
+Compiling BOOT::|evalMmStack| ... 
+
++++ BOOT::|EXPR;commonk0|     (
+"/users/axiom/development/int/algebra/EXPR.NRLIB/code.lsp" 5633 "BOOT")
+BOOT::|EXPR;commonk0|
+Compiling BOOT::|EXPR;commonk0| ... 
+
++++ BOOT::|get0|              ("cclinterp/i-intern.clisp" 54830 "BOOT")
+BOOT::|get0|
+Compiling BOOT::|get0| ... 
+
++++ BOOT::|sigDomainVal|      ("cclinterp/xrun.clisp" 14296 "BOOT")
+BOOT::|sigDomainVal|
+Compiling BOOT::|sigDomainVal| ... 
+
++++ BOOT::|FSAGG-;brace;LA;3| (
+"/users/axiom/development/int/algebra/FSAGG-.NRLIB/code.lsp" 436 "BOOT")
+BOOT::|FSAGG-;brace;LA;3|
+Compiling BOOT::|FSAGG-;brace;LA;3| ... 
+
++++ BOOT::|MONOID-;one?;SB;2| (
+"/users/axiom/development/int/algebra/MONOID-.NRLIB/code.lsp" 99 "BOOT")
+BOOT::|MONOID-;one?;SB;2|
+Compiling BOOT::|MONOID-;one?;SB;2| ... 
+
++++ BOOT::|STAGG-;c2|         (
+"/users/axiom/development/int/algebra/STAGG-.NRLIB/code.lsp" 708 "BOOT")
+BOOT::|STAGG-;c2|
+Compiling BOOT::|STAGG-;c2| ... 
+
++++ BOOT::|IFARRAY;#;$Nni;4|  (
+"/users/axiom/development/int/algebra/IFARRAY.NRLIB/code.lsp" 451 "BOOT")
+BOOT::|IFARRAY;#;$Nni;4|
+Compiling BOOT::|IFARRAY;#;$Nni;4| ... 
+
++++ BOOT::|IDPAM;map;M2$;7|   (
+"/users/axiom/development/int/algebra/IDPAM.NRLIB/code.lsp" 2880 "BOOT")
+BOOT::|IDPAM;map;M2$;7|
+Compiling BOOT::|IDPAM;map;M2$;7| ... 
+
++++ BOOT::|resolveTMEq|       ("cclinterp/i-resolv.clisp" 55464 "BOOT")
+BOOT::|resolveTMEq|
+Compiling BOOT::|resolveTMEq| ... 
+
++++ BOOT::|COMPCAT-;unitNormal;SR;49|(
+"/users/axiom/development/int/algebra/COMPCAT-.NRLIB/code.lsp" 15158 "BOOT")
+About to create u09
+
++++ BOOT::|COMPCAT-;unitNormal;SR;49|(
+"/users/axiom/development/int/algebra/COMPCAT-.NRLIB/code.lsp" 15158 "BOOT")
+BOOT::|COMPCAT-;unitNormal;SR;49|
+Compiling BOOT::|COMPCAT-;unitNormal;SR;49| ... 
+
++++ BOOT::|FLASORT;quickSort;M2V;1|(
+"/users/axiom/development/int/algebra/FLASORT.NRLIB/code.lsp" 20 "BOOT")
+BOOT::|FLASORT;quickSort;M2V;1|
+Compiling BOOT::|FLASORT;quickSort;M2V;1| ... 
+
++++ BOOT::|NNI;subtractIfCan;2$U;3|(
+"/users/axiom/development/int/algebra/NNI.NRLIB/code.lsp" 563 "BOOT")
+BOOT::|NNI;subtractIfCan;2$U;3|
+Compiling BOOT::|NNI;subtractIfCan;2$U;3| ... 
+
++++ BOOT::|SMP;-;2$;24|       (
+"/users/axiom/development/int/algebra/SMP.NRLIB/code.lsp" 7687 "BOOT")
+BOOT::|SMP;-;2$;24|
+Compiling BOOT::|SMP;-;2$;24| ... 
+
++++ BOOT::|SUP;fmecg;$NniR2$;29|(
+"/users/axiom/development/int/algebra/SUP.NRLIB/code.lsp" 11748 "BOOT")
+BOOT::|SUP;fmecg;$NniR2$;29|
+Compiling BOOT::|SUP;fmecg;$NniR2$;29| ... 
+
++++ BOOT::|evalMm|            ("cclinterp/i-funsel.clisp" 103939 "BOOT")
+BOOT::|evalMm|
+Compiling BOOT::|evalMm| ... 
+
++++ BOOT::|COMPLEX;one?;$B;9| (
+"/users/axiom/development/int/algebra/COMPLEX.NRLIB/code.lsp" 2132 "BOOT")
+BOOT::|COMPLEX;one?;$B;9|
+Compiling BOOT::|COMPLEX;one?;$B;9| ... 
+
++++ BOOT::|FLAGG-;sort!;2A;8| (
+"/users/axiom/development/int/algebra/FLAGG-.NRLIB/code.lsp" 915 "BOOT")
+BOOT::|FLAGG-;sort!;2A;8|
+Compiling BOOT::|FLAGG-;sort!;2A;8| ... 
+
++++ BOOT::|object2String|     ("cclinterp/format.clisp" 72399 "BOOT")
+BOOT::|object2String|
+Compiling BOOT::|object2String| ... 
+
++++ BOOT::|FRAC;coerce;S$;1|  (
+"/users/axiom/development/int/algebra/FRAC.NRLIB/code.lsp" 20 "BOOT")
+BOOT::|FRAC;coerce;S$;1|
+Compiling BOOT::|FRAC;coerce;S$;1| ... 
+
++++ BOOT::|COMPCAT-;*;R2S;18| (
+"/users/axiom/development/int/algebra/COMPCAT-.NRLIB/code.lsp" 5990 "BOOT")
+BOOT::|COMPCAT-;*;R2S;18|
+Compiling BOOT::|COMPCAT-;*;R2S;18| ... 
+
++++ BOOT::|EXPR;*;3$;11|      (
+"/users/axiom/development/int/algebra/EXPR.NRLIB/code.lsp" 1133 "BOOT")
+BOOT::|EXPR;*;3$;11|
+Compiling BOOT::|EXPR;*;3$;11| ... 
+
++++ BOOT::|IIARRAY2;qelt;$2IR;10|(
+"/users/axiom/development/int/algebra/IIARRAY2.NRLIB/code.lsp" 1438 "BOOT")
+BOOT::|IIARRAY2;qelt;$2IR;10|
+Compiling BOOT::|IIARRAY2;qelt;$2IR;10| ... 
+
++++ BOOT::|ALIST;keys;$L;6|   (
+"/users/axiom/development/int/algebra/ALIST.NRLIB/code.lsp" 376 "BOOT")
+BOOT::|ALIST;keys;$L;6|
+Compiling BOOT::|ALIST;keys;$L;6| ... 
+
++++ BOOT::|isEqualOrSubDomain|("cclinterp/i-funsel.clisp" 166243 "BOOT")
+BOOT::|isEqualOrSubDomain|
+Compiling BOOT::|isEqualOrSubDomain| ... 
+
++++ BOOT::|hashString|        ("cclinterp/hashcode.clisp" 5259 "BOOT")
+BOOT::|hashString|
+Compiling BOOT::|hashString| ... 
+
++++ BOOT::|EXPR;reduc|        (
+"/users/axiom/development/int/algebra/EXPR.NRLIB/code.lsp" 11482 "BOOT")
+BOOT::|EXPR;reduc|
+Compiling BOOT::|EXPR;reduc| ... 
+
++++ BOOT:ELEMN                ("cclinterp/macros.lisp" 32583 "BOOT")
+BOOT:ELEMN
+Compiling BOOT:ELEMN ... 
+
++++ BOOT::|MDDFACT;reduction!0|(
+"/users/axiom/development/int/algebra/MDDFACT.NRLIB/code.lsp" 190 "BOOT")
+BOOT::|MDDFACT;reduction!0|
+Compiling BOOT::|MDDFACT;reduction!0| ... 
+
++++ BOOT::|HDP;<;2$B;1|       (
+"/users/axiom/development/int/algebra/HDP.NRLIB/code.lsp" 20 "BOOT")
+BOOT::|HDP;<;2$B;1|
+Compiling BOOT::|HDP;<;2$B;1| ... 
+
++++ BOOT::|stuffDomainSlots|  ("cclinterp/nrunopt.clisp" 11397 "BOOT")
+BOOT::|stuffDomainSlots|
+Compiling BOOT::|stuffDomainSlots| ... 
+
++++ BOOT::|subspan|           ("cclinterp/i-output.clisp" 148412 "BOOT")
+BOOT::|subspan|
+Compiling BOOT::|subspan| ... 
+
++++ BOOT::|deconstructT|      ("cclinterp/i-resolv.clisp" 71832 "BOOT")
+BOOT::|deconstructT|
+Compiling BOOT::|deconstructT| ... 
+
++++ BOOT::|SUP;exquo;2$U;27|  (
+"/users/axiom/development/int/algebra/SUP.NRLIB/code.lsp" 9383 "BOOT")
+About to create u10
+
++++ BOOT::|SUP;exquo;2$U;27|  (
+"/users/axiom/development/int/algebra/SUP.NRLIB/code.lsp" 9383 "BOOT")
+BOOT::|SUP;exquo;2$U;27|
+Compiling BOOT::|SUP;exquo;2$U;27| ... 
+
++++ BOOT::|SUP;exquo;2$U;28|  (
+"/users/axiom/development/int/algebra/SUP.NRLIB/code.lsp" 10602 "BOOT")
+BOOT::|SUP;exquo;2$U;28|
+Compiling BOOT::|SUP;exquo;2$U;28| ... 
+
++++ BOOT::|PR;coerce;R$;12|   (
+"/users/axiom/development/int/algebra/PR.NRLIB/code.lsp" 2377 "BOOT")
+BOOT::|PR;coerce;R$;12|
+Compiling BOOT::|PR;coerce;R$;12| ... 
+
++++ BOOT::|REPSQ;expt;SPiS;1| (
+"/users/axiom/development/int/algebra/REPSQ.NRLIB/code.lsp" 20 "BOOT")
+BOOT::|REPSQ;expt;SPiS;1|
+Compiling BOOT::|REPSQ;expt;SPiS;1| ... 
+
++++ VMLISP:QENUM              ("cclinterp/vmlisp.lisp" 27042 "VMLISP")
+VMLISP:QENUM
+Compiling VMLISP:QENUM ... 
+
++++ VMLISP:GGREATERP          ("cclinterp/ggreater.lisp" 2988 "VMLISP")
+VMLISP:GGREATERP
+Compiling VMLISP:GGREATERP ... 
+
++++ BOOT::|startTimingProcess|("cclinterp/g-timer.clisp" 8160 "BOOT")
+BOOT::|startTimingProcess|
+Compiling BOOT::|startTimingProcess| ... 
+
++++ BOOT::|domainEqualList|   ("cclinterp/clam.clisp" 60966 "BOOT")
+BOOT::|domainEqualList|
+Compiling BOOT::|domainEqualList| ... 
+
++++ BOOT::|newExpandLocalType|("cclinterp/interop.clisp" 47795 "BOOT")
+BOOT::|newExpandLocalType|
+Compiling BOOT::|newExpandLocalType| ... 
+
++++ BOOT::|isDefaultPackageForm?|("cclinterp/nrunfast.clisp" 13608 "BOOT")
+BOOT::|isDefaultPackageForm?|
+Compiling BOOT::|isDefaultPackageForm?| ... 
+
++++ BOOT::|A1AGG-;=;2AB;28|   (
+"/users/axiom/development/int/algebra/A1AGG-.NRLIB/code.lsp" 20789 "BOOT")
+BOOT::|A1AGG-;=;2AB;28|
+Compiling BOOT::|A1AGG-;=;2AB;28| ... 
+
++++ BOOT::|EXPR;coerce;Smp$;24|(
+"/users/axiom/development/int/algebra/EXPR.NRLIB/code.lsp" 4091 "BOOT")
+BOOT::|EXPR;coerce;Smp$;24|
+Compiling BOOT::|EXPR;coerce;Smp$;24| ... 
+
++++ BOOT::|PR;*;3$;21|        (
+"/users/axiom/development/int/algebra/PR.NRLIB/code.lsp" 7047 "BOOT")
+BOOT::|PR;*;3$;21|
+Compiling BOOT::|PR;*;3$;21| ... 
+
++++ BOOT::|superspan|         ("cclinterp/i-output.clisp" 149096 "BOOT")
+BOOT::|superspan|
+Compiling BOOT::|superspan| ... 
+
++++ BOOT::|SET;empty;$;4|     (
+"/users/axiom/development/int/algebra/SET.NRLIB/code.lsp" 204 "BOOT")
+BOOT::|SET;empty;$;4|
+Compiling BOOT::|SET;empty;$;4| ... 
+
++++ BOOT::|A1AGG-;sort!;M2A;2|(
+"/users/axiom/development/int/algebra/A1AGG-.NRLIB/code.lsp" 496 "BOOT")
+BOOT::|A1AGG-;sort!;M2A;2|
+Compiling BOOT::|A1AGG-;sort!;M2A;2| ... 
+
++++ SUB-WRITE-STRING          ("../cclbase/print.lsp" 26509 "LISP")
+SUB-WRITE-STRING
+Compiling SUB-WRITE-STRING ... 
+
++++ BOOT::|hasCat|            ("cclinterp/cattable.clisp" 59 "BOOT")
+BOOT::|hasCat|
+Compiling BOOT::|hasCat| ... 
+
++++ BOOT::|ncAlist|           ("cclinterp/astr.clisp" 262 "BOOT")
+BOOT::|ncAlist|
+Compiling BOOT::|ncAlist| ... 
+
++++ BOOT::|INS-;symmetricRemainder;3S;27|(
+"/users/axiom/development/int/algebra/INS-.NRLIB/code.lsp" 3211 "BOOT")
+BOOT::|INS-;symmetricRemainder;3S;27|
+Compiling BOOT::|INS-;symmetricRemainder;3S;27| ... 
+
++++ BOOT::|FM;*;$R$;3|        (
+"/users/axiom/development/int/algebra/FM.NRLIB/code.lsp" 1315 "BOOT")
+BOOT::|FM;*;$R$;3|
+Compiling BOOT::|FM;*;$R$;3| ... 
+
++++ BOOT::|FM;*;$R$;4|        (
+"/users/axiom/development/int/algebra/FM.NRLIB/code.lsp" 1886 "BOOT")
+BOOT::|FM;*;$R$;4|
+Compiling BOOT::|FM;*;$R$;4| ... 
+
++++ BOOT::|IFARRAY;new;NniS$;8|(
+"/users/axiom/development/int/algebra/IFARRAY.NRLIB/code.lsp" 895 "BOOT")
+BOOT::|IFARRAY;new;NniS$;8|
+Compiling BOOT::|IFARRAY;new;NniS$;8| ... 
+
++++ BOOT::|BOP;properties;$Al;3|(
+"/users/axiom/development/int/algebra/BOP.NRLIB/code.lsp" 346 "BOOT")
+BOOT::|BOP;properties;$Al;3|
+Compiling BOOT::|BOP;properties;$Al;3| ... 
+
++++ BOOT::|PGCD;better|       (
+"/users/axiom/development/int/algebra/PGCD.NRLIB/code.lsp" 13263 "BOOT")
+BOOT::|PGCD;better|
+Compiling BOOT::|PGCD;better| ... 
+
++++ BOOT::|INT;positiveRemainder;3$;28|(
+"/users/axiom/development/int/algebra/INT.NRLIB/code.lsp" 4571 "BOOT")
+BOOT::|INT;positiveRemainder;3$;28|
+Compiling BOOT::|INT;positiveRemainder;3$;28| ... 
+
++++ BOOT::|SGROUP-;**;SPiS;1| (
+"/users/axiom/development/int/algebra/SGROUP-.NRLIB/code.lsp" 20 "BOOT")
+BOOT::|SGROUP-;**;SPiS;1|
+Compiling BOOT::|SGROUP-;**;SPiS;1| ... 
+
++++ BOOT::|IFARRAY;empty;$;3| (
+"/users/axiom/development/int/algebra/IFARRAY.NRLIB/code.lsp" 390 "BOOT")
+BOOT::|IFARRAY;empty;$;3|
+Compiling BOOT::|IFARRAY;empty;$;3| ... 
+
++++ WRITE-TO-STRING-1         ("../cclbase/print.lsp" 41626 "LISP")
+WRITE-TO-STRING-1
+Compiling WRITE-TO-STRING-1 ... 
+
++++ BOOT::|resolveTM1|        ("cclinterp/i-resolv.clisp" 47586 "BOOT")
+About to create u11
+
++++ BOOT::|resolveTM1|        ("cclinterp/i-resolv.clisp" 47586 "BOOT")
+BOOT::|resolveTM1|
+Compiling BOOT::|resolveTM1| ... 
+
++++ BOOT::|lazyMatch|         ("cclinterp/nrunfast.clisp" 36861 "BOOT")
+BOOT::|lazyMatch|
+Compiling BOOT::|lazyMatch| ... 
+
++++ SUB-WRITE                 ("../cclbase/print.lsp" 29031 "LISP")
+SUB-WRITE
+Compiling SUB-WRITE ... 
+
++++ BOOT::|IFARRAY;growAndFill|(
+"/users/axiom/development/int/algebra/IFARRAY.NRLIB/code.lsp" 2577 "BOOT")
+BOOT::|IFARRAY;growAndFill|
+Compiling BOOT::|IFARRAY;growAndFill| ... 
+
++++ BOOT::|ABELGRP-;*;Nni2S;3|(
+"/users/axiom/development/int/algebra/ABELGRP-.NRLIB/code.lsp" 224 "BOOT")
+BOOT::|ABELGRP-;*;Nni2S;3|
+Compiling BOOT::|ABELGRP-;*;Nni2S;3| ... 
+
++++ BOOT::|stopTimingProcess| ("cclinterp/g-timer.clisp" 8541 "BOOT")
+BOOT::|stopTimingProcess|
+Compiling BOOT::|stopTimingProcess| ... 
+
++++ BOOT::|ABELMON-;*;Pi2S;2| (
+"/users/axiom/development/int/algebra/ABELMON-.NRLIB/code.lsp" 116 "BOOT")
+BOOT::|ABELMON-;*;Pi2S;2|
+Compiling BOOT::|ABELMON-;*;Pi2S;2| ... 
+
++++ BOOT::|FIELD-;inv;2S;4|   (
+"/users/axiom/development/int/algebra/FIELD-.NRLIB/code.lsp" 580 "BOOT")
+BOOT::|FIELD-;inv;2S;4|
+Compiling BOOT::|FIELD-;inv;2S;4| ... 
+
++++ BOOT::|MDDFACT;reduction| (
+"/users/axiom/development/int/algebra/MDDFACT.NRLIB/code.lsp" 20 "BOOT")
+BOOT::|MDDFACT;reduction|
+Compiling BOOT::|MDDFACT;reduction| ... 
+
++++ BOOT::DIVIDE2             ("try2.lsp" 6087 "BOOT")
+BOOT::DIVIDE2
+Compiling BOOT::DIVIDE2 ... 
+
++++ BOOT::|EXPR;-;2$;8|       (
+"/users/axiom/development/int/algebra/EXPR.NRLIB/code.lsp" 920 "BOOT")
+BOOT::|EXPR;-;2$;8|
+Compiling BOOT::|EXPR;-;2$;8| ... 
+
++++ BOOT::|ILIST;member?;S$B;24|(
+"/users/axiom/development/int/algebra/ILIST.NRLIB/code.lsp" 5578 "BOOT")
+BOOT::|ILIST;member?;S$B;24|
+Compiling BOOT::|ILIST;member?;S$B;24| ... 
+
++++ BOOT::|ILIST;rest;$Nni$;19|(
+"/users/axiom/development/int/algebra/ILIST.NRLIB/code.lsp" 2484 "BOOT")
+BOOT::|ILIST;rest;$Nni$;19|
+Compiling BOOT::|ILIST;rest;$Nni$;19| ... 
+
++++ BOOT::|replaceGoGetSlot|  ("cclinterp/interop.clisp" 55580 "BOOT")
+BOOT::|replaceGoGetSlot|
+Compiling BOOT::|replaceGoGetSlot| ... 
+
++++ BOOT::|IDPAG;-;2$;1|      (
+"/users/axiom/development/int/algebra/IDPAG.NRLIB/code.lsp" 20 "BOOT")
+BOOT::|IDPAG;-;2$;1|
+Compiling BOOT::|IDPAG;-;2$;1| ... 
+
++++ BOOT::|FRAC;+;3$;21|      (
+"/users/axiom/development/int/algebra/FRAC.NRLIB/code.lsp" 5251 "BOOT")
+BOOT::|FRAC;+;3$;21|
+Compiling BOOT::|FRAC;+;3$;21| ... 
+
++++ BOOT::|PGCD;gcdTermList|  (
+"/users/axiom/development/int/algebra/PGCD.NRLIB/code.lsp" 13772 "BOOT")
+BOOT::|PGCD;gcdTermList|
+Compiling BOOT::|PGCD;gcdTermList| ... 
+
++++ BOOT::|matchMmSig|        ("cclinterp/i-funsel.clisp" 84891 "BOOT")
+BOOT::|matchMmSig|
+Compiling BOOT::|matchMmSig| ... 
+
++++ BOOT::|isHomogeneousList| ("cclinterp/i-funsel.clisp" 75669 "BOOT")
+About to create u12
+
++++ BOOT::|isHomogeneousList| ("cclinterp/i-funsel.clisp" 75669 "BOOT")
+BOOT::|isHomogeneousList|
+Compiling BOOT::|isHomogeneousList| ... 
+
++++ BOOT::|LO;-;2$;3|         (
+"/users/axiom/development/int/algebra/LO.NRLIB/code.lsp" 180 "BOOT")
+BOOT::|LO;-;2$;3|
+Compiling BOOT::|LO;-;2$;3| ... 
+
++++ BOOT::|EUCDOM-;gcd;3S;5|  (
+"/users/axiom/development/int/algebra/EUCDOM-.NRLIB/code.lsp" 746 "BOOT")
+BOOT::|EUCDOM-;gcd;3S;5|
+Compiling BOOT::|EUCDOM-;gcd;3S;5| ... 
+
++++ BOOT::|newLookupInAddChain|("cclinterp/nrunfast.clisp" 13927 "BOOT")
+BOOT::|newLookupInAddChain|
+Compiling BOOT::|newLookupInAddChain| ... 
+
++++ BOOT::|LO;=;2$B;4|        (
+"/users/axiom/development/int/algebra/LO.NRLIB/code.lsp" 269 "BOOT")
+BOOT::|LO;=;2$B;4|
+Compiling BOOT::|LO;=;2$B;4| ... 
+
++++ BOOT::|newLookupInDomain| ("cclinterp/nrunfast.clisp" 15064 "BOOT")
+BOOT::|newLookupInDomain|
+Compiling BOOT::|newLookupInDomain| ... 
+
++++ BOOT::|atom2String|       ("cclinterp/i-output.clisp" 13594 "BOOT")
+BOOT::|atom2String|
+Compiling BOOT::|atom2String| ... 
+
++++ BOOT::|IARRAY1;elt;$IS;16|(
+"/users/axiom/development/int/algebra/IARRAY1.NRLIB/code.lsp" 3164 "BOOT")
+BOOT::|IARRAY1;elt;$IS;16|
+Compiling BOOT::|IARRAY1;elt;$IS;16| ... 
+
++++ BOOT::|EXPR;+;3$;12|      (
+"/users/axiom/development/int/algebra/EXPR.NRLIB/code.lsp" 1256 "BOOT")
+BOOT::|EXPR;+;3$;12|
+Compiling BOOT::|EXPR;+;3$;12| ... 
+
++++ BOOT::|COMPCAT-;rem;3S;53|(
+"/users/axiom/development/int/algebra/COMPCAT-.NRLIB/code.lsp" 18245 "BOOT")
+BOOT::|COMPCAT-;rem;3S;53|
+Compiling BOOT::|COMPCAT-;rem;3S;53| ... 
+
++++ BOOT::|FIELD-;/;3S;11|    (
+"/users/axiom/development/int/algebra/FIELD-.NRLIB/code.lsp" 1477 "BOOT")
+BOOT::|FIELD-;/;3S;11|
+Compiling BOOT::|FIELD-;/;3S;11| ... 
+
++++ BOOT::|SMP;univariate;$VarSetSup;13|(
+"/users/axiom/development/int/algebra/SMP.NRLIB/code.lsp" 3655 "BOOT")
+BOOT::|SMP;univariate;$VarSetSup;13|
+Compiling BOOT::|SMP;univariate;$VarSetSup;13| ... 
+
++++ BOOT::|hasCate|           ("cclinterp/i-funsel.clisp" 128953 "BOOT")
+BOOT::|hasCate|
+Compiling BOOT::|hasCate| ... 
+
++++ BOOT::|URAGG-;tail;2A;16| (
+"/users/axiom/development/int/algebra/URAGG-.NRLIB/code.lsp" 3540 "BOOT")
+BOOT::|URAGG-;tail;2A;16|
+Compiling BOOT::|URAGG-;tail;2A;16| ... 
+
++++ BOOT::|npInfGeneric|      ("cclinterp/cparse.clisp" 8569 "BOOT")
+BOOT::|npInfGeneric|
+Compiling BOOT::|npInfGeneric| ... 
+
++++ BOOT::|FACUTIL;lowerPolynomial;SupSup;1|(
+"/users/axiom/development/int/algebra/FACUTIL.NRLIB/code.lsp" 20 "BOOT")
+BOOT::|FACUTIL;lowerPolynomial;SupSup;1|
+Compiling BOOT::|FACUTIL;lowerPolynomial;SupSup;1| ... 
+
++++ BOOT::|underDomainOf|     ("cclinterp/clammed.clisp" 21803 "BOOT")
+BOOT::|underDomainOf|
+Compiling BOOT::|underDomainOf| ... 
+
++++ BOOT::|SMP;degree;$Ie;71| (
+"/users/axiom/development/int/algebra/SMP.NRLIB/code.lsp" 36671 "BOOT")
+BOOT::|SMP;degree;$Ie;71|
+Compiling BOOT::|SMP;degree;$Ie;71| ... 
+
++++ BOOT::|FAMR-;ground;SR;4| (
+"/users/axiom/development/int/algebra/FAMR-.NRLIB/code.lsp" 1963 "BOOT")
+BOOT::|FAMR-;ground;SR;4|
+Compiling BOOT::|FAMR-;ground;SR;4| ... 
+
++++ BOOT::|STAGG-;first;ANniA;3|(
+"/users/axiom/development/int/algebra/STAGG-.NRLIB/code.lsp" 229 "BOOT")
+BOOT::|STAGG-;first;ANniA;3|
+Compiling BOOT::|STAGG-;first;ANniA;3| ... 
+
++++ BOOT::|FRAC;recip;$U;30|  (
+"/users/axiom/development/int/algebra/FRAC.NRLIB/code.lsp" 8920 "BOOT")
+BOOT::|FRAC;recip;$U;30|
+Compiling BOOT::|FRAC;recip;$U;30| ... 
+
++++ BOOT::|allOrMatchingMms|  ("cclinterp/i-funsel.clisp" 74735 "BOOT")
+BOOT::|allOrMatchingMms|
+Compiling BOOT::|allOrMatchingMms| ... 
+
++++ BOOT::|IARRAY1;fill!;$S$;2|(
+"/users/axiom/development/int/algebra/IARRAY1.NRLIB/code.lsp" 144 "BOOT")
+BOOT::|IARRAY1;fill!;$S$;2|
+Compiling BOOT::|IARRAY1;fill!;$S$;2| ... 
+
++++ BOOT::|IFARRAY;concat!;$S$;21|(
+"/users/axiom/development/int/algebra/IFARRAY.NRLIB/code.lsp" 5873 "BOOT")
+BOOT::|IFARRAY;concat!;$S$;21|
+Compiling BOOT::|IFARRAY;concat!;$S$;21| ... 
+
++++ BOOT::|BOP;is?;$SB;1|     (
+"/users/axiom/development/int/algebra/BOP.NRLIB/code.lsp" 20 "BOOT")
+BOOT::|BOP;is?;$SB;1|
+Compiling BOOT::|BOP;is?;$SB;1| ... 
+
++++ BOOT::|FRAC;*;I2$;24|     (
+"/users/axiom/development/int/algebra/FRAC.NRLIB/code.lsp" 7148 "BOOT")
+BOOT::|FRAC;*;I2$;24|
+Compiling BOOT::|FRAC;*;I2$;24| ... 
+
++++ BOOT::|IFARRAY;growWith|  (
+"/users/axiom/development/int/algebra/IFARRAY.NRLIB/code.lsp" 2967 "BOOT")
+BOOT::|IFARRAY;growWith|
+Compiling BOOT::|IFARRAY;growWith| ... 
+
++++ BOOT::|loadIfNecessary|   ("cclinterp/lisplib.clisp" 10273 "BOOT")
+BOOT::|loadIfNecessary|
+Compiling BOOT::|loadIfNecessary| ... 
+
++++ BOOT::|EXPR;coerce;I$;10| (
+"/users/axiom/development/int/algebra/EXPR.NRLIB/code.lsp" 1061 "BOOT")
+BOOT::|EXPR;coerce;I$;10|
+Compiling BOOT::|EXPR;coerce;I$;10| ... 
+
++++ BOOT::|typeIsASmallInteger|("cclinterp/i-coerce.clisp" 66606 "BOOT")
+BOOT::|typeIsASmallInteger|
+Compiling BOOT::|typeIsASmallInteger| ... 
+
++++ BOOT::|ILIST;split!;$I$;29|(
+"/users/axiom/development/int/algebra/ILIST.NRLIB/code.lsp" 8404 "BOOT")
+BOOT::|ILIST;split!;$I$;29|
+Compiling BOOT::|ILIST;split!;$I$;29| ... 
+
++++ BOOT::|EUCDOM-;unitNormalizeIdealElt|(
+"/users/axiom/development/int/algebra/EUCDOM-.NRLIB/code.lsp" 1366 "BOOT")
+BOOT::|EUCDOM-;unitNormalizeIdealElt|
+Compiling BOOT::|EUCDOM-;unitNormalizeIdealElt| ... 
+
++++ BOOT::|IDPAG;-;3$;4|      (
+"/users/axiom/development/int/algebra/IDPAG.NRLIB/code.lsp" 1316 "BOOT")
+BOOT::|IDPAG;-;3$;4|
+Compiling BOOT::|IDPAG;-;3$;4| ... 
+
++++ BOOT::|RING-;coerce;IS;1| (
+"/users/axiom/development/int/algebra/RING-.NRLIB/code.lsp" 20 "BOOT")
+BOOT::|RING-;coerce;IS;1|
+Compiling BOOT::|RING-;coerce;IS;1| ... 
+
++++ BOOT::|deepSubCopy|       ("cclinterp/termrw.clisp" 7044 "BOOT")
+BOOT::|deepSubCopy|
+Compiling BOOT::|deepSubCopy| ... 
+
++++ BOOT::|constructSubst|    ("cclinterp/i-funsel.clisp" 88811 "BOOT")
+
+NIL
+))
+
+
+(wrs O_file)
+#F[SYNONYM-STREAM *TERMINAL-IO* NIL 00000000 0808dd54 0808e008 00000050 00000000
+0808e21c 080970a0 00000400]
+
+
+(list 'failures (reverse failures))
+(FAILURES NIL)
+
+
+(list 'remaining targets)
+(REMAINING (BOOT::|constructSubst| BOOT::|keyp| BOOT::|lookupIncomplete| BOOT::|LSAGG-;reduce;MA2S;16|
+BOOT::|COMPLEX;+;3$;14| BOOT::|EXPR;/;3$;14| BOOT::|SMP;coerce;VarSet$;7| BOOT::|mkDomPvar|
+BOOT::|resolveTMEq1| BOOT::|MODRING;zero?;$B;10| BOOT::|orderMmCatStack| BOOT::|EXPR;zero?;$B;7|
+LIST-DELETE-DUPLICATES*-1 BOOT::|buildPredVector,fn| BOOT::|COMPCAT-;-;2S;17|
+BOOT::|PR;exquo;$RU;31| BOOT::|SMP;degree;$VarSetNni;69| BOOT::|MODRING;reduce;RMod$;6|
+BOOT::|hasCaty| BOOT::|FS-;coerce;KS;19| LIST-TO-VECTOR* BOOT::|basicLookup| BOOT::|URAGG-;last;AS;7|
+BOOT::|unifyStruct| BOOT::|ILIST;merge!;M3$;28| BOOT::|argCouldBelongToSubdomain|
+BOOT::|deepSubCopyOrNil| BOOT::|UPOLYC2;map;MPRPS;1| BOOT::|LIST;setUnion;3$;5|
+BOOT::|EUCDOM-;extendedEuclidean;2SR;7| BOOT::|COMPCAT-;norm;SR;9| BOOT::|SYMBOL;coerce;S$;3|
+BOOT::|COMPCAT-;conjugate;2S;12| BOOT::|DIRPROD;subtractIfCan;2$U;14| BOOT::|PR;minimumDegree;$E;5|
+BOOT::|SET;=;2$B;16| BOOT::|SET;union;3$;27| BOOT::|INT;convert;$I;13| BOOT::|SET;parts;$L;6|
+BOOT::|ES-;listk| BOOT::|ES-;tower;SL;5| BOOT::|A1AGG-;parts;AL;1| BOOT::|POLYLIFT;map;MMPS;1|
+BOOT::|SMP;-;3$;26| BOOT::|ES-;allk| BOOT::|FACUTIL;variables;SupL;5| BOOT::|ILIST;=;2$B;22|
+BOOT::|ES-;allKernels| BOOT::|PGCD;gcd;LP;16| BOOT::|FRAC;/;2S$;15| BOOT::|KERNEL;is?;$SB;1|
+BOOT::|PGCD;monomContent| BOOT::|FS-;mainKernel;SU;75| BOOT::|IDPOAM;<;2$B;1|
+BOOT::|MATRIX;minColIndex;$I;2| BOOT::|FIELD-;exquo;2SU;5| BOOT::|SMP;evalSortedVarlist!0|
+BOOT::|FAMR-;ground?;SB;1| BOOT::|IXAGG-;swap!;S2IndexV;10| BOOT::|DIRPROD;=;2$B;6|
+BOOT::|GENEEZ;reduction;BPRBP;4!0| BOOT::|FRAC;retract;$F;28| BOOT::|EXPR;retract;$F;99|
+BOOT::|KERNEL;is?;$BoB;2| BOOT::|ES-;retractIfCan;SU;35| BOOT::|KERNEL;setPosition;$NniV;8|
+BOOT::|SYMBOL;<;2$B;5| BOOT::|QFCAT-;<;2AB;12| BOOT::|FACUTIL;raisePolynomial;SupSup;2|
+BOOT::|EXPR;noalg?| BOOT::|EXPR;one?;$B;6| BOOT::|EMR;rem;3$;2| BOOT::|POLYCATQ;mainVariable;FU;9|
+BOOT::|EXPR;belong?;BoB;1| BOOT::|FRAC;-;3$;17| BOOT::|STREAM;lazy?;$B;2| BOOT::|MATRIX;minRowIndex;$I;1|
+BOOT::|EMR;unitCanonical;2$;5| BOOT::|EXPR;<;2$B;16| BOOT::|EXPR;-;3$;13| BOOT::|SMP;retractIfCan;$U;50|
+BOOT::|FRAC;*;S2$;20| VMLISP::HPUT BOOT::|KERNEL;symbolIfCan;$U;12| BOOT::|SMP;evalSortedVarlist|
+BOOT::|POLYCAT-;<;2SB;38| BOOT::|MONOID-;**;SNniS;5| BOOT::|MODULE-;*;SRS;1| BOOT::|HEUGCD;lintgcd;LI;6!0|
+BOOT::|PGCD;gcdMonom| BOOT::|SUP;gcd;3$;30| BOOT::|ES-;height;SNni;8| BOOT::|INS-;euclideanSize;SNni;9|
+BOOT::|BOP;arity;$U;25| BOOT::|GENEEZ;reduction;BPRBP;4| BOOT::|SCACHE;cache;L;1|
+BOOT::|PR;retractIfCan;$U;9| BOOT::|STREAM;explicitlyEmpty?;$B;1| BOOT::|GCDDOM-;lcm;3S;1|
+BOOT::|MDDFACT;merge| BOOT::|PR;coefficient;$ER;10| BOOT::|FRAC;retract;$S;3|
+BOOT::|SMP;multivariate;SupVarSet$;13| BOOT::|ES-;is?;SBoB;37| BOOT::|MODRING;newmodulo|
+BOOT::|URAGG-;second;AS;4| BOOT::|SMP;eval;$LL$;57| BOOT::|PGCD;gcd;3Sup;11| BOOT::|SUP;content;$R;28|
+BOOT::|INTDOM-;recip;SU;3| BOOT::|FS-;smpeval!3| BOOT::|SUP;elt;$2R;22| BOOT::|HEUGCD;lintgcd;LI;6|
+BOOT::|LGROBP;reduceRow| BOOT::|SMP;**;$Nni$;29| BOOT::|FS-;retract;SR;88| BOOT::|STREAM;delay;M$;56|
+BOOT::|KERNEL;kernel;BoLNni$;15| BOOT::|FLAGG-;position;SAI;1| BOOT::|LSAGG-;position;SA2I;23|
+BOOT::|MODRING;*;3$;17| BOOT::|SUP2;map;MSupSup;1| BOOT::|STREAM;empty?;$B;36|
+BOOT::|GBINTERN;redPo;DpolLR;13|))
+
+
+'done
+
+DONE
+
+
+
+End of Lisp run after 26.28+3.12 seconds
+
+Finished dribbling to faster.log.

@@ -1,0 +1,46 @@
+\section{Linking C code into CCL}
+
+Look at cslbase/stubs.c to see an example of a C function (``sample'') being
+made visible to Lisp.  With each function name are associated three C objects:
+the first corresponds to a one argument version, the second to a two argument
+version, and the thirs to a zero/three-or-more argument version.  There are
+appropriate macros (?) defined for defaults which report the function being
+called with the incorrect number of arguments.
+
+There are plenty of examples in fns?.c.  Points to bear in mind are:
+\begin{itemize}
+\item Whenever you do anything that might cause a Lisp error (for example
+call another Lisp function), you must check for an error by calling
+errorexit.
+\item It is important that {\tt nil} is defined suitably somewhere.
+\item Objects on the C stack are not GC-safe, so the most sensible thing
+to do is stick them on the Lisp stack using the appropriate push and pop
+functions.
+\item When returning values use either onevalue() or multivalue() to deal
+with the appropriate cases.
+\item The first argument to the C version of a Lisp function is its environment.
+\end{itemize}
+
+There are plenty of conversion functions for arithmetic types.  Looking in
+arith.h is a good start.
+
+Beware of the differences between different kinds of strings.  Producing a
+simple string is often a good start.
+
+\section{Compiler Macros}
+
+Examples in BUILD.LSP and compex.lsp.
+
+\section{Arguments to CCL}
+
+See csl.c where it decodes argv.
+
+\section{Useful Debugging/Profiling functions}
+
+\begin{description}
+\item[verbose] Controls messages about loading, gc etc.  Takes argument 0-4.
+\item[symbol-env] Tells you whether you have a C or byte-code object.
+\item[mapstore] Prints information about which are the most popular
+byte-coded functions (takes various arguments).
+\end{description}
+

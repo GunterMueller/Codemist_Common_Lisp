@@ -1,0 +1,306 @@
+#!/bin/sh
+
+INT=/home/mcd/OpenAxiom/development/int/algebra
+export INT
+
+
+dolibs() {
+  OUT=$1
+  SOURCE_DB_IN=$3
+  SOURCE_DB_OUT=$4
+  rm -f $OUT
+  echo Producing $OUT
+  # The header...  
+  echo ';;This script was created by makelib' > $OUT
+  echo '(load "try2.lsp")' >> $OUT
+  echo '(in-package "BOOT")' >> $OUT
+  echo '(load_source_database "cclwhereis'$SOURCE_DB_IN'.lsp")' >> $OUT
+  shift
+  # Produce load calls for the given directiories
+  for loc in $*
+  do
+    for lib in $loc/*.lsp
+    do
+      if [ -f $lib ] 
+      then 
+      package=`basename $lib .lsp`
+      echo "(faslout '|"${package}"|)" >> $OUT
+      echo '(load "'$lib'")' >> $OUT
+      echo "(faslend)"  >> $OUT
+      fi
+    done
+    for lib in $loc/A*.NRLIB
+      do
+      if [ -f $lib/code.lsp ] 
+      then
+      package=`basename $lib .NRLIB`
+      echo "(faslout '"${package}")" >> $OUT
+      echo '(load "'$lib'/code.lsp")' >> $OUT
+      echo "(faslend)"  >> $OUT
+      fi
+    done
+    for lib in $loc/B*.NRLIB
+      do
+      if [ -f $lib/code.lsp ] 
+      then 
+      package=`basename $lib .NRLIB`
+      echo "(faslout '"${package}")" >> $OUT
+      echo '(load "'$lib'/code.lsp")' >> $OUT
+      echo "(faslend)"  >> $OUT
+      fi
+    done
+    for lib in $loc/C*.NRLIB
+      do
+      if [ -f $lib/code.lsp ] 
+      then 
+      package=`basename $lib .NRLIB`
+      echo "(faslout '"${package}")" >> $OUT
+      echo '(load "'$lib'/code.lsp")' >> $OUT
+      echo "(faslend)"  >> $OUT
+      fi
+    done
+    for lib in $loc/D*.NRLIB
+      do
+      if [ -f $lib/code.lsp ] 
+      then 
+      package=`basename $lib .NRLIB`
+      echo "(faslout '"${package}")" >> $OUT
+      echo '(load "'$lib'/code.lsp")' >> $OUT
+      echo "(faslend)"  >> $OUT
+      fi
+    done
+    for lib in $loc/E*.NRLIB
+      do
+      if [ -f $lib/code.lsp ] 
+      then 
+      package=`basename $lib .NRLIB`
+      echo "(faslout '"${package}")" >> $OUT
+      echo '(load "'$lib'/code.lsp")' >> $OUT
+      echo "(faslend)"  >> $OUT
+      fi
+    done
+    for lib in $loc/F*.NRLIB
+      do
+      if [ -f $lib/code.lsp ] 
+      then 
+      package=`basename $lib .NRLIB`
+      echo "(faslout '"${package}")" >> $OUT
+      echo '(load "'$lib'/code.lsp")' >> $OUT
+      echo "(faslend)"  >> $OUT
+      fi
+    done
+    for lib in $loc/G*.NRLIB
+      do
+      if [ -f $lib/code.lsp ] 
+      then 
+      package=`basename $lib .NRLIB`
+      echo "(faslout '"${package}")" >> $OUT
+      echo '(load "'$lib'/code.lsp")' >> $OUT
+      echo "(faslend)"  >> $OUT
+      fi
+    done
+    for lib in $loc/H*.NRLIB
+      do
+      if [ -f $lib/code.lsp ] 
+      then 
+      package=`basename $lib .NRLIB`
+      echo "(faslout '"${package}")" >> $OUT
+      echo '(load "'$lib'/code.lsp")' >> $OUT
+      echo "(faslend)"  >> $OUT
+      fi
+    done
+    for lib in $loc/I*.NRLIB
+      do
+      if [ -f $lib/code.lsp ] 
+      then 
+      package=`basename $lib .NRLIB`
+      echo "(faslout '"${package}")" >> $OUT
+      echo '(load "'$lib'/code.lsp")' >> $OUT
+      echo "(faslend)"  >> $OUT
+      fi
+    done
+    for lib in $loc/J*.NRLIB
+      do
+      if [ -f $lib/code.lsp ] 
+      then 
+      package=`basename $lib .NRLIB`
+      echo "(faslout '"${package}")" >> $OUT
+      echo '(load "'$lib'/code.lsp")' >> $OUT
+      echo "(faslend)"  >> $OUT
+      fi
+    done
+    for lib in $loc/K*.NRLIB
+      do
+      if [ -f $lib/code.lsp ] 
+      then 
+      package=`basename $lib .NRLIB`
+      echo "(faslout '"${package}")" >> $OUT
+      echo '(load "'$lib'/code.lsp")' >> $OUT
+      echo "(faslend)"  >> $OUT
+      fi
+    done
+    for lib in $loc/L*.NRLIB
+      do
+      if [ -f $lib/code.lsp ] 
+      then 
+      package=`basename $lib .NRLIB`
+      echo "(faslout '"${package}")" >> $OUT
+      echo '(load "'$lib'/code.lsp")' >> $OUT
+      echo "(faslend)"  >> $OUT
+      fi
+    done
+    for lib in $loc/M*.NRLIB
+      do
+      if [ -f $lib/code.lsp ] 
+      then 
+      package=`basename $lib .NRLIB`
+      echo "(faslout '"${package}")" >> $OUT
+      echo '(load "'$lib'/code.lsp")' >> $OUT
+      echo "(faslend)"  >> $OUT
+      fi
+    done
+    for lib in $loc/N*.NRLIB
+      do
+      if [ -f $lib/code.lsp ] 
+      then 
+      package=`basename $lib .NRLIB`
+      echo "(faslout '"${package}")" >> $OUT
+      echo '(load "'$lib'/code.lsp")' >> $OUT
+      echo "(faslend)"  >> $OUT
+      fi
+    done
+    for lib in $loc/O*.NRLIB
+      do
+      if [ -f $lib/code.lsp ] 
+      then 
+      package=`basename $lib .NRLIB`
+      echo "(faslout '"${package}")" >> $OUT
+      echo '(load "'$lib'/code.lsp")' >> $OUT
+      echo "(faslend)"  >> $OUT
+      fi
+    done
+    for lib in $loc/P*.NRLIB
+      do
+      if [ -f $lib/code.lsp ] 
+      then 
+      package=`basename $lib .NRLIB`
+      echo "(faslout '"${package}")" >> $OUT
+      echo '(load "'$lib'/code.lsp")' >> $OUT
+      echo "(faslend)"  >> $OUT
+      fi
+    done
+    for lib in $loc/Q*.NRLIB
+      do
+      if [ -f $lib/code.lsp ] 
+      then 
+      package=`basename $lib .NRLIB`
+      echo "(faslout '"${package}")" >> $OUT
+      echo '(load "'$lib'/code.lsp")' >> $OUT
+      echo "(faslend)"  >> $OUT
+      fi
+    done
+    for lib in $loc/R*.NRLIB
+      do
+      if [ -f $lib/code.lsp ] 
+      then 
+      package=`basename $lib .NRLIB`
+      echo "(faslout '"${package}")" >> $OUT
+      echo '(load "'$lib'/code.lsp")' >> $OUT
+      echo "(faslend)"  >> $OUT
+      fi
+    done
+    for lib in $loc/S*.NRLIB
+      do
+      if [ -f $lib/code.lsp ] 
+      then 
+      package=`basename $lib .NRLIB`
+      echo "(faslout '"${package}")" >> $OUT
+      echo '(load "'$lib'/code.lsp")' >> $OUT
+      echo "(faslend)"  >> $OUT
+      fi
+    done
+    for lib in $loc/T*.NRLIB
+      do
+      if [ -f $lib/code.lsp ] 
+      then 
+      package=`basename $lib .NRLIB`
+      echo "(faslout '"${package}")" >> $OUT
+      echo '(load "'$lib'/code.lsp")' >> $OUT
+      echo "(faslend)"  >> $OUT
+      fi
+    done
+    for lib in $loc/U*.NRLIB
+      do
+      if [ -f $lib/code.lsp ] 
+      then 
+      package=`basename $lib .NRLIB`
+      echo "(faslout '"${package}")" >> $OUT
+      echo '(load "'$lib'/code.lsp")' >> $OUT
+      echo "(faslend)"  >> $OUT
+      fi
+    done
+    for lib in $loc/V*.NRLIB
+      do
+      if [ -f $lib/code.lsp ] 
+      then 
+      package=`basename $lib .NRLIB`
+      echo "(faslout '"${package}")" >> $OUT
+      echo '(load "'$lib'/code.lsp")' >> $OUT
+      echo "(faslend)"  >> $OUT
+      fi
+    done
+    for lib in $loc/W*.NRLIB
+      do
+      if [ -f $lib/code.lsp ] 
+      then 
+      package=`basename $lib .NRLIB`
+      echo "(faslout '"${package}")" >> $OUT
+      echo '(load "'$lib'/code.lsp")' >> $OUT
+      echo "(faslend)"  >> $OUT
+      fi
+    done
+    for lib in $loc/X*.NRLIB
+      do
+      if [ -f $lib/code.lsp ] 
+      then 
+      package=`basename $lib .NRLIB`
+      echo "(faslout '"${package}")" >> $OUT
+      echo '(load "'$lib'/code.lsp")' >> $OUT
+      echo "(faslend)"  >> $OUT
+      fi
+    done
+    for lib in $loc/Y*.NRLIB
+      do
+      if [ -f $lib/code.lsp ] 
+      then 
+      package=`basename $lib .NRLIB`
+      echo "(faslout '"${package}")" >> $OUT
+      echo '(load "'$lib'/code.lsp")' >> $OUT
+      echo "(faslend)"  >> $OUT
+      fi
+    done
+    for lib in $loc/Z*.NRLIB
+      do
+      if [ -f $lib/code.lsp ] 
+      then 
+      package=`basename $lib .NRLIB`
+      echo "(faslout '"${package}")" >> $OUT
+      echo '(load "'$lib'/code.lsp")' >> $OUT
+      echo "(faslend)"  >> $OUT
+      fi
+    done
+  done
+  echo ";; PLEASE DON'T MESS WITH THIS GC CALL. YOU HAVE BEEN WARNED" >> $OUT
+  echo ";; TTT & PAB SUSPECT HASHTABLES ARE BROKEN" >> $OUT
+  echo '(gc)' >> $OUT
+  echo '(save_source_database "cclwhereis'$SOURCE_DB_OUT'.lsp")' >> $OUT
+  echo '(mapstore 0)  ;; see stats from build process ' >> $OUT
+  echo '(display-keywords)' >> $OUT
+}
+
+mv ccl-makelibs-common.lsp ccl-makelibs-common.lsp.bak
+dolibs ccl-makelibs-common.lsp $INT 0 1
+mv ccl-makelibs-unix.lsp ccl-makelibs-unix.lsp.bak
+dolibs ccl-makelibs-unix.lsp $INT/unix 1 2
+mv ccl-makelibs-win32.lsp ccl-makelibs-win32.lsp.bak
+dolibs ccl-makelibs-win32.lsp $INT/win32 1 2

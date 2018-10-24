@@ -1,0 +1,723 @@
+@
+@ This data file is used to create the makefile for the Codemist Utilities.
+@ It is processed by the Codemist "makemake" utility, which should
+@ be called as
+@    makemake cpu opsys compiler ?debug -f <this-file> -o <destination>
+@ where cpu, opsys, compiler and ?debug are options taken from the menu
+@ given below.
+@
+@
+@ The following apply at the start of lines...
+@    "@ "         introduces a comment (note the blank after the "@")
+@    "@set(word)  sets a new keyword as if it had been defined.
+@    "@if"  etc   conditional inclusion within generated file.
+@    "@error"     marks trouble
+@
+@ Through the bulk of a file (even in the middle of lines) the following
+@ are converted:
+@
+@    "@@"         expands to a single "@"
+@    "@~"         expands to blank if "blank" has been set, or to nothing
+@    "@""         expands to " or \" depending on "quote" (needed for
+@                 the Unix shell, in places).
+@    "@"          marks the start of a file-name, which is written in the
+@                 master file using "/" as a directory separator, but
+@                 DOS-like extensions .exe, .o and .img
+@    "@?"         queries the user for a value
+@    "@!"         re-uses input from previous "@!" but maps input as filename
+@    "\"          at the end of a line is a "make" continuation marker,
+@                 interpreted as & if "watcom" is set.
+
+@menu
+
+@ First I will have a list of the target architectures that are supported
+
+@item(acorn>machine_known) Acorn Archimedes/RISC-PC
+@item(80x86>machine_known) 80386, 80486, Pentium
+@item(sparc>machine_known) Sparc
+@item(hp9000>machine_known) Hewlett Packard PA systems
+@item(apollo>machine_known) Apollo Domain
+@item(sgi>machine_known) Silicon Graphics Indi and compatibles
+@item(clipper>machine_known) Intergraph Clipper
+@item(88000>machine_known) Motorola 88000
+@item(alpha>machine_known) DEC Alpha
+
+@ Next the associated operating systems
+
+@item(riscos>os_known) Acorn's RISC-OS operating system
+@item(unix>os_known) Unix (BSD, SYS-V, OSF etc)
+@item(linux>unix>os_known) Linux
+@item(linuxglib2>unix>os_known) Linux
+@item(dos>os_known) DOS with suitable extender
+@item(win95>os_known) Windows 95, win32s, win32
+@item(winnt>os_known) Windows NT
+
+@ Select a C compiler from the following list
+
+@item(gcc>compiler_known) The GNU C compiler
+@item(microsoft>compiler_known) Microsoft Visual C
+@item(watcom>compiler_known) Watcom C 10.5/10.6
+@item(zortech>compiler_known) Zortech C++ (now Symantec)
+@item(ncc>compiler_known) Norcroft C compiler
+
+@ Optionally specify DEBUG for a version for use during testing
+
+@item(slow) Disable C compiler optimisation in case compiler bugs
+@item(debug) Compile and link for debugging
+
+@ Now a few convenient abbreviations for combinations I will use
+@ more often than others...
+
+@item(win>80x86>win95>watcom>machine_known>os_known>compiler_known) Windows 95, Watcom C
+@item(gccunix>gcc>unix>os_known>compiler_known) GNU C with generic Unix
+
+@endmenu
+
+
+@if(acorn)
+@if(compiler_known)
+@ifnot(ncc)
+@ifnot(gcc)
+@error Unknown compiler for Acorn system
+@endif
+@endif
+@else
+@set(ncc)
+@set(compiler_known)
+@endif
+@endif
+
+@if(sparc)
+@if(os_known)
+@ifnot(unix)
+@error Unix needed for sparc
+@endif
+@else
+@set(unix)
+@set(os_known)
+@endif
+@endif
+
+@if(hp9000)
+@if(os_known)
+@ifnot(unix)
+@error Unix needed for HP9000
+@endif
+@else
+@set(unix)
+@set(os_known)
+@endif
+@endif
+
+@if(apollo)
+@if(os_known)
+@ifnot(unix)
+@error Unix needed for Apollo
+@endif
+@else
+@set(unix)
+@set(os_known)
+@endif
+@endif
+
+@if(sgi)
+@if(os_known)
+@ifnot(unix)
+@error Unix needed for SGI
+@endif
+@else
+@set(unix)
+@set(os_known)
+@endif
+@endif
+
+@if(clipper)
+@if(os_known)
+@ifnot(unix)
+@error Unix needed for Clipper
+@endif
+@else
+@set(unix)
+@set(os_known)
+@endif
+@endif
+
+@if(88000)
+@if(os_known)
+@ifnot(unix)
+@error Unix needed for 88000
+@endif
+@else
+@set(unix)
+@set(os_known)
+@endif
+@endif
+
+@if(alpha)
+@if(os_known)
+@ifnot(unix)
+@ifnot(winnt)
+@error Unix or Windows NT needed for Alpha
+@endif
+@endif
+@else
+@set(unix)
+@set(os_known)
+@endif
+@endif
+
+@if(linux)
+@if(compiler_known)
+@ifnot(gcc)
+@error Linux uses GCC
+@endif
+@else
+@set(gcc)
+@set(compiler_known)
+@endif
+@endif
+
+@if(linuxglib2)
+@if(compiler_known)
+@ifnot(gcc)
+@error Linux uses GCC
+@endif
+@else
+@set(gcc)
+@set(compiler_known)
+@endif
+@endif
+
+###########################################################################
+#                                                                         #
+# makefile for Codemist Utilities                                         #
+#                                                                         #
+###########################################################################
+
+@
+@ GCC can be run on many different sorts of machines and with several
+@ different operating systems. I collect together all the options here.
+@
+
+@if(gcc)
+
+@if(dos)
+@set(80x86)
+@endif
+
+@if(80x86)
+@set(escapequote)
+@set(blank)
+###########################################################################
+# This is for GCC for DOS                                                 #
+# NB using GNU "make" all filenames must use "/" rather than "\"          #
+###########################################################################
+
+CC        = gcc
+CFLAGS    = -c -O2 -ansi -DGCC386=1
+LINK      = $(CC)
+LFLAGS    =
+LIBS      = -lm
+OUT       = -o
+OUTOBJ    = -o
+RM        = del
+MKDIR     = mkdir
+COPY      = copy
+STRIP     = strip
+###########################################################################
+
+@elif(sparc)
+@set(unix)
+###########################################################################
+# Sun SPARC, using GCC
+
+CC        = gcc
+CFLAGS    = -c -O2 -I/usr/5include
+LIBS      = -L/usr/5lib -lm -lc
+@set(unixoptions)
+
+###########################################################################
+
+@else
+@set(unix)
+###########################################################################
+
+# Generic Unix with GCC. Note that if you use this you should review
+# the file "machine.h" to ensure that CSL knows what name to report for
+# your system. Also if the system you are running on needs
+
+CC        = gcc
+CFLAGS    = -c -O2 -ansi
+LIBS      = -lm -lc
+@set(unixoptions)
+
+###########################################################################
+@endif
+@endif
+
+@
+@ I will use Watcom C for DOS and for Windows 95 and NT. Furthermore
+@ the command-line options I will give it will be as for version 10.5
+@ or 10.6 and will need adjustment for use with other releases.
+@
+
+@if(watcom)
+
+@if(machine_known)
+@ifnot(80x86)
+@error Watcom C is for use with 80x86 only
+@endif
+@else
+@set(80x86)
+@set(machine_known)
+@endif
+
+@if(os_known)
+@ifnot(win95)
+@ifnot(winnt)
+@ifnot(dos)
+@error Watcom C is for DOS, Windows 95 or Windows NT
+@endif
+@endif
+@endif
+@else
+@set(win95)
+@set(os_known)
+@endif
+
+@set(backslash)
+@set(obj)
+@set(linkcomma)
+###########################################################################
+# This is for 32-bit operation with Watcom C version 10.5/10.6            #
+#                                                                         #
+###########################################################################
+
+CC        = *wcc386
+@if(debug)
+OPTFLAGS  = -d2
+@elif(slow)
+OPTFLAGS  =
+@else
+OPTFLAGS  = -oneatx
+@endif
+# Note that "-fpd" activates a work-around for the Intel Pentium division
+# bug, and for it to be recognised you need to have installed the relevant
+# set of Watcom patches.  As of January 1995 they are available at
+# ftp.watcom.on.ca.  In due course I expect they will be present in
+# regularly distributed versions of the compiler.
+CFLAGS    = $(OPTFLAGS) -bt=nt -zq -wx -fpd -5r -zp4 -fp3
+LINK      = wcl386
+LFLAGS    = -l=nt
+LIBS      =
+OUT       = -fe=
+OUTOBJ    = -fo=
+RM        = del
+MKDIR     = mkdir
+COPY      = copy
+STRIP     = echo
+###########################################################################
+
+@endif
+
+@
+@ By "microsoft" I mean Microsoft Visual C++, for use with Windows 95
+@ and Windows NT. I will NOT use this compiler for DOS. Furthermore I have
+@ not tried this recently, and the version of Visual C I have is now out of
+@ date so changes heer will be needed (I expect) ti support the current
+@ version.
+@
+
+@if(microsoft)
+
+@if(machine_known)
+@ifnot(80x86)
+@error Microsoft C is for use with 80x86 only
+@endif
+@else
+@set(80x86)
+@set(machine_known)
+@endif
+
+@if(os_known)
+@ifnot(win95)
+@ifnot(winnt)
+@error Microsoft C is for Windows 95 or Windows NT
+@endif
+@endif
+@else
+@set(win95)
+@set(os_known)
+@endif
+
+@set(backslash)
+@set(obj)
+###########################################################################
+#                                                                         #
+# This "makefile" is for Win32 and  Win32s (using Visual C++).            #
+#                                                                         #
+###########################################################################
+
+CC	  = cl
+@if(debug)
+CFLAGS	  = -c -Gr -W3 -Od -Zi -DWINDOWS_NT=1 -D_X86_=1 \
+	    -DWIN32=1 -DWINDOWS=1
+@else
+CFLAGS	  = -c -Gr -W3 -Ox -DWINDOWS_NT=1 -D_X86_=1 \
+            -DWIN32=1 -DWINDOWS=1 -DNDEBUG=1
+@endif
+LINK      = link
+@if(debug)
+LFLAGS    = -subsystem:windows -entry:WinMainCRTStartup \
+            -debug:full -debugtype:cv
+@else
+LFLAGS    = -subsystem:windows -entry:WinMainCRTStartup
+@endif
+LIBS      = libc.lib kernel32.lib user32.lib gdi32.lib winspool.lib \
+            comdlg32.lib winmm.lib
+OUT       = -out:
+OUTOBJ    = -out:
+RM        = del
+MKDIR     = mkdir
+COPY      = copy
+STRIP     = echo
+
+@endif
+
+@
+@ I will only use Zortech for DOS and 80x86 systems in 32 bit mode.
+@
+
+@if(zortech)
+
+@if(machine_known)
+@ifnot(80x86)
+@error Zortec C++ is only for use with 80x86
+@endif
+@else
+@set(80x86)
+@set(machine_known)
+@endif
+
+@if(os_known)
+@ifnot(dos)
+@error Zortec C++ is only for use with DOS
+@endif
+@else
+@set(dos)
+@set(os_known)
+@endif
+
+@set(backslash)
+###########################################################################
+# This is for 32-bit operation with Zortech C++ version 3.0               #
+#                                                                         #
+# This is set up for use with Zortech C++ release 3.0r4 (well, that       #
+# is the release of the compiler that I have at present, and earlier      #
+# versions had a few bugs left).  To provide for virtual memory on a      #
+# 386, 486 or Pentium I use the FlashTek extension of the DOS extender    #
+# used with Zortech C, and the linker commands scan a few object files    #
+# relating to that.  If you are rebuilding this system and do not have    #
+# the Flashtek code then all you lose is virtual memory support and       #
+# the changes to this makefile are pretty small.                          #
+#                                                                         #
+###########################################################################
+
+CC        = ztc
+CFLAGS    = -c -A -mx -o
+LINK      = $(CC)
+LFLAGS    = -mx
+LIBS      = x32v.lib
+@endif
+
+@if(hp9000)
+###########################################################################
+# HP workstations (eg HP/9000/735)
+
+CC        = c89
+CFLAGS    = -c +Obb3000 +O3 -Wl,-a,archive
+LIBS      = -lm -lc
+
+@set(unixoptions)
+###########################################################################
+@endif
+
+
+@if(sunsparc)
+###########################################################################
+
+# Sun Super SPARC, using unreleased beta version of Sun C compiler
+
+CC        = /opt/SUNWspro/bin/cc
+CFLAGS    = -c -DBSD_LIB=1 -xO4 -xcg92
+LIBS      = -lm -lc
+@set(unixoptions)
+
+###########################################################################
+@endif
+
+@if(alpha)
+###########################################################################
+
+# DEC Alpha, with OSF (tested on 1.3) and the DEC C compiler. Note that
+# this is a 64-bit machine.
+
+CC         = cc
+CFLAGS     = -c -O2 -std1 -Olimit 3000
+LIBS       = -lm -taso
+@set(unixoptions)
+
+###########################################################################
+@endif
+
+@if(apollo)
+###########################################################################
+
+# Apollo
+
+CC        = cc
+CFLAGS    = -c -A ansi -D__APOLLO__=1
+LIBS      =
+
+# Also note that in 1Q 1993 the -O flag must not be used for char.c or
+# gc.c as the Apollo C compiler optimiser is buggy.
+# It seems OK for the other sections.  Presumably a later release of the
+# compiler will fix the difficulty.  Please hand-compile that section
+# using "make -n char.o" to guide you.
+
+@set(unixoptions)
+
+###########################################################################
+@endif
+
+@if(sgi)
+###########################################################################
+
+# Silicon Graphics, using the SGI C compiler
+# I have not yet worked out how to exploit -O3 or -O4 optimisation
+# but see sketches later down this file where I have tried same for
+# the DEC Alpha.
+
+CC        = cc
+CFLAGS    = -c -DSGICC=1 -O2 -Olimit 3000
+LIBS      = -lm -lc
+
+###########################################################################
+
+@set(unixoptions)
+@endif
+
+@if(clipper)
+###########################################################################
+
+# Intergraph Clipper, using the Norcroft C compiler
+
+CC        = ncc
+CFLAGS    = -c
+LIBS      =
+
+###########################################################################
+
+@set(unixoptions)
+@endif
+
+@if(unixoptions)
+###########################################################################
+
+@set(blank)
+@set(escapequote)
+SHELL     = /bin/sh
+LINK      = $(CC)
+LFLAGS    =
+OUT       = -o
+OUTOBJ    = -o
+RM        = rm
+MKDIR     = mkdir
+COPY      = cp
+STRIP     = strip
+
+###########################################################################
+
+@endif
+
+@if(riscos)
+@error Acorn parts of the makefile not reconstructed yet
+
+###########################################################################
+#                                                                         #
+# This "makefile" is for Acorn RISC-OS                                    #
+#                                                                         #
+###########################################################################
+
+@set(acorn)
+
+#
+# makefile for REDUCE 3.6 using CSL
+# This is for RISC-OS on an Acorn Archimedes
+#
+
+CC        = cc
+CFLAGS    = -c -fah -I$.risc_oslib
+LFLAGS    =
+LINK      = link
+LIBS      = $.risc_oslib.o.risc_oslib $.clib.o.stubs
+OBJ       = o
+RM        = delete
+MKDIR     = cdir
+COPY      = copy
+STRIP     = squeeze
+
+###########################################################################
+###########################################################################
+@endif
+
+
+
+CBIN    = @?(Directory for released binaries, eg c:/bin or /usr/local/bin)
+BIN     = @!
+
+ALL     = @car.exe @excar.exe @filesign.exe \
+	@uuencode.exe @uudecode.exe \
+	@shar.exe @unshar.exe \
+	@makemake.exe @checksum.exe \
+	@diff.exe @export.exe @du.exe
+
+all:	$(ALL)
+
+@ifnot(acorn)
+install:	@$(BIN)/car.exe @$(BIN)/excar.exe \
+		@$(BIN)/filesign.exe \
+		@$(BIN)/makemake.exe @$(BIN)/checksum.exe \
+		@$(BIN)/xport.exe
+
+
+
+#
+# CAR: the Codemist ARchiver
+#     Usage:    car archivefile [-a] [-b] [-<size>] files
+#               -a for test file, -b for binary
+#
+
+@car.o:	@car.c @sys.h
+	$(CC) $(CFLAGS) @car.c
+
+@scandir.o:	@scandir.c @sys.h
+	$(CC) $(CFLAGS) @scandir.c
+
+@fileops.o:	@fileops.c @sys.h
+	$(CC) $(CFLAGS) @fileops.c
+
+@car.exe:	@car.o @scandir.o @fileops.o @patmatch.o
+	$(LINK) $(LFLAGS) $(OUT)@~@car.exe @car.o @scandir.o \
+		@fileops.o @patmatch.o $(LIBS1)
+	$(STRIP) @car.exe
+
+@ifnot(acorn)
+@$(BIN)/car.exe:      @car.exe
+	$(COPY) @car.exe      @$(BIN)/car.exe
+@endif
+
+#
+# EXCAR: extraction program to accompany CAR
+#
+#     Usage:    excar -flags  archivefile
+#               -t test archive
+#               @compare files in archive against current disc contents
+#
+
+@excar.o:	@car.c @sys.h
+	$(CC) $(CFLAGS) $(OUTOBJ)@~@excar.o -DEXTRACT=1 @car.c
+
+@sfileops.o:	@fileops.c @sys.h
+	$(CC) $(CFLAGS) $(OUTOBJ)@~@sfileops.o @fileops.c
+
+@excar.exe:	@excar.o @sfileops.o
+	$(LINK) $(LFLAGS) $(OUT)@~@excar.exe @excar.o @sfileops.o $(LIBS)
+	$(STRIP) @excar.exe
+
+@ifnot(acorn)
+@$(BIN)/excar.exe:    @excar.exe
+	$(COPY) @excar.exe    @$(BIN)/excar.exe
+@endif
+
+#
+# FILESIGN: add checksum and datestamp to file
+#     Usage:   filesign <files>       just check files
+#              filesign -u one-file   update existing stamp in that file
+#              filesign -u from to    update or add time stamp
+#
+
+@filesign.o:	@filesign.c @sys.h
+	$(CC) $(CFLAGS) @filesign.c
+
+@filesign.exe:	@filesign.o @scandir.o @fileops.o
+	$(LINK) $(LFLAGS) $(OUT)@~@filesign.exe @filesign.o \
+		@scandir.o $(LIBS1)
+	$(STRIP) @filesign.exe
+
+@ifnot(acorn)
+@$(BIN)/filesign.exe: @filesign.exe
+	$(COPY) @filesign.exe @$(BIN)/filesign.exe
+@endif
+
+#
+# MAKEMAKE: allow a single generic makefile to serve for many systems
+#     Usage:   makemake [-f <basefile>] [-o <destination>] target
+#
+# basefile defaults to makebase, destination to makenew
+# see comments in source file for format in the base file.
+#
+
+@makemake.o:	@makemake.c
+	$(CC) $(CFLAGS) @makemake.c
+
+@makemake.exe:	@makemake.o
+	$(LINK) $(LFLAGS) $(OUT)@~@makemake.exe @makemake.o $(LIBS)
+	$(STRIP) @makemake.exe
+
+@ifnot(acorn)
+@$(BIN)/makemake.exe: @makemake.exe
+	$(COPY) @makemake.exe @$(BIN)/makemake.exe
+@endif
+
+#
+# CHECKSUM: computes a file checksum and displays it
+#     Usage:   checksum [-b] file
+#     if -b is specified the file is read in binary mode.
+#
+
+@checksum.o:	@checksum.c
+	$(CC) $(CFLAGS) @checksum.c
+
+@checksum.exe:	@checksum.o
+	$(LINK) $(LFLAGS) $(OUT)@~@checksum.exe @checksum.o $(LIBS)
+	$(STRIP) @checksum.exe
+
+@ifnot(acorn)
+@$(BIN)/checksum.exe: @checksum.exe
+	$(COPY) @checksum.exe @$(BIN)/checksum.exe
+@endif
+
+#
+# XPORT: help export and import directories
+#     Usage:   xport -sign
+#              xport -check
+#
+
+@xport.o:	@xport.c @sys.h
+	$(CC) $(CFLAGS) @xport.c
+
+@patmatch.o:	@patmatch.c @patmatch.h @sys.h
+	$(CC) $(CFLAGS) @patmatch.c
+
+@xport.exe:	@xport.o @scandir.o @fileops.o @patmatch.o
+	$(LINK) $(LFLAGS) $(OUT)@~@xport.exe @xport.o @scandir.o \
+		@fileops.o @patmatch.o $(LIBS1)
+	$(STRIP) @xport.exe
+
+@ifnot(acorn)
+@$(BIN)/xport.exe: @xport.exe
+	$(COPY) @xport.exe @$(BIN)/xport.exe
+@endif
+
+# end of makefile

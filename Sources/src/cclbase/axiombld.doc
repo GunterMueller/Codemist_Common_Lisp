@@ -1,0 +1,86 @@
+This note explains how to build a version of Axiom where parts of the
+system have been compiled into C.  This is somewhat more delicate than
+the usual build sequence...
+
+
+(a) Build an old-style CCL that links in the object file stubs.obj and omits
+    any reference to u01.c through u12.c.  Use this to build a full version
+    of axiom (ie axiom.img, not just axiom0.img). A side effect of this
+    build process will be that a file whereis.lsp will be created in
+    the axbase directory - this contains a record of where each function in
+    the system was defined from. To do this you may need files u01.lsp
+    through u12.lsp in the axbase directory - the first time round these
+    can safely be empty files.
+
+(b) Run whatever tests and perform whatever profiling is needed to identify 
+    just which functions you intend to compile into C. Note that to do
+    this you may want to have linked in the profiling version of the
+    CCL bytecode interpreter (bytes.obj and bytes1.obj have the same effect
+    save that one is slightly slower but accumulates counts for display
+    via (mapstore)).  Form a list in priority order and edit it into the
+    file faster.lsp (in axbase).
+
+(c) In axbase go "make faster". This should create twelve files u01.c to u12.c
+    and corresponding u01.lsp to u12.lsp.  Inspect faster.log: very near
+    the end it will report any functions that you had selected that the
+    compiler crashed on. If there are any insert their names in the OMIT
+    list in faster.lsp and re-run it.  Some Common Lisp functions are not
+    supported in the compilation into C (eg multiple values, catch,
+    local declarations).
+
+(d) Copy u01.c through u12.c into the directory where you build ccl and
+    ccl.img.
+
+(e) Rebuild ccl in a version that omits stubs.obj but includes u01.c through
+    u12.c. Consider which version (bytes.c or bytes1.c) you want here. If
+    there are compilation errors you may be able to add things to the OMIT
+    list mentioned in step (c).
+
+(f) Rebuild ccl.img
+
+(g) Go back to axbase and rebuild axiom.img from the start but using the
+    extended ccl.
+
+
+Explanation:
+
+The CCL built with u01.c etc in it will have some functions with silly names
+such as |BOOT@@termMatch@@Builtin| defined in the Lisp package. They can not
+be tested directly from just CCL because extra information they need has to
+be installed from u01.lsp. The axiom building job (axiom.lsp) in axbase
+arranges at its end to read u01.lsp etc and copy the definitions from the
+lisp package to whatever package they are finally needed in, and it also
+installs the "environment vectors" that they need.
+
+If the u01.c that was used when ccl was built is out of step with the u01.lsp
+involved in making axiom.img then the consequences are uncertain and could
+involve almost arbitrary crashes.
+
+Expected bugs:
+
+There are several sorts of expected bugs! Apart from simple (!) bugs in my
+code the following seem most plausible:
+(a) Compilation into C turns some calls to functions into direct calls into
+    the C kernel. In some cases I will not have updated the tables that
+    control this to reflect Common Lisp semantics. Eg things like MEMBER,
+    QUOTIENT, PRINT are cases I have spotted, but it is almost certain
+    that there are others I have not. The effect would be that the C code
+    did the wrong thing!
+
+(b) In a very similar style, some functions are open-compiled, and I may not
+    have caught all cases where that needed upgrading for Common Lisp.
+
+(c) The interaction between C-compiled code and catch, unwind-protect,
+    multiple values etc may be dodgy. I HOPE not but there is always that
+    possibility.
+
+(d) When a module is fast-loaded it may replace the fast code with older
+    bytecoded stuff. I will attack this problem later on.
+
+Status:
+
+As of 10 March the code starts to run the wester test around twice as fast
+as the byte-coded version, but crashes after a while. I am sending this
+version on so you can start to play and maybe help identify the problem
+areas
+

@@ -1,0 +1,352 @@
+\documentstyle[a4,11pt]{article}
+\title{Keeping Remote Sites in Step}
+\author{A. C. Norman}
+\begin{document}
+
+\begin{center}
+DRAFT --- and the code will not do all this yet.
+\end{center}
+\vspace{0.6in}
+
+\section{Introduction}
+The package described here is intended to make it easier to keep
+sets of files at two (or more) sites in step, while keeping the volume
+of traffic between them under control.  The underlying assumption
+is that a set of related files all live together within one
+directory (and its sub-directories).  A few extra control files will
+be kept in this directory to specify options and record status information.
+One site will have a master set of files, and the objective is that
+one or more slave sites can be assured that they have an exact copy of
+this set. Sending updates must involve activity at the master site, but
+it will be possible to start a transaction either from there (to provide
+a regular weekly update service, say) or from a slave site who may want to
+recover after damaging some files, or may need to be updated out of
+schedule.
+
+The update process is intended to support multiple platforms, not just
+Unix workstations that can mutually communicate over high bandwidth
+networks.  In particular it will cope with the MSDOS/Windows file system
+and conventions as well as the Unix ones, and will accept that transfer
+of information may be limited to text files sent over dial-up links or
+as e-mail.  Sending floppy discs by post is another mode of communication
+to be considered.  Even when ftp and telnet are potentially available it can
+not be assumed that every person involved in the collaboration will have
+an account on anything beyond their own computer, or that firewalls
+installed by system managers will permit anonymous file transfers.
+
+A more ambitious objective would be to provide direct support for
+distributed groups to work on a single body of code and keep their updates
+properly consolidated at all times.  Here I will assume less good
+communication and less good organisation than would be needed to
+provide for that.  The idea is then that just ensuring that each end
+of a collaboration can be provided with a reliably accurate copy of
+the files that the other end uses will permit them to merge in changes
+and eventually confirm that they have got back in step.
+
+Since the code to support all this has not been written yet (indeed the
+design is not complete) this document will be a repository for design
+decisions and status infomation rather than a final coherent description
+of a stable package. In that light feedback and further suggestions will
+be welcome.
+
+\section{Alternatives}
+A number of existing techniques address some of the same problems as
+this new one does:
+\begin{description}
+\item[One Copy Only:] An ideal solution may be to arrange that network links
+export the master directory (with read-only status) to all the satellite
+sites. Within one building this will be natural and convenient,
+and updates become visible with no delay at all. Software tools can
+give the illusion of this even when wide-area networks are involved, by
+doing behind-the-scenes file transfers. But for this to be a real
+success it needs continuous high bandwidth contact and probably requires
+that all sites involved are reasonably platform-compatible. Global
+``{\tt grep}'' type searches over a remote file system are liable to
+generate especially heavy transfer traffic.
+\item[Bulk Copy:] If several copies of the files are indeed
+needed the  conceptually simplest way of keeping them in step would be
+to transfer a complete copy of the master set to the slave whenever either
+felt an update was called for.
+If updates are infrequent this is reasonable. Even with good file compression
+technology and reasonable network connectivity it is a clumsy and ugly way of
+dealing with files that are intended to remain in step on a week-by-week basis.
+\item[Network RCS:] Some modern versions of source management software
+are network-aware and will provide controlled ways for remote (but trusted)
+workers to interact with a master data-base of code. The examples I am
+aware of are platform-specific and expect the cooperating sites to be
+directly networked, with all relevant people having accounts on all
+relevant machines. At least one well-regarded package of this nature is
+also somewhat expensive (though essential in a commercial environment
+where numbers of remote customers have been sent various releases of
+a large body of code).
+\item[SHAR updates:] The master server can run scripts that package up
+copies of changed files for distribution (possibly via e-mail). A number of
+Unix recipes for performing this operation exist and the distribution of
+updates or patches to various pieces of publically available software is
+coordinated through similarly created patch files.  The main choice to be
+made with such an arrangement is whether complete copies of altered files
+should be shipped or some form of list of edits or differences.  The first
+scheme can involve sending out much more data than is really necessary, while
+sending out incremental changes can lead to chaos if for any reason the
+two sites have diverged. In either case there will generally be no integrated
+mechanism to verify that all updates have been properly received and
+installed.
+\end{description}
+
+\section{Overview}
+
+The package described here is most closely allied to the Unix ``{\tt shar}''
+tradition.  The features that it adds (when compared against simple but
+commonly used update scripts) are
+\begin{enumerate}
+\item Rather than being reliant on (on particular version of) the Unix shell
+it is implemented as a reasonably portable free-standing body of code that
+can certainly support the master set of files being on DOS or Unix and which
+can be extended for other systems as needbe.
+\item Provision is made for checksum validation to ensure that when an
+update is installed the eventual state of all files is as required. This
+can provide protection against data corruption when the update files is
+shipped, and against many classes of user activity that might otherwise
+cause confusion.
+\item A way is provided for either end of the link to confirm that the
+set of files held by each end matches and that the contents of the files
+agree. Disagreements detected by this process can be used to generate
+ad hoc update files that will bring things back into step.
+\item Warnings can be generated if a scan of the master file tree detects
+file names or contents that are not liable to move portably to a less
+capable operating system.
+\item When files are deleted from the master tree this fact gets propagated
+to slave copies and the corresponding files will vanish there.
+\item An automatic backup directory is maintained for the master directory,
+which may give its owner a little more security. Slave sites can (optionally)
+arrange that when updated versions of files arrive the previous versions
+are stored in a backup directory for reference or comparison.
+\item Binary as well as text files can participate in the distribution.
+\item Some degree of care is taken to reduce the bulk of the update files
+that need to be distributed. This involves a combination of sending
+changes as lists of differences rather than as full files and including
+file compression techniques as part of the process of creating the update
+archive.
+\item The update files created by this system will generally not be
+useful to people who do not already have the base set of files. If real
+security is needed for distribution then some proper encryption scheme should
+be layered on top, but this new scheme is certainly more secure than
+just shipping complete copies of all changed files, and will discourage
+casual collection of the code by third parties.
+\end{enumerate}
+
+Everything is achieved by the master site holding two copies of any
+exported directory --- one the active working one that may be altered
+without constraint at any time, and another that contains a copy of
+the file-set as most recently exported to slave sites.  The export
+process notionally involves comparing the contents of all corresponding
+file sin the two directories and preparing a list that shows the
+changes that have been made. When this is transmitted the updates
+are also applied to the copy directory.  This model is based on a belief
+that at present disc space to hold a second copy of any important
+directory will be reasonably cheap, while bandwidth for use in keeping
+sites in step should be conserved.
+
+A list of all files in the copy directory is kept, together with
+their date-stamps and a checksum on their contents\footnote{It will
+also be necessary to hold a flag indicating which files were
+treated as containing text and which binary.}. When scanning the
+master directory the date-stamp information will make it easy to
+skip files that have not been updates recently. Scanning the copy directory
+and re-computing the checksums would make it possible to verify the
+integrity of the copy directory, for instance after some accident that
+meant that it had to restored from an archive. Filenames are kept in
+(or converted to) a generic Unix-like syntax, but checked to verify that
+they will transfer reasonably to more restrictive file systems. All
+names are kept relative to the master directory.
+
+When an update it to be shipped it contains the previous checksum of
+each file that has changed, a set of edits, and the new checksum. This
+makes it possible to ensure that the edits are only applied if the
+remote copy of a file is intact. Slave copies of files should not be
+unilaterally altered at the remote site, but if they are this check will
+detect that fact and report it.  A particular possibility that this
+scheme copes with gracefully is if the slave site has received an up
+to date version of some file outside the control of the general
+distribution controil software (eg because an urgent bug-fix had to
+be applied). Then the updates file will match the new checksum not the old
+one, and so although the edits will not be applicable it can be
+clear that the file is in a good state.
+
+One of the files which will be distributed will be the one containing the
+list of files expected to be present and all of their checksums.
+Date-stamps can not be assumed to survive transfer across networks in
+archives (despite best attempts) because of oddities involving differing
+time zones and operating systems. However the file list and checksum
+information allows the slave site to validate its copy of the directory
+in a number of ways.
+
+When a slave site finds that it is out of step it can (by comparing the
+files it actually has with the ones that it is expected to have)
+prepare a list of the files that it needs fresh copies. It can send this
+along with the checksums of whatever versions of those files it does
+have.  In some cases the checksum information may allow the master site
+to discover that the slave has just missed out in applying one
+set of updates, and it may be possible to re-send that. But normally
+in such cases full copies of the relevant files will need to be sent.
+
+A slight variation of the above mechanism alows a remote site that
+has altered files in its slave directory to detect exactly which ones are
+involved and return copies to the master site for potential adoption.
+
+Control files present in the master directory make it possible to specify
+filters so that (for example) object code and temporary files do not
+get exported, and so that the software can be told which files should
+be treated as containing binary data and which text.
+
+\section{Command Options}
+The command line options available to drive the utility will be
+as follows:
+\begin{verbatim}
+    export -sign  [signature-file [directory]]
+    export -check [signature-file [directory]]
+    export -dates [signature-file [directory]]
+    export -ship  file-to-send-out [directory]
+    export -receive [file-from-master-site [directory]]
+    export -check file-from-master-site [directory]
+\end{verbatim}
+\noindent The effect of each of these will be described in turn,  In each
+case there is an optional argument specifying the directory to be processed:
+this defaults to the current directory.
+
+\begin{description}
+\item[sign:] By default this creates a file called {\tt "export.chk"} in
+the current directory (if you want to check something other than the
+current directory you will need to specify the file for the signatures
+explicitly anyway).  This file starts with an identifying record of the
+form
+\begin{verbatim}
+EXPORT Signatures 04-Sep-98.14:22:03 <xxxxxxxxxxxx>
+\end{verbatim}
+\noindent where the string \verb.xxxxxxxxxxxx. is an 12-character
+validation code which will be used to adjust the checksum of this file.
+A proper signature file will have checksum {\tt 0x11111111},
+and this will be recorded when checksum files are mentioned within
+themselves or it can be verified by a separate {\tt checksum}
+utility. Further lines in the file are of the form
+\begin{verbatim}
+dddddddd nnnnnnnn d b filename
+\end{verbatim}
+\noindent \verb.ddddddd. is a date-stamp (note that the format used
+will {\bf not} make this just the hexadecimal representation of a count of
+seconds elapsed from some base time --- it is a private representation
+intended to be operating-systen neutral). \verb.nnnnnnnn. is a checksum
+for the file, \verb.d. marks whether the name given is of a directory or
+a file, while \verb.b. is used to flag files that contain binary data
+rather than text.  Filenames are given relative to the directory which is
+being processed, and whatever computer or operating system is in use they
+are shown in an Unix-like format with ``{\tt /}'' as a separator between
+components and with file extensions separated off by a ``{\tt .}''. The
+filenames may be expressed in mixed case\footnote{At least if the system
+creating the signature file supports a mixed case file-system this is
+natural and easy. To allow case information to be supported on other
+systems there should be some information file that indicates which files
+should be given mixed case names with their signature.}.
+
+The simplest arrangement results in a record being inserted into the
+signature file for every file in the directory, and for files to be treated
+as containing text unless an attempt to read them in text mode reveals
+unprintable characters.  This has a number of problems --- for instance
+a binary file may appear empty when read in text mode and so not get
+recognized properly, and it will usually not make sense to include
+object files or backups.  To cope with this a file of directives can
+be placed within the directory that is to be archived.  This must be
+called {\tt "export.pat"}, and contains patterns that are used to
+select files to be skipped, to identify files with mixed-case names and
+to indicate in advance what will contain binary.  Here is a typical
+sample:
+\begin{verbatim}
+    # here is a comment
+    # note patterns are given in Unix file-name syntax
+    Include cslbase util r35/cslsrc r35/csl386
+    Omit util/export
+    Omit */*.bak */*~ */*.obj */*.exe */*.log
+    Omit */*/*.bak */*/*~ */*/*.obj */*/*.exe */*/*.log
+    Include r35/csl386/*.exe
+    Binary */*.img */*/*.img */*.exe */*/*.exe
+    Text */*.c */*/*.c
+    MixedCase */Makefile */*/Makefile
+\end{verbatim}
+
+If there are no {\tt Include} or {\tt Omit} statements then all files
+in the directory will be included.  Otherwise if the first statement is
+an {\tt Include} then only explicitly included files will be processed.
+Each succesive group of {\tt Include} or {\tt Omit} statement then
+over-rides and thus refines the previous ones.
+
+Similarly by default all files will normally be treated as containing text
+(the real meaning of this is that the C function ``{\tt fopen}'' will be used
+with modes {\tt "r"} and {\tt "w"} rather than {\tt "rb"} and {\tt "wb}).
+The succesion of {\tt Binary} and {\tt Text} directives over-ride this.
+
+The statement ``{\tt MixedCase}'' lists each file that is intended to
+have a name spelt with mixed case.  On Unix there should be a warning message
+generated if any mixed-case filename is found that is not listed here.
+On MSDOS this causes the Unix-compatible version of a filename to be
+converted to the mixed case version listed, which will mean that when an
+update is to be sent to an Unix site names that should appear there will
+do so with the desired case even though the raw MSDOS system is not
+able (of itself) to preserve this information.
+
+\item[check (signature file):] If the file given after the word {\tt -check}
+is a signature file as created by {\tt -sign} (as indicated by its
+first line) then the given directory is scanned and checksums of all
+files in it are recomputed. A report is displayed showing what files
+(subject to the {\tt export.pat} restrictions) are in excess or are missing
+in the directory as compared with the signature file, and which files
+that are present have checksums that now disagree with the recorded values.
+
+\item[dates:] This is rather like {\tt -check}, but instead of reading all
+the files and confirming that their checksums are as expected it just
+looks at their (operating system maintained) date-stamps as retrieved
+from the directory, and compares that against the date-stamps recorded
+in the signatures file.  Any disagreements are noted, whether they are
+the file date being shown as earlier or later than the time recorded. However
+the signature file only records dates and times to a resolution of 1 second,
+so this limits what can be detected.
+\item[ship:]
+\item[receive:]
+\item[check (received file):]
+\end{description}
+
+\section{Associated utilities}
+The stand-alone program {\tt checksum} can be used to compute the
+checksum of a single file.  The checksums computed are compatible with the
+ones used by {\tt export}, and so this can be used to verify individual
+signatures in the {\tt "export.chk"} file.  If {\tt checksum} is given no
+arguments it processes the standard input.  With a single argument it
+checksums that file.  It can be given a flag {\tt -b} to instruct it
+to read a file in binary mode. If the {\tt -b} flag is not specified but
+the file appears to be binary a warning message is displayed.
+
+A program {\tt filesign} keeps textual forms of checksums and date-stamps
+in C source code.  For use with this utility a file is expected to
+contain a line that looks like
+\begin{verbatim}
+    /* Signature: 0f3f4838 11-Sep-1994 */
+\end{verbatim}
+\noindent typically fairly near the top of the file.  The initial
+``{\tt /*}'' must be in the first column for the signature to be
+recognized. Such a record can
+often most easily be inserted into a file by copying the version from some
+existing file.  Then two main options exist:
+\begin{enumerate}
+\item{\tt filesign [file/dir/pattern*]}: this looks for signature records
+in all the files indicated and reports which files have contents that
+match the recorded checksums.
+\item{\tt filesign -u file}: this updates the signature record in a single
+file to show the current date and the proper checksum.
+\end{enumerate}
+\noindent Once again the checksum calculated should match that used
+with {\tt export}.
+
+Both {\tt export} and {\tt checksum} will display
+a warning if they find that a text file contains what appears to be
+a signature record as used by {\tt filesign} and the checksum recorded
+there is not in agreement with the file contents.
+\end{document}

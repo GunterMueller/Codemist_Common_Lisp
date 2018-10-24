@@ -1,0 +1,52 @@
+
+;  Copyright (c) 1991-2002, The Numerical Algorithms Group Ltd.
+;  All rights reserved.
+;  
+;  Redistribution and use in source and binary forms, with or without
+;  modification, are permitted provided that the following conditions are
+;  met:
+;  
+;      - Redistributions of source code must retain the above copyright
+;        notice, this list of conditions and the following disclaimer.
+;  
+;      - Redistributions in binary form must reproduce the above copyright
+;        notice, this list of conditions and the following disclaimer in
+;        the documentation and/or other materials provided with the
+;        distribution.
+;  
+;      - Neither the name of The Numerical ALgorithms Group Ltd. nor the
+;        names of its contributors may be used to endorse or promote products
+;        derived from this software without specific prior written permission.
+;  
+;  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
+;  IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
+;  TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+;  PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER
+;  OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+;  EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+;  PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES-- LOSS OF USE, DATA, OR
+;  PROFITS-- OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+;  LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+;  NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+;  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+(IN-PACKAGE (QUOTE BOOTTRAN))
+(DEFUN |bpStruct| NIL (PROG NIL (RETURN (AND (|bpEqKey| (QUOTE STRUCTURE)) (OR (|bpName|) (|bpTrap|)) (OR (|bpEqKey| (QUOTE DEF)) (|bpTrap|)) (|bpTypeList|) (|bpPush| (|bfStruct| (|bpPop2|) (|bpPop1|)))))))
+(DEFUN |bpTypeList| NIL (PROG NIL (RETURN (OR (|bpPileBracketed| (FUNCTION |bpTypeItemList|)) (AND (|bpTerm|) (|bpPush| (LIST (|bpPop1|))))))))
+(DEFUN |bpTypeItemList| NIL (PROG NIL (RETURN (|bpListAndRecover| (FUNCTION |bpTerm|)))))
+(DEFUN |bpTerm| NIL (PROG NIL (RETURN (OR (AND (OR (|bpName|) (|bpTrap|)) (OR (AND (|bpParenthesized| (FUNCTION |bpIdList|)) (|bpPush| (|bfNameArgs| (|bpPop2|) (|bpPop1|)))) (AND (|bpName|) (|bpPush| (|bfNameArgs| (|bpPop2|) (|bpPop1|)))))) (|bpPush| (|bfNameOnly| (|bpPop1|)))))))
+(DEFUN |bpIdList| NIL (PROG NIL (RETURN (|bpTuple| (FUNCTION |bpName|)))))
+(DEFUN |bfNameOnly| (|x|) (PROG NIL (RETURN (COND ((EQ |x| (QUOTE |t|)) (LIST (QUOTE T))) ((QUOTE T) (LIST |x|))))))
+(DEFUN |bfNameArgs| (|x| |y|) (PROG NIL (RETURN (PROGN (SETQ |y| (COND ((EQCAR |y| (QUOTE TUPLE)) (CDR |y|)) ((QUOTE T) (LIST |y|)))) (CONS |x| |y|)))))
+(DEFUN |bfStruct| (|name| |arglist|) (PROG NIL (RETURN (|bfTuple| ((LAMBDA (|bfVar#2| |bfVar#1| |i|) (LOOP (COND ((OR (ATOM |bfVar#1|) (PROGN (SETQ |i| (CAR |bfVar#1|)) NIL)) (RETURN (NREVERSE |bfVar#2|))) ((QUOTE T) (SETQ |bfVar#2| (CONS (|bfCreateDef| |i|) |bfVar#2|)))) (SETQ |bfVar#1| (CDR |bfVar#1|)))) NIL |arglist| NIL)))))
+(DEFUN |bfCreateDef| (|x|) (PROG (|a| |f|) (RETURN (COND ((NULL (CDR |x|)) (SETQ |f| (CAR |x|)) (LIST (QUOTE SETQ) |f| (LIST (QUOTE LIST) (LIST (QUOTE QUOTE) |f|)))) ((QUOTE T) (SETQ |a| ((LAMBDA (|bfVar#4| |bfVar#3| |i|) (LOOP (COND ((OR (ATOM |bfVar#3|) (PROGN (SETQ |i| (CAR |bfVar#3|)) NIL)) (RETURN (NREVERSE |bfVar#4|))) ((QUOTE T) (SETQ |bfVar#4| (CONS (|bfGenSymbol|) |bfVar#4|)))) (SETQ |bfVar#3| (CDR |bfVar#3|)))) NIL (CDR |x|) NIL)) (LIST (QUOTE DEFUN) (CAR |x|) |a| (LIST (QUOTE CONS) (LIST (QUOTE QUOTE) (CAR |x|)) (CONS (QUOTE LIST) |a|))))))))
+(DEFUN |bpCase| NIL (PROG NIL (RETURN (AND (|bpEqKey| (QUOTE CASE)) (OR (|bpWhere|) (|bpTrap|)) (OR (|bpEqKey| (QUOTE OF)) (|bpMissing| (QUOTE OF))) (|bpPiledCaseItems|)))))
+(DEFUN |bpPiledCaseItems| NIL (PROG NIL (RETURN (AND (|bpPileBracketed| (FUNCTION |bpCaseItemList|)) (|bpPush| (|bfCase| (|bpPop2|) (|bpPop1|)))))))
+(DEFUN |bpCaseItemList| NIL (PROG NIL (RETURN (|bpListAndRecover| (FUNCTION |bpCaseItem|)))))
+(DEFUN |bpCaseItem| NIL (PROG NIL (RETURN (AND (OR (|bpTerm|) (|bpTrap|)) (OR (|bpEqKey| (QUOTE EXIT)) (|bpTrap|)) (OR (|bpWhere|) (|bpTrap|)) (|bpPush| (|bfCaseItem| (|bpPop2|) (|bpPop1|)))))))
+(DEFUN |bfCaseItem| (|x| |y|) (PROG NIL (RETURN (LIST |x| |y|))))
+(DEFUN |bfCase| (|x| |y|) (PROG (|c| |b| |a| |g1| |g|) (RETURN (PROGN (SETQ |g| (|bfGenSymbol|)) (SETQ |g1| (|bfGenSymbol|)) (SETQ |a| (|bfLET| |g| |x|)) (SETQ |b| (|bfLET| |g1| (LIST (QUOTE CDR) |g|))) (SETQ |c| (|bfCaseItems| |g1| |y|)) (|bfMKPROGN| (LIST |a| |b| (CONS (QUOTE CASE) (CONS (LIST (QUOTE CAR) |g|) |c|))))))))
+(DEFUN |bfCaseItems| (|g| |x|) (PROG (|j| |ISTMP#1| |i|) (RETURN ((LAMBDA (|bfVar#7| |bfVar#6| |bfVar#5|) (LOOP (COND ((OR (ATOM |bfVar#6|) (PROGN (SETQ |bfVar#5| (CAR |bfVar#6|)) NIL)) (RETURN (NREVERSE |bfVar#7|))) ((QUOTE T) (AND (CONSP |bfVar#5|) (PROGN (SETQ |i| (CAR |bfVar#5|)) (SETQ |ISTMP#1| (CDR |bfVar#5|)) (AND (CONSP |ISTMP#1|) (EQ (CDR |ISTMP#1|) NIL) (PROGN (SETQ |j| (CAR |ISTMP#1|)) (QUOTE T)))) (SETQ |bfVar#7| (CONS (|bfCI| |g| |i| |j|) |bfVar#7|))))) (SETQ |bfVar#6| (CDR |bfVar#6|)))) NIL |x| NIL))))
+(DEFUN |bfCI| (|g| |x| |y|) (PROG (|b| |a|) (RETURN (PROGN (SETQ |a| (CDR |x|)) (COND ((NULL |a|) (LIST (CAR |x|) |y|)) ((QUOTE T) (SETQ |b| ((LAMBDA (|bfVar#9| |bfVar#8| |i| |j|) (LOOP (COND ((OR (ATOM |bfVar#8|) (PROGN (SETQ |i| (CAR |bfVar#8|)) NIL)) (RETURN (NREVERSE |bfVar#9|))) ((QUOTE T) (SETQ |bfVar#9| (CONS (LIST |i| (|bfCARCDR| |j| |g|)) |bfVar#9|)))) (SETQ |bfVar#8| (CDR |bfVar#8|)) (SETQ |j| (+ |j| 1)))) NIL |a| NIL 0)) (LIST (CAR |x|) (LIST (QUOTE LET) |b| |y|))))))))
+(DEFUN |bfCARCDR| (|n| |g|) (PROG NIL (RETURN (LIST (INTERN (CONCAT "CA" (|bfDs| |n|) "R")) |g|))))
+(DEFUN |bfDs| (|n|) (PROG NIL (RETURN (COND ((EQL |n| 0) "") ((QUOTE T) (CONCAT "D" (|bfDs| (- |n| 1))))))))

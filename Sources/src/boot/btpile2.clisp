@@ -1,0 +1,47 @@
+
+;  Copyright (c) 1991-2002, The Numerical Algorithms Group Ltd.
+;  All rights reserved.
+;  
+;  Redistribution and use in source and binary forms, with or without
+;  modification, are permitted provided that the following conditions are
+;  met:
+;  
+;      - Redistributions of source code must retain the above copyright
+;        notice, this list of conditions and the following disclaimer.
+;  
+;      - Redistributions in binary form must reproduce the above copyright
+;        notice, this list of conditions and the following disclaimer in
+;        the documentation and/or other materials provided with the
+;        distribution.
+;  
+;      - Neither the name of The Numerical ALgorithms Group Ltd. nor the
+;        names of its contributors may be used to endorse or promote products
+;        derived from this software without specific prior written permission.
+;  
+;  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
+;  IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
+;  TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+;  PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER
+;  OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+;  EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+;  PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES-- LOSS OF USE, DATA, OR
+;  PROFITS-- OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+;  LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+;  NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+;  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+(IN-PACKAGE (QUOTE BOOTTRAN))
+(DEFUN |shoeFirstTokPosn| (|t|) (PROG NIL (RETURN (|shoeTokPosn| (CAAR |t|)))))
+(DEFUN |shoeLastTokPosn| (|t|) (PROG NIL (RETURN (|shoeTokPosn| (CADR |t|)))))
+(DEFUN |shoePileColumn| (|t|) (PROG NIL (RETURN (CDR (|shoeTokPosn| (CAAR |t|))))))
+(DEFUN |shoePileInsert| (|s|) (PROG (|a| |toktype|) (RETURN (COND ((|bStreamNull| |s|) (CONS NIL |s|)) (#0=(QUOTE T) (SETQ |toktype| (|shoeTokType| (CAAAR |s|))) (COND ((OR (EQ |toktype| (QUOTE LISP)) (EQ |toktype| (QUOTE LINE))) (CONS (LIST (CAR |s|)) (CDR |s|))) (#0# (SETQ |a| (|shoePileTree| (- 1) |s|)) (CONS (LIST (ELT |a| 2)) (ELT |a| 3)))))))))
+(DEFUN |shoePileTree| (|n| |s|) (PROG (|hh| |t| |h| |LETTMP#1|) (RETURN (COND ((|bStreamNull| |s|) (LIST NIL |n| NIL |s|)) (#0=(QUOTE T) (SETQ |LETTMP#1| (LIST (CAR |s|) (CDR |s|))) (SETQ |h| (CAR |LETTMP#1|)) (SETQ |t| (CADR |LETTMP#1|)) (SETQ |hh| (|shoePileColumn| |h|)) (COND ((< |n| |hh|) (|shoePileForests| |h| |hh| |t|)) (#0# (LIST NIL |n| NIL |s|))))))))
+(DEFUN |eqshoePileTree| (|n| |s|) (PROG (|hh| |t| |h| |LETTMP#1|) (RETURN (COND ((|bStreamNull| |s|) (LIST NIL |n| NIL |s|)) (#0=(QUOTE T) (SETQ |LETTMP#1| (LIST (CAR |s|) (CDR |s|))) (SETQ |h| (CAR |LETTMP#1|)) (SETQ |t| (CADR |LETTMP#1|)) (SETQ |hh| (|shoePileColumn| |h|)) (COND ((EQUAL |hh| |n|) (|shoePileForests| |h| |hh| |t|)) (#0# (LIST NIL |n| NIL |s|))))))))
+(DEFUN |shoePileForest| (|n| |s|) (PROG (|t1| |h1| |t| |h| |hh| |b| |LETTMP#1|) (RETURN (PROGN (SETQ |LETTMP#1| (|shoePileTree| |n| |s|)) (SETQ |b| (CAR |LETTMP#1|)) (SETQ |hh| (CADR . #0=(|LETTMP#1|))) (SETQ |h| (CADDR . #0#)) (SETQ |t| (CADDDR . #0#)) (COND (|b| (SETQ |LETTMP#1| (|shoePileForest1| |hh| |t|)) (SETQ |h1| (CAR |LETTMP#1|)) (SETQ |t1| (CADR |LETTMP#1|)) (LIST (CONS |h| |h1|) |t1|)) ((QUOTE T) (LIST NIL |s|)))))))
+(DEFUN |shoePileForest1| (|n| |s|) (PROG (|t1| |h1| |t| |h| |n1| |b| |LETTMP#1|) (RETURN (PROGN (SETQ |LETTMP#1| (|eqshoePileTree| |n| |s|)) (SETQ |b| (CAR |LETTMP#1|)) (SETQ |n1| (CADR . #0=(|LETTMP#1|))) (SETQ |h| (CADDR . #0#)) (SETQ |t| (CADDDR . #0#)) (COND (|b| (SETQ |LETTMP#1| (|shoePileForest1| |n| |t|)) (SETQ |h1| (CAR |LETTMP#1|)) (SETQ |t1| (CADR |LETTMP#1|)) (LIST (CONS |h| |h1|) |t1|)) ((QUOTE T) (LIST NIL |s|)))))))
+(DEFUN |shoePileForests| (|h| |n| |s|) (PROG (|t1| |h1| |LETTMP#1|) (RETURN (PROGN (SETQ |LETTMP#1| (|shoePileForest| |n| |s|)) (SETQ |h1| (CAR |LETTMP#1|)) (SETQ |t1| (CADR |LETTMP#1|)) (COND ((|bStreamNull| |h1|) (LIST T |n| |h| |s|)) ((QUOTE T) (|shoePileForests| (|shoePileCtree| |h| |h1|) |n| |t1|)))))))
+(DEFUN |shoePileCtree| (|x| |y|) (PROG NIL (RETURN (|dqAppend| |x| (|shoePileCforest| |y|)))))
+(DEFUN |shoePileCforest| (|x|) (PROG (|b| |a|) (RETURN (COND ((NULL |x|) NIL) ((NULL (CDR |x|)) (CAR |x|)) (#0=(QUOTE T) (SETQ |a| (CAR |x|)) (SETQ |b| (|shoePileCoagulate| |a| (CDR |x|))) (COND ((NULL (CDR |b|)) (CAR |b|)) (#0# (|shoeEnPile| (|shoeSeparatePiles| |b|)))))))))
+(DEFUN |shoePileCoagulate| (|a| |b|) (PROG (|e| |d| |c|) (RETURN (COND ((NULL |b|) (LIST |a|)) (#0=(QUOTE T) (SETQ |c| (CAR |b|)) (COND ((OR (EQ (|shoeTokPart| (CAAR |c|)) (QUOTE THEN)) (EQ (|shoeTokPart| (CAAR |c|)) (QUOTE ELSE))) (|shoePileCoagulate| (|dqAppend| |a| |c|) (CDR |b|))) (#0# (SETQ |d| (CADR |a|)) (SETQ |e| (|shoeTokPart| |d|)) (COND ((AND (EQCAR |d| (QUOTE KEY)) (OR (GET |e| (QUOTE SHOEINF)) (EQ |e| (QUOTE COMMA)) (EQ |e| (QUOTE SEMICOLON)))) (|shoePileCoagulate| (|dqAppend| |a| |c|) (CDR |b|))) (#0# (CONS |a| (|shoePileCoagulate| |c| (CDR |b|))))))))))))
+(DEFUN |shoeSeparatePiles| (|x|) (PROG (|semicolon| |a|) (RETURN (COND ((NULL |x|) NIL) ((NULL (CDR |x|)) (CAR |x|)) ((QUOTE T) (SETQ |a| (CAR |x|)) (SETQ |semicolon| (|dqUnit| (|shoeTokConstruct| (QUOTE KEY) (QUOTE BACKSET) (|shoeLastTokPosn| |a|)))) (|dqConcat| (LIST |a| |semicolon| (|shoeSeparatePiles| (CDR |x|)))))))))
+(DEFUN |shoeEnPile| (|x|) (PROG NIL (RETURN (|dqConcat| (LIST (|dqUnit| (|shoeTokConstruct| (QUOTE KEY) (QUOTE SETTAB) (|shoeFirstTokPosn| |x|))) |x| (|dqUnit| (|shoeTokConstruct| (QUOTE KEY) (QUOTE BACKTAB) (|shoeLastTokPosn| |x|))))))))
